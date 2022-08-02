@@ -1,0 +1,3 @@
+.divNav {
+    @apply text-base font-medium rounded-lg p-3;
+}
