@@ -12,14 +12,27 @@
 .Top_h1 {
   @apply
   font-bold
-  text-4xl
-  max-w-md
+  text-5xl
+  max-w-lg
+  leading-8
   mb-4
+  text-slate-800
+}
+.h1_nececidad {
+  @apply
+  text-slate-400
+}
+.h1_profesionales {
+  @apply
+  text-amber-600
 }
 .Top_pageDescription {
   @apply
   text-xl
   mb-20
+  font-medium
+  text-neutral-400
+  max-w-sm
 }
 .Top_buttonAcceder {
   @apply
@@ -28,4 +41,5 @@
   py-5
   bg-slate-400
   px-16
+  text-white
 }
