@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="divNav">
         <nav className='nav'>
-          <span className="logo">LOGO</span>
+          <span className="logo">logo</span>
           <SearchBar/>
           <div>
             <button>login</button>

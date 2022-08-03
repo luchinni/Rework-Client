@@ -1,6 +1,7 @@
 .divNav {
     @apply bg-slate-300
-    max-w-screen-lg
+    /* max-w-screen-lg */
+    max-w-screen-xl
     m-auto
 }
 .logo {
