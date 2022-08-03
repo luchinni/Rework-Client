@@ -5,12 +5,12 @@ import "./Header.css";
 const Header = () => {
   return (
     <div className="divNav">
+        <span className="logo">logo</span>
         <nav className='nav'>
-          <span className="logo">logo</span>
           <SearchBar/>
-          <div>
-            <button>login</button>
-            <button>register</button>
+          <div className='div_buttons'>
+            <button className='button_login'>login</button>
+            <button className='button_register'>register</button>
           </div>
         </nav>
     </div>
