@@ -4,7 +4,7 @@ import CardsOffer from '../CardsOffer/CardsOffer'
 const Home = () => {
   return (
     <div>
-      <span>esto es home</span>
+      <span>esto es home!</span>
       <CardsOffer/>
     </div>
   )
