@@ -1,7 +1,7 @@
 import React from 'react'
 import './CardOffer.css';
 
-const CardOffer = () => {
+const CardOffer = (props:any) => {
   return (
     <div>
       <div>

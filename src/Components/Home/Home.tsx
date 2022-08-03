@@ -1,16 +1,19 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react';
 import CardsOffer from '../CardsOffer/CardsOffer'
+import {getOffer} from "../../Redux/Reducer/reducer"
 
 const Home = () => {
 
-  const offer: {remuneration: number[], description: string, work_duration_time: string, photo: string, tags: string[], title: string} = {
-    remuneration: [100, 150],
-    description: "necesito que me hagan el front end de mi vida",
-    work_duration_time: "1 semana",
-    photo: "https://www.xtrafondos.com/wallpapers/resized/paisaje-digital-en-atardecer-5846.jpg?s=large",
-    tags: ["front end developer", "design", "full stack", "css", "javaScript"],
-    title: "Página de paisajes (solo front)"
-  }
+  const allClients = useSelector((state:any) => state.workService.allClients);
+  const offers = useSelector((state:any) => state.workService.offers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOffer());
+  }, [])
+  
 
   const client: {name: string, photo: string, rating: number} = {
     name: "Jason",
@@ -22,7 +25,9 @@ const Home = () => {
   return (
     <div>
       <span>esto es home!</span>
-      <CardsOffer/>
+      <div>
+      <CardsOffer props={offers} />
+        </div>
     </div>
   )
 }
