@@ -1,9 +1,11 @@
-.divNav {
+.Header_component {
     @apply bg-slate-300
     flex
     justify-between
-    max-w-screen-lg
+    max-w-6xl
     m-auto
+    py-9
+    mb-7
 }
 .logo {
     @apply 
@@ -16,7 +18,7 @@
     flex
     justify-between
     items-center
-    bg-slate-500
+    /* bg-slate-500 */
     max-w-xl
     w-full
 }

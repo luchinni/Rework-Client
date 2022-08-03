@@ -1,10 +1,12 @@
 import React from 'react';
+import Top from './Top/Top';
+import './LandingPage.css';
 
 const LandingPage = () => {
   return (
-    <div>
-      <main><h1>HOLA</h1></main>
-    </div>
+    <main className='Landing_component'>
+        <Top />
+    </main>
   )
 }
 
