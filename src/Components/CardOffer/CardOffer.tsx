@@ -1,11 +1,12 @@
 import React from 'react'
+import './CardOffer.css';
 
 const CardOffer = () => {
   return (
     <div>
       <div>
         <span>info client</span>
-        <img src="" alt="Foto usuario" />
+        <img className='image' src="" alt="Foto usuario" />
         <div>
           <span>Name</span>
           <span>valoracion</span>
