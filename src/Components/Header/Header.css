@@ -1,0 +1,12 @@
+.divNav {
+    @apply 
+    bg-zinc-400 
+    flex
+    justify-between;
+}
+.logo {
+    @apply text-blue-600/100;
+}
+.nav {
+    @apply flex
+}
