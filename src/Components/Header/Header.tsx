@@ -5,8 +5,8 @@ import "./Header.css";
 const Header = () => {
   return (
     <div className="divNav">
-        <span className="logo">LOGO</span>
         <nav className='nav'>
+          <span className="logo">logo</span>
           <SearchBar/>
           <div>
             <button>login</button>

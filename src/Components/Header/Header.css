@@ -1,13 +1,18 @@
 .divNav {
-    @apply bg-slate-300 
-    flex
-    justify-between;
+    @apply bg-slate-300
+    /* max-w-screen-lg */
+    max-w-screen-xl
+    m-auto
 }
 .logo {
-    @apply text-sky-900 
-    text-2xl 
+    @apply 
+    text-black
+    text-3xl 
     font-bold;
 }
 .nav {
-    @apply flex
+    @apply 
+    flex
+    justify-between
+    items-center
 }
