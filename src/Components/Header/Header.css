@@ -1,11 +1,12 @@
 .divNav {
-    @apply 
-    bg-zinc-400 
+    @apply bg-slate-300 
     flex
     justify-between;
 }
 .logo {
-    @apply text-blue-600/100;
+    @apply text-sky-900 
+    text-2xl 
+    font-bold;
 }
 .nav {
     @apply flex
