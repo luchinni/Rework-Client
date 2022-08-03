@@ -9,7 +9,7 @@ const Header = () => {
         <nav className='nav'>
           <SearchBar/>
           <div>
-            <button>log in</button>
+            <button>login</button>
             <button>register</button>
           </div>
         </nav>
