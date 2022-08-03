@@ -1,7 +1,8 @@
 .divNav {
     @apply bg-slate-300
-    /* max-w-screen-lg */
-    max-w-screen-xl
+    flex
+    justify-between
+    max-w-screen-lg
     m-auto
 }
 .logo {
@@ -15,4 +16,25 @@
     flex
     justify-between
     items-center
+    bg-slate-500
+    max-w-xl
+    w-full
+}
+.div_buttons {
+    @apply
+    flex
+    gap-6
+}
+.button_login {
+    @apply
+    bg-white
+    border-slate-400
+    py-1
+    px-3
+}
+.button_register {
+    @apply
+    bg-slate-400
+    py-1
+    px-3
 }
