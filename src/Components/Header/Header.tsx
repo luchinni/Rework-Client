@@ -1,19 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar/SearchBar';
 import "./Header.css";
 
 const Header = () => {
+
+
+
   return (
-    <div className="Header_component">
-        <span className="logo">logo</span>
+    <header className="Header_component">
+      { window.location.href === "http://localhost:3000/" ? 
+        <span className="logo">logo</span> : <Link to="/home" className="logo">logo</Link>
+      }
         <nav className='nav'>
           <SearchBar/>
           <div className='div_buttons'>
-            <button className='button_login'>Log in</button>
-            <button className='button_register'>Sing up</button>
+            <div>
+              <button className='button_login'>Log in</button>
+            </div>
+            <div>
+              <button className='button_register'>Sing up</button>
+            </div>
           </div>
         </nav>
-    </div>
+    </header>
   )
 }
 
