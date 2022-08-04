@@ -1,0 +1,45 @@
+.contenedor_register{
+    max-width: 1136px;
+    margin: 0 auto    
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1136px;
+    margin: 0 auto;
+    padding: 36px 0;
+}
+
+.logo{
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.btn_volver{
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 7px 11px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.contenedor_divs_trab_client{
+display: flex;
+
+}
+
+.div_trabajador{
+    background: rgb(163, 152, 152);
+    max-width: 550px;
+    max-height: 724px;
+}
+
+.div_client{
+    background: rgb(214, 93, 93);
+    max-width: 550px;
+    max-height: 724px;
+}

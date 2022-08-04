@@ -1,19 +1,37 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './Register.css'
 
-const RegisterTypes = () => {
+const Register = () => {
   return (
-    <div>
-        <h1>RegisterTypes</h1>
-        <div>
-            <Link to="register/" ><button>Worker</button></Link>        
+    <div className='contenedor_register'>
+        <div className='header'>
+          <span className='logo'>logo</span>
+          <Link to='/' ><button className='btn_volver'>Volver</button></Link>
         </div>
-        <div>
-            <Link to="register/" ><button>Client</button></Link>
+        <div className='contenedor_divs_trab_client'>
+            <div className='div_trabajador'>
+              <span>Registrate como Free Lancer</span><br/>
+              <p>Edita tu portfolio<br/>
+                                   <br/>
+                 Aplica a los mejores 
+                 trabajos para ti</p>
+              <img src='' alt='acá va una imagen'/>
+              <Link to="register/trabajador" ><button>Worker</button></Link>        
+            </div>
+            <div className='div_client'>
+              <span>Registrate como Cliente</span>
+              <p>Realiza publicaciones<br/>
+                                      <br/>
+                 Recibe las mejores ofertas
+                 para tu trabajo</p>
+              <img src='' alt='acá va una imagen'/>
+              <Link to="register/client" ><button>Client</button></Link>
+            </div>
         </div>
 
     </div>
   )
 }
 
-export default RegisterTypes
+export default Register
