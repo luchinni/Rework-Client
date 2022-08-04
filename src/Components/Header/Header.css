@@ -1,42 +1,40 @@
 .Header_component {
-    @apply bg-slate-300
-    flex
-    justify-between
-    max-w-6xl
-    m-auto
-    py-9
-    mb-7
+    display: flex;
+    justify-content: space-between;
+    max-width: 1136px;
+    margin: 0 auto;
+    padding: 36px 0;
 }
 .logo {
-    @apply 
-    text-black
-    text-3xl 
-    font-bold;
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
 }
 .nav {
-    @apply 
-    flex
-    justify-between
-    items-center
-    /* bg-slate-500 */
-    max-w-xl
-    w-full
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+    max-width: 63%;
+    width: 100%;
 }
 .div_buttons {
-    @apply
-    flex
-    gap-6
+    display: flex;
+    gap: 25px;
+}
+.button_login ,
+.button_register {
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 7px 11px;
 }
 .button_login {
-    @apply
-    bg-white
-    border-slate-400
-    py-1
-    px-3
+    color: #757F8F;
+    border: 1px solid #8D8D8D;
 }
 .button_register {
-    @apply
-    bg-slate-400
-    py-1
-    px-3
+   background-color: #757F8F;
+   color: #FFF
 }

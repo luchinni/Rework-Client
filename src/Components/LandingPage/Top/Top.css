@@ -1,45 +1,48 @@
 .Top_component {
-  @apply
-  flex
-  justify-between
-  w-full
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 .Top_divIzquierda {
-  @apply
-  max-w-lg
-  my-32
+  margin-top: 125px
+}
+.Top_divImage {
+  margin-top: 30px;
 }
 .Top_h1 {
-  @apply
-  font-bold
-  text-5xl
-  max-w-lg
-  leading-8
-  mb-4
-  text-slate-800
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 60px;
+  max-width: 500px;
+  color: #273141;
+  margin-bottom: 17px;
 }
 .h1_nececidad {
-  @apply
-  text-slate-400
+  color: #757F8F;
 }
 .h1_profesionales {
-  @apply
-  text-amber-600
+  color: #D6550D;
 }
 .Top_pageDescription {
-  @apply
-  text-xl
-  mb-20
-  font-medium
-  text-neutral-400
-  max-w-sm
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #939393;
+  margin-bottom: 75px;
+  max-width: 400px;
 }
 .Top_buttonAcceder {
-  @apply
-  font-bold
-  text-2xl
-  py-5
-  bg-slate-400
-  px-16
-  text-white
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  background-color: #757F8F;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+}
+.new_tabIcon {
+  height: 29px;
+  width: 29px;
 }

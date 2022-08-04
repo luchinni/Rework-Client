@@ -9,8 +9,8 @@ const Header = () => {
         <nav className='nav'>
           <SearchBar/>
           <div className='div_buttons'>
-            <button className='button_login'>login</button>
-            <button className='button_register'>register</button>
+            <button className='button_login'>Log in</button>
+            <button className='button_register'>Sing up</button>
           </div>
         </nav>
     </div>
