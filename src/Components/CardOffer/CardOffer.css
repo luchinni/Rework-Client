@@ -5,6 +5,7 @@
     max-width: 730px;
     overflow: hidden;
     margin-bottom: 30px;
+    padding-bottom: 7px;
 }
 .div_profileSection {
     display: flex;
@@ -26,6 +27,14 @@
     display: flex;
     gap: 12px;
     align-items: center;
+}
+.Card_userName {
+    font-size: 16px;
+    font-weight: 500;
+}
+.Card_userRating {
+    font-size: 13px;
+    color: #575757;
 }
 .div_userDatos {
     display: flex;
@@ -79,8 +88,8 @@
     color: #D6550D;
     margin-top: 5px;
 }
-.carddiv_tags {
-    margin-bottom: 20px;
+.card_divTags {
+    margin-bottom: 25px;
 }
 .button_details {
     font-size: 18px;
@@ -90,14 +99,30 @@
     padding: 7px 32px;
     background: #273141;
     border-radius: 7px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.button_details:hover {
+    background-color: #19202a;
 }
 .div_cardButton {
     position: relative;
 }
+.cardButton_options {
+    padding: 1px;
+    background-color: #FFFFFF;
+    border: none;
+    margin-top: 7px;
+    cursor: pointer;
+}
+.more {
+    max-width: 30px;
+}
 .Card_option {
     background-color: #FFFFFF;
     position: absolute;
-    right: 2px;
+    right: -1px;
     margin-top: 5px;
     padding: 10px;
     border-radius: 5px;

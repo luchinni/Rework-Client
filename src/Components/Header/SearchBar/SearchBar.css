@@ -1,11 +1,8 @@
-.SearchBar_component {
-  /* margin-left: 70px; */
-}
 .SearchBar {
   display: flex;
   background-color: #E9E9E9;
   border-radius: 10px;
-  padding: 10px
+  padding: 5px
 }
 .icon_search ,
 .icon_filters {
@@ -18,8 +15,12 @@
   font-weight: 500;
   font-size: 14px;
   color: #949494;
+  padding: 5px 0;
+  border: none;
 }
-
+.input_search:focus {
+  outline: none;
+}
 .filter_dropDown {
   position: absolute;
   display: flex;

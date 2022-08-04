@@ -19,12 +19,14 @@ const CardOffer = ({props}:any) => {
             <img className='card_profileImage' src={props.photoClient} alt="Client Photo" />
           </div>
           <div className='div_userDatos'>
-            <span>{props.name}</span>
-            <span>{props.rating}</span>
+            <Link to="#" className='Card_userName'>{props.name}</Link>
+            <span className='Card_userRating'>Rating: {props.rating}</span>
           </div>
         </div>
         <div className='div_cardButton'>
-          <button onClick={handleClick} className='cardButton_options'><img src={more} alt="more" /></button>
+          <button onClick={handleClick} className='cardButton_options'>
+            <img className='more' src={more} alt="more" />
+          </button>
           {open &&
             <div className='Card_option'>
               <span className='report_cardButton'>Reportar</span>
@@ -46,7 +48,7 @@ const CardOffer = ({props}:any) => {
           <span className='card_tags'>{props.tags.join(', ')}</span>
         </div>
         <div>
-          <Link className='button_details' to={`/detailOffer/${props.id}`}><button>Ver mas</button></Link>
+          <Link className='button_details' to={`/detailOffer/${props.id}`}>Ver mas</Link>
         </div>
       </div>
     </div>
