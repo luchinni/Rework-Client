@@ -19,7 +19,7 @@ const Header = () => {
               <button className='button_login'>Log in</button>
             </div>
             <div>
-              <button className='button_register'>Sing up</button>
+            <Link to='/register'><button className='button_register'>Sing up</button></Link>
             </div>
           </div>
         </nav>
