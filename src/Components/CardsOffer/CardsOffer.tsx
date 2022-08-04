@@ -5,9 +5,9 @@ const CardsOffer = ({props}:any) => {
   // console.log(props)
   return (
     <div>
-      {props && props?.map((o:any) =>{
+      {props && props?.map((o:any, i:any) =>{
         return(
-          <CardOffer props={o} />
+          <CardOffer key={i} props={o} />
         )
       })}
     </div>
