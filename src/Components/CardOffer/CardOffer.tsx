@@ -33,7 +33,7 @@ const CardOffer = ({props}:any) => {
           <span className='card_tags'>{props.tags.join(', ')}</span>
         </div>
         <div>
-          <Link className='button_details' to={`/detailOffer`}><button>Ver mas</button></Link>
+          <Link className='button_details' to={`/detailOffer/${props.id}`}><button>Ver mas</button></Link>
         </div>
       </div>
     </div>
