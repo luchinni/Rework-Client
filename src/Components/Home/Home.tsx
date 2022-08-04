@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import CardsOffer from '../CardsOffer/CardsOffer'
 import {getOffer} from "../../Redux/Reducer/reducer"
+import './Home.css'
 
 const Home = () => {
 
@@ -15,10 +16,8 @@ const Home = () => {
 
 console.log(offers)
   return (
-    <div>
-      <div>
-        <CardsOffer props={offers} />
-      </div>
+    <div className='Home_component'>
+      <CardsOffer props={offers} />
     </div>
   )
 }
