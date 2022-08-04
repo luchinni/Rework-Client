@@ -1,5 +1,6 @@
 import React from 'react'
 import './CardOffer.css';
+import {Link} from 'react-router-dom';
 
 const CardOffer = ({props}:any) => {
 
@@ -22,7 +23,7 @@ const CardOffer = ({props}:any) => {
         <img src={props.photo} alt="Offer Photo" />
         <span>{props.tags.join(', ')}</span>
       </div>
-      <button>detail</button>
+      <Link to={`/detailOffer`}><button>detail</button></Link>
     </div>
   )
 }
