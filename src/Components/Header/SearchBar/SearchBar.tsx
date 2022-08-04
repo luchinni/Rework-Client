@@ -13,9 +13,14 @@ const SearchBar = () => {
   return (
     <div className='SearchBar_component'>
       <div className='SearchBar'>
-        <img className='icon_search' src={icon_search} alt="search" />
-        <input className='input_search' type="text" placeholder='Busca usuario/trabajo' />
-        <button className='button_filters' onClick={handleClick}><img className='icon_filters' src={icon_filter} alt="filters" /></button>
+        <input className='input_search' placeholder='Busca usuario/trabajo' />
+        <div className='SearchBar_buttons'>
+          <button className='button_filters' onClick={handleClick}>
+            <img className='icon_filters' src={icon_filter} alt="filters" /></button>
+          <button className='button_search'>
+            <img className='icon_search' src={icon_search} alt="search" />
+          </button>
+        </div>
       </div>
       {open &&
         <div className='filter_dropDown'>

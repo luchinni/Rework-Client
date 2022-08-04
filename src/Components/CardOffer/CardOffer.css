@@ -31,6 +31,7 @@
 .Card_userName {
     font-size: 16px;
     font-weight: 500;
+    text-decoration: none;
 }
 .Card_userRating {
     font-size: 13px;
@@ -120,6 +121,9 @@
     max-width: 30px;
 }
 .Card_option {
+    /* display: flex;
+    align-items: center;
+    gap: 10px; */
     background-color: #FFFFFF;
     position: absolute;
     right: -1px;
@@ -128,10 +132,20 @@
     border-radius: 5px;
     border: 1px solid #949494;
 }
+.CardOption_divReport {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+.CardOption_divReport:hover {
+    background-color: rgba(252, 1, 1, 0.201);
+}
 .report_cardButton {
     color: #273141;
     cursor: pointer;
 }
-.report_cardButton:hover {
-    color: red;
+.report_icon {
+    width: 30px;
 }

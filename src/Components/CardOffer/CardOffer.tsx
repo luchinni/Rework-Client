@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import './CardOffer.css';
 import {Link} from 'react-router-dom';
-import more from '../../images/more.svg'
+import more from '../../images/more.svg';
+import report from '../../images/icon_report.svg';
 
 const CardOffer = ({props}:any) => {
 
@@ -29,7 +30,10 @@ const CardOffer = ({props}:any) => {
           </button>
           {open &&
             <div className='Card_option'>
-              <span className='report_cardButton'>Reportar</span>
+              <div className='CardOption_divReport'>
+                <span className='report_cardButton'>Reportar</span>
+                <img className='report_icon' src={report} alt="report" />
+              </div>
             </div>
           }
         </div>
