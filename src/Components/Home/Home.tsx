@@ -20,11 +20,11 @@ const Home = () => {
   //   photo: "https://www.movilzona.es/app/uploads-movilzona.es/2019/07/Foto-de-Perfil-en-WhatsApp-650x340.jpg",
   //   rating: 3.7
   // }
-  
 
+console.log(offers)
   return (
+    
     <div>
-      <span>esto es home!</span>
       <div>
       <CardsOffer props={offers} />
         </div>

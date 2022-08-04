@@ -1,11 +1,11 @@
 import React from 'react'
 import CardOffer from '../CardOffer/CardOffer'
 
-const CardsOffer = (props:any) => {
+const CardsOffer = ({props}:any) => {
+  // console.log(props)
   return (
     <div>
-      <span> mapeo para pasarle la info a card</span>
-      {props.map((o:any) =>{
+      {props && props?.map((o:any) =>{
         return(
           <CardOffer props={o} />
         )
