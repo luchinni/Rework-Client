@@ -46,7 +46,52 @@ export const getClients = (clients:any) => (dispatch:any) =>{
          name: "Esteban Longo",
          photoClient: "https://i.pinimg.com/originals/bf/6b/40/bf6b4041f341a91a030abc0b7abd5ef4.jpg",
          rating: 3.7
-       }]
+       },
+       {
+        remuneration: [100, 150],
+        description: "Tengo una herramienta desarrollada en Java que permite ver videos de manera remota. Adjunto un video en el cual se muestra el funcionamiento de la mismo para y por que si",
+        work_duration_time: "1 semana",
+        photo: "https://www.xtrafondos.com/wallpapers/resized/paisaje-digital-en-atardecer-5846.jpg?s=large",
+        tags: ["front end developer", "design", "full stack", "css", "javaScript"],
+        title: "Página de paisajes (solo front)",
+        name: "Esteban Longo",
+        photoClient: "https://i.pinimg.com/originals/bf/6b/40/bf6b4041f341a91a030abc0b7abd5ef4.jpg",
+        rating: 3.7
+      },
+      {
+        remuneration: [100, 150],
+        description: "Tengo una herramienta desarrollada en Java que permite ver videos de manera remota. Adjunto un video en el cual se muestra el funcionamiento de la mismo para y por que si",
+        work_duration_time: "1 semana",
+        photo: "https://www.xtrafondos.com/wallpapers/resized/paisaje-digital-en-atardecer-5846.jpg?s=large",
+        tags: ["front end developer", "design", "full stack", "css", "javaScript"],
+        title: "Página de paisajes (solo front)",
+        name: "Esteban Longo",
+        photoClient: "https://i.pinimg.com/originals/bf/6b/40/bf6b4041f341a91a030abc0b7abd5ef4.jpg",
+        rating: 3.7
+      },
+      {
+        remuneration: [100, 150],
+        description: "Tengo una herramienta desarrollada en Java que permite ver videos de manera remota. Adjunto un video en el cual se muestra el funcionamiento de la mismo para y por que si",
+        work_duration_time: "1 semana",
+        photo: "https://www.xtrafondos.com/wallpapers/resized/paisaje-digital-en-atardecer-5846.jpg?s=large",
+        tags: ["front end developer", "design", "full stack", "css", "javaScript"],
+        title: "Página de paisajes (solo front)",
+        name: "Esteban Longo",
+        photoClient: "https://i.pinimg.com/originals/bf/6b/40/bf6b4041f341a91a030abc0b7abd5ef4.jpg",
+        rating: 3.7
+      },
+      {
+        remuneration: [100, 150],
+        description: "Tengo una herramienta desarrollada en Java que permite ver videos de manera remota. Adjunto un video en el cual se muestra el funcionamiento de la mismo para y por que si",
+        work_duration_time: "1 semana",
+        photo: "https://www.xtrafondos.com/wallpapers/resized/paisaje-digital-en-atardecer-5846.jpg?s=large",
+        tags: ["front end developer", "design", "full stack", "css", "javaScript"],
+        title: "Página de paisajes (solo front)",
+        name: "Esteban Longo",
+        photoClient: "https://i.pinimg.com/originals/bf/6b/40/bf6b4041f341a91a030abc0b7abd5ef4.jpg",
+        rating: 3.7
+      },
+    ]
      dispatch(setAllOffers(offer));
  }
 
