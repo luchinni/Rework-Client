@@ -29,6 +29,7 @@
     font-weight: 600;
     border-radius: 8px;
     padding: 7px 11px;
+    white-space: nowrap;
 }
 .button_login {
     color: #757F8F;
