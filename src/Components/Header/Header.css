@@ -9,6 +9,7 @@
     font-size: 32px;
     font-weight: 700;
     color: #000000;
+    text-decoration: none;
 }
 .nav {
     display: flex;
@@ -36,6 +37,7 @@
 .button_login {
     color: #757F8F;
     border: 1px solid #8D8D8D;
+    background-color: #FFF;
 }
 .button_register {
    background-color: #757F8F;
