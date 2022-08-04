@@ -1,8 +1,4 @@
 .Landing_component {
-  @apply 
-  flex
-  justify-between
-  items-center
-  max-w-6xl
-  m-auto
+  max-width: 1136px;
+  margin: 0 auto;
 }
