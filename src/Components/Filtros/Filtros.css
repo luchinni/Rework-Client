@@ -1,0 +1,10 @@
+.Filtros_component {
+  border: 1px solid #949494;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  max-height: 325px;
+  max-width: 380px;
+  width: 100%;
+  padding: 20px;
+  /* position: fixed; */
+}
