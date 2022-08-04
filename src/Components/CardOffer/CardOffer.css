@@ -91,3 +91,22 @@
     background: #273141;
     border-radius: 7px;
 }
+.div_cardButton {
+    position: relative;
+}
+.Card_option {
+    background-color: #FFFFFF;
+    position: absolute;
+    right: 2px;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #949494;
+}
+.report_cardButton {
+    color: #273141;
+    cursor: pointer;
+}
+.report_cardButton:hover {
+    color: red;
+}

@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './CardOffer.css';
 import {Link} from 'react-router-dom';
 import more from '../../images/more.svg'
 
 const CardOffer = ({props}:any) => {
+
+  const [open, setOpen] = useState(false)
+
+  function handleClick() {
+    setOpen(!open);
+  }
 
   return (
     <div className='CardOffer_component'>
@@ -17,7 +23,14 @@ const CardOffer = ({props}:any) => {
             <span>{props.rating}</span>
           </div>
         </div>
-        <button className='cardButton_options'><img src={more} alt="more" /></button>
+        <div className='div_cardButton'>
+          <button onClick={handleClick} className='cardButton_options'><img src={more} alt="more" /></button>
+          {open &&
+            <div className='Card_option'>
+              <span className='report_cardButton'>Reportar</span>
+            </div>
+          }
+        </div>
       </div>
       <hr />
       <div className='div_infoWorkSection'>
