@@ -1,14 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import HeaderRegister from './HeaderRegister/HeaderRegister';
 import './Register.css'
 
 const Register = () => {
   return (
     <div className='contenedor_register'>
-        <div className='header'>
-          <Link to="/home" className="logo">logo</Link>
-          <Link to='/' ><button className='btn_volver'>Volver</button></Link>
-        </div>
+        <HeaderRegister/>
         <div className='contenedor_divs_trab_client'>
             <div className='div_trabajador'>
               <span>Registrate como Free Lancer</span><br/>
