@@ -17,7 +17,7 @@ const Register = () => {
                  Aplica a los mejores 
                  trabajos para ti</p>
               <img src='' alt='acá va una imagen'/>
-              <Link to="/register/trabajador" ><button>Worker</button></Link>        
+              <Link to="/register/worker" ><button>Worker</button></Link>        
             </div>
             <div className='div_client'>
               <span>Registrate como Cliente</span>
