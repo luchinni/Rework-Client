@@ -1,0 +1,149 @@
+.Detail_component {
+  max-width: 1136px;
+  margin: 0 auto;
+}
+.Detail_detail {
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid gray;
+  overflow: hidden;
+  margin-top: 100px;
+  border-radius: 10px;
+}
+.Detail_User {
+  /* display: flex; */
+  border-left: 1px solid gray;
+  height: 100%;
+  padding: 30px;
+}
+.Detail_divUserImage {
+  overflow: hidden;
+  border-radius: 10px;
+  height: 160px;
+  width: 160px;
+}
+.Detail_userPhoto {
+  width: 160px;
+}
+.Detail_NameUserPost {
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 32px;
+  color: #273141;
+}
+.Detail_UserRating {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #D6550D;
+}
+.Detail_infoProposal {
+  padding: 30px;
+  /* background-color: red; */
+}
+.Detail_divImages {
+  display: inline-block;
+  max-height: 165px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.Detail_images {
+  max-height: 165px;
+}
+.Detail_titleTime {
+  display: flex;
+  justify-content: space-between;
+}
+.Detail_title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: #273141;
+}
+.Detail_time {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6F6D6D;
+}
+.Detail_remuneration {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #D6550D;
+  margin-top: 5px;
+}
+.Detail_description {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #333333;
+  margin: 40px 0 20px;
+}
+.Detail_tags {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  color: #333333;
+  margin-top: 30px;
+}
+.Detail_buttonApply {
+  font-weight: 600;
+  font-size: 20px;
+  color: #FFFFFF;
+  padding: 9px 30px;
+  background: #72AD5E;
+  border-radius: 6px;
+  border: none;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.Detail_h2Propuestas {
+  margin: 50px 0 30px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  color: #273141;
+}
+.Detail_divProposal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  /* justify-content: space-between; */
+  margin-bottom: 100px;
+}
+.Detail_Proposal {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 25px 15px 15px;
+}
+
+.DetailP_UserName {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #262626;
+}
+.DetailP_remuneration {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #D6550D;
+}
+.DetailP_propuestaUser {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #787878;
+  max-width: 190px;
+  height: 60px;
+  margin-top: 10px;
+}
+.DetailP_timeUser {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #262626;
+  max-width: 190px;
+}
