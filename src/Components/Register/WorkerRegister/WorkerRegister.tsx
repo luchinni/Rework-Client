@@ -5,7 +5,7 @@ import image3 from "../../../images/Video_call_Monochromatic_1.png";
 import * as type from "../../../Types";
 import { connect, ConnectedProps } from "react-redux";
 import {postNewWorker} from "../../../Redux/Reducer/reducer"
-
+import HeaderRegister from '../HeaderRegister/HeaderRegister';
 
 interface HeaderState{
   // props: any;
@@ -114,8 +114,29 @@ handleSubmit(e:any){
   const newWorker:type.newWorkerType = {
     name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, image:image, profession:profession, skills:skills
   }
-  console.log(newWorker);
+  // console.log(newWorker);
   postNewWorker(newWorker);
+
+  this.setState({
+        name: "",
+      lastName: "",
+      password: "",
+      user_mail: "",
+      birthdate: "",
+      image: "",
+      profession: [],
+      skills: [],
+      errors: {
+        name: "",
+        lastName: "",
+        password: "",
+        user_mail: "",
+        birthdate: "",
+        image: "",
+      },
+      disabled: true,
+      inputSkills: []
+  })
 
 }
 
@@ -130,7 +151,7 @@ handleSelect(e:any){
 
     return (
       <div>
-
+        <HeaderRegister/>
         <div>
           <img src={image1} alt="place1" />
             <img src={image2} alt="place2" />
@@ -175,7 +196,8 @@ handleSelect(e:any){
 
  export const mapStateToProps = (state:any) => {
    return {
-       professions: state.workService.professions
+       professions: state.workService.professions,
+      //  skills: state.workService.skills
    }
  };
  export const mapDispatchToProps = (dispatch:any) => {

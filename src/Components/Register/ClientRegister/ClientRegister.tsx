@@ -4,7 +4,8 @@ import image2 from "../../../images/Bank note_Monochromatic.png"
 import image3 from "../../../images/Money motivation _Monochromatic.png"
 import * as type from "../../../Types"
 import { postNewClient } from '../../../Redux/Reducer/reducer'
-import './ClientRegister.css'
+import './ClientRegister.css';
+import HeaderRegister from '../HeaderRegister/HeaderRegister';
 
 export class ClientRegister extends Component {
     state:type.ClientType;
@@ -108,42 +109,46 @@ export class ClientRegister extends Component {
 
   render() {
     return (
-        <div className='ClientRegister_component'>
-            <div className='CR_divImages'>
-                <img src={image1} alt="place1" />
-                <img src={image2} alt="place1" />
-                <img src={image3} alt="place1" />
-            </div>
-            <div className='CR_divForm'>
-                <h1 className='CR_h1'>Empecemos</h1>
-                <p className='CR_goToLogin'>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
-                <form className='CR_Form' id='form' onSubmit={(e) => e.preventDefault()}>
-                    <div className='CR_Div_inputAndError'>
-                        <input className='CR_inpunt' type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-                        {!this.state.errors.name ? null : <div className='CR_inputError'>{this.state.errors.name}</div>}
-                    </div>
-                    <div className='CR_Div_inputAndError'>
-                        <input className='CR_inpunt' type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
-                        {!this.state.errors.lastName ? null : <div className='CR_inputError'>{this.state.errors.lastName}</div>}
-                    </div>
-                    <div className='CR_Div_inputAndError'>
-                        <input className='CR_inpunt' type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
-                        {!this.state.errors.password ? null : <div className='CR_inputError'>{this.state.errors.password}</div>}
-                    </div>
-                    <div className='CR_Div_inputAndError'>
-                        <input className='CR_inpunt' type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
-                        {!this.state.errors.user_mail ? null : <div className='CR_inputError'>{this.state.errors.user_mail}</div>}
-                    </div>
-                    <div className='CR_Div_inputAndError'>
-                        <input className='CR_inpunt' type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
-                        {!this.state.errors.birthdate ? null : <div className='CR_inputError'>{this.state.errors.birthdate}</div>}
-                    </div>
-                    <div className='CR_Div_inputAndError'>
-                        <input className='CR_inpunt' type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
-                        {!this.state.errors.image ? null : <div className='CR_inputError'>{this.state.errors.image}</div>}
-                    </div>
-                    <input className='CR_inpuntSubmit' disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
-                </form>
+        <div>
+            <HeaderRegister/>
+            <div className='ClientRegister_component'>
+
+                <div className='CR_divImages'>
+                    <img src={image1} alt="place1" />
+                    <img src={image2} alt="place1" />
+                    <img src={image3} alt="place1" />
+                </div>
+                <div className='CR_divForm'>
+                    <h1 className='CR_h1'>Empecemos</h1>
+                    <p className='CR_goToLogin'>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
+                    <form className='CR_Form' id='form' onSubmit={(e) => e.preventDefault()}>
+                        <div className='CR_Div_inputAndError'>
+                            <input className='CR_inpunt' type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
+                            {!this.state.errors.name ? null : <div className='CR_inputError'>{this.state.errors.name}</div>}
+                        </div>
+                        <div className='CR_Div_inputAndError'>
+                            <input className='CR_inpunt' type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
+                            {!this.state.errors.lastName ? null : <div className='CR_inputError'>{this.state.errors.lastName}</div>}
+                        </div>
+                        <div className='CR_Div_inputAndError'>
+                            <input className='CR_inpunt' type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
+                            {!this.state.errors.password ? null : <div className='CR_inputError'>{this.state.errors.password}</div>}
+                        </div>
+                        <div className='CR_Div_inputAndError'>
+                            <input className='CR_inpunt' type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+                            {!this.state.errors.user_mail ? null : <div className='CR_inputError'>{this.state.errors.user_mail}</div>}
+                        </div>
+                        <div className='CR_Div_inputAndError'>
+                            <input className='CR_inpunt' type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
+                            {!this.state.errors.birthdate ? null : <div className='CR_inputError'>{this.state.errors.birthdate}</div>}
+                        </div>
+                        <div className='CR_Div_inputAndError'>
+                            <input className='CR_inpunt' type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
+                            {!this.state.errors.image ? null : <div className='CR_inputError'>{this.state.errors.image}</div>}
+                        </div>
+                        <input className='CR_inpuntSubmit' disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
+                    </form>
+                </div>
             </div>
         </div>
     )
