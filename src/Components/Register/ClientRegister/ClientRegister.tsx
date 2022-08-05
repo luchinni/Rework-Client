@@ -4,6 +4,7 @@ import image2 from "../../../images/Bank note_Monochromatic.png"
 import image3 from "../../../images/Money motivation _Monochromatic.png"
 import * as type from "../../../Types"
 import { postNewClient } from '../../../Redux/Reducer/reducer'
+import './ClientRegister.css'
 
 export class ClientRegister extends Component {
     state:type.ClientType;
@@ -63,7 +64,7 @@ export class ClientRegister extends Component {
                 break;
             case "password":
                 let passwordPattern:RegExp = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
-                errors.password = passwordPattern.test(value)? "" : "La contraseña debe tener entre 8 y 16 caracteres y al menos 1 mayuscula y 1 minuscula."
+                errors.password = passwordPattern.test(value)? "" : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula y 1 minuscula."
                 break;
             case "user_mail":
                 let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
@@ -91,12 +92,6 @@ export class ClientRegister extends Component {
         });
         this.validarForm(this.state.errors)
     }
-    /*name: "",
-            lastName: "",
-            password: "",
-            user_mail: "",
-            birthdate: "",
-            image: "",*/
 
     handleSubmit(e:any){
         e.preventDefault();
@@ -108,40 +103,49 @@ export class ClientRegister extends Component {
             name:name, lastName:lastName, password:password, user_mail:user_mail, birthdate:birthdate, image:image
         }
 
-        //console.log(newClient);
-
         postNewClient(newClient);
     }
 
   render() {
     return (
-        <div>
-        
-        <div>
-            <img src={image1} alt="place1" />
-            <img src={image2} alt="place1" />
-            <img src={image3} alt="place1" />
+        <div className='ClientRegister_component'>
+            <div className='CR_divImages'>
+                <img src={image1} alt="place1" />
+                <img src={image2} alt="place1" />
+                <img src={image3} alt="place1" />
+            </div>
+            <div className='CR_divForm'>
+                <h1 className='CR_h1'>Empecemos</h1>
+                <p className='CR_goToLogin'>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
+                <form className='CR_Form' id='form' onSubmit={(e) => e.preventDefault()}>
+                    <div className='CR_Div_inputAndError'>
+                        <input className='CR_inpunt' type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
+                        {!this.state.errors.name ? null : <div className='CR_inputError'>{this.state.errors.name}</div>}
+                    </div>
+                    <div className='CR_Div_inputAndError'>
+                        <input className='CR_inpunt' type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
+                        {!this.state.errors.lastName ? null : <div className='CR_inputError'>{this.state.errors.lastName}</div>}
+                    </div>
+                    <div className='CR_Div_inputAndError'>
+                        <input className='CR_inpunt' type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
+                        {!this.state.errors.password ? null : <div className='CR_inputError'>{this.state.errors.password}</div>}
+                    </div>
+                    <div className='CR_Div_inputAndError'>
+                        <input className='CR_inpunt' type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+                        {!this.state.errors.user_mail ? null : <div className='CR_inputError'>{this.state.errors.user_mail}</div>}
+                    </div>
+                    <div className='CR_Div_inputAndError'>
+                        <input className='CR_inpunt' type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
+                        {!this.state.errors.birthdate ? null : <div className='CR_inputError'>{this.state.errors.birthdate}</div>}
+                    </div>
+                    <div className='CR_Div_inputAndError'>
+                        <input className='CR_inpunt' type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
+                        {!this.state.errors.image ? null : <div className='CR_inputError'>{this.state.errors.image}</div>}
+                    </div>
+                    <input className='CR_inpuntSubmit' disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
+                </form>
+            </div>
         </div>
-        <div>
-            <h1>Empecemos</h1>
-            <p>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
-            <form id='form' onSubmit={(e) => e.preventDefault()}>
-                <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-                {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
-                <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
-                {!this.state.errors.lastName ? null : <div>{this.state.errors.lastName}</div>}
-                <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
-                {!this.state.errors.password ? null : <div>{this.state.errors.password}</div>}
-                <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
-                {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
-                <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
-                {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
-                <input type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
-                {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
-                <input disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
-            </form>
-        </div>
-    </div>
     )
   }
 }
