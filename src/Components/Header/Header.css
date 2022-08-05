@@ -8,8 +8,10 @@
 .logo {
     font-size: 32px;
     font-weight: 700;
-    color: #000000;
     text-decoration: none;
+}
+.work {
+    color: #757F8F;
 }
 .nav {
     display: flex;
@@ -17,7 +19,7 @@
     justify-content: space-between;
     align-items: center;
     /* background-color: red; */
-    max-width: 63%;
+    max-width: 65%;
     width: 100%;
 }
 .div_buttons {
