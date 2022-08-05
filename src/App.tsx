@@ -7,6 +7,7 @@ import DetailOffer from './Components/DetailOffer/DetailOffer';
 import Register from './Components/Register/Register';
 import Worker from './Components/Register/WorkerRegister/WorkerRegister';
 import Client from './Components/Register/ClientRegister/ClientRegister';
+import Footer from './Components/Footer/Footer';
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path='register/worker' element={<Worker/>} />
         <Route path='register/client' element={<Client/>} />
       </Routes>
+      
+      <Footer/>
     </div>
   );
 }

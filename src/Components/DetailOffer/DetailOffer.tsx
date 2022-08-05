@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import {getOfferId} from '../../Redux/Reducer/reducer';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import './DetailOffer.css';
 
 const DetailOffer = () => {
@@ -59,8 +60,6 @@ const DetailOffer = () => {
           )
         })}
       </div>
-
-        
     </div>
 
   )
