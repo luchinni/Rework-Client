@@ -9,30 +9,29 @@
     font-size: 32px;
     font-weight: 700;
     text-decoration: none;
-    color: #000;
+    color: #757F8F;
 }
 .work {
-    color: #757F8F;
+    color: #273141;
 }
 .nav {
     display: flex;
     gap: 50px;
     justify-content: space-between;
     align-items: center;
-    /* background-color: red; */
-    max-width: 65%;
+    max-width: 64%;
     width: 100%;
 }
 .div_buttons {
     display: flex;
-    gap: 25px;
+    gap: 10px;
 }
 .button_login ,
 .button_register {
     font-size: 18px;
     font-weight: 600;
     border-radius: 8px;
-    padding: 7px 11px;
+    padding: 9px 10px;
     white-space: nowrap;
     border: 1px solid transparent;
     cursor: pointer;
