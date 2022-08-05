@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import {getOfferId} from '../../Redux/Reducer/reducer';
+import Header from '../Header/Header';
 
 const DetailOffer = () => {
 
@@ -19,6 +20,7 @@ const DetailOffer = () => {
 
   return (
     <div>
+      <Header/>
       <div>
         <p>info Client</p>
         <img src={offerId.photoClient} alt="fotito" />

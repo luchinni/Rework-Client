@@ -1,8 +1,7 @@
-.Home_component {
+.div_homeCards{
   display: flex;
   justify-content: space-between;
   gap: 30px;
   max-width: 1136px;
-  margin: 0 auto;
-  margin-top: 200px;
+  margin: 200px auto 0 auto;
 }

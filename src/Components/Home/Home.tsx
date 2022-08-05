@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import {getOffers} from "../../Redux/Reducer/reducer";
 import CardsOffer from '../CardsOffer/CardsOffer';
 import Filtros from '../Filtros/Filtros';
+import Header from '../Header/Header';
 import './Home.css';
 
 
@@ -19,8 +20,12 @@ const Home = () => {
 
   return (
     <div className='Home_component'>
+      <Header/>
+      <div className='div_homeCards'>
       <CardsOffer props={offers} />
       <Filtros />
+      </div>
+      
     </div>
   )
 }

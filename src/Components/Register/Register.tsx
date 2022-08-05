@@ -6,7 +6,7 @@ const Register = () => {
   return (
     <div className='contenedor_register'>
         <div className='header'>
-          <span className='logo'>logo</span>
+          <Link to="/home" className="logo">logo</Link>
           <Link to='/' ><button className='btn_volver'>Volver</button></Link>
         </div>
         <div className='contenedor_divs_trab_client'>
