@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 import image1 from "../../../images/Online report_Monochromatic.png"
 import image2 from "../../../images/Bank note_Monochromatic.png"
 import image3 from "../../../images/Money motivation _Monochromatic.png"
 
-const ClientRegister = () => {
-  return (
-    <div>
+export class ClientRegister extends Component {
+
+    constructor(props:any) {
+        super(props)
+        this.state = {
+            name: "",
+            lastName: "",
+            password: "",
+            user_mail: "",
+            birthdate: "",
+            image: "",
+            errors:{
+                name: "",
+                lastName: "",
+                password: "",
+                user_mail: "",
+                birthdate: "",
+                image: "",
+            },
+            disabled: true
+        }
+    }
+  render() {
+    return (
+        <div>
         
         <div>
             <img src={image1} alt="place1" />
@@ -26,7 +48,8 @@ const ClientRegister = () => {
             </form>
         </div>
     </div>
-  )
+    )
+  }
 }
 
 export default ClientRegister
