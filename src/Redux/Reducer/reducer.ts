@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import * as type from "../../Types"
 
 const initialState = {
     allClients: [],
@@ -138,8 +139,15 @@ export const getOfferId = () => (dispatch: any) => {
   }
     dispatch(setOfferById(offerId));
  }
-// export const getOffer = () => (dispatch:any) => {
-//     //{remuneration: number[], description: string, work_duration_time: string, photo: string, tags: string[], title: string}
-//     const offer:string[] = ["hola", "chau"]
-//     dispatch(setAllOffers(offer));
-// }
+
+export const postNewClient = (newClient:type.newClientType) => {
+  try{
+    return axios({
+      method:"post",
+      url: "http://localhost:3001/register/client",
+      data:newClient
+    })
+  }catch(error){
+    return error
+  }
+}
