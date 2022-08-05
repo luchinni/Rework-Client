@@ -9,9 +9,7 @@ const Header = () => {
 
   return (
     <header className="Header_component">
-      { window.location.href === "http://localhost:3000/" ? 
-        <span className="logo">logo</span> : <Link to="/home" className="logo">logo</Link>
-      }
+      <Link to="/home" className="logo">logo</Link>      
         <nav className='nav'>
           <SearchBar/>
           <div className='div_buttons'>
