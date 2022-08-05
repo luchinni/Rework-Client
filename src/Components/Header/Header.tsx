@@ -14,7 +14,7 @@ const Header = () => {
           <SearchBar/>
           <div className='div_buttons'>
             <div>
-              <button className='button_login'>Log in</button>
+            <Link to='/login'><button className='button_login'>Log in</button></Link>
             </div>
             <div>
             <Link to='/register'><button className='button_register'>Sing up</button></Link>
