@@ -7,6 +7,7 @@ const initialState = {
     clientById: {},
     offers: [],
     offerById: {},
+    professions:[]
 }
 
 export const workServiceSlice = createSlice({
@@ -146,6 +147,18 @@ export const postNewClient = (newClient:type.newClientType) => {
       method:"post",
       url: "http://localhost:3001/register/client",
       data:newClient
+    })
+  }catch(error){
+    return error
+  }
+}
+
+export const postNewWorker = async (newWorker:type.newWorkerType) => {
+  try{
+    return await axios({
+      method:"post",
+      url: "http://localhost:3001/register/worker",
+      data:newWorker
     })
   }catch(error){
     return error

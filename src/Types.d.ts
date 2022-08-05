@@ -20,7 +20,8 @@ export interface WorkerType{
     profession: String[],
     skills: String[],
     errors:errorsType,
-    disabled:boolean 
+    disabled:boolean,
+    inputSkills:Array
 }
 
 export interface newClientType {
@@ -30,6 +31,18 @@ export interface newClientType {
     user_mail:String,
     birthdate:String,
     image:String,
+}
+
+export interface newWorkerType {
+    name:String, 
+    lastName:String, 
+    password:String, 
+    user_mail:String, 
+    born_date:String, 
+    image:String, 
+    profession:String[], 
+    skills:String[]
+
 }
 
 export interface errorsType {
