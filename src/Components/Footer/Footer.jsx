@@ -26,8 +26,8 @@ function Footer() {
               <h2 className='Footer_titleLinks'>PROYECTO</h2>
               <div className='Footer_divLinks'>
                 <Link to="#" className='Footer_link'>devs</Link>
-                <Link to="#" className='Footer_link'>repositorios</Link>
-                <Link to="#" className='Footer_link'>diseño</Link>
+                <a href="https://github.com/The-final-pg" target="_blank" className='Footer_link'>repositorio</a>
+                <a href="https://www.figma.com/file/pf1okewD3QyTBWvQhedJv6/Untitled" target="_blank" className='Footer_link'>diseño</a>
               </div>
             </div>
             <div>
