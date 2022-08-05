@@ -3,13 +3,19 @@ import image1 from "../../../images/Coins_Monochromatic.png";
 import image2 from "../../../images/Piggy_bank_Monochromatic.png";
 import image3 from "../../../images/Video_call_Monochromatic_1.png";
 import * as type from "../../../Types";
+import { connect, ConnectedProps } from "react-redux";
+import {postNewWorker} from "../../../Redux/Reducer/reducer"
 
-export class WorkerRegister extends Component {
+
+interface HeaderState{
+  // props: any;
+  //inputSkills: string[]
+}
+export class WorkerRegister extends Component<HeaderProps, HeaderState> {
   state: type.WorkerType;
-  inputSkills: string[]
-  constructor(props: type.WorkerType) {
+  constructor(props: HeaderProps) {
     super(props)
-    this.inputSkills = []
+    //this.inputSkills = []
 
     this.state = {
       name: "",
@@ -28,12 +34,13 @@ export class WorkerRegister extends Component {
         birthdate: "",
         image: "",
       },
-      disabled: true
+      disabled: true,
+      inputSkills: []
     }
   }
-
-  firstWordUpperCase(word:any) {
-    return word[0].toUpperCase() + word.slice(1); //ver 2 nombres y 2 apellidos
+  firstWordUpperCase(word:String) {
+    console.log(word);
+    return word[0].toUpperCase() + word.slice(1);
 }
 
 validarForm(errors:type.errorsTypeWorker) {
@@ -66,9 +73,9 @@ handleChange(e:any) {
       errors.lastName = value.startsWith(" ")?"El apellido no puede iniciar con un espacio": lastNamePattern.test(value)? value.endsWith(" ")? "El apellido no puede terminar con espacio":"":"El apellido no puede contener caracteres especiales";
         break;
     case "password":
-      let passwordPattern:RegExp = /^(?=\w\d)(?=\w[A-Z])(?=\w*[a-z])\S{8,16}$/
-      errors.password = value.startsWith(" ")? "La contraseña no puede iniciar con un espacio": passwordPattern.test(value)? value.endsWith(" ")? "La contraseña no puede terminar con espacio" : "" : "La contraseña debe tener entre 8 y 16 caracteres, al menos 1 mayúscula y 1 minúscula";
-        break;
+      let passwordPattern:RegExp = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
+      errors.password = passwordPattern.test(value)? "" : "La contraseña debe tener entre 8 y 16 caracteres y al menos 1 mayuscula y 1 minuscula."
+      break;
     case "user_mail":
       let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i
       errors.user_mail = value.startsWith(" ")? "El mail no puede iniciar con un espacio": user_mailPattern.test(value) ? value.endsWith(" ")? "el mail no puede terminar con espacio" : "" : "mail inválido";
@@ -88,11 +95,35 @@ handleChange(e:any) {
     default:
         break;
   }
+  this.setState({
+    [name]: value,
+    errors
+});
+this.validarForm(this.state.errors)
 }
 
 handleSubmit(e:any){
-this.setState(this.state.skills = this.inputSkills)
+  e.preventDefault();
+  // this.setState({...this.state, skills: this.state.inputSkills})
 
+  let { name, lastName, password, user_mail, birthdate, image, profession, skills} = this.state;
+  //console.log(name);
+  name = this.firstWordUpperCase(name);
+  lastName = this.firstWordUpperCase(lastName); 
+
+  const newWorker:type.newWorkerType = {
+    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, image:image, profession:profession, skills:skills
+  }
+  console.log(newWorker);
+  postNewWorker(newWorker);
+
+}
+
+handleSelect(e:any){
+  const select = e.target.value;
+  if (select === "default") return
+  if(this.props.professions?.includes(e.target.value)) return
+ 
 }
 
   render() {
@@ -110,12 +141,27 @@ this.setState(this.state.skills = this.inputSkills)
           <p>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
           <form id='form' onSubmit={(e) => e.preventDefault()}>
             <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-            <input type="text" name="lastname" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
+            {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
+            <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
+            {!this.state.errors.lastName ? null : <div>{this.state.errors.lastName}</div>}
             <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
+            {!this.state.errors.password ? null : <div>{this.state.errors.password}</div>}
             <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+            {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
             <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
+            {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
             <input type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
-            <input type="text" name="profession" placeholder='Profesiones' />
+            {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
+            <select  name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
+                <option selected={true} hidden>Profesiones</option>
+                {
+                  this.props.professions?.map((e:any) =>{
+                      return <option value={e.id} key={e.id}> {e.name} </option>
+                  })
+                }
+            </select>
+                
+            
             <input type="text" name="skills" placeholder='Habilidades' onChange={(e) => this.handleChange(e)}/>
             <span>Ingeniero, Diseñador</span>
             <span>Phyton, Css...</span>
@@ -127,4 +173,19 @@ this.setState(this.state.skills = this.inputSkills)
   }
 }
 
-export default WorkerRegister
+ export const mapStateToProps = (state:any) => {
+   return {
+       professions: state.workService.professions
+   }
+ };
+ export const mapDispatchToProps = (dispatch:any) => {
+   return {
+    postNewWorker: (newWorker:type.newWorkerType) => dispatch(postNewWorker(newWorker))
+   }
+ };
+
+ const connector = connect(mapStateToProps, mapDispatchToProps)
+
+ type HeaderProps = ConnectedProps<typeof connector>
+
+ export default connector(WorkerRegister)

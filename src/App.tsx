@@ -8,6 +8,8 @@ import Register from './Components/Register/Register';
 import Worker from './Components/Register/WorkerRegister/WorkerRegister';
 import Client from './Components/Register/ClientRegister/ClientRegister';
 import Footer from './Components/Footer/Footer';
+import Login from './Components/Login/Login';
+
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
         <Route path='register' element={<Register/>} />
         <Route path='register/worker' element={<Worker/>} />
         <Route path='register/client' element={<Client/>} />
+        <Route path='login' element={<Login/>} />
       </Routes>
       
       <Footer/>
