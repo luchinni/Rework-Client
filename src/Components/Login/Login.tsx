@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { connect, ConnectedProps } from "react-redux";
 import imgGoogle from "../../images/pngwing.com.png"
 import * as type from "../../Types";
-import {loginUser} from "../../Redux/Reducer/reducer"
+import {postLogin} from "../../Redux/Reducer/reducer"
 
 interface HeaderState{
   // props: any;
   //inputSkills: string[]
 }
 export class Login extends Component<HeaderProps, HeaderState> {
-  state: type.loginType;
+  state: type.userLogin;
   constructor(props: HeaderProps){
     super(props)
 
@@ -24,15 +24,22 @@ export class Login extends Component<HeaderProps, HeaderState> {
 
     let { password, user_mail } = this.state;
     user_mail = user_mail.toLowerCase();
-
+    console.log (password, user_mail)
     let newLoggedUser = {
       user_mail:user_mail, password:password
     }
-
-    loginUser(newLoggedUser);
-
+    console.log (newLoggedUser)
+    postLogin(newLoggedUser);
   }
 
+  handleChange(e:any) {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    this.setState({
+        [name]: value
+    });
+  }
 
   render() {
     return (
@@ -43,8 +50,8 @@ export class Login extends Component<HeaderProps, HeaderState> {
             <p>Olvidaste tu contraseña? recuperala <a href="#">Aqui</a></p>
             <div>
               <form action="">
-                <input type="text" name="user_mail" id="" placeholder='E-mail'/>
-                <input type="password" name="password" id="" placeholder='Constraseña'/>
+                <input type="text" name="user_mail" id="" onChange={(e) => this.handleChange(e)} placeholder='E-mail'/>
+                <input type="password" name="password" id="" onChange={(e) => this.handleChange(e)} placeholder='Constraseña'/>
                 <input type="submit" name="" value="Log in" onClick={(e) => this.handleSubmit(e)}/>
               </form>
                 <span/>
@@ -68,7 +75,7 @@ export const mapStateToProps = (state:any) => {
 };
 export const mapDispatchToProps = (dispatch:any) => {
   return {
-    loginUser: (newLoggedUser:type.newWorkerType) => dispatch(loginUser(newLoggedUser))
+    postLogin: (newLoggedUser:type.userLogin) => dispatch(postLogin(newLoggedUser))
   }
 };
 

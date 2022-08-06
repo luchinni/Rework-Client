@@ -12,7 +12,8 @@ const initialState = {
     offers: [],
     offerById: {},
     professions:[],
-    skills: []
+    skills: [],
+    currentUser: {}
 }
 
 
@@ -25,10 +26,10 @@ export const workServiceSlice = createSlice({
         },
         setSearchedWorkers: function (state:any, action:any){
           state.searchedWorkers = action.payload;
-      },
+        },
         setSearchedOffers: function (state:any, action:any){
         state.searchedOffers = action.payload;
-    },
+        },
         setClientById: function (state:any, action:any){
             state.clientById = action.payload;
         },
@@ -37,15 +38,18 @@ export const workServiceSlice = createSlice({
         },
         setOfferById: function (state:any, action:any){
           state.offerById = action.payload;
-      },
+        },
         setAllProfessions: function (state:any, action:any){
           state.professions = action.payload
-        }
+        },
+        setCurrentUser: function (state:any, action:any){
+          state.currentUser = action.payload;
+      }
     }
 })
 
 
-export const { setAllClients, setClientById, setAllOffers, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -217,17 +221,38 @@ export const postNewWorker = async (newWorker:type.newWorkerType) => {
   }
 }
 
-export const loginUser = (newLoggedUser:type.loginType) => {
-  try{
-    return axios({
-      method:"get",
-      url: "http://localhost:3001/login/in",
-      data:newLoggedUser
-    })
-  }catch(error){
-    return error
-  }
+                                              //ROMPE SI PASAMOS LA FUNCION COMENTADA - CHECKEAR EL CONNECT 
+export const postLogin = async (user: type.userLogin) => {
+try{
+  const token = await axios({
+    method:"post",
+    url: "http://localhost:3001/login/",
+    data: user
+  })
+  localStorage.setItem("token", JSON.stringify(token.data))
+} catch(e){
+  return e
 }
+}
+
+/* async (dispatch: Dispatch<any>) => {
+    console.log('aaaa')
+  try{
+    const token = await axios({
+      method:"post",
+      url: "http://localhost:3001/login/",
+      data: user
+    })
+    console.log("aca no se")
+    localStorage.setItem("token", JSON.stringify(token.data))
+    console.log("aca tal vez")
+    dispatch(setCurrentUser(user))
+    console.log("aca ya no")
+  } catch(e){
+    console.log("me fui al catch")
+    return e
+  }
+} */
 
 export const searchWorker =  (input:string) => async (dispatch:Dispatch<any>) => {
   try {
