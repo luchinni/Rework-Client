@@ -63,3 +63,8 @@ export interface errorsTypeWorker {
     birthdate:String,
     image:String,
 }
+
+export interface loginType {
+    user_mail:String,
+    password:String
+}

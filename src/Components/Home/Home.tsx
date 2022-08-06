@@ -6,7 +6,7 @@ import CardsOffer from '../CardsOffer/CardsOffer';
 import Filtros from '../Filtros/Filtros';
 import Header from '../Header/Header';
 import './Home.css';
-
+import Banner from './Banner/Banner';
 
 const Home = () => {
 
@@ -17,15 +17,16 @@ const Home = () => {
     dispatch(getOffers());
   }, [dispatch])
 
-
   return (
     <div className='Home_component'>
       <Header/>
-      <div className='div_homeCards'>
-      <CardsOffer props={offers} />
-      <Filtros />
+      <div className='div_BannerAndCards'>
+        <Banner/> 
+        <div className='div_homeCards'>
+          <CardsOffer props={offers} />
+          <Filtros />
+        </div>
       </div>
-      
     </div>
   )
 }
