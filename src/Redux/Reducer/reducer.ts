@@ -13,7 +13,10 @@ const initialState = {
     offerById: {},
     professions:[],
     skills: [],
-    currentUser: {}
+    currentUser: {
+      password: "",
+      user_mail: ""
+    }
 }
 
 
@@ -186,9 +189,9 @@ export const getAllSkills = () => async(dispatch: any) => {
  
 }
 
-export const postNewClient = (newClient:type.newClientType) => {
+export const postNewClient = async (newClient:type.newClientType) => {
   try{
-    return axios({
+    return await axios({
       method:"post",
       url: "http://localhost:3001/register/client",
       data:newClient
@@ -209,9 +212,8 @@ export const postNewWorker = async (newWorker:type.newWorkerType) => {
     return error
   }
 }
-
-                                              //ROMPE SI PASAMOS LA FUNCION COMENTADA - CHECKEAR EL CONNECT 
-export const postLogin = async (user: type.userLogin) => {
+ 
+export const postLogin = (user: type.userLogin) => async (dispatch: any) => {
 try{
   const token = await axios({
     method:"post",
@@ -219,6 +221,7 @@ try{
     data: user
   })
   localStorage.setItem("token", JSON.stringify(token.data))
+  return dispatch(setCurrentUser(user))
 } catch(e){
   return e
 }

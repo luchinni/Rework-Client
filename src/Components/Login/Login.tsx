@@ -1,86 +1,58 @@
-import React, { Component } from 'react'
-import { connect, ConnectedProps } from "react-redux";
+import React, { Component, useState } from 'react'
+import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
 import imgGoogle from "../../images/pngwing.com.png"
 import * as type from "../../Types";
 import {postLogin} from "../../Redux/Reducer/reducer"
 
-interface HeaderState{
-  // props: any;
-  //inputSkills: string[]
-}
-export class Login extends Component<HeaderProps, HeaderState> {
-  state: type.userLogin;
-  constructor(props: HeaderProps){
-    super(props)
+const Login = () => {
 
-    this.state = {
-      user_mail:"",
-      password:""
-    }
-  }
+  const [user, setUser] = useState({user_mail: "", password: ""})
+  const dispatch = useDispatch()
+  const handleChange = (e:any) => {
+  
+    setUser({
+      ...user,
+        [e.target.name]: e.target.value
+    });
+  } 
 
-  handleSubmit(e:any){
+  
+    const handleSubmit = (e:any) =>{
     e.preventDefault();
-
-    let { password, user_mail } = this.state;
-    user_mail = user_mail.toLowerCase();
+    let password  = user.password
+    let user_mail = user.user_mail.toLowerCase();
     console.log (password, user_mail)
     let newLoggedUser = {
       user_mail:user_mail, password:password
     }
-    console.log (newLoggedUser)
-    postLogin(newLoggedUser);
+    dispatch(postLogin(newLoggedUser));
   }
-
-  handleChange(e:any) {
-    const value = e.target.value;
-    const name = e.target.name;
-
-    this.setState({
-        [name]: value
-    });
-  }
-
-  render() {
-    return (
+      //Ejemplo de useSelector con Toolkit.
+  /* const global = useSelector((state: any) => state.workService.currentUser) */
+   
+  return (
+    <div>
+      
       <div>
-        
-        <div>
-            <h1>Inicia sesion</h1>
-            <p>Olvidaste tu contraseña? recuperala <a href="#">Aqui</a></p>
-            <div>
-              <form action="">
-                <input type="text" name="user_mail" id="" onChange={(e) => this.handleChange(e)} placeholder='E-mail'/>
-                <input type="password" name="password" id="" onChange={(e) => this.handleChange(e)} placeholder='Constraseña'/>
-                <input type="submit" name="" value="Log in" onClick={(e) => this.handleSubmit(e)}/>
-              </form>
-                <span/>
-                <p>O continua con</p>
-                <span/>
-                <span>
-                    <img src={imgGoogle} alt="googleLink" />
-                    <p>Google</p>
-                </span>
-            </div>
-        </div>
+          <h1>Inicia sesion</h1>
+          <p>Olvidaste tu contraseña? recuperala <a href="#">Aqui</a></p>
+          <div>
+            <form action="">
+              <input type="text" name="user_mail" id="" onChange={(e) => handleChange(e)} placeholder='E-mail'/>
+              <input type="password" name="password" id="" onChange={(e) => handleChange(e)} placeholder='Constraseña'/>
+              <input type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
+            </form>
+              <span/>
+              <p>O continua con</p>
+              <span/>
+              <span>
+                  <img src={imgGoogle} alt="googleLink" />
+                  <p>Google</p>
+              </span>
+          </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-export const mapStateToProps = (state:any) => {
-  return {
-
-  }
-};
-export const mapDispatchToProps = (dispatch:any) => {
-  return {
-    postLogin: (newLoggedUser:type.userLogin) => dispatch(postLogin(newLoggedUser))
-  }
-};
-
-const connector = connect(mapStateToProps, mapDispatchToProps)
-
-type HeaderProps = ConnectedProps<typeof connector>
-
-export default connector(Login)
+export default Login
