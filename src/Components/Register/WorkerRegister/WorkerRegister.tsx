@@ -112,18 +112,18 @@ this.validarForm(this.state.errors)
 
 handleSubmit(e:any){
   e.preventDefault();
-  // this.setState({...this.state, skills: this.state.inputSkills})
 
   let { name, lastName, password, user_mail, birthdate, image, profession, skills} = this.state;
-  //console.log(name);
+
   name = this.firstWordUpperCase(name);
   lastName = this.firstWordUpperCase(lastName); 
 
   const newWorker:type.newWorkerType = {
     name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, image:image, profession:profession, skills:skills
   }
-  // console.log(newWorker);
   postNewWorker(newWorker);
+  let form = document.getElementById("form") as HTMLFormElement | null;
+      form?.reset()
 
   this.setState({
       name: "",
@@ -147,6 +147,8 @@ handleSubmit(e:any){
       inputSkills: []
   })
 
+
+
 }
 
 handleSelect(e:any){
@@ -166,8 +168,7 @@ handleSelect(e:any){
 
 }
 
-handleDelete(e:any){
-  // console.log(e.target.innerText)  
+handleDelete(e:any){  
   let del = e.target.innerText
 console.log(del)
   const name = e.target.id

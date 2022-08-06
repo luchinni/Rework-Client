@@ -162,8 +162,8 @@ export const getOfferId = () => (dispatch: any) => {
  }
 
 export const getAllProfession = () => async (dispatch: any) => {
-  let profs: string[] = await (await axios(`http://localhost:3001/profession`)).data
-  return dispatch(setAllProfessions(profs));
+  const profs = await axios(`http://localhost:3001/profession`)
+  return dispatch(setAllProfessions(profs.data));
 //   const profs: String[] = 
 //   [
 //     "Administrator",
@@ -196,32 +196,34 @@ export const getAllProfession = () => async (dispatch: any) => {
 
 }
 
-export const getAllSkills = () => (dispatch: any) => {
+export const getAllSkills = () => async(dispatch: any) => {
   //http://localhost:3001/skills
-  const skills: string[] = [
-    "Central",
-    "Chief",
-    "Corporate",
-    "Customer",
-    "Direct",
-    "District",
-    "Dynamic",
-    "Forward",
-    "Future",
-    "Global",
-    "Human",
-    "Internal",
-    "International",
-    "Investor",
-    "Lead",
-    "Legacy",
-    "National",
-    "Principal",
-    "Product",
-    "Regional",
-    "Senior"
-  ]
-  dispatch(setAllSkills(skills));
+  const skills = await axios(`http://localhost:3001/skills`)
+  return dispatch(setAllSkills(skills.data));
+  // [
+  //   "Central",
+  //   "Chief",
+  //   "Corporate",
+  //   "Customer",
+  //   "Direct",
+  //   "District",
+  //   "Dynamic",
+  //   "Forward",
+  //   "Future",
+  //   "Global",
+  //   "Human",
+  //   "Internal",
+  //   "International",
+  //   "Investor",
+  //   "Lead",
+  //   "Legacy",
+  //   "National",
+  //   "Principal",
+  //   "Product",
+  //   "Regional",
+  //   "Senior"
+  // ]
+ 
 }
 
 export const postNewClient = (newClient:type.newClientType) => {

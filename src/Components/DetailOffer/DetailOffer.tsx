@@ -33,7 +33,7 @@ const DetailOffer = () => {
             <div>
               <div className='Detail_urlCopy'>
                 <div className='Detail_divUrl'>
-                  <span className='Detail_url'>{window.location.href}</span>
+                  <span className='Detail_url'>url publicación</span>
                 </div>
                 <div className='Detail_divCopy'>
                   <CopyToClipboard text={window.location.href}>
