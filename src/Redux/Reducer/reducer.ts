@@ -215,36 +215,20 @@ export const postNewWorker = async (newWorker:type.newWorkerType) => {
  
 export const postLogin = (user: type.userLogin) => async (dispatch: any) => {
 try{
+  // generamos el token conectando con el back
   const token = await axios({
     method:"post",
     url: "http://localhost:3001/login/",
     data: user
   })
+  // lo pasamos a json y lo guardamos en la consola en application local storage
   localStorage.setItem("token", JSON.stringify(token.data))
+  // alojamos el usuario logueado en el initialState.currentUser
   return dispatch(setCurrentUser(user))
 } catch(e){
   return e
 }
 }
-
-/* async (dispatch: Dispatch<any>) => {
-    console.log('aaaa')
-  try{
-    const token = await axios({
-      method:"post",
-      url: "http://localhost:3001/login/",
-      data: user
-    })
-    console.log("aca no se")
-    localStorage.setItem("token", JSON.stringify(token.data))
-    console.log("aca tal vez")
-    dispatch(setCurrentUser(user))
-    console.log("aca ya no")
-  } catch(e){
-    console.log("me fui al catch")
-    return e
-  }
-} */
 
 export const searchWorker =  (input:string) => async (dispatch:Dispatch<any>) => {
   try {

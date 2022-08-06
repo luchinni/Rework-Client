@@ -1,23 +1,21 @@
-import React, { Component, useState } from 'react'
-import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
-import imgGoogle from "../../images/pngwing.com.png"
-import * as type from "../../Types";
-import {postLogin} from "../../Redux/Reducer/reducer"
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import imgGoogle from "../../images/pngwing.com.png";
+import {postLogin} from "../../Redux/Reducer/reducer";
 
 const Login = () => {
 
   const [user, setUser] = useState({user_mail: "", password: ""})
   const dispatch = useDispatch()
+
   const handleChange = (e:any) => {
-  
     setUser({
       ...user,
         [e.target.name]: e.target.value
     });
   } 
 
-  
-    const handleSubmit = (e:any) =>{
+  const handleSubmit = (e:any) =>{
     e.preventDefault();
     let password  = user.password
     let user_mail = user.user_mail.toLowerCase();
@@ -28,14 +26,15 @@ const Login = () => {
     dispatch(postLogin(newLoggedUser));
   }
       //Ejemplo de useSelector con Toolkit.
+      // para hacer un console.log y ver si estaba andando la action.
   /* const global = useSelector((state: any) => state.workService.currentUser) */
    
   return (
     <div>
       
       <div>
-          <h1>Inicia sesion</h1>
-          <p>Olvidaste tu contraseña? recuperala <a href="#">Aqui</a></p>
+          <h1>Inicia sesión</h1>
+          <p>Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>
           <div>
             <form action="">
               <input type="text" name="user_mail" id="" onChange={(e) => handleChange(e)} placeholder='E-mail'/>
