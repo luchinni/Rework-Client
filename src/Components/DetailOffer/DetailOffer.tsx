@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import {getOfferId} from '../../Redux/Reducer/reducer';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import copy from '../../images/copy.svg';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {Toaster, toast} from "react-hot-toast";
 import './DetailOffer.css';
 
 const DetailOffer = () => {
@@ -28,6 +30,21 @@ const DetailOffer = () => {
             </div>
             <p className='Detail_NameUserPost'>{offerId.name}</p>
             <p className='Detail_UserRating'>Rating {offerId.rating}</p>
+            <div>
+              <div className='Detail_urlCopy'>
+                <div className='Detail_divUrl'>
+                  <span className='Detail_url'>{window.location.href}</span>
+                </div>
+                <div className='Detail_divCopy'>
+                  <CopyToClipboard text={window.location.href}>
+                    <button onClick={() => toast.success('Copiado', {position: 'top-right'})} className='Detail_buttonCopy'>
+                      <img className='Detail_Copy' src={copy} alt="copy" />
+                    </button>
+                  </CopyToClipboard>
+                  <Toaster/>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
     
