@@ -4,7 +4,7 @@ import image2 from "../../../images/Piggy_bank_Monochromatic.png";
 import image3 from "../../../images/Video_call_Monochromatic_1.png";
 import * as type from "../../../Types";
 import { connect, ConnectedProps } from "react-redux";
-import {postNewWorker} from "../../../Redux/Reducer/reducer"
+import {postNewWorker, getAllProfession} from "../../../Redux/Reducer/reducer"
 import HeaderRegister from '../HeaderRegister/HeaderRegister';
 
 interface HeaderState{
@@ -35,9 +35,15 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
         image: "",
       },
       disabled: true,
+      inputProfessions: [],
       inputSkills: []
     }
   }
+
+componentDidMount(){
+  this.props.getAllProfession()
+}
+
   firstWordUpperCase(word:String) {
     console.log(word);
     return word[0].toUpperCase() + word.slice(1);
@@ -118,7 +124,7 @@ handleSubmit(e:any){
   postNewWorker(newWorker);
 
   this.setState({
-        name: "",
+      name: "",
       lastName: "",
       password: "",
       user_mail: "",
@@ -135,6 +141,7 @@ handleSubmit(e:any){
         image: "",
       },
       disabled: true,
+      inputProfessions: [],
       inputSkills: []
   })
 
@@ -142,14 +149,40 @@ handleSubmit(e:any){
 
 handleSelect(e:any){
   const select = e.target.value;
+  const name = e.target.name
   if (select === "default") return
-  if(this.props.professions?.includes(e.target.value)) return
- 
+  if(this.state.profession?.includes(e.target.value)) return
+  if(name === "profession"){
+    this.setState({...this.state,
+    profession:[...this.state.profession, select],
+    /*inputProfessions:[...this.state.inputProfessions, 
+    this.props.professions?.find((e:any) => e === select)]*/})
+  }else{  
+    this.setState({...this.state,
+    skills:[...this.state.skills, select]})}
+
+}
+
+handleDelete(e:any){
+  // console.log(e.target.innerText)  
+  let del = e.target.innerText
+console.log(del)
+  const name = e.target.id
+  if(name === "profession"){
+    let borrado = this.state.profession.filter(f => f !== del.trim())
+    this.setState({...this.state, profession: borrado})
+  }
+  // } else {
+  //   let borrado2 = this.state.skills.filter(g => g !== e)
+  //   this.setState({...this.state, skills: borrado2})
+  // }
+  
 }
 
   render() {
-
+    
     return (
+      
       <div>
         <HeaderRegister/>
         <div>
@@ -177,13 +210,18 @@ handleSelect(e:any){
                 <option selected={true} hidden>Profesiones</option>
                 {
                   this.props.professions?.map((e:any) =>{
-                      return <option value={e.id} key={e.id}> {e.name} </option>
+                      return <option value={e} key={e}> {e} </option>
                   })
                 }
             </select>
+            <div>
+              {this.state.profession?.map((e:any) => {
+                return (<span id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+              })}
+            </div>
                 
             
-            <input type="text" name="skills" placeholder='Habilidades' onChange={(e) => this.handleChange(e)}/>
+            <input type="text" name="skills" placeholder='Habilidades' onChange={(e) => this.handleSelect(e)}/>
             <span>Ingeniero, Diseñador</span>
             <span>Phyton, Css...</span>
             <input disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
@@ -197,12 +235,14 @@ handleSelect(e:any){
  export const mapStateToProps = (state:any) => {
    return {
        professions: state.workService.professions,
+       
       //  skills: state.workService.skills
    }
  };
  export const mapDispatchToProps = (dispatch:any) => {
    return {
-    postNewWorker: (newWorker:type.newWorkerType) => dispatch(postNewWorker(newWorker))
+    postNewWorker: (newWorker:type.newWorkerType) => dispatch(postNewWorker(newWorker)),
+    getAllProfession: () => dispatch(getAllProfession())
    }
  };
 
