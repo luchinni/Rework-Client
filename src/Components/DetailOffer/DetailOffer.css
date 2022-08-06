@@ -62,9 +62,10 @@
 }
 .Detail_time {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   color: #6F6D6D;
+  max-width: 200px;
 }
 .Detail_remuneration {
   font-weight: 400;
@@ -146,4 +147,40 @@
   line-height: 21px;
   color: #262626;
   max-width: 190px;
+}
+
+.Detail_urlCopy {
+  background-color: #e2e2e2;
+  padding: 0px 0px;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+.Detail_buttonCopy {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  /* background-color: #72AD5E; */
+  padding: 0 5px;
+}
+.Detail_divUrl {
+  overflow: hidden;
+  max-width: 110px;
+  margin: 0 0 3px 8px;
+}
+.Detail_url {
+  font-size: 12px;
+  color: #616161;
+}
+
+
+.Detail_Copy {
+  /* max-height: 14px; */
+  max-width: 25px;
+  margin-top: 8px;
+  /* background-color: #273141; */
 }
