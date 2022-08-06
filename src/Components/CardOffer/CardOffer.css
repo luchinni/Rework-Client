@@ -1,5 +1,5 @@
 .CardOffer_component {
-    border: 1px solid #949494;
+    border: 1px solid #bcbcbc;
     background-color: #FFFFFF;
     border-radius: 10px;
     max-width: 730px;
@@ -14,14 +14,14 @@
     margin: 18px 20px;
 }
 .div_imageProfile {
-    background-color: red;
+    /* background-color: red; */
     height: 46px;
     max-width:46px;
     overflow: hidden;
     border-radius: 8px;
 }
 .card_profileImage{
-    width: 100%;
+    width: 62px;
 }
 .div_infoUser {
     display: flex;
@@ -32,6 +32,11 @@
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
+    color: #19202a;
+    transition: all 0.3s;
+}
+.Card_userName:hover {
+    color: #485e80;
 }
 .Card_userRating {
     font-size: 13px;
