@@ -55,11 +55,11 @@ export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getClients = (clients:any) => (dispatch:any) =>{
+export const getClients = (clients:any) => (dispatch:Dispatch<any>) =>{
     dispatch(setAllClients(clients))
 }
 
- export const getOffers = () => async (dispatch:any) => {
+ export const getOffers = () => async (dispatch:Dispatch<any>) => {
   try {
     const offers = await axios.get("http://localhost:3001/offer/")
     console.log(offers.data)
@@ -71,40 +71,50 @@ export const getClients = (clients:any) => (dispatch:any) =>{
      //
  }
 
-export const getOfferId = () => (dispatch: any) => {
-  const offerId: object = {
-    remuneration: [100, 150],
-    description: "Tengo una herramienta desarrollada en Java que permite ver videos de manera remota. Adjunto un video en el cual se muestra el funcionamiento de la mismo para y por que si",
-    work_duration_time: "1 semana",
-    photo: "https://www.xtrafondos.com/wallpapers/resized/paisaje-digital-en-atardecer-5846.jpg?s=large",
-    tags: ["front end developer", "design", "full stack", "css", "javaScript"],
-    title: "Página de paisajes (solo front)",
-    name: "Esteban Longo",
-    photoClient: "https://i.pinimg.com/originals/bf/6b/40/bf6b4041f341a91a030abc0b7abd5ef4.jpg",
-    rating: 3.7,
-    proposals: [{
-      name: "Juan Carlos",
-      remunerationProposal: 125,
-      proposal_description: "experto en la materia",
-      worked_time: "5 dias",
-      idWorker: "159abc"
-    },
-    {
-      name: "Jose Perez",
-      remunerationProposal: 118,
-      proposal_description: "tengo un portfolio repleto de lo que necesitas",
-      worked_time: "4 dias",
-      idWorker: "164dse"
-    },
-    {
-      name: "Carlos Juan",
-      remunerationProposal: 114,
-      proposal_description: "puedo realizar ese trabajo",
-      worked_time: "6 dias",
-      idWorker: "147ase"
-    }],   
+export const getOfferId = (id:String | undefined) => async (dispatch:Dispatch<any>) => {
+  console.log(id)
+  try{
+    const offerId = await axios(`http://localhost:3001/offer/${id}`)
+    console.log(offerId)
+    return dispatch(setOfferById(offerId.data));
   }
-    dispatch(setOfferById(offerId));
+  catch(e){
+    alert("Error al requerir el detalle.")
+  }
+ 
+  // {
+  //   remuneration: [100, 150],
+  //   description: "Tengo una herramienta desarrollada en Java que permite ver videos de manera remota. Adjunto un video en el cual se muestra el funcionamiento de la mismo para y por que si",
+  //   work_duration_time: "1 semana",
+  //   photo: "https://www.xtrafondos.com/wallpapers/resized/paisaje-digital-en-atardecer-5846.jpg?s=large",
+  //   tags: ["front end developer", "design", "full stack", "css", "javaScript"],
+  //   title: "Página de paisajes (solo front)",
+  //   name: "Esteban Longo",
+  //   photoClient: "https://i.pinimg.com/originals/bf/6b/40/bf6b4041f341a91a030abc0b7abd5ef4.jpg",
+  //   rating: 3.7,
+  //   proposals: [{
+  //     name: "Juan Carlos",
+  //     remunerationProposal: 125,
+  //     proposal_description: "experto en la materia",
+  //     worked_time: "5 dias",
+  //     idWorker: "159abc"
+  //   },
+  //   {
+  //     name: "Jose Perez",
+  //     remunerationProposal: 118,
+  //     proposal_description: "tengo un portfolio repleto de lo que necesitas",
+  //     worked_time: "4 dias",
+  //     idWorker: "164dse"
+  //   },
+  //   {
+  //     name: "Carlos Juan",
+  //     remunerationProposal: 114,
+  //     proposal_description: "puedo realizar ese trabajo",
+  //     worked_time: "6 dias",
+  //     idWorker: "147ase"
+  //   }],   
+  // }
+    
  }
 
 export const getAllProfession = () => async (dispatch: any) => {
