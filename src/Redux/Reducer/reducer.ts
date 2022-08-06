@@ -37,15 +37,18 @@ export const workServiceSlice = createSlice({
         },
         setOfferById: function (state:any, action:any){
           state.offerById = action.payload;
-      },
+        },
         setAllProfessions: function (state:any, action:any){
           state.professions = action.payload
+        },
+        setAllSkills: function (state:any, action:any){
+          state.skills = action.payload
         }
     }
 })
 
 
-export const { setAllClients, setClientById, setAllOffers, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, setOfferById, setAllProfessions, setAllSkills, setSearchedWorkers, setSearchedOffers } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -191,6 +194,34 @@ export const getAllProfession = () => async (dispatch: any) => {
 //     "Other"
 // ]
 
+}
+
+export const getAllSkills = () => (dispatch: any) => {
+  //http://localhost:3001/skills
+  const skills: string[] = [
+    "Central",
+    "Chief",
+    "Corporate",
+    "Customer",
+    "Direct",
+    "District",
+    "Dynamic",
+    "Forward",
+    "Future",
+    "Global",
+    "Human",
+    "Internal",
+    "International",
+    "Investor",
+    "Lead",
+    "Legacy",
+    "National",
+    "Principal",
+    "Product",
+    "Regional",
+    "Senior"
+  ]
+  dispatch(setAllSkills(skills));
 }
 
 export const postNewClient = (newClient:type.newClientType) => {
