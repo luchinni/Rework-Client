@@ -21,7 +21,8 @@ export interface WorkerType{
     skills: String[],
     errors:errorsType,
     disabled:boolean,
-    inputSkills:Array
+    inputSkills: String[]
+    inputProfessions: String[]
 }
 
 export interface newClientType {

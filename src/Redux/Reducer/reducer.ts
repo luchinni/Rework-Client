@@ -7,8 +7,10 @@ const initialState = {
     clientById: {},
     offers: [],
     offerById: {},
-    professions:[]
+    professions:[],
+    skills: []
 }
+
 
 export const workServiceSlice = createSlice({
     name: "workService",
@@ -26,10 +28,13 @@ export const workServiceSlice = createSlice({
         setOfferById: function (state:any, action:any){
           state.offerById = action.payload;
       },
+        setAllProfessions: function (state:any, action:any){
+          state.professions = action.payload
+        }
     }
 })
 
-export const { setAllClients, setClientById, setAllOffers, setOfferById } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, setOfferById, setAllProfessions } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
 
@@ -140,6 +145,41 @@ export const getOfferId = () => (dispatch: any) => {
   }
     dispatch(setOfferById(offerId));
  }
+
+export const getAllProfession = () => async (dispatch: any) => {
+  let profs: string[] = await (await axios(`http://localhost:3001/profession`)).data
+  return dispatch(setAllProfessions(profs));
+//   const profs: String[] = 
+//   [
+//     "Administrator",
+//     "Agent",
+//     "Analyst",
+//     "Architect",
+//     "Assistant",
+//     "Associate",
+//     "Consultant",
+//     "Coordinator",
+//     "Designer",
+//     "Developer",
+//     "Director",
+//     "Engineer",
+//     "Executive",
+//     "Facilitator",
+//     "Liaison",
+//     "Manager",
+//     "Officer",
+//     "Orchestrator",
+//     "Planner",
+//     "Producer",
+//     "Representative",
+//     "Specialist",
+//     "Strategist",
+//     "Supervisor",
+//     "Technician",
+//     "Other"
+// ]
+
+}
 
 export const postNewClient = (newClient:type.newClientType) => {
   try{
