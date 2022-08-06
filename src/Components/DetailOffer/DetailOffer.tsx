@@ -35,7 +35,7 @@ const DetailOffer = () => {
            </div>
            <p className='Detail_NameUserPost'>{offerId.userClient?.name}</p>
            <p className='Detail_UserRating'>Rating {offerId.userClient?.rating}</p>
-           <p className='Detail_offersCount'>Offers: {offerId?.offersCount}</p>
+           <p className='Detail_offersCount'>Publicaciones: {offerId?.offersCount}</p>
            <div>
              <div className='Detail_urlCopy'>
                <div className='Detail_divUrl'>
