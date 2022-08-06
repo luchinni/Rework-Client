@@ -10,6 +10,24 @@ export interface ClientType {
     disabled:boolean
 }
 
+
+export interface userLogin{
+    user_mail: String,
+    password: String
+}
+
+export interface currentUsers{
+    user_mail: String,
+    password: String,
+    isWorker: Boolean,
+    isAdmin: Boolean
+}
+
+export interface errorLogin{
+    user_mail: String,
+    password: String
+}
+
 export interface WorkerType{
     name:String,
     lastName:String,
