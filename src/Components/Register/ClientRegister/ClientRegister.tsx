@@ -105,6 +105,8 @@ export class ClientRegister extends Component {
         }
 
         postNewClient(newClient);
+        let form = document.getElementById("form") as HTMLFormElement | null;
+        form?.reset()
     }
 
   render() {
