@@ -52,7 +52,7 @@ const CardOffer = ({props}:any) => {
           <span className='card_tags'>{props.profession?.join(', ')}</span>
         </div>
         <div>
-          <Link className='button_details' to={`/detailOffer/${props.id}`}>Ver mas</Link>
+          <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver mas</Link>
         </div>
       </div>
     </div>
