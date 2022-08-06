@@ -1,0 +1,23 @@
+.profession_div{
+    display: flex;
+    gap: 5px;
+
+}
+
+.profession_btn{
+    background-color: cadetblue;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.skills_div{
+    display: flex;
+    gap: 5px;
+ 
+}
+
+.skills_btn{
+    background-color: cadetblue;
+    border-radius: 5px;
+    padding: 2px;
+}

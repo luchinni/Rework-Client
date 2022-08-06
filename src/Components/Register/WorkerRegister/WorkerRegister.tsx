@@ -4,18 +4,17 @@ import image2 from "../../../images/Piggy_bank_Monochromatic.png";
 import image3 from "../../../images/Video_call_Monochromatic_1.png";
 import * as type from "../../../Types";
 import { connect, ConnectedProps } from "react-redux";
-import {postNewWorker, getAllProfession} from "../../../Redux/Reducer/reducer"
+import {postNewWorker, getAllProfession, getAllSkills} from "../../../Redux/Reducer/reducer"
 import HeaderRegister from '../HeaderRegister/HeaderRegister';
+import './WorkerRegister.css';
 
 interface HeaderState{
-  // props: any;
-  //inputSkills: string[]
+
 }
 export class WorkerRegister extends Component<HeaderProps, HeaderState> {
   state: type.WorkerType;
   constructor(props: HeaderProps) {
     super(props)
-    //this.inputSkills = []
 
     this.state = {
       name: "",
@@ -41,7 +40,8 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
   }
 
 componentDidMount(){
-  this.props.getAllProfession()
+  this.props.getAllProfession();
+  this.props.getAllSkills()
 }
 
   firstWordUpperCase(word:String) {
@@ -110,18 +110,18 @@ this.validarForm(this.state.errors)
 
 handleSubmit(e:any){
   e.preventDefault();
-  // this.setState({...this.state, skills: this.state.inputSkills})
 
   let { name, lastName, password, user_mail, birthdate, image, profession, skills} = this.state;
-  //console.log(name);
+
   name = this.firstWordUpperCase(name);
   lastName = this.firstWordUpperCase(lastName); 
 
   const newWorker:type.newWorkerType = {
     name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, image:image, profession:profession, skills:skills
   }
-  // console.log(newWorker);
   postNewWorker(newWorker);
+  let form = document.getElementById("form") as HTMLFormElement | null;
+      form?.reset()
 
   this.setState({
       name: "",
@@ -152,6 +152,7 @@ handleSelect(e:any){
   const name = e.target.name
   if (select === "default") return
   if(this.state.profession?.includes(e.target.value)) return
+  if(this.state.skills?.includes(e.target.value)) return
   if(name === "profession"){
     this.setState({...this.state,
     profession:[...this.state.profession, select],
@@ -164,18 +165,17 @@ handleSelect(e:any){
 }
 
 handleDelete(e:any){
-  // console.log(e.target.innerText)  
+    
   let del = e.target.innerText
 console.log(del)
   const name = e.target.id
   if(name === "profession"){
     let borrado = this.state.profession.filter(f => f !== del.trim())
     this.setState({...this.state, profession: borrado})
-  }
-  // } else {
-  //   let borrado2 = this.state.skills.filter(g => g !== e)
-  //   this.setState({...this.state, skills: borrado2})
-  // }
+   } else {
+     let borrado2 = this.state.skills.filter(g => g !== del.trim())
+     this.setState({...this.state, skills: borrado2})
+   }
   
 }
 
@@ -206,7 +206,7 @@ console.log(del)
             {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
             <input type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
             {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
-            <select  name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
+            <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
                 <option selected={true} hidden>Profesiones</option>
                 {
                   this.props.professions?.map((e:any) =>{
@@ -214,14 +214,26 @@ console.log(del)
                   })
                 }
             </select>
-            <div>
+            <div className='profession_div'>
               {this.state.profession?.map((e:any) => {
-                return (<span id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+                return (<span className='profession_btn' id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
               })}
             </div>
+
+            <select  name="skills" id='skills' onChange={(e) => this.handleSelect(e)}>
+                <option selected={true} hidden>Habilidades</option>
+                {
+                  this.props.skills?.map((e:any) =>{
+                      return <option value={e} key={e}> {e} </option>
+                  })
+                }
+            </select>
+            <div className='skills_div'>
+              {this.state.skills?.map((e:any) => {
+                return (<span className='skills_btn' id="skills" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+              })}
+            </div>  
                 
-            
-            <input type="text" name="skills" placeholder='Habilidades' onChange={(e) => this.handleSelect(e)}/>
             <span>Ingeniero, Diseñador</span>
             <span>Phyton, Css...</span>
             <input disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
@@ -236,13 +248,14 @@ console.log(del)
    return {
        professions: state.workService.professions,
        
-      //  skills: state.workService.skills
+        skills: state.workService.skills
    }
  };
  export const mapDispatchToProps = (dispatch:any) => {
    return {
     postNewWorker: (newWorker:type.newWorkerType) => dispatch(postNewWorker(newWorker)),
-    getAllProfession: () => dispatch(getAllProfession())
+    getAllProfession: () => dispatch(getAllProfession()),
+    getAllSkills: () => dispatch(getAllSkills())
    }
  };
 
