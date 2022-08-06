@@ -9,3 +9,68 @@
   gap: 30px;
   /* background-color: aqua; */
 }
+.div_btnHome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.span_more{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} 
+.span_more #uno{
+  width: 5px;
+  height: 5px;
+  background: rgba(148, 148, 148);
+  margin: 3px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  opacity: .6;
+}
+.span_more #dos{
+  width: 7px;
+  height: 7px;
+  background: rgba(148, 148, 148);
+  margin: 3px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  opacity: .6;
+}
+.span_more #tres{
+  width: 10px;
+  height: 10px;
+  background: rgba(148, 148, 148);
+  margin: 3px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  opacity: .6;
+}
+.btn_moreCards2{
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  color: #FFFFFF;
+  padding: 7px 32px;
+  border: none;
+  background: rgba(148, 148, 148);
+  border-radius: 7px;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn_moreCards2:hover{
+background-color: rgb(84, 84, 84);
+}
