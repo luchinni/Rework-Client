@@ -1,9 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import * as type from "../../Types"
+import { Dispatch } from "redux";
+
 
 const initialState = {
     allClients: [],
+    searchedWorkers: [],
+    searchedOffers: [],
     clientById: {},
     offers: [],
     offerById: {},
@@ -17,6 +21,12 @@ export const workServiceSlice = createSlice({
         setAllClients: function (state:any, action:any){
             state.allClients = action.payload;
         },
+        setSearchedWorkers: function (state:any, action:any){
+          state.searchedWorkers = action.payload;
+      },
+        setSearchedOffers: function (state:any, action:any){
+        state.searchedOffers = action.payload;
+    },
         setClientById: function (state:any, action:any){
             state.clientById = action.payload;
         },
@@ -29,7 +39,7 @@ export const workServiceSlice = createSlice({
     }
 })
 
-export const { setAllClients, setClientById, setAllOffers, setOfferById } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, setOfferById, setSearchedWorkers, setSearchedOffers } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
 
@@ -162,5 +172,38 @@ export const postNewWorker = async (newWorker:type.newWorkerType) => {
     })
   }catch(error){
     return error
+  }
+}
+
+export const loginUser = (newLoggedUser:type.loginType) => {
+  try{
+    return axios({
+      method:"get",
+      url: "http://localhost:3001/login/in",
+      data:newLoggedUser
+    })
+  }catch(error){
+    return error
+  }
+}
+
+export const searchWorker =  (input:string) => async (dispatch:Dispatch<any>) => {
+  try {
+    if(input==="")return ""
+    const workers = await axios.get(`http://localhost:3001/worker/search?q=${input}`)
+    dispatch(setSearchedWorkers(workers.data))
+    return ""
+  } catch (error) {
+    alert("Hubo un error al intentar traer los trabajadores")
+  }
+}
+
+export const searchOffer = (input:string) => async (dispatch:Dispatch<any>) => {
+  try {
+    if(input==="")return
+    const offers = await axios.get(`http://localhost:3001/offer/search?q=${input}`)
+    dispatch(setSearchedOffers(offers.data))
+  } catch (error) {
+    alert("Hubo un error al intentar traer las ofertas")
   }
 }
