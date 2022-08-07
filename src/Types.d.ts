@@ -65,13 +65,14 @@ export interface newWorkerType {
 }
 
 export interface newOfferType{
+    userClientIdClient:String,
     title:String,
-    post_duration_time:String,
-    min_rem:Number,
-    max_rem:Number,
-    work_duration_time:Number,
-    work_duration_time_select:String,
-    description:String,
+    post_duration_time:Date,
+    min_remuneration:Integer,
+    max_remuneration:Integer,
+    // work_duration_time:Number,
+    // work_duration_time_select:String,
+    offer_description:String,
     photo:String,
     profession:String
 }
