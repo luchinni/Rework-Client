@@ -74,8 +74,7 @@ export const postNewOffer = async(newOffer:type.newOfferType) => {
     return await axios({
       method:"post",
       url: "http://localhost:3001/offer",
-      data:newOffer
-      
+      data:newOffer      
     })
   }catch(error){
     return error

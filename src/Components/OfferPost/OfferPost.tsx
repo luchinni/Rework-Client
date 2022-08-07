@@ -15,13 +15,14 @@ const OfferPost = () => {
     // const [prof, setProf] = useState('')
 
     const [formulario, setFormulario] = useState({
+        userClientIdClient:'d88d194c-430c-4c88-a178-c838f80310da',
         title: '',
         post_duration_time: '',
-        min_rem: 0,
-        max_rem: 0,
-        work_duration_time: 0,
-        work_duration_time_select: '',
-        description: '',
+        min_remuneration: 0,
+        max_remuneration: 0,
+        // work_duration_time: 0,
+        // work_duration_time_select: '',
+        offer_description: '',
         photo: '',
         profession: ''
     })
@@ -57,25 +58,29 @@ const handleSelect = (e:any) => {
     const select = e.target.value;
     const name = e.target.name;   
     if (select === "default") return;
-    if(formulario.work_duration_time_select.includes(e.target.value)) return;
+    // if(formulario.work_duration_time_select.includes(e.target.value)) return;
     if(formulario.profession.includes(e.target.value)) return;
     if(name === 'profession'){
         setFormulario({...formulario,
             profession: select})
-    }else{
-        setFormulario({
-            ...formulario,
-            work_duration_time_select: select})
+    }
+    // else{
+    //     setFormulario({
+    //         ...formulario,
+    //         work_duration_time_select: select})
 
-    }   
+    //}   
 };
 
 const handleSubmit = (e:any) => {
     e.preventDefault();
-    let {title, post_duration_time, min_rem, max_rem, work_duration_time, work_duration_time_select, description, photo, profession} = formulario
+    let {userClientIdClient, title, post_duration_time, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
+    let  post_duration_date = new Date(post_duration_time + 'T00:00:00')
+    console.log(post_duration_date)
 const newOffer:type.newOfferType = {
-    title:title, post_duration_time:post_duration_time, min_rem:min_rem, max_rem:max_rem, work_duration_time:work_duration_time, work_duration_time_select:work_duration_time_select, description:description, photo:photo, profession:profession
+    userClientIdClient, title:title, post_duration_time:post_duration_date, min_remuneration:min_remuneration, max_remuneration:max_remuneration, /*work_duration_time:work_duration_time, work_duration_time_select:work_duration_time_select, */offer_description:offer_description, photo:photo, profession:profession
 }
+    
     postNewOffer(newOffer)
     .then(()=>{
         let form = document.getElementById("form") as HTMLFormElement | null;
@@ -83,13 +88,14 @@ const newOffer:type.newOfferType = {
     }) 
     
     setFormulario({
+        userClientIdClient: 'd88d194c-430c-4c88-a178-c838f80310da',
         title: '',
         post_duration_time: '',
-        min_rem: 0,
-        max_rem: 0,
-        work_duration_time: 0,
-        work_duration_time_select: '',
-        description: '',
+        min_remuneration: 0,
+        max_remuneration: 0,
+        // work_duration_time: 0,
+        // work_duration_time_select: '',
+        offer_description: '',
         photo: '',
         profession: ''
     })
@@ -115,17 +121,17 @@ const newOffer:type.newOfferType = {
                 </select> */}
                 <input type='date' name='post_duration_time' placeholder='Duración de publicación' onChange={handleChange}/>
                 <span>Remuneración</span>
-                <input type='number' name='min_rem' placeholder='Min' onChange={handleChange}/>
-                <input type='number' name='max_rem' placeholder='Max' onChange={handleChange}/>
-                <span>Duración del trabajo</span>
-                <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/>
-                <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
+                <input type='number' name='min_remuneration' placeholder='Min' onChange={handleChange}/>
+                <input type='number' name='max_remuneration' placeholder='Max' onChange={handleChange}/>
+                {/* <span>Duración del trabajo</span> */}
+                {/* <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/> */}
+                {/* <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
                     <option selected={true} hidden>Seleccione</option>
                     {['días', 'semanas', 'meses'].map(e => {
                         return (<option>{e}</option>)
                     })}
-                </select>
-                <input type='text' name='description' placeholder='Descripción del trabajo' onChange={handleChange}/>
+                </select> */}
+                <input type='text' name='offer_description' placeholder='Descripción del trabajo' onChange={handleChange}/>
                 <input type='url' name='photo' placeholder='Url de imagen de referencia' onChange={handleChange}/>
                 <span>Profesiones</span>
                 <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
