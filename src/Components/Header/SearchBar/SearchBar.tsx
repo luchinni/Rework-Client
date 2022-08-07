@@ -16,8 +16,19 @@ const SearchBar = () => {
   }
 
   const handleCheck = (e:any) => {
+    let workerCheck = document.getElementById("worker") as HTMLInputElement;
+    let offerCheck = document.getElementById("offer") as HTMLInputElement;
     const value = e.target.value;
     const check = e.target.checked;
+
+    console.log(value);
+
+    if(value === "offer" &&workerCheck?.checked === true){
+      workerCheck.checked = false;
+    }
+    else if(value === "worker" && offerCheck?.checked === true){
+      offerCheck.checked = false;
+    }
 
     if(check===false){
       setworkerOrOffer("offer")
@@ -56,12 +67,12 @@ const SearchBar = () => {
       {open &&
         <div className='filter_dropDown'>
           <div className='filter_option'>
-            <label>Usuarios</label>
-            <input type="checkbox" value="worker" onChange={(e) => handleCheck(e)}/>
+            <label>FreeLancers</label>
+            <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
           </div>
           <div className='filter_option'>
-            <label>Trabajo</label>
-            <input type="checkbox" value="offer" onChange={(e) => handleCheck(e)}/>
+            <label>Ofertas</label>
+            <input type="checkbox" id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
           </div>
         </div>
       }
