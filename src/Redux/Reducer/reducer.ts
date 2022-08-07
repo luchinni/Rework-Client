@@ -91,7 +91,6 @@ export const postNewOffer = async(newOffer:type.newOfferType) => {
     //   data: pagination
     //     })
     //axios.get("http://localhost:3001/offer/", {multiplier:50})
-    console.log(offers, " ", pagination);
     dispatch(setAllOffers(offers.data));
   } catch (error) {
     alert("Error al requerir las ofertas.")
