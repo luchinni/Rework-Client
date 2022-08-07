@@ -45,7 +45,7 @@ const CardOffer = ({props}:any) => {
         <span className='card_title'>{props.title}</span>
         <div className='div_remuneration'>
           <span>ARS </span>
-          <span>{props.remuneration?.join(' - ')}</span>
+          <span>{`${props.min_remuneration} - ${props.max_remuneration}`}</span>
           <span>$</span>
         </div>
         <div className='div_cardDescription'>
