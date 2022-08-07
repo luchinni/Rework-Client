@@ -6,8 +6,8 @@ import { Dispatch } from "redux";
 
 const initialState = {
     allClients: [],
-    searchedWorkers: [],
-    searchedOffers: [],
+    infoSearched: [],
+    search:"",
     clientById: {},
     offers: [],
     offerById: {},
@@ -24,10 +24,10 @@ export const workServiceSlice = createSlice({
             state.allClients = action.payload;
         },
         setSearchedWorkers: function (state:any, action:any){
-          state.searchedWorkers = action.payload;
+          state.infoSearched = action.payload;
       },
         setSearchedOffers: function (state:any, action:any){
-        state.searchedOffers = action.payload;
+        state.infoSearched = action.payload;
     },
         setClientById: function (state:any, action:any){
             state.clientById = action.payload;
@@ -43,12 +43,15 @@ export const workServiceSlice = createSlice({
         },
         setAllSkills: function (state:any, action:any){
           state.skills = action.payload
+        },
+        setSearch: function (state:any, action:any){
+          state.search = action.payload
         }
     }
 })
 
 
-export const { setAllClients, setClientById, setAllOffers, setOfferById, setAllProfessions, setAllSkills, setSearchedWorkers, setSearchedOffers } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, setSearch, setOfferById, setAllProfessions, setAllSkills, setSearchedWorkers, setSearchedOffers } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -223,6 +226,7 @@ export const searchWorker =  (input:string) => async (dispatch:Dispatch<any>) =>
     if(input==="")return ""
     const workers = await axios.get(`http://localhost:3001/worker/search?q=${input}`)
     dispatch(setSearchedWorkers(workers.data))
+    dispatch(setSearch("worker"));
     return ""
   } catch (error) {
     alert("Hubo un error al intentar traer los trabajadores")
@@ -234,6 +238,7 @@ export const searchOffer = (input:string) => async (dispatch:Dispatch<any>) => {
     if(input==="")return
     const offers = await axios.get(`http://localhost:3001/offer/search?q=${input}`)
     dispatch(setSearchedOffers(offers.data))
+    dispatch(setSearch("offer"));
   } catch (error) {
     alert("Hubo un error al intentar traer las ofertas")
   }

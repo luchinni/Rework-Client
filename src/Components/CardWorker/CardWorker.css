@@ -1,0 +1,58 @@
+
+.CardWorker_component{
+border: 1px solid #949494;
+background-color: #FFFFFF;
+border-radius: 10px;
+max-width: 330px;
+min-width: 329px;
+overflow: hidden;
+margin-bottom: 30px;
+padding-bottom: 7px;
+}
+
+.div_infoUser {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.div_imageProfile{
+    background-color: red;
+    height: max-content;
+    max-width:46px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.card_profileImage{
+    width: 100%;
+}
+
+.div_userDatos {
+    display: flex;
+    flex-direction: column;
+}
+
+.Card_userName {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.Card_userHabilities {
+    font-size: 13px;
+    color: #575757;
+}
+
+.cardButton_options {
+    height: 35px;
+    width: 35px;
+    font-size: 26px;
+}
+.more {
+    max-width: 30px;
+}
+
+.Card_options{
+    margin-right: 10px;
+}
