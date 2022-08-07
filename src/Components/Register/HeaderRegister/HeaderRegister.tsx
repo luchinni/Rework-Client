@@ -9,7 +9,7 @@ const HeaderRegister = () => {
         RE
         <span className='work'>work</span>
       </Link>
-          <Link to='/' ><button className='btn_volver'>Volver</button></Link>
+          <Link to='/home' ><button className='btn_volver'>Volver</button></Link>
     </div>
   )
 }
