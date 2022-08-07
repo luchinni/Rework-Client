@@ -267,3 +267,7 @@ export const searchOffer = (input:string) => async (dispatch:Dispatch<any>) => {
     alert("Hubo un error al intentar traer las ofertas")
   }
 }
+
+export const resetSearch = () => async (dispatch:Dispatch<any>) => {
+    dispatch(setSearch(""));
+}
