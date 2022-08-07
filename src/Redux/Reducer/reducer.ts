@@ -68,10 +68,12 @@ export const getClients = (clients:any) => (dispatch:Dispatch<any>) =>{
 
 export const postNewOffer = async(newOffer:type.newOfferType) => {
   try {
+     console.log(newOffer)
     return await axios({
       method:"post",
       url: "http://localhost:3001/offer",
       data:newOffer
+      
     })
   }catch(error){
     return error
