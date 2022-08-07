@@ -12,19 +12,32 @@ const OfferPost = () => {
 
     const profession = useSelector ((state:any) => state.workService.professions);
 
+    type Hola = {
+        userClientIdClient:String,
+    title:String,
+    post_duration_time:Date | String,
+    min_remuneration:Number,
+    max_remuneration:Number,
+    // work_duration_time:Number,
+    // work_duration_time_select:String,
+    offer_description:String,
+    photo:String,
+    profession:String[]
+    }
     // const [prof, setProf] = useState('')
+   
+    const [formulario, setFormulario] = useState<Hola>({
 
-    const [formulario, setFormulario] = useState({
-        userClientIdClient:'d88d194c-430c-4c88-a178-c838f80310da',
+        userClientIdClient:'6787b21b-cc9d-4682-ba06-848927f11acd',
         title: '',
-        post_duration_time: '',
+        post_duration_time: new Date,
         min_remuneration: 0,
         max_remuneration: 0,
         // work_duration_time: 0,
         // work_duration_time_select: '',
         offer_description: '',
         photo: '',
-        profession: ''
+        profession: []
     })
 
     
@@ -59,10 +72,10 @@ const handleSelect = (e:any) => {
     const name = e.target.name;   
     if (select === "default") return;
     // if(formulario.work_duration_time_select.includes(e.target.value)) return;
-    if(formulario.profession.includes(e.target.value)) return;
+    if(formulario.profession?.includes(select)) return;
     if(name === 'profession'){
         setFormulario({...formulario,
-            profession: select})
+            profession:[...formulario.profession, select]})
     }
     // else{
     //     setFormulario({
@@ -76,9 +89,10 @@ const handleSubmit = (e:any) => {
     e.preventDefault();
     let {userClientIdClient, title, post_duration_time, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
     let  post_duration_date = new Date(post_duration_time + 'T00:00:00')
-    console.log(post_duration_date)
+    let fecha = (post_duration_date.getFullYear() + "-"+0+ (post_duration_date.getMonth()+1)+ "-" +post_duration_date.getDate()+ " 23:59:59")
+    
 const newOffer:type.newOfferType = {
-    userClientIdClient, title:title, post_duration_time:post_duration_date, min_remuneration:min_remuneration, max_remuneration:max_remuneration, /*work_duration_time:work_duration_time, work_duration_time_select:work_duration_time_select, */offer_description:offer_description, photo:photo, profession:profession
+    userClientIdClient, title:title, post_duration_time:fecha, min_remuneration:min_remuneration, max_remuneration:max_remuneration, /*work_duration_time:work_duration_time, work_duration_time_select:work_duration_time_select, */offer_description:offer_description, photo:photo, profession:profession
 }
     
     postNewOffer(newOffer)
@@ -88,16 +102,16 @@ const newOffer:type.newOfferType = {
     }) 
     
     setFormulario({
-        userClientIdClient: 'd88d194c-430c-4c88-a178-c838f80310da',
+        userClientIdClient: '6787b21b-cc9d-4682-ba06-848927f11acd',
         title: '',
-        post_duration_time: '',
+        post_duration_time: new Date,
         min_remuneration: 0,
         max_remuneration: 0,
         // work_duration_time: 0,
         // work_duration_time_select: '',
         offer_description: '',
         photo: '',
-        profession: ''
+        profession: []
     })
 }
 
