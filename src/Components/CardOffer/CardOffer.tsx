@@ -8,6 +8,8 @@ const CardOffer = ({props}:any) => {
 
   const [open, setOpen] = useState(false)
 
+  // console.log(props)
+
   function handleClick() {
     setOpen(!open);
   }
@@ -20,7 +22,7 @@ const CardOffer = ({props}:any) => {
             <img className='card_profileImage' src={props.userClient?.photo} alt="Client Photo" />
           </div>
           <div className='div_userDatos'>
-            <Link to="#" className='Card_userName'>{props.userClient?.name}</Link>
+            <Link to={`profile/:${props.userClientIdClient}`} className='Card_userName'>{props.userClient?.name}</Link>
             <span className='Card_userRating'>Rating: {props.userClient?.rating}</span>
           </div>
         </div>
