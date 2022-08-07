@@ -66,10 +66,21 @@ export const getClients = (clients:any) => (dispatch:Dispatch<any>) =>{
     dispatch(setAllClients(clients))
 }
 
+export const postNewOffer = async(newOffer:type.newOfferType) => {
+  try {
+    return await axios({
+      method:"post",
+      url: "http://localhost:3001/offer",
+      data:newOffer
+    })
+  }catch(error){
+    return error
+  }
+}
+
  export const getOffers = () => async (dispatch:Dispatch<any>) => {
   try {
     const offers = await axios.get("http://localhost:3001/offer/")
-    console.log(offers.data)
     dispatch(setAllOffers(offers.data));
   } catch (error) {
     alert("Error al requerir las ofertas.")
