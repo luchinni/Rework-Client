@@ -64,6 +64,19 @@ export interface newWorkerType {
 
 }
 
+export interface newOfferType{
+    title:String,
+    post_duration_time:String,
+    min_rem:Number,
+    max_rem:Number,
+    work_duration_time:Number,
+    work_duration_time_select:String,
+    description:String,
+    photo:String,
+    profession:String
+}
+
+
 export interface errorsType {
     name:String,
     lastName:String,
