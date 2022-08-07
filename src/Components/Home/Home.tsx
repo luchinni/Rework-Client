@@ -8,12 +8,17 @@ import Header from '../Header/Header';
 import './Home.css';
 import Banner from './Banner/Banner';
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
+import CardsWorker from '../CardsWorker/CardsWorker';
 
 const Home = () => {
 
   const offers = useSelector((state:any) => state.workService.offers);
-  var [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE))
-  var [ITEMS_PER_PAGE, setItemsPerPage] = useState(5)
+  const search = useSelector((state:any) => state.workService.search);
+  const infoSearched = useSelector((state:any) => state.workService.infoSearched);
+  let [ITEMS_PER_PAGE, setItemsPerPage] = useState(5);
+  let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
+  let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
+  
 
   const dispatch = useDispatch();
 
@@ -23,10 +28,32 @@ const Home = () => {
 
   useEffect(() => {
     setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
-  }, [items])
+  }, [offers])
+
+  useEffect(() => {
+    if(search==="worker")setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+    if(search==="offer")setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+
+  }, [infoSearched])
 
 const handleMore = () => {
   setItemsPerPage(ITEMS_PER_PAGE+5)
+
+  if(search!==""){
+    setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+  }else{
+    setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
+  }
+}
+
+const informationSend = () =>{
+  if(search==="worker"){
+    return itemSearched;
+  }else if(search==="offer"){
+    return items;
+  }else{
+    return items;
+  }
 }
 
 window.onscroll = function () {
@@ -44,14 +71,13 @@ const goUp = () => {
  })
 }
 
-
   return (
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
         <Banner/> 
         <div className='div_homeCards'>
-          {items?<CardsOffer props={items} />:"Loading..."}
+          {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <Filtros />
         </div>
         {items.length<offers.length?
