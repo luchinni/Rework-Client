@@ -3,6 +3,7 @@
     background-color: #FFFFFF;
     border-radius: 10px;
     max-width: 730px;
+    min-width: 729px;
     overflow: hidden;
     margin-bottom: 30px;
     padding-bottom: 7px;
