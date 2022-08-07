@@ -1,15 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar/SearchBar';
+import resetSearch from "../../Redux/Reducer/reducer"
 import "./Header.css";
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
 
+  const dispatch = useDispatch();
 
+  const resetSearch = () =>{
+    dispatch(resetSearch());
+  }
 
   return (
     <header className="Header_component">
-      <Link to="/home" className='logo'>
+      <Link to="/home" className='logo' onClick={resetSearch}>
         RE
         <span className='work'>work</span>
       </Link>      
