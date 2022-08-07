@@ -24,11 +24,11 @@ const OfferPost = () => {
     photo:String,
     profession:String[]
     }
-    // const [prof, setProf] = useState('')
+    //const [prof, setProf] = useState('')
    
     const [formulario, setFormulario] = useState<Hola>({
 
-        userClientIdClient:'6787b21b-cc9d-4682-ba06-848927f11acd',
+        userClientIdClient:'99cfa5ce-ea90-45ed-99ee-5821eb36a2f1',
         title: '',
         post_duration_time: new Date,
         min_remuneration: 0,
@@ -85,6 +85,20 @@ const handleSelect = (e:any) => {
     //}   
 };
 
+const handleDelete = (e:any) => {
+    let del = e.target.innerText
+    const name = e.target.id
+  if(name === "profession"){
+    let borrado = formulario.profession?.filter((f) => f !== del.trim())
+    setFormulario({...formulario, profession: borrado})
+}  
+// else {
+//     let borrado2 = formulario.skills?.filter(g => g !== del.trim())
+//     setFormulario({...formulario, skills: borrado2})
+//   }
+}
+// console.log(formulario)    
+
 const handleSubmit = (e:any) => {
     e.preventDefault();
     let {userClientIdClient, title, post_duration_time, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
@@ -102,7 +116,7 @@ const newOffer:type.newOfferType = {
     }) 
     
     setFormulario({
-        userClientIdClient: '6787b21b-cc9d-4682-ba06-848927f11acd',
+        userClientIdClient: '99cfa5ce-ea90-45ed-99ee-5821eb36a2f1',
         title: '',
         post_duration_time: new Date,
         min_remuneration: 0,
@@ -112,6 +126,7 @@ const newOffer:type.newOfferType = {
         offer_description: '',
         photo: '',
         profession: []
+        //skills: []
     })
 }
 
@@ -157,9 +172,9 @@ const newOffer:type.newOfferType = {
                     }
                 </select>
                 <div>
-                {/*profession?.map((e:any) => {
-                return (<span className='profession_btn' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
-              })*/}
+                      {formulario.profession?.map((e:any) => {
+                      return (<span className='profession_btn' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
+                    })}
                 </div>
                 <input disabled={false} name="button" type="submit" value="Publicar" onClick={(e) => handleSubmit(e)} />
             </form>
