@@ -67,11 +67,11 @@ const SearchBar = () => {
       {open &&
         <div className='filter_dropDown'>
           <div className='filter_option'>
-            <label>Usuarios</label>
+            <label>FreeLancers</label>
             <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
           </div>
           <div className='filter_option'>
-            <label>Trabajo</label>
+            <label>Ofertas</label>
             <input type="checkbox" id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
           </div>
         </div>
