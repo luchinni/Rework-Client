@@ -10,6 +10,24 @@ export interface ClientType {
     disabled:boolean
 }
 
+
+export interface userLogin{
+    user_mail: String,
+    password: String
+}
+
+export interface currentUsers{
+    user_mail: String,
+    password: String,
+    isWorker: Boolean,
+    isAdmin: Boolean
+}
+
+export interface errorLogin{
+    user_mail: String,
+    password: String
+}
+
 export interface WorkerType{
     name:String,
     lastName:String,
@@ -45,6 +63,19 @@ export interface newWorkerType {
     skills:String[]
 
 }
+
+export interface newOfferType{
+    title:String,
+    post_duration_time:String,
+    min_rem:Number,
+    max_rem:Number,
+    work_duration_time:Number,
+    work_duration_time_select:String,
+    description:String,
+    photo:String,
+    profession:String
+}
+
 
 export interface errorsType {
     name:String,

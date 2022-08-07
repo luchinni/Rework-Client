@@ -12,7 +12,11 @@ const initialState = {
     offers: [],
     offerById: {},
     professions:[],
-    skills: []
+    skills: [],
+    currentUser: {
+      password: "",
+      user_mail: ""
+    }
 }
 
 
@@ -46,12 +50,14 @@ export const workServiceSlice = createSlice({
         },
         setSearch: function (state:any, action:any){
           state.search = action.payload
-        }
+        },
+        setCurrentUser: function (state:any, action:any){
+          state.currentUser = action.payload;
+      }
     }
 })
 
-
-export const { setAllClients, setClientById, setAllOffers, setSearch, setOfferById, setAllProfessions, setAllSkills, setSearchedWorkers, setSearchedOffers } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -62,10 +68,21 @@ export const getClients = (clients:any) => (dispatch:Dispatch<any>) =>{
     dispatch(setAllClients(clients))
 }
 
+export const postNewOffer = async(newOffer:type.newOfferType) => {
+  try {
+    return await axios({
+      method:"post",
+      url: "http://localhost:3001/offer",
+      data:newOffer
+    })
+  }catch(error){
+    return error
+  }
+}
+
  export const getOffers = () => async (dispatch:Dispatch<any>) => {
   try {
     const offers = await axios.get("http://localhost:3001/offer/")
-    console.log(offers.data)
     dispatch(setAllOffers(offers.data));
   } catch (error) {
     alert("Error al requerir las ofertas.")
@@ -185,9 +202,9 @@ export const getAllSkills = () => async(dispatch: any) => {
  
 }
 
-export const postNewClient = (newClient:type.newClientType) => {
+export const postNewClient = async (newClient:type.newClientType) => {
   try{
-    return axios({
+    return await axios({
       method:"post",
       url: "http://localhost:3001/register/client",
       data:newClient
@@ -208,17 +225,22 @@ export const postNewWorker = async (newWorker:type.newWorkerType) => {
     return error
   }
 }
-
-export const loginUser = (newLoggedUser:type.loginType) => {
-  try{
-    return axios({
-      method:"get",
-      url: "http://localhost:3001/login/in",
-      data:newLoggedUser
-    })
-  }catch(error){
-    return error
-  }
+ 
+export const postLogin = (user: type.userLogin) => async (dispatch: any) => {
+try{
+  // generamos el token conectando con el back
+  const token = await axios({
+    method:"post",
+    url: "http://localhost:3001/login/",
+    data: user
+  })
+  // lo pasamos a json y lo guardamos en la consola en application local storage
+  localStorage.setItem("token", JSON.stringify(token.data))
+  // alojamos el usuario logueado en el initialState.currentUser
+  return dispatch(setCurrentUser(user))
+} catch(e){
+  return e
+}
 }
 
 export const searchWorker =  (input:string) => async (dispatch:Dispatch<any>) => {

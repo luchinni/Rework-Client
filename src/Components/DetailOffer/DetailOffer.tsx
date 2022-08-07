@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import copy from '../../images/copy.svg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Toaster, toast} from "react-hot-toast";
+import { Link } from 'react-router-dom';
 import './DetailOffer.css';
 import { useParams } from 'react-router-dom';
 
@@ -31,11 +32,11 @@ const DetailOffer = () => {
        <div>
          <div className='Detail_User'>
            <div className='Detail_divUserImage'>
-             <img className='Detail_userPhoto' src={offerId.userClient?.photo} alt="fotito" />
+             <img className='Detail_userPhoto' src={offerId.userClient?.photo} alt="fotito" loading='lazy'/>
            </div>
-           <p className='Detail_NameUserPost'>{offerId.userClient?.name}</p>
+           <Link to='#' className='Detail_NameUserPost'>{offerId.userClient?.name}</Link>
            <p className='Detail_UserRating'>Rating {offerId.userClient?.rating}</p>
-           <p className='Detail_offersCount'>Offers: {offerId?.offersCount}</p>
+           <p className='Detail_offersCount'>Publicaciones: {offerId?.offersCount}</p>
            <div>
              <div className='Detail_urlCopy'>
                <div className='Detail_divUrl'>
@@ -58,12 +59,12 @@ const DetailOffer = () => {
          <div className='Detail_offer'>
            <div className='Detail_titleTime'>
              <h2 className='Detail_title'>{offerId?.title}</h2>
-             <p className='Detail_time'>{`Tiempo estimado del trabajo: ${offerId?.work_duration_time}`}</p>
+             <p className='Detail_time'>{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time} dias`}</p>
            </div>
            <p className='Detail_remuneration'>{`Paga estimada ARS: ${offerId.remuneration?.slice(0, 1)} - ${offerId.remuneration?.slice(1)}`}</p>
            <p className='Detail_description'>{offerId?.offer_description}</p>
            <div className='Detail_divImages'>
-             <img className='Detail_images' src={offerId?.photo} alt="fotito offer"/>
+             <img className='Detail_images' src={offerId?.photo} alt="fotito offer" loading='lazy'/>
            </div>
            <p className='Detail_tags'>{offerId.profession?.join(', ')}</p>
            <button className='Detail_buttonApply'>Aplicar</button>

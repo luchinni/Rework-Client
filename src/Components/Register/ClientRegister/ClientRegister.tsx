@@ -65,7 +65,7 @@ export class ClientRegister extends Component {
                 break;
             case "password":
                 let passwordPattern:RegExp = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
-                errors.password = passwordPattern.test(value)? "" : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula y 1 minuscula."
+                errors.password = passwordPattern.test(value)? "" : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número."
                 break;
             case "user_mail":
                 let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i

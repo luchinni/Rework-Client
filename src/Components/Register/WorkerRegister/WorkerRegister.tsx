@@ -9,14 +9,12 @@ import HeaderRegister from '../HeaderRegister/HeaderRegister';
 import './WorkerRegister.css';
 
 interface HeaderState{
-  // props: any;
-  //inputSkills: string[]
+
 }
 export class WorkerRegister extends Component<HeaderProps, HeaderState> {
   state: type.WorkerType;
   constructor(props: HeaderProps) {
     super(props)
-    //this.inputSkills = []
 
     this.state = {
       name: "",
@@ -82,7 +80,7 @@ handleChange(e:any) {
         break;
     case "password":
       let passwordPattern:RegExp = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
-      errors.password = passwordPattern.test(value)? "" : "La contraseña debe tener entre 8 y 16 caracteres y al menos 1 mayuscula y 1 minuscula."
+      errors.password = passwordPattern.test(value)? "" : "La contraseña debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y un 1 número."
       break;
     case "user_mail":
       let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i
@@ -147,8 +145,6 @@ handleSubmit(e:any){
       inputSkills: []
   })
 
-
-
 }
 
 handleSelect(e:any){
@@ -168,7 +164,8 @@ handleSelect(e:any){
 
 }
 
-handleDelete(e:any){  
+handleDelete(e:any){
+    
   let del = e.target.innerText
 console.log(del)
   const name = e.target.id
@@ -209,7 +206,7 @@ console.log(del)
             {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
             <input type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
             {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
-            <select  name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
+            <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
                 <option selected={true} hidden>Profesiones</option>
                 {
                   this.props.professions?.map((e:any) =>{
