@@ -68,7 +68,7 @@ const goUp = () => {
           </div>
       <div id='goTopCont' className="goTopCont">
         <div className="goTopBut" onClick={goUp}>
-          <i><img src={goUpIcon} alt="" /></i>
+          <i><img src={goUpIcon} alt="goUpIcon" /></i>
         </div>
       </div>
     </div>

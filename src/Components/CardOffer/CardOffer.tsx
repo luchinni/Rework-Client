@@ -44,6 +44,7 @@ const CardOffer = ({props}:any) => {
         <div className='div_remuneration'>
           <span>ARS </span>
           <span>{props.remuneration?.join(' - ')}</span>
+          <span>$</span>
         </div>
         <div className='div_cardDescription'>
           <p>{props.offer_description}</p>
