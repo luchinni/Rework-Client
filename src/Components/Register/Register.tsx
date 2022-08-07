@@ -5,25 +5,26 @@ import './Register.css'
 
 const Register = () => {
   return (
-    <div className='contenedor_register'>
+    <div className='Register_component'>
         <HeaderRegister/>
-        <div className='contenedor_divs_trab_client'>
-          <div className='div_trabajador'>
-            <p>Registrate como FreeLancer</p>
-            <p>Edita tu portfolio</p>
-            <p>Aplica a los mejores</p>
-            <p>trabajos para ti</p>
-            <img src='' alt='acá va una imagen'/>
-            <Link to="/register/worker" ><button>FreeLancer</button></Link>        
+        <div className='Register_divclientWorker'>
+          <div className='Register_Worker'>
+            <p className='Register_orTitle'>Registrate como <span className='Register_orTitleOrange'>FreeLancer</span></p>
+            <p className='Register_PortOrPublic'>Edita tu portfolio</p>
+            <p className='Register_OrDescript'>Aplica a los mejores trabajos para ti</p>
+            <div className='Register_divImage'>
+              <img src='' alt='Register'/>
+            </div>
+            <Link className='Register_button' to="/register/worker" >Registrate</Link>        
           </div>
-            <div className='div_client'>
-              <span>Registrate como Cliente</span>
-              <p>Realiza publicaciones<br/>
-                                      <br/>
-                 Recibe las mejores ofertas
-                 para tu trabajo</p>
-              <img src='' alt='acá va una imagen'/>
-              <Link to="/register/client" ><button>Cliente</button></Link>
+            <div className='Register_Client'>
+              <p className='Register_orTitle'>Registrate como <span className='Register_orTitleOrange'>Cliente</span></p>
+              <p className='Register_PortOrPublic'>Realiza publicaciones</p>
+              <p className='Register_OrDescript'>Recibe las mejores ofertas para tu trabajo</p>
+              <div className='Register_divImage'>
+                <img src='' alt='Register'/>
+              </div>
+              <Link className='Register_button' to="/register/client">Registrate</Link>
             </div>
         </div>
 

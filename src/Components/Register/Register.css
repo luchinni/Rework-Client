@@ -1,19 +1,60 @@
-.contenedor_divs_trab_client{
+.Register_divclientWorker{
     display: flex;
+    gap: 36px;
     max-width: 1136px;
     margin: 80px auto 0 auto;
 }
 
-.div_trabajador{
-    background: #a39898;
-    max-width: 568px;
-    padding: 80px;
+.Register_Worker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 550px;
+    padding: 30px 10px 30px 10px;
     width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
 }
 
-.div_client{
-    background: #d65d5d;
-    max-width: 568px;
-    padding: 80px;
+.Register_Client {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 550px;
     width: 100%;
+    padding: 30px 10px 30px 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+.Register_orTitle {
+    font-size: 30px;
+    font-weight: 600;
+    color: #273141;
+}
+.Register_orTitleOrange {
+    color: #D6550D;
+}
+.Register_PortOrPublic {
+    font-size: 20px;
+    color: gray;
+    margin-top: 20px;
+}
+.Register_OrDescript {
+    font-size: 22px;
+    font-weight: 600;
+    color: gray;
+}
+.Register_divImage {
+    background-color: #e0e0e0;
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    margin: 20px 0 50px 0;
+}
+.Register_button {
+    background-color: #757F8F;;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
 }
