@@ -5,7 +5,10 @@ import './HeaderRegister.css'
 const HeaderRegister = () => {
   return (
     <div className='header_register'>
-          <Link to="/home" className="logo_register">logo</Link>
+      <Link to="/home" className='logo'>
+        RE
+        <span className='work'>work</span>
+      </Link>
           <Link to='/' ><button className='btn_volver'>Volver</button></Link>
     </div>
   )
