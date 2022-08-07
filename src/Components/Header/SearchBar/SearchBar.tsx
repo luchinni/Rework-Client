@@ -1,19 +1,29 @@
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import './SearchBar.css';
+import { useSelector } from 'react-redux';
 import icon_filter from '../../../images/icon_filters.svg';
 import icon_search from '../../../images/icon_search.svg';
 import { searchWorker, searchOffer } from '../../../Redux/Reducer/reducer';
 import { useDispatch } from 'react-redux';
+import { getAllProfession } from '../../../Redux/Reducer/reducer';
 
 const SearchBar = () => {
 
   const [open, setOpen] = useState(false);
+  const profession = useSelector((state:any) => state.workService.professions);
   const [workerOrOffer, setworkerOrOffer] = useState("offer");
+  const [rating, setRating] = useState("");
+  const [prof, setProf] = useState("");
+
   const dispatch = useDispatch();
 
   function handleClick() {
     setOpen(!open)
   }
+
+  useEffect(()=> {
+    dispatch(getAllProfession())
+},[dispatch])
 
   const handleCheck = (e:any) => {
     let workerCheck = document.getElementById("worker") as HTMLInputElement;
@@ -41,13 +51,26 @@ const SearchBar = () => {
     e.preventDefault();
     const input = document.getElementById("inputSearch") as HTMLInputElement | null;
     const inputSearch = input?.value;
+    const filters = {rating:rating, profession:prof}
     if(workerOrOffer === "worker"){
-      dispatch(searchWorker(inputSearch?inputSearch:""))
+      dispatch(searchWorker(inputSearch?inputSearch:"", filters))
     }else if(workerOrOffer === "offer"){
-      dispatch(searchOffer(inputSearch?inputSearch:""))
+      dispatch(searchOffer(inputSearch?inputSearch:"", filters))
     }
   }
 
+  const handleSelect = (e:any) => {
+    const value = e.target.value;
+    const name = e.target.name;    
+    
+    console.log(name, value)
+    if(name === "rating"){
+      setRating(value);
+    }
+    if(name === "profession"){
+      setProf(value);
+    }
+  }
 
 
   return (
@@ -72,7 +95,23 @@ const SearchBar = () => {
           </div>
           <div className='filter_option'>
             <label>Ofertas</label>
-            <input type="checkbox" id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
+            <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
+          </div>
+          <div className='filter_option'>
+          <select name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
+          <option selected={true} hidden>Rating</option>
+            {[1,2,3,4,5].map((e:any) => {
+               return <option value={e} key={e}> {e} </option>
+            })}
+            </select>
+          </div>
+          <div className='filter_option'>
+          <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
+          <option selected={true} hidden>Professions</option>
+            {profession.map((e:any) => {
+               return <option value={e} key={e}> {e} </option>
+            })}
+            </select>
           </div>
         </div>
       }
