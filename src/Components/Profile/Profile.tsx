@@ -1,8 +1,21 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getOffers } from '../../Redux/Reducer/reducer'
 import Header from '../Header/Header'
 import './Profile.css'
 
 function Profile() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOffers());
+  },[])
+
+  const users = useSelector((state: any) => state.workService.offers)
+
+  console.log("USERS :",users)
+
   return (
     <div className='Profile_Component'>
       <Header/>
@@ -35,7 +48,7 @@ function Profile() {
         <div className='Profile_divTags'>
           <button className='Profile_tag'>Porfolio</button>
           <button className='Profile_tag'>Informacion</button>
-          <button className='Profile_tag'>Revies</button>
+          <button className='Profile_tag'>Reviews</button>
         </div>
 
         <div className='Profile_divPortfolio'>
@@ -55,3 +68,7 @@ function Profile() {
 }
 
 export default Profile
+
+function state(state: any, arg1: (any: unknown) => any) {
+  throw new Error('Function not implemented.')
+}
