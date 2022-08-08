@@ -1,0 +1,36 @@
+.User_Component {
+  position: relative;
+}
+.User_DivProfile {
+  max-height: 35px;
+  overflow: hidden;
+}
+.User_divImageProfile {
+  max-width: 35px;
+  max-height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer; 
+}
+.User_ImageProfile {
+  position: relative;
+  max-width: 60px;
+  right: 17px;
+}
+.User_Dropdown {
+  position: absolute;
+  margin-top: 10px;
+  right: 0;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid gray;
+  border-radius: 10px;
+  z-index: 5;
+  width: 150px;
+}
+.User_DropdownOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
