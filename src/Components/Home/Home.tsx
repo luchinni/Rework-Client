@@ -41,9 +41,10 @@ const Home = () => {
 
 const handleMore = () => {
   setItemsPerPage(ITEMS_PER_PAGE+5)
-
-  if(search!==""){
+  if(search==="worker"){
     setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+  }else if(search==="offer"){
+    setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
   }else{
     setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
   }
@@ -53,7 +54,7 @@ const informationSend = () =>{
   if(search==="worker"){
     return itemSearched;
   }else if(search==="offer"){
-    return items;
+    return [...items].splice(0, ITEMS_PER_PAGE);
   }else{
     return items;
   }
@@ -74,6 +75,49 @@ const goUp = () => {
  })
 }
 
+const showButton = () => {
+  if(search===""){
+    if(items.length<offers.length){
+      return (<div className='div_btnHome'>
+    <div className='span_more'>
+        <span id='uno'/>
+        <span id='dos'/>
+        <span id='tres'/>
+      </div>
+      <div>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      </div>
+    </div>)
+    }
+  }else if(search==="worker"){
+    if(itemSearched.length<infoSearched.length){
+      return (<div className='div_btnHome'>
+    <div className='span_more'>
+        <span id='uno'/>
+        <span id='dos'/>
+        <span id='tres'/>
+      </div>
+      <div>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      </div>
+    </div>)
+    }
+  }else if(search==="offer"){
+    if(items.length<infoSearched.length){
+      return (<div className='div_btnHome'>
+    <div className='span_more'>
+        <span id='uno'/>
+        <span id='dos'/>
+        <span id='tres'/>
+      </div>
+      <div>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      </div>
+    </div>)
+    }
+  }
+}
+
 console.log(search)
 
   return (
@@ -85,17 +129,7 @@ console.log(search)
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <Filtros />
         </div>
-        {items.length<offers.length?
-        <div className='div_btnHome'>
-          <div className='span_more'>
-              <span id='uno'/>
-              <span id='dos'/>
-              <span id='tres'/>
-            </div>
-            <div>
-            <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
-            </div>
-          </div>:<span/>}
+        {showButton()}
           </div>
       <div id='goTopCont' className="goTopCont">
         <div className="goTopBut" onClick={goUp}>
