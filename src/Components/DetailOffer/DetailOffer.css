@@ -5,6 +5,7 @@
 .Detail_detail {
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-between;
   border: 1px solid #bcbcbc;
   overflow: hidden;
   margin-top: 100px;
@@ -45,7 +46,7 @@
 }
 .Detail_infoProposal {
   padding: 30px;
-  /* background-color: red; */
+  width: 100%;
 }
 .Detail_divImages {
   display: inline-block;

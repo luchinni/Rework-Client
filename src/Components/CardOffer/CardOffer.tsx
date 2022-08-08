@@ -8,8 +8,6 @@ const CardOffer = ({props}:any) => {
 
   const [open, setOpen] = useState(false)
 
-  // console.log(props)
-
   function handleClick() {
     setOpen(!open);
   }

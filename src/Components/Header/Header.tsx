@@ -4,6 +4,7 @@ import SearchBar from './SearchBar/SearchBar';
 import resetSearch from "../../Redux/Reducer/reducer"
 import "./Header.css";
 import { useDispatch } from 'react-redux';
+import User from './User/User';
 
 const Header = () => {
 
@@ -15,20 +16,21 @@ const Header = () => {
 
   return (
     <header className="Header_component">
-      <Link to="/home" className='logo' onClick={resetSearch}>
-        RE
-        <span className='work'>work</span>
-      </Link>      
+      <Link to="/home" className='logo' onClick={resetSearch}>RE<span className='work'>work</span></Link>      
       <nav className='nav'>
         <SearchBar/>
+
+        <User/>
+
         <div className='div_buttons'>
           <div>
-          <Link to='/login'><button className='button_login'>Log in</button></Link>
+            <Link to='/login'><button className='button_login'>Log in</button></Link>
           </div>
           <div>
-          <Link to='/register'><button className='button_register'>Sign up</button></Link>
+            <Link to='/register'><button className='button_register'>Sign up</button></Link>
           </div>
         </div>
+
       </nav>
     </header>
   )
