@@ -204,7 +204,7 @@ const newOffer:type.newOfferType = {
         <Header/>
         <div className='OfferPost_divcontent'>
             <div className='OfferPost_divImage'>
-                <img src={image1} alt="place1" />
+                <img className='OfferPost_image' src={image1} alt="place1" />
                 {/* <img src={image2} alt="place2" /> */}
             </div>
             <div className='OfferPost_divForm'>
@@ -261,13 +261,13 @@ const newOffer:type.newOfferType = {
                         <option selected={true} hidden>Seleccione opción</option>
                         {
                             profession?.map((e:any) => {
-                                return <option value={e} key={e}> {e} </option>
+                                return <option  value={e} key={e}> {e} </option>
                             })
                         }
                     </select>
-                    <div>
+                    <div className="professionDiv">
                           {formulario.profession?.map((e:any) => {
-                          return (<span className='profession_btn' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
+                          return (<span className='profession_btns' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
                         })}
                     </div>
                     <input disabled={errors.disabled} name="button" type="submit" value="Publicar" onClick={(e) => handleSubmit(e)} />
