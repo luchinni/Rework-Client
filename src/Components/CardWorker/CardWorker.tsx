@@ -81,7 +81,7 @@ const CardWorker = ({props}:any) => {
             </div>
             <div className='div_userDatos'>
             <h1 className='Card_userName'>{props.name}</h1>
-            <h4 className='Card_userHabilities'>{props.profession.join(", ")}</h4>
+            <h4 className='Card_userHabilities'>{props.profession?.join(", ")}</h4>
             </div>
             <div className='Card_options'>
             <button /*onClick={handleClick}*/ className='cardButton_options'>
@@ -109,7 +109,7 @@ const CardWorker = ({props}:any) => {
                 {<GoLocation/>}
                 <h3>Argentina</h3>
                 <div>
-                    <p>Habilidades: {props.skills.join(", ")}</p>
+                    <p>Habilidades: {props.skills?.join(", ")}</p>
                     <p>Valor hora: AR$ </p>
                 </div>
                 <h2>Descripción</h2>
