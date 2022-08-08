@@ -27,8 +27,11 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
-  }, [offers])
+    if(search===""){
+      console.log(offers);
+      setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
+    }
+  }, [offers, search])
 
   useEffect(() => {
     if(search==="worker")setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
@@ -70,6 +73,8 @@ const goUp = () => {
    behavior: "smooth" 
  })
 }
+
+console.log(search)
 
   return (
     <div className='Home_component'>

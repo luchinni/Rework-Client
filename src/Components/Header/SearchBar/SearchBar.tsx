@@ -6,12 +6,14 @@ import icon_search from '../../../images/icon_search.svg';
 import { searchWorker, searchOffer } from '../../../Redux/Reducer/reducer';
 import { useDispatch } from 'react-redux';
 import { getAllProfession } from '../../../Redux/Reducer/reducer';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
 
   const [open, setOpen] = useState(false);
   const profession = useSelector((state:any) => state.workService.professions);
   const [workerOrOffer, setworkerOrOffer] = useState("offer");
+  const history = useNavigate()
   const [rating, setRating] = useState("");
   const [prof, setProf] = useState("");
 
@@ -57,6 +59,7 @@ const SearchBar = () => {
     }else if(workerOrOffer === "offer"){
       dispatch(searchOffer(inputSearch?inputSearch:"", filters))
     }
+    history("/home")
   }
 
   const handleSelect = (e:any) => {
