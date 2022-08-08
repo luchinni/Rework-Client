@@ -1,11 +1,11 @@
-import React , {useState, useEffect} from 'react';
-import './SearchBar.css';
-import { useSelector } from 'react-redux';
-import icon_filter from '../../../images/icon_filters.svg';
-import icon_search from '../../../images/icon_search.svg';
-import { searchWorker, searchOffer } from '../../../Redux/Reducer/reducer';
-import { useDispatch } from 'react-redux';
-import { getAllProfession } from '../../../Redux/Reducer/reducer';
+import React, { useState, useEffect } from "react";
+import "./SearchBar.css";
+import { useSelector } from "react-redux";
+import icon_filter from "../../../images/icon_filters.svg";
+import icon_search from "../../../images/icon_search.svg";
+import { searchWorker, searchOffer } from "../../../Redux/Reducer/reducer";
+import { useDispatch } from "react-redux";
+import { getAllProfession } from "../../../Redux/Reducer/reducer";
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
@@ -62,7 +62,7 @@ const SearchBar = () => {
     history("/home")
   }
 
-  const handleSelect = (e:any) => {
+  const handleSelect = (e: any) => {
     const value = e.target.value;
     const name = e.target.name;    
     
@@ -122,4 +122,5 @@ const SearchBar = () => {
   )
 }
 
-export default SearchBar
+
+export default SearchBar;
