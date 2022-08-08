@@ -6,11 +6,21 @@ import icon_search from "../../../images/icon_search.svg";
 import { searchWorker, searchOffer } from "../../../Redux/Reducer/reducer";
 import { useDispatch } from "react-redux";
 import { getAllProfession } from "../../../Redux/Reducer/reducer";
+import React , {useState, useEffect} from 'react';
+import './SearchBar.css';
+import { useSelector } from 'react-redux';
+import icon_filter from '../../../images/icon_filters.svg';
+import icon_search from '../../../images/icon_search.svg';
+import { searchWorker, searchOffer } from '../../../Redux/Reducer/reducer';
+import { useDispatch } from 'react-redux';
+import { getAllProfession } from '../../../Redux/Reducer/reducer';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
   const [open, setOpen] = useState(false);
   const profession = useSelector((state: any) => state.workService.professions);
   const [workerOrOffer, setworkerOrOffer] = useState("offer");
+  const history = useNavigate()
   const [rating, setRating] = useState("");
   const [prof, setProf] = useState("");
 
@@ -58,6 +68,8 @@ const SearchBar = () => {
       dispatch(searchOffer(inputSearch ? inputSearch : "", filters));
     }
   };
+    history("/home")
+  }
 
   const handleSelect = (e: any) => {
     const value = e.target.value;
