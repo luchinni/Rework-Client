@@ -6,14 +6,6 @@ import icon_search from "../../../images/icon_search.svg";
 import { searchWorker, searchOffer } from "../../../Redux/Reducer/reducer";
 import { useDispatch } from "react-redux";
 import { getAllProfession } from "../../../Redux/Reducer/reducer";
-import React , {useState, useEffect} from 'react';
-import './SearchBar.css';
-import { useSelector } from 'react-redux';
-import icon_filter from '../../../images/icon_filters.svg';
-import icon_search from '../../../images/icon_search.svg';
-import { searchWorker, searchOffer } from '../../../Redux/Reducer/reducer';
-import { useDispatch } from 'react-redux';
-import { getAllProfession } from '../../../Redux/Reducer/reducer';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
@@ -67,9 +59,9 @@ const SearchBar = () => {
     } else if (workerOrOffer === "offer") {
       dispatch(searchOffer(inputSearch ? inputSearch : "", filters));
     }
-  };
     history("/home")
   }
+
 
   const handleSelect = (e: any) => {
     const value = e.target.value;
@@ -179,3 +171,14 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+function setProf(value: any) {
+  throw new Error("Function not implemented.");
+}
+
+function setRating(value: any) {
+  throw new Error("Function not implemented.");
+}
+
+function handleCheck(e: React.ChangeEvent<HTMLInputElement>): void {
+  throw new Error("Function not implemented.");
+}
