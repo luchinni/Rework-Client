@@ -23,6 +23,7 @@
     width: 100%;
 }
 .div_buttons {
+    /* display: none; */
     display: flex;
     gap: 10px;
 }
