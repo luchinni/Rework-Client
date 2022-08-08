@@ -5,7 +5,7 @@ import image2 from '../../images/Team success _Outline.png';
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllProfession, postNewOffer} from "../../Redux/Reducer/reducer";
 import * as type from "../../Types";
-
+import './OfferPost.css'
 
 
 const OfferPost = () => {
@@ -133,51 +133,53 @@ const newOffer:type.newOfferType = {
   return (
     <div>
         <Header/>
-        <div>
-            <img src={image1} alt="place1" />
-            <img src={image2} alt="place2" />
-        </div>
-        <div>
-            <h1>Empecemos</h1>
-            <form id='form' onSubmit={(e) => e.preventDefault()}>
-                <input type='text' name='title' placeholder='Título' onChange={handleChange}/>
-                <span>Tiempo de publicación</span>
-                {/* <select name='post_duration_time' id='post_duration_time' onChange={(e) => handleSelect(e)}>
-                    <option selected={true} hidden>Seleccione opción</option>
-                    {['5 días', '7 días', '10 días', '14 días'].map(e => {
-                        return ( <option>{e}</option> )
-                    })}                    
-                </select> */}
-                <input type='date' name='post_duration_time' placeholder='Duración de publicación' onChange={handleChange}/>
-                <span>Remuneración</span>
-                <input type='number' name='min_remuneration' placeholder='Min' onChange={handleChange}/>
-                <input type='number' name='max_remuneration' placeholder='Max' onChange={handleChange}/>
-                {/* <span>Duración del trabajo</span> */}
-                {/* <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/> */}
-                {/* <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
-                    <option selected={true} hidden>Seleccione</option>
-                    {['días', 'semanas', 'meses'].map(e => {
-                        return (<option>{e}</option>)
-                    })}
-                </select> */}
-                <input type='text' name='offer_description' placeholder='Descripción del trabajo' onChange={handleChange}/>
-                <input type='url' name='photo' placeholder='Url de imagen de referencia' onChange={handleChange}/>
-                <span>Profesiones</span>
-                <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
-                    <option selected={true} hidden>Seleccione opción</option>
-                    {
-                        profession?.map((e:any) => {
-                            return <option value={e} key={e}> {e} </option>
-                        })
-                    }
-                </select>
-                <div>
-                      {formulario.profession?.map((e:any) => {
-                      return (<span className='profession_btn' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
-                    })}
-                </div>
-                <input disabled={false} name="button" type="submit" value="Publicar" onClick={(e) => handleSubmit(e)} />
-            </form>
+        <div className='OfferPost_divcontent'>
+            <div className='OfferPost_divImage'>
+                <img className='OfferPost_image' src={image1} alt="place1" />
+                {/* <img src={image2} alt="place2" /> */}
+            </div>
+            <div className='OfferPost_divForm'>
+                <h1>Empecemos</h1>
+                <form className='OfferPost_Form' id='form' onSubmit={(e) => e.preventDefault()}>
+                    <input type='text' name='title' placeholder='Título' onChange={handleChange}/>
+                    <span>Tiempo de publicación</span>
+                    {/* <select name='post_duration_time' id='post_duration_time' onChange={(e) => handleSelect(e)}>
+                        <option selected={true} hidden>Seleccione opción</option>
+                        {['5 días', '7 días', '10 días', '14 días'].map(e => {
+                            return ( <option>{e}</option> )
+                        })}                    
+                    </select> */}
+                    <input type='date' name='post_duration_time' placeholder='Duración de publicación' onChange={handleChange}/>
+                    <span>Remuneración</span>
+                    <input type='number' name='min_remuneration' placeholder='Min' onChange={handleChange}/>
+                    <input type='number' name='max_remuneration' placeholder='Max' onChange={handleChange}/>
+                    {/* <span>Duración del trabajo</span> */}
+                    {/* <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/> */}
+                    {/* <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
+                        <option selected={true} hidden>Seleccione</option>
+                        {['días', 'semanas', 'meses'].map(e => {
+                            return (<option>{e}</option>)
+                        })}
+                    </select> */}
+                    <input type='text' name='offer_description' placeholder='Descripción del trabajo' onChange={handleChange}/>
+                    <input type='url' name='photo' placeholder='Url de imagen de referencia' onChange={handleChange}/>
+                    <span>Profesiones</span>
+                    <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
+                        <option selected={true} hidden>Seleccione opción</option>
+                        {
+                            profession?.map((e:any) => {
+                                return <option value={e} key={e}> {e} </option>
+                            })
+                        }
+                    </select>
+                    <div>
+                        {formulario.profession?.map((e:any) => {
+                        return (<span className='profession_btn' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
+                        })}
+                    </div>
+                    <input disabled={false} name="button" type="submit" value="Publicar" onClick={(e) => handleSubmit(e)} />
+                </form>
+            </div>
         </div>
     </div>
   )
