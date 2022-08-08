@@ -38,7 +38,7 @@ const OfferPost = () => {
    
     const [formulario, setFormulario] = useState<post>({
 
-        userClientIdClient:'99cfa5ce-ea90-45ed-99ee-5821eb36a2f1',
+        userClientIdClient:'c0a51240-2348-47cf-ab18-9641e3063cee',
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,
@@ -185,7 +185,7 @@ const newOffer:type.newOfferType = {
     }) 
     
     setFormulario({
-        userClientIdClient: '99cfa5ce-ea90-45ed-99ee-5821eb36a2f1',
+        userClientIdClient: 'c0a51240-2348-47cf-ab18-9641e3063cee',
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,

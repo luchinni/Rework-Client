@@ -103,7 +103,7 @@ const SearchBar = () => {
           <div className='filter_option'>
           <select name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
           <option selected={true} hidden>Rating</option>
-            {[1,2,3,4,5].map((e:any) => {
+            {["1+","2+","3+","4+","5+"].map((e:any) => {
                return <option value={e} key={e}> {e} </option>
             })}
             </select>
