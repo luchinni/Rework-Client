@@ -1,0 +1,65 @@
+.SearchBar {
+  display: flex;
+  background-color: #efefef;
+  border-radius: 10px;
+  padding: 5px
+}
+.SearchBar_buttons {
+  display: flex;
+  gap: 10px;
+}
+.icon_search ,
+.icon_filters {
+  width: 24px;
+  margin-top: 2px;
+}
+.button_filters ,
+.button_search {
+  /* border: 1px solid #949494; */
+  border: none;
+  margin-top: 1px;
+  width: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #dedede;
+}
+.input_search {
+  background-color: #efefef;
+  width: 200px;
+  margin: 0 10px 0 5px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #949494;
+  padding: 5px 0;
+  border: none;
+  border-radius: 4px;
+}
+.input_search:focus {
+  outline: none;
+}
+.filter_dropDown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  width: 295px;
+  background-color: #E9E9E9;
+  margin-top: 5px;
+  border-radius: 5px 5px 10px 10px;
+  z-index: 4;
+}
+.Filter_divOption {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.filter_option {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+}
+.Filter_divRatingProfessions {
+  display: flex;
+  justify-content: space-between;
+}

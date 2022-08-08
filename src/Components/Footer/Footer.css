@@ -1,0 +1,55 @@
+.Footer_component {
+  background: #F6F6F6;
+  margin-top: 100px;
+}
+.Footer_contentDiv {
+  max-width: 1136px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+.Final_Div {
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #AFAAA7;
+  margin-bottom: 10px;
+}
+.Footer_top {
+  display: flex ;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.Footer_bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.Footer_buttonContainerDivs {
+  display: flex;
+  justify-content: space-between;
+  max-width: 670px;
+  width: 100%;
+}
+.Footer_titleLinks {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  color: #333333;
+}
+.Footer_divLinks {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.Footer_link {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #858585;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.Footer_link:hover {
+  color: #484848;
+}

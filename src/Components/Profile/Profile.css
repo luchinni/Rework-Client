@@ -1,0 +1,120 @@
+.Profile {
+  border: 1px solid gray;
+  max-width: 1136px;
+  margin: 50px auto 0;
+  border-radius: 10px;
+  overflow: hidden;
+  padding-bottom: 45px;
+}
+
+
+.Profile_divPortada {
+  max-height: 260px;
+  max-width: 1135px;
+  overflow: hidden;
+  position: relative;
+}
+.Profile_portada {
+  max-width: 1135px;
+  position: relative;
+  bottom: 250px;
+}
+
+.Profile_DivCont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 80px;
+  position: relative;
+  margin: 10px 0 70px 0;
+}
+.Profile_divDivProfile {
+  display: flex;
+  margin-right: 50px;
+}
+.Profile_divFotoPerfil {
+  max-width: 170px;
+  max-height: 170px;
+  overflow: hidden;
+  border-radius: 10px;
+  position: absolute;
+  top: -100px;
+}
+.Profile_foto {
+  position: relative;
+  /* right: 30px; */
+  max-width: 170px;
+}
+.Profile_divNameAndRating {
+  margin-left: 190px;
+  display: flex;
+  flex-direction: column;
+}
+.Profile_UserName {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #273141;
+}
+.Profile_UserRating {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #D6550D;
+}
+.Profile_editProfile {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: #FFFFFF;
+  padding: 6px 11px;
+  background-color: #273141;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.Profile_editProfile:hover {
+  background-color: #3f4f6a;
+}
+
+.Profile_divTags {
+  display: flex;
+  gap: 15px;
+  padding: 0 80px;
+  margin-bottom: 60px;
+}
+.Profile_tag {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #6F6F6F;
+  padding-bottom: 3px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: #FFFFFF;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.Profile_tag:hover {
+  color: #273141;
+}
+.Profile_tag:focus {
+  color: #273141;
+  border-bottom: 3px solid #273141;
+}
+
+.Profile_divPortfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 80px;
+}
+.Profile_portfolio {
+  background-color: #c5c5c5;
+  height: 130px;
+  width: 210px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}

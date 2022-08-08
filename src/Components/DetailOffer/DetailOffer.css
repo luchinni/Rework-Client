@@ -1,0 +1,195 @@
+.Detail_component {
+  max-width: 1136px;
+  margin: 0 auto;
+}
+.Detail_detail {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  border: 1px solid #bcbcbc;
+  overflow: hidden;
+  margin-top: 100px;
+  border-radius: 10px;
+}
+.Detail_User {
+  border-left: 1px solid #bcbcbc;
+  height: 100%;
+  padding: 30px;
+}
+.Detail_divUserImage {
+  overflow: hidden;
+  border-radius: 10px;
+  height: 160px;
+  width: 160px;
+  margin-bottom: 10px;
+}
+.Detail_userPhoto {
+  max-width: 215px;
+}
+.Detail_NameUserPost {
+  font-weight: 600;
+  font-size: 16px;
+  color: #273141;
+  text-decoration: none;
+}
+.Detail_UserRating {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #D6550D;
+}
+.Detail_offersCount{
+  font-weight: 600;
+  font-size: 14px;
+  color: #9b9b9b; 
+  margin-top: 5px;
+}
+.Detail_infoProposal {
+  padding: 30px;
+  width: 100%;
+}
+.Detail_divImages {
+  display: inline-block;
+  max-height: 165px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.Detail_images {
+  max-height: 165px;
+}
+.Detail_titleTime {
+  display: flex;
+  justify-content: space-between;
+}
+.Detail_title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: #273141;
+}
+.Detail_time {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6F6D6D;
+  max-width: 167px;
+  text-align: right;
+}
+.Detail_remuneration {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #D6550D;
+  margin-top: 0px;
+}
+.Detail_description {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #7f7f7f;
+  margin: 30px 0 20px;
+}
+.Detail_tags {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  color: #333333;
+  margin-top: 30px;
+}
+.Detail_buttonApply {
+  font-weight: 600;
+  font-size: 20px;
+  color: #FFFFFF;
+  padding: 9px 30px;
+  background: #72AD5E;
+  border-radius: 6px;
+  border: none;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.Detail_h2Propuestas {
+  margin: 50px 0 30px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  color: #273141;
+}
+.Detail_divProposal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  /* justify-content: space-between; */
+  margin-bottom: 100px;
+}
+.Detail_Proposal {
+  border: 1px solid #bcbcbc;
+  border-radius: 10px;
+  padding: 15px 15px;
+}
+
+.DetailP_UserName {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #5c5c5c;
+}
+.DetailP_remuneration {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #D6550D;
+}
+.DetailP_propuestaUser {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #787878;
+  max-width: 190px;
+  height: 60px;
+  margin-top: 10px;
+}
+.DetailP_timeUser {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #262626;
+  max-width: 190px;
+}
+
+.Detail_urlCopy {
+  background-color: #e2e2e2;
+  padding: 0px 0px;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+.Detail_buttonCopy {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  /* background-color: #72AD5E; */
+  padding: 0 5px;
+}
+.Detail_divUrl {
+  overflow: hidden;
+  max-width: 110px;
+  margin: 0 0 3px 8px;
+}
+.Detail_url {
+  font-size: 14px;
+  color: #616161;
+  margin-left: 5px;
+}
+
+
+.Detail_Copy {
+  /* max-height: 14px; */
+  max-width: 25px;
+  margin-top: 8px;
+  /* background-color: #273141; */
+}

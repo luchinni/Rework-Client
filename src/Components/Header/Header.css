@@ -1,0 +1,48 @@
+.Header_component {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1136px;
+    margin: 0 auto;
+    padding: 36px 0;
+}
+.logo {
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #757F8F;
+}
+.work {
+    color: #273141;
+}
+.nav {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 64%;
+    width: 100%;
+}
+.div_buttons {
+    /* display: none; */
+    display: flex;
+    gap: 10px;
+}
+.button_login ,
+.button_register {
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 9px 10px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.button_login {
+    color: #757F8F;
+    border: 1px solid #8D8D8D;
+    background-color: #FFF;
+}
+.button_register {
+   background-color: #757F8F;
+   color: #FFF
+}

@@ -1,0 +1,45 @@
+.User_Component {
+  position: relative;
+}
+.User_DivProfile {
+  max-height: 35px;
+  overflow: hidden;
+}
+.User_divImageProfile {
+  max-width: 35px;
+  max-height: 35px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer; 
+}
+.User_ImageProfile {
+  position: relative;
+  max-width: 35px;
+  /* right: 17px; */
+}
+.User_Dropdown {
+  position: absolute;
+  margin-top: 10px;
+  right: 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #a3a3a3;
+  border-radius: 7px;
+  z-index: 5;
+  width: 150px;
+}
+.User_DropdownOptions {
+  display: flex;
+  flex-direction: column;
+  /* gap: 5px; */
+}
+.UserDropdownItem {
+  text-decoration: none;
+  padding: 4px;
+  border-radius: 4px;
+  color: #494949;
+}
+.UserDropdownItem:hover {
+  background-color: #ff01011a;
+}
