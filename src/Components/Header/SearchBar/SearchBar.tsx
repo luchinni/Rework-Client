@@ -182,4 +182,3 @@ function setRating(value: any) {
 function handleCheck(e: React.ChangeEvent<HTMLInputElement>): void {
   throw new Error("Function not implemented.");
 }
-
