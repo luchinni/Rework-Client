@@ -38,7 +38,7 @@ const OfferPost = () => {
    
     const [formulario, setFormulario] = useState<post>({
 
-        userClientIdClient:'99cfa5ce-ea90-45ed-99ee-5821eb36a2f1',
+        userClientIdClient:'d4e15002-614a-4c7f-9dc4-c226544b2721',
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,
@@ -62,6 +62,10 @@ const OfferPost = () => {
         photo: "campo requerido",
         disabled: true
     });
+
+    const firstWordUpperCase = (word:String) => {
+        return word[0].toUpperCase() + word.slice(1);
+    }
 
     const dispatch = useDispatch();   
 
@@ -170,7 +174,7 @@ const handleDelete = (e:any) => {
 const handleSubmit = (e:any) => {
     e.preventDefault();
     let {userClientIdClient, title, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
-    
+    title = firstWordUpperCase(title)
     let hoy = new Date()
     hoy.setDate(hoy.getDate()+10)
     
@@ -185,7 +189,7 @@ const newOffer:type.newOfferType = {
     }) 
     
     setFormulario({
-        userClientIdClient: '99cfa5ce-ea90-45ed-99ee-5821eb36a2f1',
+        userClientIdClient: 'd4e15002-614a-4c7f-9dc4-c226544b2721',
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,
