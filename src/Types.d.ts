@@ -77,6 +77,17 @@ export interface newOfferType{
     profession:String[]
 }
 
+export interface errorsNewOfferType {
+    title:String,
+    min_remuneration:String,
+    max_remuneration:String,
+    // work_duration_time:Number,
+    // work_duration_time_select:String,
+    offer_description:String,
+    photo:String,
+    disabled:boolean | undefined
+}
+
 
 export interface errorsType {
     name:String,
