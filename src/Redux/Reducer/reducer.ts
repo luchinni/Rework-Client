@@ -65,12 +65,22 @@ export const workServiceSlice = createSlice({
             }
             return 0;
           });
-        }else{
+        }else if(state.search==="offer"){
           state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
             if (prev.title > next.title) {
               return 1;
             }
             if (prev.title < next.title) {
+              return -1;
+            }
+            return 0;
+          });
+        }else if(state.search==="worker"){
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.name > next.name) {
+              return 1;
+            }
+            if (prev.name < next.name) {
               return -1;
             }
             return 0;
@@ -88,7 +98,7 @@ export const workServiceSlice = createSlice({
             }
             return 0;
           });
-        }else{
+        }else if(state.search==="offer"){
           state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
             if (prev.title > next.title) {
               return -1;
@@ -98,12 +108,22 @@ export const workServiceSlice = createSlice({
             }
             return 0;
           });
+        }else if(state.search==="worker"){
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.name > next.name) {
+              return -1;
+            }
+            if (prev.name < next.name) {
+              return 1;
+            }
+            return 0;
+          });
         }
         },
         sortAllOffers15: function (state:any){
           if(state.search ===""){
           state.offers = [...state.offers].sort((prev:any, next:any) => {
-            if (prev.rating > next.rating) {
+            if (prev.userClient.rating > next.userClient.rating) {
               return 1;
             }
             if (prev.userClient.rating < next.userClient.rating) {
@@ -111,7 +131,17 @@ export const workServiceSlice = createSlice({
             }
             return 0;
           });
-        }else{
+        }else if(state.search==="worker"){
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.rating > next.rating) {
+              return 1;
+            }
+            if (prev.rating < next.rating) {
+              return -1;
+            }
+            return 0;
+          });
+        }else if(state.search==="offer"){
           state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
             if (prev.userClient.rating > next.userClient.rating) {
               return 1;
@@ -122,6 +152,7 @@ export const workServiceSlice = createSlice({
             return 0;
           });
         }
+
         },
         sortAllOffers51: function (state:any){
           if(state.search ===""){
@@ -134,7 +165,17 @@ export const workServiceSlice = createSlice({
             }
             return 0;
           });
-        }else{
+        }else if(state.search==="worker"){
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.rating > next.rating) {
+              return -1;
+            }
+            if (prev.rating < next.rating) {
+              return 1;
+            }
+            return 0;
+          });
+        }else if(state.search==="offer"){
           state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
             if (prev.userClient.rating > next.userClient.rating) {
               return -1;

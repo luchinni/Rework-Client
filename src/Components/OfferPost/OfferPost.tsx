@@ -37,7 +37,6 @@ const OfferPost = () => {
     }
    
     const [formulario, setFormulario] = useState<post>({
-
         userClientIdClient:'d4e15002-614a-4c7f-9dc4-c226544b2721',
         title: '',
         post_duration_time: new Date(),
