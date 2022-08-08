@@ -26,3 +26,14 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.professionDiv{
+  display: flex;
+  gap: 5px;
+}
+
+.profession_btns{
+  background-color: cadetblue;
+  border-radius: 5px;
+  padding: 2px;
+}
