@@ -104,14 +104,16 @@ const handleChange = (e:any) =>{
             let min_remunerationPattern:RegExp = /^[0-9]+$/
             error.min_remuneration = min_remunerationPattern.test(value) === false? "Solo números enteros son adimitidos."
             //  : parseInt(value) >= formulario.max_remuneration? "La remuneración mínima no puede ser mayor o igual a la remuneración máxima"
-             : formulario.min_remuneration <=0? "La remuneración mínima tiene que ser mayor a 0" : "";
-             break;
+            : value[0] === "0"? "No puede inicializar con 0"
+            : parseInt(value) <=0? "La remuneración mínima tiene que ser mayor a 0" : "";
+            break;
         case "max_remuneration":
             let max_remunerationPattern:RegExp = /^[0-9]+$/
             error.max_remuneration = max_remunerationPattern.test(value) === false? "Solo números enteros son adimitidos."
-             : parseInt(value) <= formulario.min_remuneration? "La remuneración máxima no puede ser menor o igual a la remuneración mínima"
-             : formulario.max_remuneration <=0? "La remuneración máxima tiene que ser mayor a 0" : "";
-             break;
+            : parseInt(value) <= formulario.min_remuneration? "La remuneración máxima no puede ser menor o igual a la remuneración mínima"
+            : value[0] === "0"? "No puede inicializar con 0"
+            : parseInt(value) <=0? "La remuneración máxima tiene que ser mayor a 0" : "";
+            break;
         case "offer_description":
             error.offer_description = formulario.offer_description.length > 1000 ? "Solo se permiten 1000 caracteres" 
             : formulario.offer_description.length < 20? "La cantidad mínima de caracteres es 20"
