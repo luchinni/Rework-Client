@@ -31,7 +31,6 @@
 .Profile_divDivProfile {
   display: flex;
   margin-right: 50px;
-
 }
 .Profile_divFotoPerfil {
   max-width: 170px;
@@ -39,14 +38,12 @@
   overflow: hidden;
   border-radius: 10px;
   position: absolute;
-  /* bottom: ; */
   top: -100px;
-  
 }
 .Profile_foto {
   position: relative;
-  right: 30px;
-  max-width: 230px;
+  /* right: 30px; */
+  max-width: 170px;
 }
 .Profile_divNameAndRating {
   margin-left: 190px;

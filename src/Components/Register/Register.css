@@ -45,11 +45,14 @@
     color: gray;
 }
 .Register_divImage {
-    background-color: #e0e0e0;
     height: 200px;
     width: 200px;
     border-radius: 10px;
     margin: 20px 0 50px 0;
+}
+.Register_divImage img{
+    height: inherit;
+    width: inherit;
 }
 .Register_button {
     background-color: #757F8F;;

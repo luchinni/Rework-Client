@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header';
 import image1 from '../../images/Team presentation _Flatline.png';
-import image2 from '../../images/Team success _Outline.png';
+//import image2 from '../../images/Team success _Outline.png';
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllProfession, postNewOffer} from "../../Redux/Reducer/reducer";
 import * as type from "../../Types";
-
+import './OfferPost.css'
 
 
 const OfferPost = () => {
@@ -200,78 +200,82 @@ const newOffer:type.newOfferType = {
   return (
     <div>
         <Header/>
-        <div>
-            <img src={image1} alt="place1" />
-            <img src={image2} alt="place2" />
-        </div>
-        <div>
-            <h1>Empecemos</h1>
-            <form id='form' onSubmit={(e) => e.preventDefault()}>
-                <div>
-                    <input className={errors.title && 'danger'}
-                    type='text' name='title' placeholder='Título' onChange={handleChange}/>
-                    {errors.title && (
-                            <p className="danger">{errors.title}</p>
-                        )}
-                </div>
-                <div>
-                    <span>Remuneración</span>
+        <div className='OfferPost_divcontent'>
+            <div className='OfferPost_divImage'>
+                <img src={image1} alt="place1" />
+                {/* <img src={image2} alt="place2" /> */}
+            </div>
+            <div className='OfferPost_divForm'>
+                <h1>Empecemos</h1>
+                <form className='OfferPost_Form' id='form' onSubmit={(e) => e.preventDefault()}>
                     <div>
-                        <input className={errors.min_remuneration && 'danger'}
-                        type='number' name='min_remuneration' placeholder='Min' onChange={handleChange}/>
-                        {errors.min_remuneration && (
-                            <p className="danger">{errors.min_remuneration}</p>
-                        )}
+                        <input className={errors.title && 'danger'}
+                        type='text' name='title' placeholder='Título' onChange={handleChange}/>
+                        {errors.title && (
+                                <p className="danger">{errors.title}</p>
+                            )}
                     </div>
                     <div>
-                        <input className={errors.max_remuneration && 'danger'}
-                        type='number' name='max_remuneration' placeholder='Max' onChange={handleChange}/>
-                        {errors.max_remuneration && (
-                            <p className="danger">{errors.max_remuneration}</p>
-                        )}
+                        <span>Remuneración</span>
+                        <div>
+                            <input className={errors.min_remuneration && 'danger'}
+                            type='number' name='min_remuneration' placeholder='Min' onChange={handleChange}/>
+                            {errors.min_remuneration && (
+                                <p className="danger">{errors.min_remuneration}</p>
+                            )}
+                        </div>
+                        <div>
+                            <input className={errors.max_remuneration && 'danger'}
+                            type='number' name='max_remuneration' placeholder='Max' onChange={handleChange}/>
+                            {errors.max_remuneration && (
+                                <p className="danger">{errors.max_remuneration}</p>
+                            )}
+                        </div>
                     </div>
-                </div>
-                {/* <span>Duración del trabajo</span> */}
-                {/* <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/> */}
-                {/* <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
-                    <option selected={true} hidden>Seleccione</option>
-                    {['días', 'semanas', 'meses'].map(e => {
-                        return (<option>{e}</option>)
-                    })}
-                </select> */}
-                <div>
-                    <input className={errors.offer_description && 'danger'}
-                    type='text' name='offer_description' placeholder='Descripción del trabajo' onChange={handleChange}/>
-                    {errors.offer_description && (
-                            <p className="danger">{errors.offer_description}</p>
-                        )}
-                </div>
-                <div>
-                    <input className={errors.photo && 'danger'}
-                    type='url' name='photo' placeholder='Url de imagen de referencia' onChange={handleChange}/>
-                    {errors.photo && (
-                            <p className="danger">{errors.photo}</p>
-                        )}
-                </div>
-                <span>Profesiones</span>
-                <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
-                    <option selected={true} hidden>Seleccione opción</option>
-                    {
-                        profession?.map((e:any) => {
-                            return <option value={e} key={e}> {e} </option>
-                        })
-                    }
-                </select>
-                <div>
-                      {formulario.profession?.map((e:any) => {
-                      return (<span className='profession_btn' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
-                    })}
-                </div>
-                <input disabled={errors.disabled} name="button" type="submit" value="Publicar" onClick={(e) => handleSubmit(e)} />
-            </form>
+                    {/* <span>Duración del trabajo</span> */}
+                    {/* <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/> */}
+                    {/* <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
+                        <option selected={true} hidden>Seleccione</option>
+                        {['días', 'semanas', 'meses'].map(e => {
+                            return (<option>{e}</option>)
+                        })}
+                    </select> */}
+                    <div>
+                        <input className={errors.offer_description && 'danger'}
+                        type='text' name='offer_description' placeholder='Descripción del trabajo' onChange={handleChange}/>
+                        {errors.offer_description && (
+                                <p className="danger">{errors.offer_description}</p>
+                            )}
+                    </div>
+                    <div>
+                        <input className={errors.photo && 'danger'}
+                        type='url' name='photo' placeholder='Url de imagen de referencia' onChange={handleChange}/>
+                        {errors.photo && (
+                                <p className="danger">{errors.photo}</p>
+                            )}
+                    </div>
+                    <span>Profesiones</span>
+                    <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
+                        <option selected={true} hidden>Seleccione opción</option>
+                        {
+                            profession?.map((e:any) => {
+                                return <option value={e} key={e}> {e} </option>
+                            })
+                        }
+                    </select>
+                    <div>
+                          {formulario.profession?.map((e:any) => {
+                          return (<span className='profession_btn' id="profession" key={e} onClick = {(e) =>handleDelete(e)}>{`${e}`}</span>)
+                        })}
+                    </div>
+                    <input disabled={errors.disabled} name="button" type="submit" value="Publicar" onClick={(e) => handleSubmit(e)} />
+                </form>
+            </div>        
+
         </div>
     </div>
   )
 }
+
 
 export default OfferPost

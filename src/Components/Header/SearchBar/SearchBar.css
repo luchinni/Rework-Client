@@ -40,14 +40,26 @@
 .filter_dropDown {
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: 10px;
   width: 295px;
   background-color: #E9E9E9;
   margin-top: 5px;
   border-radius: 5px 5px 10px 10px;
+  z-index: 4;
+}
+.Filter_divOption {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 .filter_option {
   display: flex;
   flex-direction: column-reverse;
+  align-items: flex-start;
+}
+.Filter_divRatingProfessions {
+  display: flex;
+  justify-content: space-between;
 }

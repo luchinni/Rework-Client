@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import HeaderRegister from './HeaderRegister/HeaderRegister';
 import './Register.css'
+import imageClient from "../../images/Online report_Isometric (1).png"
+import imageWorker from "../../images/Money_motivation _Flatline.png"
 
 const Register = () => {
   return (
@@ -13,7 +15,7 @@ const Register = () => {
             <p className='Register_PortOrPublic'>Edita tu portfolio</p>
             <p className='Register_OrDescript'>Aplica a los mejores trabajos para ti</p>
             <div className='Register_divImage'>
-              <img src='' alt='Register'/>
+              <img src={imageWorker} alt='Register'/>
             </div>
             <Link className='Register_button' to="/register/worker" >Registrate</Link>        
           </div>
@@ -22,7 +24,7 @@ const Register = () => {
               <p className='Register_PortOrPublic'>Realiza publicaciones</p>
               <p className='Register_OrDescript'>Recibe las mejores ofertas para tu trabajo</p>
               <div className='Register_divImage'>
-                <img src='' alt='Register'/>
+                <img src={imageClient} alt='Register'/>
               </div>
               <Link className='Register_button' to="/register/client">Registrate</Link>
             </div>

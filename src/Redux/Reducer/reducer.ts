@@ -53,11 +53,103 @@ export const workServiceSlice = createSlice({
         },
         setCurrentUser: function (state:any, action:any){
           state.currentUser = action.payload;
-      }
+        },
+        sortAllOffersAZ: function (state:any){
+          if(state.search ===""){
+          state.offers = [...state.offers].sort((prev:any, next:any) => {
+            if (prev.title > next.title) {
+              return 1;
+            }
+            if (prev.title < next.title) {
+              return -1;
+            }
+            return 0;
+          });
+        }else{
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.title > next.title) {
+              return 1;
+            }
+            if (prev.title < next.title) {
+              return -1;
+            }
+            return 0;
+          });
+        }
+        },
+        sortAllOffersZA: function (state:any){
+          if(state.search ===""){
+          state.offers = [...state.offers].sort((prev:any, next:any) => {
+            if (prev.title > next.title) {
+              return -1;
+            }
+            if (prev.title < next.title) {
+              return 1;
+            }
+            return 0;
+          });
+        }else{
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.title > next.title) {
+              return -1;
+            }
+            if (prev.title < next.title) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+        },
+        sortAllOffers15: function (state:any){
+          if(state.search ===""){
+          state.offers = [...state.offers].sort((prev:any, next:any) => {
+            if (prev.rating > next.rating) {
+              return 1;
+            }
+            if (prev.userClient.rating < next.userClient.rating) {
+              return -1;
+            }
+            return 0;
+          });
+        }else{
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.userClient.rating > next.userClient.rating) {
+              return 1;
+            }
+            if (prev.userClient.rating < next.userClient.rating) {
+              return -1;
+            }
+            return 0;
+          });
+        }
+        },
+        sortAllOffers51: function (state:any){
+          if(state.search ===""){
+          state.offers = [...state.offers].sort((prev:any, next:any) => {
+            if (prev.userClient.rating > next.userClient.rating) {
+              return -1;
+            }
+            if (prev.userClient.rating < next.userClient.rating) {
+              return 1;
+            }
+            return 0;
+          });
+        }else{
+          state.infoSearched = [...state.infoSearched].sort((prev:any, next:any) => {
+            if (prev.userClient.rating > next.userClient.rating) {
+              return -1;
+            }
+            if (prev.userClient.rating < next.userClient.rating) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+        },
     }
 })
 
-export const { setAllClients, setClientById, setAllOffers, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -91,7 +183,6 @@ export const postNewOffer = async(newOffer:type.newOfferType) => {
     //   data: pagination
     //     })
     //axios.get("http://localhost:3001/offer/", {multiplier:50})
-    console.log(offers, " ", pagination);
     dispatch(setAllOffers(offers.data));
   } catch (error) {
     alert("Error al requerir las ofertas.")
@@ -198,3 +289,20 @@ export const searchOffer = (input:string, filters:filter) => async (dispatch:Dis
 export const resetSearch = () => async (dispatch:Dispatch<any>) => {
     dispatch(setSearch(""));
 }
+
+export const orderAZ = () => async (dispatch:Dispatch<any>) => {
+  dispatch(sortAllOffersAZ());
+}
+
+export const orderZA = () => async (dispatch:Dispatch<any>) => {
+  dispatch(sortAllOffersZA());
+}
+
+export const order15 = () => async (dispatch:Dispatch<any>) => {
+  dispatch(sortAllOffers15());
+}
+
+export const order51 = () => async (dispatch:Dispatch<any>) => {
+  dispatch(sortAllOffers51());
+}
+
