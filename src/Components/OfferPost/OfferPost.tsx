@@ -174,7 +174,7 @@ const handleDelete = (e:any) => {
 const handleSubmit = (e:any) => {
     e.preventDefault();
     let {userClientIdClient, title, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
-    title = firstWordUpperCase(title)
+    title = firstWordUpperCase(title) 
     let hoy = new Date()
     hoy.setDate(hoy.getDate()+10)
     
