@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import {getOfferId} from '../../Redux/Reducer/reducer';
@@ -7,6 +7,7 @@ import copy from '../../images/copy.svg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Toaster, toast} from "react-hot-toast";
 import { Link } from 'react-router-dom';
+import DetailModal from './DetailModal/DetailModal';
 import './DetailOffer.css';
 import { useParams } from 'react-router-dom';
 
@@ -21,10 +22,29 @@ const DetailOffer = () => {
     dispatch(getOfferId(params.id));
   }, [dispatch])
 
+  const [open, setOpen] = useState(false);
+
+  function handleOpen() {
+    setOpen(true)
+  }
+
+  function handleClose() {
+    setOpen(false)
+  }
+
   return (
     
-   <div className='Detail_component'>
-     <Header/>
+  <div className={open ? 'Detail_component modalOpen' : 'Detail_component'}>
+    <Header/>
+
+    {open && 
+    
+      <div className='Detail_divModal'>
+        <button onClick={handleClose} className='Detail_ModalClose'>x</button>
+        <DetailModal />
+      </div>
+    }
+
      <div className='Detail_detail'>
 
        <div>
@@ -65,10 +85,11 @@ const DetailOffer = () => {
              <img className='Detail_images' src={offerId?.photo} alt="fotito offer" loading='lazy'/>
            </div>
            <p className='Detail_tags'>{offerId.profession?.join(', ')}</p>
-           <button className='Detail_buttonApply'>Aplicar</button>
+           <button className='Detail_buttonApply' onClick={handleOpen}>Aplicar</button>
          </div>
        </div>
      </div>
+
      <h2 className='Detail_h2Propuestas'>propuestas</h2>
      <div className='Detail_divProposal'>
        {offerId.proposals?.map((e:any)=>{

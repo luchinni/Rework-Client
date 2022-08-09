@@ -1,0 +1,26 @@
+.DetailModal_component {
+  background-color: rgba(0, 0, 0, 0.546);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 530.5px;
+  width: 1136px;
+  border-radius: 10px;
+}
+.DetailModal_divContent {
+  /* display: inline-block; */
+  padding: 40px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+.DetailModal_title {
+  margin-bottom: 10px;
+}
+.DetailModal_contentInputs {
+  display: flex;
+  gap: 10px;
+}
+.DetailModal_divInputs {
+  display: flex;
+  flex-direction: column;
+}
