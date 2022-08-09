@@ -124,7 +124,7 @@ const handleChange = (e:any) =>{
             break;
         case "photo":
             let photoPattern = /[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)?/gi;
-            errors.photo = photoPattern.test(value) ? '' : 'La url de la imagen no es una url valida.';
+            error.photo = photoPattern.test(value) ? '' : 'La url de la imagen no es una url valida.';
             break;            
     }
 
