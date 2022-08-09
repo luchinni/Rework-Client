@@ -126,9 +126,10 @@
     max-width: 30px;
 }
 .Card_option {
-    /* display: flex;
-    align-items: center;
-    gap: 10px; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 10px;
     background-color: #FFFFFF;
     position: absolute;
     right: -1px;
@@ -140,6 +141,7 @@
 .CardOption_divReport {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     border-radius: 4px;
     transition: all 0.2s ease;
@@ -152,5 +154,20 @@
     cursor: pointer;
 }
 .report_icon {
-    width: 30px;
+    width: 28px;
+}
+.guardar_icon {
+    width: 23px;
+    margin-right: 2px;
+}
+.CardOption_divGuardar {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+.CardOption_divGuardar:hover {
+    background-color: rgba(252, 1, 1, 0.201);
 }
