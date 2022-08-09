@@ -24,10 +24,10 @@ const Header = () => {
 
         <div className='div_buttons'>
           <div>
-            <Link to='/login'><button className='button_login'>Log in</button></Link>
+            <Link to='/login'><button className='button_login'>Inicia sesión</button></Link>
           </div>
           <div>
-            <Link to='/register'><button className='button_register'>Sign up</button></Link>
+            <Link to='/register'><button className='button_register'>Registrate</button></Link>
           </div>
         </div>
 

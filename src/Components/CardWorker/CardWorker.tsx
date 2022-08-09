@@ -3,7 +3,7 @@ import { useState } from 'react';
 import more from '../../images/more.svg';
 import { ImStarEmpty, ImStarHalf, ImStarFull } from "react-icons/im";
 import {GoLocation} from "react-icons/go"
-import save from "../../images/bookmarks_FILL0_wght400_GRAD0_opsz48.png"
+import save from "../../images/icon_guardar.png"
 import report from '../../images/icon_report.svg';
 import {Link} from 'react-router-dom';
 import './CardWorker.css';

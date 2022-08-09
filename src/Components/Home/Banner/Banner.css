@@ -1,10 +1,23 @@
 .Banner_component {
+  position: relative;
   margin: 50px 0;
 }
+.Banner_Carrusel {
+  /* background-color: aqua; */
+  display: flex;
+}
 .Banner_divBanner {
+  display: none;
   border-radius: 10px;
 }
+.Banner_divBannerDos {
+  /* display: none; */
+  border-radius: 10px;
+  text-align: end;
+
+}
 .Banner_image {
+  /* position: absolute; */
   width: 100%;
   border-radius: 10px;
 }
@@ -14,6 +27,15 @@
   font-weight: 800;
   color: #FFF;
   margin: 20px 0 0 35px;
+  max-width: 420px;
+  line-height: 50px;
+}
+.Banner_imageTextDos {
+  position: absolute;
+  font-size: 42px;
+  font-weight: 800;
+  color: #FFF;
+  margin: 20px 0 0 60%;
   max-width: 420px;
   line-height: 50px;
 }
