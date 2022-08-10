@@ -10,7 +10,7 @@ import './CardWorker.css';
 
 
 const CardWorker = ({props}:any) => {
-
+console.log(props)
     const [open, setOpen] = useState(false)
 
     function handleClick() {
@@ -77,10 +77,10 @@ const CardWorker = ({props}:any) => {
     <div className='CardWorker_component'>
         <div className='div_infoUser'>
             <div className='div_imageProfile'>
-            <img className='card_profileImage' src={props.photo} alt="El culeao que vas a contratar" />
+            <img className='card_profileImage' src={props.photo} alt="profile img" />
             </div>
             <div className='div_userDatos'>
-            <h1 className='Card_userName'>{props.name}</h1>
+            <Link to={`/profile/${props.id}`}><h1 className='Card_userName'>{props.name}</h1></Link>
             <h4 className='Card_userHabilities'>{props.profession?.join(", ")}</h4>
             </div>
             <div className='Card_options'>
