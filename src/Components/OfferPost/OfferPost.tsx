@@ -17,7 +17,7 @@ const OfferPost = () => {
     const profession = useSelector ((state:any) => state.workService.professions);
 
     type post = {
-        userClientIdClient:String,
+        userClientId:String,
     title:String,
     post_duration_time:Date | String,
     min_remuneration:Number,
@@ -41,7 +41,7 @@ const OfferPost = () => {
     }
    
     const [formulario, setFormulario] = useState<post>({
-        userClientIdClient:tokenDecode.id,
+        userClientId:tokenDecode.id,
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,
@@ -176,13 +176,13 @@ const handleDelete = (e:any) => {
 
 const handleSubmit = (e:any) => {
     e.preventDefault();
-    let {userClientIdClient, title, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
+    let {userClientId, title, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
     title = firstWordUpperCase(title)
     let hoy = new Date()
     hoy.setDate(hoy.getDate()+10)
     
 const newOffer:type.newOfferType = {
-    userClientIdClient, title:title, post_duration_time:hoy, min_remuneration:min_remuneration, max_remuneration:max_remuneration, /*work_duration_time:work_duration_time, work_duration_time_select:work_duration_time_select, */offer_description:offer_description, photo:photo, profession:profession
+    userClientId, title:title, post_duration_time:hoy, min_remuneration:min_remuneration, max_remuneration:max_remuneration, /*work_duration_time:work_duration_time, work_duration_time_select:work_duration_time_select, */offer_description:offer_description, photo:photo, profession:profession
 }
     
     postNewOffer(newOffer)
@@ -192,7 +192,7 @@ const newOffer:type.newOfferType = {
     }) 
     
     setFormulario({
-        userClientIdClient: '',
+        userClientId: '',
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,
