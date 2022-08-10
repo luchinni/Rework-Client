@@ -347,6 +347,34 @@ export const order51 = () => async (dispatch:Dispatch<any>) => {
   dispatch(sortAllOffers51());
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const postNewPortfolio = async (newPortfolio:type.newPortfolioType) => {
   try{
     return await axios({
