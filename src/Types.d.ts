@@ -112,7 +112,14 @@ export interface loginType {
     password:String
 }
 
+export interface newPortfolioType {
+    title:string,
+    portfolio_description:Text,
+    photo:Text
+}
+
 export interface reviewFormType {
     valoration: Number,
-    review_description: String
+    review_description: String,
+    
 }

@@ -11,6 +11,7 @@ import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/OfferPost/OfferPost';
+import Portfolio from './Components/Portfolio/Portfolio';
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='login' element={<Login/>} />
         <Route path='home/profile/:id' element={<Profile/>} />
         <Route path='post' element={<OfferPost/>} />
+        <Route path="portfolio" element={<Portfolio/>}/>
       </Routes>
       <Footer/>
     </div>
