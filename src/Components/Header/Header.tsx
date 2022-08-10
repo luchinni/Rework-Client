@@ -24,22 +24,23 @@ const Header = () => {
 
   return (
     <header className="Header_component" id="Header">
-      <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link>      
-      <nav className='nav'>
-        <SearchBar/>
+      <div className='Header_divContent'>
+        <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link>      
+        <nav className='nav'>
+          <SearchBar/>
 
-        <User/>
+          <User/>
 
-        <div className='div_buttons'>
-          <div>
-            <Link to='/login'><button className='button_login'>Inicia sesión</button></Link>
+          <div className='div_buttons'>
+            <div>
+              <Link to='/login'><button className='button_login'>Inicia sesión</button></Link>
+            </div>
+            <div>
+              <Link to='/register'><button className='button_register'>Registrate</button></Link>
+            </div>
           </div>
-          <div>
-            <Link to='/register'><button className='button_register'>Registrate</button></Link>
-          </div>
-        </div>
-
-      </nav>
+        </nav>
+      </div>
     </header>
   )
 }
