@@ -9,17 +9,20 @@ import './Home.css';
 import Banner from './Banner/Banner';
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../CardsWorker/CardsWorker';
+import jwtDecode from 'jwt-decode';
+
 
 const Home = () => {
-  
+  const token: any = localStorage.getItem("token")
   const offers = useSelector((state:any) => state.workService.offers);
   const search = useSelector((state:any) => state.workService.search);
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
   let [ITEMS_PER_PAGE, setItemsPerPage] = useState(5);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
-  
-
+  if (token){
+  console.log (token)
+  console.log(jwtDecode(token))}
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -118,6 +121,8 @@ const showButton = () => {
   }
 }
 
+console.log(search)
+
   return (
     <div className='Home_component'>
       <Header/>
@@ -125,17 +130,15 @@ const showButton = () => {
         <Banner/> 
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
-          <aside>
-            <Filtros />
-          </aside>
+          <Filtros />
         </div>
-      </div>
+        {showButton()}
+          </div>
       <div id='goTopCont' className="goTopCont">
         <div className="goTopBut" onClick={goUp}>
           <i><img src={goUpIcon} alt="goUpIcon" /></i>
         </div>
       </div>
-      {showButton()}
     </div>
   )
 }
