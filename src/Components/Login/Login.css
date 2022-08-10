@@ -1,0 +1,24 @@
+.Login_divContent {
+  background-color: #ffffff;
+  border: 1px solid gray;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.Login_ModalClose {
+  position: absolute;
+  right: 0;
+  margin-right:20px;
+}
+.Login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.Login_ButtonGoogle {
+ width: 100%;
+}
+.Login_googleImg {
+  max-width: 30px;
+}
