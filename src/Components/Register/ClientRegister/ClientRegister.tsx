@@ -101,7 +101,7 @@ export class ClientRegister extends Component {
         lastName = this.firstWordUpperCase(lastName); 
 
         const newClient:type.newClientType = {
-            name:name, lastName:lastName, password:password, user_mail:user_mail, birthdate:birthdate, image:image
+            name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image
         }
 
         postNewClient(newClient);

@@ -48,8 +48,8 @@ export interface newClientType {
     lastName:String,
     password:String,
     user_mail:String,
-    birthdate:String,
-    image:String,
+    born_date:String,
+    photo:String,
 }
 
 export interface newWorkerType {
@@ -58,14 +58,14 @@ export interface newWorkerType {
     password:String, 
     user_mail:String, 
     born_date:String, 
-    image:String, 
+    photo:String, 
     profession:String[], 
     skills:String[]
 
 }
 
 export interface newOfferType{
-    userClientIdClient:String,
+    userClientId:String,
     title:String,
     post_duration_time:Date | String,
     min_remuneration:Integer,

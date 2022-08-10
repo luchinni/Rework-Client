@@ -117,7 +117,7 @@ handleSubmit(e:any){
   lastName = this.firstWordUpperCase(lastName); 
 
   const newWorker:type.newWorkerType = {
-    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, image:image, profession:profession, skills:skills
+    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills
   }
   postNewWorker(newWorker);
   let form = document.getElementById("form") as HTMLFormElement | null;
