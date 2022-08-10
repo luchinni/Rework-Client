@@ -60,18 +60,18 @@ const informationSend = () =>{
   }
 }
 
-window.onscroll = function () {
+window.addEventListener("scroll", function() {
   if (document.documentElement.scrollTop > 600 || document.documentElement.scrollTop > 700) {
     document.querySelector("#goTopCont")?.classList.add("show")
   } else {
     document.querySelector("#goTopCont")?.classList.remove("show")
   }
-}
+})
 
 const goUp = () => {
   window.scrollTo({
    top: 0,
-   behavior: "smooth" 
+   behavior: "smooth"
  })
 }
 
