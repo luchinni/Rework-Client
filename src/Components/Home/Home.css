@@ -87,7 +87,7 @@ background-color: rgb(84, 84, 84);
 }
 
 .goTopCont{
-  position: sticky;
+  position: fixed;
   bottom: -1rem;
   /* left: 5rem; */
   margin-left: 29px;
@@ -100,7 +100,6 @@ background-color: rgb(84, 84, 84);
 .goTopBut{
   width: 0rem;
   height: 0rem;
-  /* border: 2px solid rgb(236, 43, 0); */
   background: rgba(0, 0, 0, 0.463);
   border-radius: 50%;
   -webkit-border-radius: 50%;
