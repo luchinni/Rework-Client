@@ -238,7 +238,7 @@ export const postNewOffer = async(newOffer:type.newOfferType) => {
 export const getOfferId = (id:String | undefined) => async (dispatch:Dispatch<any>) => {
   console.log(id)
   try{
-    const offerId = await axios(`http://localhost:3001/offer/${id}`)
+    const offerId = await axios.get(`http://localhost:3001/offer/${id}`)
     console.log(offerId)
     return dispatch(setOfferById(offerId.data));
   }
