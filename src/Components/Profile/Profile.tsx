@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { getOffers } from '../../Redux/Reducer/reducer'
-import Header from '../Header/Header'
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOffers } from '../../Redux/Reducer/reducer';
+import Header from '../Header/Header';
+import CardsReview from '../Reviews/CardsReview/CardsReview';
 import './Profile.css'
 
 function Profile() {
@@ -63,6 +64,7 @@ function Profile() {
         </div>
 
       </div>
+      <CardsReview/>
     </div>
   )
 }
