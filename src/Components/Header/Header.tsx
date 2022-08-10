@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import User from './User/User';
 
 const Header = () => {
+  const token = localStorage.getItem("token")
 
   const dispatch = useDispatch();
 
@@ -28,8 +29,12 @@ const Header = () => {
         <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link>      
         <nav className='nav'>
           <SearchBar/>
+          <div>
 
+          { token ? 
           <User/>
+          :
+
 
           <div className='div_buttons'>
             <div>
@@ -38,6 +43,8 @@ const Header = () => {
             <div>
               <Link to='/register'><button className='button_register'>Registrate</button></Link>
             </div>
+          </div>
+          }
           </div>
         </nav>
       </div>

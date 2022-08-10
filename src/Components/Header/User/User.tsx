@@ -1,13 +1,23 @@
 import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { logOut } from '../../../Redux/Reducer/reducer'
 import './User.css'
+import { useNavigate } from 'react-router-dom'
 
 function User() {
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
 
   function handleClick() {
     setOpen(!open)
+  }
+
+  function handleLogOut(e: any){
+    e.preventDefault()
+    dispatch(logOut())
+    navigate('/')
   }
 
   return (
@@ -24,7 +34,7 @@ function User() {
             <Link className='UserDropdownItem' to='/home/profile/:452h2'>Perfil</Link>
             <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
             <div className='UserDropdownItem'>
-              <button>Logout</button>
+              <button onClick={handleLogOut} >Logout</button>
             </div>
           </div>
         </div>
