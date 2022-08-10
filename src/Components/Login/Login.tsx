@@ -4,8 +4,9 @@ import imgGoogle from "../../images/pngwing.com.png";
 import {postLogin} from "../../Redux/Reducer/reducer";
 import HeaderRegister from "../Register/HeaderRegister/HeaderRegister";
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import './Login.css'
 
-const Login = () => {
+const Login = (props:any) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
   console.log(token)
@@ -36,29 +37,34 @@ const Login = () => {
     navigate('/home')
   }
 
+  function handleClose() {
+    props.close(false)
+  }
+
       //Ejemplo de useSelector con Toolkit.
       // para hacer un console.log y ver si estaba andando la action.
   /* const global = useSelector((state: any) => state.workService.currentUser) */
    
   return (
-    <div>
-      <HeaderRegister/>
-      <div>
-          <h1>Inicia sesión</h1>
-          <p>Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>
+    <div className="Login_component">
+      {/* <HeaderRegister/> */}
+      <div className="Login_divContent">
+          <button className="Login_ModalClose" onClick={handleClose}>x</button>
+          <span>Inicia sesión</span>
           <div>
-            <form action="">
+            <form className="Login_form">
               <input type="text" name="user_mail" id="" onChange={(e) => handleChange(e)} placeholder='E-mail'/>
               <input type="password" name="password" id="" onChange={(e) => handleChange(e)} placeholder='Constraseña'/>
               <input type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
             </form>
-              <span/>
-              <p>O continua con</p>
-              <span/>
-              <span>
-                  <img src={imgGoogle} alt="googleLink" />
-                  <p>Google</p>
-              </span>
+            <p>Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>
+            <p className="Login_consinuaCon">O continua con</p>
+            <div className="Login_divTercero">
+              <button className="Login_ButtonGoogle">
+                <img className="Login_googleImg" src={imgGoogle} alt="googleLink" />
+              </button>
+              {/* <span>Google</span> */}
+            </div>
           </div>
       </div>
     </div>
