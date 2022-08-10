@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import * as type from "../../Types"
+import * as type from "../../Types";
 import { Dispatch } from "redux";
 
 
@@ -345,5 +345,18 @@ export const order15 = () => async (dispatch:Dispatch<any>) => {
 
 export const order51 = () => async (dispatch:Dispatch<any>) => {
   dispatch(sortAllOffers51());
+}
+
+export const newReviewPost = async(newReview:type.reviewFormType) => {
+  //está incompleto hasta tener la ruta del back
+  try{
+    return await axios({
+      method:"post",
+      url: "http://localhost:3001/", //completar la ruta
+      data: newReview
+    })
+  }catch(error){
+    return error
+  }
 }
 

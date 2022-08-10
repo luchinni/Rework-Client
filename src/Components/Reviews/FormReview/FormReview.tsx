@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
+import { newReviewPost } from '../../../Redux/Reducer/reducer';
+
 
 const FormReview = () => {
 
@@ -79,7 +81,17 @@ const handleSubmit = (e:any) => {
     const newReview:formValidate = {
         valoration:valoration, review_description:review_description
     }
- 
+
+    newReviewPost(newReview)
+    .then(()=>{
+    let form = document.getElementById("form") as HTMLFormElement | null;
+    form?.reset()
+  }) 
+
+    setFormu({
+        valoration: 0,
+        review_description: ""
+    })
     
 }
 
@@ -98,12 +110,12 @@ const handleSubmit = (e:any) => {
             <div>
                 <span>Escriba un comentario</span>
                 <input className={error.review_description && 'danger'}
-                name="description" type="text" />
+                name="description" type="text" onChange={handleChange}/>
                     {error.review_description && (
                                 <p className="danger">{error.review_description}</p>
                             )}
             </div>
-                <input disabled={error.disabled} name="button" type="submit" value="publicar" onChange={handleChange}/>
+                <input disabled={error.disabled} name="button" type="submit" value="publicar" onSubmit={(e) => handleSubmit(e)}/>
         </form>
     </div>
   )
