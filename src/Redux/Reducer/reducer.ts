@@ -368,7 +368,7 @@ export const newReviewPost = async(newReview:type.reviewFormType) => {
   //está incompleto hasta tener la ruta del back
   try{
     return await axios({
-      method:"post",
+      method: "post",
       url: "http://localhost:3001/", //completar la ruta
       data: newReview
     })
@@ -385,5 +385,4 @@ export const logOut = () => (dispatch: any) => {
     return e
   }
 }
-
 
