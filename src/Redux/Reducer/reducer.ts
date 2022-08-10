@@ -186,7 +186,7 @@ export const workServiceSlice = createSlice({
             return 0;
           });
         }
-        },
+        }
     }
 })
 
