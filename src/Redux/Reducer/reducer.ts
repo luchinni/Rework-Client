@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import * as type from "../../Types"
+import * as type from "../../Types";
 import { Dispatch } from "redux";
 
 
@@ -186,7 +186,7 @@ export const workServiceSlice = createSlice({
             return 0;
           });
         }
-        },
+        }
     }
 })
 
@@ -348,41 +348,29 @@ export const order51 = () => async (dispatch:Dispatch<any>) => {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const postNewPortfolio = async (newPortfolio:type.newPortfolioType) => {
   try{
     return await axios({
       method:"POST",
       url: "http://localhost:3001/portfolio/91bd2aec-925e-4ec3-9d13-8981f2beeed0",
       data: newPortfolio
+      })
+      }catch(error){
+    return error
+  }
+}
+
+
+export const newReviewPost = async(newReview:type.reviewFormType) => {
+  //está incompleto hasta tener la ruta del back
+  try{
+    return await axios({
+      method:"post",
+      url: "http://localhost:3001/", //completar la ruta
+      data: newReview
     })
   }catch(error){
     return error
   }
 }
+

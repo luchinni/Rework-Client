@@ -1,6 +1,6 @@
 .Detail_component {
   max-width: 1136px;
-  margin: 0 auto;
+  margin: 200px auto 0 auto;
 }
 .Detail_detail {
   display: flex;
@@ -11,6 +11,10 @@
   margin-top: 100px;
   border-radius: 10px;
 }
+.Detail_detail.open {
+  filter: blur(3px);
+}
+
 .Detail_User {
   border-left: 1px solid #bcbcbc;
   height: 100%;
@@ -192,4 +196,18 @@
   max-width: 25px;
   margin-top: 8px;
   /* background-color: #273141; */
+}
+.Detail_ModalClose {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.Detail_divModal {
+  position: absolute;
+  top: 25.2%;
 }

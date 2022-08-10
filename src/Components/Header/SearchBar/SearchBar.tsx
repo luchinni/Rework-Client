@@ -92,29 +92,36 @@ const SearchBar = () => {
       </div>
       {open &&
         <div className='filter_dropDown'>
-          <div className='filter_option'>
-            <label>FreeLancers</label>
-            <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
+          <div className="Filter_divOptionsCheckbox">
+            <div className='filter_option'>
+              <label>FreeLancers</label>
+              <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
+            </div>
+            <div className='filter_option'>
+              <label>Ofertas</label>
+              <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
+            </div>
           </div>
-          <div className='filter_option'>
-            <label>Ofertas</label>
-            <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
-          </div>
-          <div className='filter_option'>
-          <select name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
-          <option selected={true} hidden>Rating</option>
-            {["1+","2+","3+","4+","5+"].map((e:any) => {
-               return <option value={e} key={e}> {e} </option>
-            })}
-            </select>
-          </div>
-          <div className='filter_option'>
-          <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
-          <option selected={true} hidden>Professions</option>
-            {profession.map((e:any) => {
-               return <option value={e} key={e}> {e} </option>
-            })}
-            </select>
+
+          <div className="Filter_divOptions">
+
+            <div className='filter_option'>
+              <select name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
+                <option selected={true} hidden>Rating</option>
+                {["1+","2+","3+","4+","5+"].map((e:any) => {
+                  return <option value={e} key={e}> {e} </option>
+                })}
+              </select>
+            </div>
+            <div className='filter_option'>
+              <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
+              <option selected={true} hidden>Professions</option>
+                {profession.map((e:any) => {
+                  return <option value={e} key={e}> {e} </option>
+                })}
+              </select>
+            </div>
+
           </div>
         </div>
       }

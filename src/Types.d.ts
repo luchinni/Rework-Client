@@ -117,3 +117,9 @@ export interface newPortfolioType {
     portfolio_description:Text,
     photo:Text
 }
+
+export interface reviewFormType {
+    valoration: Number,
+    review_description: String,
+    
+}

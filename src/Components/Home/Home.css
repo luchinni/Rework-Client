@@ -1,6 +1,10 @@
-.div_BannerAndCards {
+.Home_component {
   max-width: 1136px;
   margin: 0 auto;
+}
+.div_BannerAndCards {
+  max-width: 1136px;
+  margin-top: 200px;
 }
 .div_homeCards{
   display: flex;

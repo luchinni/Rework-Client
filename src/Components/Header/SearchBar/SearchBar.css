@@ -41,6 +41,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   justify-content: space-between;
   padding: 10px;
   width: 295px;
@@ -49,17 +50,29 @@
   border-radius: 5px 5px 10px 10px;
   z-index: 4;
 }
+.Filter_divOptionsCheckbox {
+  display: flex;
+  justify-content: space-between;
+}
+.Filter_divOptions {
+  display: flex;
+  justify-content: space-between;
+}
 .Filter_divOption {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  /* background-color: aquamarine; */
 }
 .filter_option {
   display: flex;
+  /* flex-direction: row; */
   flex-direction: column-reverse;
   align-items: flex-start;
+  /* background-color: aquamarine; */
 }
 .Filter_divRatingProfessions {
   display: flex;
   justify-content: space-between;
+  /* background-color: aquamarine; */
 }

@@ -14,8 +14,16 @@ const Header = () => {
     dispatch(resetSearch());
   }
 
+  window.onscroll = function () {
+    if (document.documentElement.scrollTop > 100) {
+      document.querySelector("#Header")?.classList.add("scroll")
+    } else {
+      document.querySelector("#Header")?.classList.remove("scroll")
+    }
+  }
+
   return (
-    <header className="Header_component">
+    <header className="Header_component" id="Header">
       <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link>      
       <nav className='nav'>
         <SearchBar/>
@@ -24,10 +32,10 @@ const Header = () => {
 
         <div className='div_buttons'>
           <div>
-            <Link to='/login'><button className='button_login'>Log in</button></Link>
+            <Link to='/login'><button className='button_login'>Inicia sesión</button></Link>
           </div>
           <div>
-            <Link to='/register'><button className='button_register'>Sign up</button></Link>
+            <Link to='/register'><button className='button_register'>Registrate</button></Link>
           </div>
         </div>
 
