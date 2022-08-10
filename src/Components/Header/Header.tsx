@@ -17,7 +17,7 @@ const Header = () => {
   }
 
   window.onscroll = function () {
-    if (document.documentElement.scrollTop > 100) {
+    if (document.documentElement.scrollTop > 25) {
       document.querySelector("#Header")?.classList.add("scroll")
     } else {
       document.querySelector("#Header")?.classList.remove("scroll")
