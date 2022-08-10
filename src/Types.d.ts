@@ -111,3 +111,8 @@ export interface loginType {
     user_mail:String,
     password:String
 }
+
+export interface reviewFormType {
+    valoration: Number,
+    review_description: String
+}
