@@ -1,7 +1,5 @@
 .Header_component {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1136px;
+    left: 0;
     position: fixed;
     margin: 0 auto;
     padding: 36px 0;
@@ -11,6 +9,12 @@
 	backdrop-filter: blur(6px);
     z-index: 6;
     transition: all 0.3s ease;
+}
+.Header_divContent {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1136px;
+    margin: 0 auto;
 }
 .Header_component.scroll {
     padding: 26px 0;
@@ -51,7 +55,7 @@
 .button_login {
     color: #757F8F;
     border: 1px solid #8D8D8D;
-    background-color: #FFF;
+    background-color: transparent
 }
 .button_register {
    background-color: #757F8F;
