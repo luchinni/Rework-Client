@@ -111,3 +111,9 @@ export interface loginType {
     user_mail:String,
     password:String
 }
+
+export interface newPortfolioType {
+    title:string,
+    portfolio_description:Text,
+    photo:Text
+}
