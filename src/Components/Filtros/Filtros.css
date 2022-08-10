@@ -2,9 +2,12 @@
   border: 1px solid #cacaca;
   background-color: #FFFFFF;
   border-radius: 10px;
-  max-height: 325px;
+  max-height: 341px;
+  height: 100%;
   max-width: 380px;
   width: 100%;
   padding: 20px;
-  /* position: fixed; */
+  position: sticky;
+  top: 8em;
+  transition: all 0.3s ease;
 }

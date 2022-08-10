@@ -118,8 +118,6 @@ const showButton = () => {
   }
 }
 
-console.log(search)
-
   return (
     <div className='Home_component'>
       <Header/>
@@ -127,15 +125,17 @@ console.log(search)
         <Banner/> 
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
-          <Filtros />
+          <aside>
+            <Filtros />
+          </aside>
         </div>
-        {showButton()}
-          </div>
+      </div>
       <div id='goTopCont' className="goTopCont">
         <div className="goTopBut" onClick={goUp}>
           <i><img src={goUpIcon} alt="goUpIcon" /></i>
         </div>
       </div>
+      {showButton()}
     </div>
   )
 }
