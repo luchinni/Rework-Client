@@ -1,6 +1,6 @@
 .Detail_component {
   max-width: 1136px;
-  margin: 0 auto;
+  margin: 200px auto 0 auto;
 }
 .Detail_detail {
   display: flex;
@@ -209,5 +209,5 @@
 }
 .Detail_divModal {
   position: absolute;
-  top: 28.2%;
+  top: 25.2%;
 }
