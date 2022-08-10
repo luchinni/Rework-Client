@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import imgGoogle from "../../images/pngwing.com.png";
 import {postLogin} from "../../Redux/Reducer/reducer";
+import HeaderRegister from "../Register/HeaderRegister/HeaderRegister";
 
 const Login = () => {
 
@@ -31,7 +32,7 @@ const Login = () => {
    
   return (
     <div>
-      
+      <HeaderRegister/>
       <div>
           <h1>Inicia sesión</h1>
           <p>Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>

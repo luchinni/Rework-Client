@@ -6,7 +6,7 @@ const CardsReview = ({review}:any) => {
     <div>
       {review && review?.map((o:any, i:any) =>{
         return(
-          <CardReview key={i} /*review={o}*/ />
+          <CardReview key={i} review={o} />
         )
       })}
     </div>
