@@ -5,10 +5,14 @@ import image1 from '../../images/Team presentation _Flatline.png';
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllProfession, postNewOffer} from "../../Redux/Reducer/reducer";
 import * as type from "../../Types";
+import decode from "jwt-decode";
 import './OfferPost.css'
 
 
 const OfferPost = () => {
+
+    const token:any = localStorage.getItem("token")
+    const tokenDecode:any = decode(token)
 
     const profession = useSelector ((state:any) => state.workService.professions);
 
@@ -37,7 +41,7 @@ const OfferPost = () => {
     }
    
     const [formulario, setFormulario] = useState<post>({
-        userClientIdClient:'d4e15002-614a-4c7f-9dc4-c226544b2721',
+        userClientIdClient:tokenDecode.id,
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,
@@ -188,7 +192,7 @@ const newOffer:type.newOfferType = {
     }) 
     
     setFormulario({
-        userClientIdClient: 'd4e15002-614a-4c7f-9dc4-c226544b2721',
+        userClientIdClient: '',
         title: '',
         post_duration_time: new Date(),
         min_remuneration: 0,

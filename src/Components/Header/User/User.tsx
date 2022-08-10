@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom'
 import { logOut } from '../../../Redux/Reducer/reducer'
 import './User.css'
 import { useNavigate } from 'react-router-dom'
+import decode from "jwt-decode";
 
 function User() {
+
+  const token:any = localStorage.getItem("token")
+  const tokenDecode:any = decode(token)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
@@ -31,7 +36,7 @@ function User() {
       
         <div className='User_Dropdown'>
           <div className='User_DropdownOptions'>
-            <Link className='UserDropdownItem' to='/home/profile/:452h2'>Perfil</Link>
+            <Link className='UserDropdownItem' to={`/home/profile/${tokenDecode.id}`}>Perfil</Link>
             <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
             <div className='UserDropdownItem'>
               <button onClick={handleLogOut} >Logout</button>
