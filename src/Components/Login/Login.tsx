@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import imgGoogle from "../../images/pngwing.com.png";
 import {postLogin} from "../../Redux/Reducer/reducer";
 import HeaderRegister from "../Register/HeaderRegister/HeaderRegister";
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {Toaster, toast} from "react-hot-toast";
 import './Login.css'
 
 const Login = (props:any) => {
@@ -25,6 +26,7 @@ const Login = (props:any) => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
+    
     let password  = user.password
     let user_mail = user.user_mail.toLowerCase();
     console.log (password, user_mail)
@@ -35,6 +37,8 @@ const Login = (props:any) => {
     //hay que buscar la manera de que re-renderice la informacion (logeado y con toquen no actualiza el header, con f5 se arregla)
     //posible solucion: renderizar navbar/header a lo ultimo en home
     navigate('/home')
+    props.close(false)
+    toast.success("Logueado correctamente.", {position:"top-right"})
   }
 
   function handleClose() {
@@ -67,6 +71,7 @@ const Login = (props:any) => {
             </div>
           </div>
       </div>
+      <Toaster/>
     </div>
   )
 }

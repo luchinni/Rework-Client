@@ -6,7 +6,7 @@ import save from "../../images/icon_guardar.png";
 import report from '../../images/icon_report.svg';
 
 const CardOffer = ({props}:any) => {
-
+  
   const [open, setOpen] = useState(false)
 
   function handleClick() {
@@ -21,7 +21,7 @@ const CardOffer = ({props}:any) => {
             <img className='Card_profileImage' src={props.userClient?.photo} alt="Client Photo" />
           </div>
           <div className='div_userDatos'>
-            <Link to={`profile/:${props.userClientIdClient}`} className='Card_userName'>{props.userClient?.name}</Link>
+            <Link to={`/profile/${props.userClientId}`} className='Card_userName'>{props.userClient?.name}</Link>
             <span className='Card_userRating'>Rating: {props.userClient?.rating}</span>
           </div>
         </div>
