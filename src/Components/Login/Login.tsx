@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import imgGoogle from "../../images/pngwing.com.png";
 import {postLogin} from "../../Redux/Reducer/reducer";
 import HeaderRegister from "../Register/HeaderRegister/HeaderRegister";
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
-
+  const navigate = useNavigate()
+  const token = localStorage.getItem("token")
+  console.log(token)
   const [user, setUser] = useState({user_mail: "", password: ""})
   const dispatch = useDispatch()
+  
 
   const handleChange = (e:any) => {
     setUser({

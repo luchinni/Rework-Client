@@ -186,11 +186,14 @@ export const workServiceSlice = createSlice({
             return 0;
           });
         }
-        }
+        },
+        logOutCurrentUser: function (state:any){
+          state.currentUser = undefined;
+        },
     }
 })
 
-export const { setAllClients, setClientById, setAllOffers, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -373,4 +376,14 @@ export const newReviewPost = async(newReview:type.reviewFormType) => {
     return error
   }
 }
+
+export const logOut = () => (dispatch: any) => {
+  try{
+    localStorage.removeItem("token")
+    return dispatch(logOutCurrentUser())
+  } catch (e) {
+    return e
+  }
+}
+
 

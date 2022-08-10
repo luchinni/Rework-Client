@@ -11,7 +11,7 @@ import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../CardsWorker/CardsWorker';
 
 const Home = () => {
-
+  
   const offers = useSelector((state:any) => state.workService.offers);
   const search = useSelector((state:any) => state.workService.search);
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
