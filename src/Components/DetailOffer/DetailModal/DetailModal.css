@@ -1,5 +1,5 @@
 .DetailModal_component {
-  background-color: rgba(0, 0, 0, 0.546);
+  background-color: rgba(0, 0, 0, 0.179);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,9 +9,10 @@
 }
 .DetailModal_divContent {
   /* display: inline-block; */
-  padding: 40px;
+  padding: 30px;
   background-color: rgb(255, 255, 255);
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;;
+  z-index: 4;
 }
 .DetailModal_title {
   margin-bottom: 10px;
@@ -22,5 +23,61 @@
 }
 .DetailModal_divInputs {
   display: flex;
+  gap: 5px;
   flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.DetailModal_divImage {
+  max-height: 322px;
+  max-width: 250px;
+  border-radius: 0 10px 10px 0;
+  overflow: hidden;
+  border: none;
+}
+.DetailModal_image {
+  max-width: 250px;
+}
+.DetailModal_divButtonClose {
+  position: relative;
+}
+.DetailModal_buttonClose {
+  position: absolute;
+  right: 0;
+  margin: 10px 10px 0 0;
+  padding: 3px 6px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.DetailModal_title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #595959;
+}
+.DetailModal_label {
+  font-size: 16px;
+  color: rgb(85, 85, 85);
+}
+.DetailModal_input {
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d8d8d881;
+}
+.DetailModal_input:focus {
+  outline: none;
+}
+
+.DetailModal_submit {
+  background-color: #72AD5E;
+  border: none;
+  padding: 10px 25px;
+  color: #FFF;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
 }

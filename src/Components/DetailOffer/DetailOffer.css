@@ -11,6 +11,9 @@
   margin-top: 100px;
   border-radius: 10px;
 }
+.Detail_detail.open {
+  filter: blur(3px);
+}
 
 .Detail_User {
   border-left: 1px solid #bcbcbc;

@@ -28,8 +28,8 @@ const DetailOffer = () => {
     setOpen(true)
   }
 
-  function handleClose() {
-    setOpen(false)
+  function handleClose(value:any) {
+    setOpen(value)
   }
 
   return (
@@ -40,12 +40,11 @@ const DetailOffer = () => {
     {open && 
     
       <div className='Detail_divModal'>
-        <button onClick={handleClose} className='Detail_ModalClose'>x</button>
-        <DetailModal />
+        <DetailModal close={handleClose} />
       </div>
     }
 
-     <div className='Detail_detail'>
+     <div className={open ? 'Detail_detail open'  : 'Detail_detail'}>
 
        <div>
          <div className='Detail_User'>
