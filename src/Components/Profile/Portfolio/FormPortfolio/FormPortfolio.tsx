@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as type from "../../../../Types";
-import {postNewPortfolio} from "../../../../Redux/Reducer/reducer";
+import {postNewPortfolio, getUserById} from "../../../../Redux/Reducer/reducer";
+import decode from "jwt-decode"
 import './FormPortfolio.css';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 //falta linkear el ID del worker
 
@@ -19,6 +22,10 @@ const FormPortfolio = (props:any) => {
             portfolio_description:"campo requerido"
         },
     });
+    const dispatch = useDispatch();
+    const token:any = localStorage.getItem("token")
+    const tokenDecode:any = decode(token)
+    const Navigate = useNavigate();
 
     const [disabled, setDisabled] = useState<boolean>(true)
 
@@ -93,9 +100,10 @@ const FormPortfolio = (props:any) => {
             title:title, portfolio_description:portfolio_description, photo:photo
         }
 
-        postNewPortfolio(newPortfolio)
-
+        postNewPortfolio(newPortfolio, tokenDecode.id)
         props.handle(false)
+        Navigate(`/profile/${tokenDecode.id}`)
+
     }
 
     const parseToImage = () =>{

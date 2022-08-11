@@ -1,53 +1,29 @@
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOffers, getUserById } from '../../../Redux/Reducer/reducer';
 import FormPortfolio from './FormPortfolio/FormPortfolio';
+import decode from "jwt-decode"
 import './Portfolio.css'
 
 const Portfolio = () => {
 
     const [modalOpen, setModalOpen] = useState(false)
 
-    const portfolioItem:object[] = [
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        },
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        },
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        },
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        },
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        },
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        },
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        },
-        {
-            title: "titulo",
-            photo: "url",
-            portfolio_description: "habia una vez"
-        }
-    ] 
+    const dispatch = useDispatch();
+    const token:any = localStorage.getItem("token")
+    const tokenDecode:any = decode(token)
+    const userLogged = useSelector((state: any) => state.workService.userLogged)
+
+    const [user, setUser] = useState(userLogged)
+
+    useEffect(() => {
+    dispatch(getUserById(tokenDecode))
+  },[])
+
+  useEffect(() => {
+    setUser(userLogged)
+  },[userLogged])
+
 
     const handleOpen = () => {
         setModalOpen(true)
@@ -62,9 +38,12 @@ const Portfolio = () => {
         <button onClick={handleOpen}><span>agregar portfolio</span></button>
             <div className="Portfolio_divContent">
                 <div className="Portfolio_divMap">
-               { portfolioItem?.map((e:any) => {
-                return (<div className="Portfolio_divItems">{e.photo} </div>)
-               })}
+               { user.portfolios?.map((e:any) => {
+                return (<div>
+                            <p>{e.title}</p>
+                            <img src={`data:image/png;base64,${e.photo}`} className="Portfolio_divItems"/> 
+                            </div>)
+                })}
                 </div>
             </div>
             {modalOpen && 
