@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar/SearchBar';
+import { getUserById } from '../../Redux/Reducer/reducer';
 import {resetSearch} from "../../Redux/Reducer/reducer"
 import "./Header.css";
 import { useDispatch, useSelector } from 'react-redux';
 import User from './User/User';
+import decode from "jwt-decode"
 import Login from '../Login/Login';
 
   const Header = () => {
@@ -14,8 +16,15 @@ import Login from '../Login/Login';
   const reset = () =>{
     dispatch(resetSearch());
   }
-
+  const token:any = localStorage.getItem("token")
+  const tokenDecode:any = decode(token)
   const currentUser = useSelector((state: any) => state.workService.currentUser)
+  const userLogged = useSelector((state: any) => state.workService.userLogged)
+
+  useEffect(() => {
+    dispatch(getUserById(tokenDecode))
+  },[])
+
 
   window.onscroll = function () {
     if (document.documentElement.scrollTop > 25) {
@@ -46,7 +55,10 @@ import Login from '../Login/Login';
           <div>
             { 
               currentUser?.id !== '' ? 
-              <User/>
+              <div>
+                <span>hola, {userLogged.name}!</span>
+                <User/>
+              </div>
               :
               <div className='div_buttons'>
                 <div>
