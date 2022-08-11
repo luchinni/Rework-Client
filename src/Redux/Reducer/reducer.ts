@@ -11,6 +11,7 @@ const initialState = {
     search:"",
     clientById: {},
     offers: [],
+    isLoading:false,
     userLogged: {},
     offerById: {},
     professions:[],
@@ -53,6 +54,9 @@ export const workServiceSlice = createSlice({
         },
         setAllSkills: function (state:any, action:any){
           state.skills = action.payload
+        },
+        setLoading: function (state:any, action:any){
+          state.isLoading = action.payload
         },
         setSearch: function (state:any, action:any){
           state.search = action.payload
@@ -207,7 +211,7 @@ export const workServiceSlice = createSlice({
     }
 })
 
-export const { setAllClients, setClientById, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -418,7 +422,6 @@ export const checkSession = () => async (dispatch: any) => {
   
   export const getUserById = (tokenDecode:any) =>(dispatch:Dispatch<any>) => {
 
-    console.log(tokenDecode)
     try {
       if(tokenDecode.isWorker){
         axios.get(`http://localhost:3001/worker/${tokenDecode.id}`)
@@ -434,5 +437,8 @@ export const checkSession = () => async (dispatch: any) => {
     } catch (error) {
       
     }
-  
   } 
+
+  export const changeLoading = (value:boolean) => (dispatch:Dispatch<any>) => {
+    dispatch(setLoading(value))
+  }
