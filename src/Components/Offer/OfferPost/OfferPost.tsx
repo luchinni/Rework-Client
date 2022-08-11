@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../Header/Header';
-import image1 from '../../images/Team presentation _Flatline.png';
+import Header from '../../Header/Header';
+import image1 from '../../../images/Team presentation _Flatline.png';
 //import image2 from '../../images/Team success _Outline.png';
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllProfession, postNewOffer} from "../../Redux/Reducer/reducer";
-import * as type from "../../Types";
+import {getAllProfession, postNewOffer} from "../../../Redux/Reducer/reducer";
+import * as type from "../../../Types";
 import decode from "jwt-decode";
 import './OfferPost.css'
 

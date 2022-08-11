@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {checkSession, getOffers} from "../../Redux/Reducer/reducer";
-import CardsOffer from '../CardsOffer/CardsOffer';
+import CardsOffer from '../Offer/CardsOffer/CardsOffer';
 import Filtros from '../Filtros/Filtros';
 import Header from '../Header/Header';
 import './Home.css';
