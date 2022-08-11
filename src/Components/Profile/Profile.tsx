@@ -4,6 +4,7 @@ import { getOffers, getUserById } from '../../Redux/Reducer/reducer';
 import Header from '../Header/Header';
 import CardsReview from '../Reviews/CardsReview/CardsReview';
 import decode from "jwt-decode"
+import Portfolio from './Portfolio/Portfolio';
 import './Profile.css'
 
 function Profile() {
@@ -63,14 +64,7 @@ function Profile() {
         </div>
 
         <div className='Profile_divPortfolio'>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
+          <Portfolio/>
         </div>
 
       </div>
