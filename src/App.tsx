@@ -11,19 +11,23 @@ import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
+import { useSelector } from 'react-redux';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
 
 
 function App() {
+
+  const currentUser = useSelector((state: any) => state.workService.currentUser)
+
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='home' element={<Home/>} />
         <Route path='detailOffer/:id' element={<DetailOffer/>} />
-        <Route path='register' element={<Register/>} />
+        <Route path='register'  element={<Register/>} />
         <Route path='register/worker' element={<Worker/>} />
         <Route path='register/client' element={<Client/>} />
         <Route path='login' element={<Login/>} />

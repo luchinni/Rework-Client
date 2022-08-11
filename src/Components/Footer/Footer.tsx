@@ -7,7 +7,6 @@ function Footer() {
   return (
     <footer className='Footer_component'>
       <div className='Footer_contentDiv'>
-
         <div className='Footer_top'>
           <span className='logo'>RE<span className='work'>work</span></span>
           <div className='div_buttons'>

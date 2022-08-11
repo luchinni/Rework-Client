@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import {getOfferId} from '../../../Redux/Reducer/reducer';
+import {checkSession, getOfferId} from '../../../Redux/Reducer/reducer';
 import Header from '../../Header/Header';
 import copy from '../../../images/copy.svg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -18,10 +18,10 @@ const DetailOffer = () => {
   
   const dispatch = useDispatch();
   const params = useParams();
-  console.log("offerId :", offerId)
 
   useEffect(() => {
     dispatch(getOfferId(params.id));
+    dispatch(checkSession())
   }, [dispatch])
 
   const [open, setOpen] = useState(false);

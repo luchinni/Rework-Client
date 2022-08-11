@@ -3,7 +3,7 @@ import Header from '../../Header/Header';
 import image1 from '../../../images/Team presentation _Flatline.png';
 //import image2 from '../../images/Team success _Outline.png';
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllProfession, postNewOffer} from "../../../Redux/Reducer/reducer";
+import {checkSession, getAllProfession, postNewOffer} from "../../../Redux/Reducer/reducer";
 import * as type from "../../../Types";
 import decode from "jwt-decode";
 import './OfferPost.css'
@@ -73,9 +73,10 @@ const OfferPost = () => {
     const dispatch = useDispatch();   
 
     
-
 useEffect(()=> {
     dispatch(getAllProfession())
+    dispatch(checkSession())
+
 },[dispatch])
 
 
