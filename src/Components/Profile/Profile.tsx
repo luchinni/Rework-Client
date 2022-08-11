@@ -1,22 +1,28 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOffers } from '../../Redux/Reducer/reducer';
+import { getOffers, getUserById } from '../../Redux/Reducer/reducer';
 import Header from '../Header/Header';
 import CardsReview from '../Reviews/CardsReview/CardsReview';
+import decode from "jwt-decode"
 import Portfolio from './Portfolio/Portfolio';
 import './Profile.css'
 
 function Profile() {
 
   const dispatch = useDispatch();
+  const token:any = localStorage.getItem("token")
+  const tokenDecode:any = decode(token)
 
   useEffect(() => {
+    dispatch(getUserById(tokenDecode))
     dispatch(getOffers());
   },[])
 
   const users = useSelector((state: any) => state.workService.offers)
+  const userLogged = useSelector((state: any) => state.workService.userLogged)
 
-  console.log("USERS :",users)
+
+  console.log("USERS :",userLogged)
 
   return (
     <div className='Profile_Component'>
@@ -35,8 +41,8 @@ function Profile() {
                   <img className='Profile_foto' src="https://th.bing.com/th/id/R.3fe29c6b3058f48e53e86c9cb687c27f?rik=6eP5XRKYF2C2%2bw&pid=ImgRaw&r=0" alt="profile" />
                 </div>
                 <div className='Profile_divNameAndRating'>
-                  <span className='Profile_UserName'>Esteban Longo</span>
-                  <span className='Profile_UserRating'>Rating 3.7</span>
+                  <span className='Profile_UserName'>{userLogged.name}</span>
+                  <span className='Profile_UserRating'>Rating: {userLogged.rating?userLogged.rating:0}</span>
                 </div>
               </div>
 
@@ -45,6 +51,10 @@ function Profile() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div>
+          <h3>Descripción:</h3>
         </div>
 
         <div className='Profile_divTags'>
