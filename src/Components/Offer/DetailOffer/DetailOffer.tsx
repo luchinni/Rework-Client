@@ -14,7 +14,9 @@ import { useParams } from 'react-router-dom';
 const DetailOffer = () => {
 
   const offerId = useSelector((state:any) => state.workService.offerById);
- 
+  console.log("la offer", offerId)
+  const currentUser = useSelector((state: any) => state.workService.currentUser)
+  console.log("el user", currentUser)
   
   const dispatch = useDispatch();
   const params = useParams();
@@ -86,11 +88,17 @@ const DetailOffer = () => {
              <img className='Detail_images' src={offerId?.photo} alt="fotito offer" loading='lazy'/>
            </div>
            <p className='Detail_tags'>{offerId.profession?.join(', ')}</p>
+           {currentUser?.isWorker === true ?
            <button className='Detail_buttonApply' onClick={handleOpen}>Aplicar</button>
+           :
+            <br/>
+           }
          </div>
        </div>
      </div>
-
+     { 
+     offerId.userClientId === currentUser.id || currentUser.isAdmin === true || currentUser.isPremium === true ?
+     <div>
      <h2 className='Detail_h2Propuestas'>propuestas</h2>
      <div className='Detail_divProposal'>
        {offerId.proposals?.map((e:any)=>{
@@ -104,6 +112,9 @@ const DetailOffer = () => {
          )
        })}
      </div>
+    </div>
+      : <br/> 
+    }
    </div>
 
   )
