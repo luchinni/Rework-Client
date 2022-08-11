@@ -44,21 +44,19 @@ import Login from '../Login/Login';
         <nav className='nav'>
           <SearchBar/>
           <div>
-
-          { currentUser?.id !== '' ? 
-          <User/>
-          :
-
-
-          <div className='div_buttons'>
-            <div>
-              <button onClick={handleOpen} className='button_login'>Inicia sesión</button>
-            </div>
-            <div>
-              <Link to='/register'><button className='button_register'>Registrate</button></Link>
-            </div>
-          </div>
-          }
+            { 
+              currentUser?.id !== '' ? 
+              <User/>
+              :
+              <div className='div_buttons'>
+                <div>
+                  <button onClick={handleOpen} className='button_login'>Inicia sesión</button>
+                </div>
+                <div>
+                  <Link to='/register'><button className='button_register'>Registrate</button></Link>
+                </div>
+              </div>
+            }
           </div>
         </nav>
       </div>

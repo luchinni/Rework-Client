@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/Home/Home';
@@ -11,13 +11,19 @@ import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkSession } from './Redux/Reducer/reducer';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
 
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(checkSession())
+  },[])
 
   const currentUser = useSelector((state: any) => state.workService.currentUser)
 
@@ -26,13 +32,27 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='home' element={<Home/>} />
-        <Route path='detailOffer/:id' element={<DetailOffer/>} />
-        <Route path='register'  element={<Register/>} />
-        <Route path='register/worker' element={<Worker/>} />
-        <Route path='register/client' element={<Client/>} />
-        <Route path='login' element={<Login/>} />
-        <Route path='profile/:id' element={<Profile/>} />
-        <Route path='post' element={<OfferPost/>} />
+        { currentUser?.id !== '' ? 
+        <>
+          <Route path='register' element={<Navigate to='/home' replace/>} />
+          <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
+          <Route path='register/client' element={<Navigate to='/home' replace/>}/>
+          <Route path='login' element={<Navigate to='/home' replace/>} />
+          <Route path='profile/:id' element={<Profile/>} />
+          <Route path='post' element={<OfferPost/>} />
+          <Route path='detailOffer/:id' element={<DetailOffer/>} />
+        </>
+          : 
+        <>
+          <Route path='register' element={<Register/>} />
+          <Route path='register/worker' element={<Worker/>} />
+          <Route path='register/client' element={<Client/>} />   
+          <Route path='login' element={<Login/>} />
+          <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
+          <Route path='post' element={<Navigate to='/register' replace/>} />
+          <Route path='detailOffer/:id' element={<Navigate to='/register' replace/>} />
+        </>
+        }
         {/* <Route path="portfolio" element={<Portfolio/>}/> */}
       </Routes>
       <Footer/>
