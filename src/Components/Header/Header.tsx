@@ -6,7 +6,7 @@ import {resetSearch} from "../../Redux/Reducer/reducer"
 import "./Header.css";
 import { useDispatch, useSelector } from 'react-redux';
 import User from './User/User';
-import decode from "jwt-decode"
+import jwtDecode from "jwt-decode"
 import Login from '../Login/Login';
 
   const Header = () => {
@@ -17,7 +17,9 @@ import Login from '../Login/Login';
     dispatch(resetSearch());
   }
   const token:any = localStorage.getItem("token")
-  const tokenDecode:any = decode(token)
+  
+  let tokenDecode:any 
+  if (token) tokenDecode= jwtDecode(token)
   const currentUser = useSelector((state: any) => state.workService.currentUser)
   const userLogged = useSelector((state: any) => state.workService.userLogged)
 
@@ -54,9 +56,9 @@ import Login from '../Login/Login';
           <SearchBar/>
           <div>
             { 
-              currentUser?.id !== '' ? 
+              currentUser?.id !== '' && userLogged?.name !== '' ? 
               <div>
-                <span>hola, {userLogged.name}!</span>
+                <span>hola, {userLogged?.name}!</span>
                 <User/>
               </div>
               :
