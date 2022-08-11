@@ -11,6 +11,7 @@ const initialState = {
     search:"",
     clientById: {},
     offers: [],
+    userLogged: {},
     offerById: {},
     professions:[],
     skills: [],
@@ -31,10 +32,13 @@ export const workServiceSlice = createSlice({
         },
         setSearchedWorkers: function (state:any, action:any){
           state.infoSearched = action.payload;
-      },
+        },
         setSearchedOffers: function (state:any, action:any){
         state.infoSearched = action.payload;
-    },
+        },
+        setUserLogged: function (state:any, action:any){
+          state.userLogged = action.payload;
+        },
         setClientById: function (state:any, action:any){
             state.clientById = action.payload;
         },
@@ -203,7 +207,7 @@ export const workServiceSlice = createSlice({
     }
 })
 
-export const { setAllClients, setClientById, setAllOffers, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
+export const { setAllClients, setClientById, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -399,27 +403,6 @@ export const logOut = () => (dispatch: any) => {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const checkSession = () => async (dispatch: any) => {
   try{
     const token: any = localStorage.getItem("token")
@@ -433,3 +416,23 @@ export const checkSession = () => async (dispatch: any) => {
   }
   }
   
+  export const getUserById = (tokenDecode:any) =>(dispatch:Dispatch<any>) => {
+
+    console.log(tokenDecode)
+    try {
+      if(tokenDecode.isWorker){
+        axios.get(`http://localhost:3001/worker/${tokenDecode.id}`)
+        .then((response) => {
+          dispatch(setUserLogged(response.data))
+        })
+      }else if(!tokenDecode.isWorker){
+        axios.get(`http://localhost:3001/client/${tokenDecode.id}`)
+        .then((response) => {
+          dispatch(setUserLogged(response.data))
+        })
+      }
+    } catch (error) {
+      
+    }
+  
+  } 
