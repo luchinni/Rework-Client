@@ -13,10 +13,7 @@ const Login = (props:any) => {
   console.log(token)
   const [user, setUser] = useState({user_mail: "", password: ""})
   const dispatch = useDispatch()
-  const location = useLocation();
- /*  const reload = () => {
-  };
- */
+ 
   const handleChange = (e:any) => {
     setUser({
       ...user,

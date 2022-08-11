@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import * as type from "../../Types";
 import { Dispatch } from "redux";
+import jwtDecode from "jwt-decode";
 
 
 const initialState = {
@@ -14,8 +15,9 @@ const initialState = {
     professions:[],
     skills: [],
     currentUser: {
-      password: "",
-      user_mail: ""
+      id: "",
+      isWorker: false,
+      isAdmin: false
     }
 }
 
@@ -52,7 +54,11 @@ export const workServiceSlice = createSlice({
           state.search = action.payload
         },
         setCurrentUser: function (state:any, action:any){
-          state.currentUser = action.payload;
+          state.currentUser = {
+            id: action.payload.id,
+            isWorker: action.payload.isWorker,
+            isAdmin: action.payload.isAdmin
+          };
         },
         sortAllOffersAZ: function (state:any){
           if(state.search ===""){
@@ -188,7 +194,11 @@ export const workServiceSlice = createSlice({
         }
         },
         logOutCurrentUser: function (state:any){
-          state.currentUser = undefined;
+          state.currentUser = {
+            id: "",
+            isWorker: false,
+            isAdmin: false
+          };
         },
     }
 })
@@ -288,15 +298,18 @@ export const postNewWorker = async (newWorker:type.newWorkerType) => {
 export const postLogin = (user: type.userLogin) => async (dispatch: any) => {
 try{
   // generamos el token conectando con el back
-  const token = await axios({
+  const token:any = await axios({
     method:"post",
     url: "http://localhost:3001/login/",
     data: user
   })
   // lo pasamos a json y lo guardamos en la consola en application local storage
   localStorage.setItem("token", JSON.stringify(token.data))
-  // alojamos el usuario logueado en el initialState.currentUser
-  return dispatch(setCurrentUser(user))
+  //desencryptamos el token
+  const data = jwtDecode(token.data)
+  console.log("reducer", data)
+  // alojamos el id del usuario y los datos relevantes en el estado
+  return dispatch(setCurrentUser(data))
 } catch(e){
   return e
 }
@@ -386,3 +399,37 @@ export const logOut = () => (dispatch: any) => {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const checkSession = () => async (dispatch: any) => {
+  try{
+    const token: any = localStorage.getItem("token")
+    let data = {}
+    if (token !== "undefined") data = jwtDecode(token)
+    console.log("reducer", data)
+    // alojamos el id del usuario y los datos relevantes en el estado
+    return dispatch(setCurrentUser(data))
+  } catch(e){
+    return e
+  }
+  }
+  

@@ -16,6 +16,12 @@ export interface userLogin{
     password: String
 }
 
+export interface token{
+    id: "",
+    isWorker: false,
+    isAdmin: false
+  }
+
 export interface currentUsers{
     user_mail: String,
     password: String,
