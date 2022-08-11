@@ -51,22 +51,30 @@ const Login = (props:any) => {
       {/* <HeaderRegister/> */}
       <div className="Login_divContent">
           <button className="Login_ModalClose" onClick={handleClose}>x</button>
-          <span>Inicia sesión</span>
+          <span className="Login_inicia">Inicia sesión</span>
           <div>
             <form className="Login_form">
-              <input type="text" name="user_mail" id="" onChange={(e) => handleChange(e)} placeholder='E-mail'/>
-              <input type="password" name="password" id="" onChange={(e) => handleChange(e)} placeholder='Constraseña'/>
-              <input type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
+              <input className="Login_input" type="text" name="user_mail" id="" onChange={(e) => handleChange(e)} placeholder='e-mail'/>
+              <input className="Login_input" type="password" name="password" id="" onChange={(e) => handleChange(e)} placeholder='constraseña'/>
+              <div className="Login_divRecordarContra">
+                <input type="checkbox" />
+                <span className="Login_recordarContra">Recordar contraseña?</span>
+              </div>
+              <input className="Login_inputSubmit" type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
             </form>
-            <p>Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>
+            <p className="Login_recuperarCon">Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>
+            <hr />
             <p className="Login_consinuaCon">O continua con</p>
             <div className="Login_divTercero">
               <button className="Login_ButtonGoogle">
                 <img className="Login_googleImg" src={imgGoogle} alt="googleLink" />
               </button>
-              {/* <span>Google</span> */}
             </div>
+            <span className="Login_Register">No tienes una cuenta? <Link to="#">registrate</Link></span>
           </div>
+      </div>
+      <div className="Login_divCover">
+        <img className="Login_Cover" src="https://9to5mac.com/wp-content/uploads/sites/6/2015/04/screenshot-2015-04-22-12-15-37.png?w=655" alt="login cover" />
       </div>
       <Toaster/>
     </div>

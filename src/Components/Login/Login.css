@@ -1,24 +1,105 @@
+.Login_component {
+  display: flex;
+  flex-direction: row-reverse;
+}
 .Login_divContent {
   background-color: #ffffff;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   max-width: 400px;
+  /* width: 100%; */
   margin: 0 auto;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.368);
 }
 .Login_ModalClose {
   position: absolute;
   right: 0;
   margin-right:20px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: #273141c3;
+  border: 1px solid #273141c3;
+  background-color: #ffffff;
 }
 .Login_form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin: 40px 0 10px 0;
 }
 .Login_ButtonGoogle {
  width: 100%;
+ border: none;
+ padding: 2px 0 0px;
+ border-radius: 5px;
+ cursor: pointer;
+ margin-bottom: 10px;
+ border: 1px solid chocolate;
+ background-color: #ffffff;
 }
 .Login_googleImg {
   max-width: 30px;
+}
+.Login_input {
+  background-color: #e7e7e7;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.Login_input:focus {
+  outline: none;
+}
+.Login_inputSubmit {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffffff;
+  border: 1px solid #273141c3;
+  color: #273141;
+  font-weight: 600;
+  cursor: pointer;
+}
+.Login_recuperarCon {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.Login_consinuaCon {
+  text-align: center;
+  margin: 20px 0 10px 0;
+  font-size: 14px;
+  color: #273141;
+  font-weight: 500;
+}
+.Login_inicia {
+  font-size: 20px;
+  font-weight: 600;
+  color: #273141;
+}
+.Login_Register {
+  text-align: center;
+  font-size: 14px;
+  margin: 5px 0;
+}
+.Login_divRecordarContra {
+  display: flex;
+  gap: 10px;
+}
+.Login_recordarContra {
+  /* color: #273141; */
+  font-size: 14px;
+}
+.Login_divCover {
+  max-width: 300px;
+  overflow: hidden;
+  border-radius: 10px 0 0 10px;
+  background-color: aqua;
+  max-height: 460px;
+}
+.Login_Cover {
+  position: relative;
+  width: 700px;
+  right: 180px;
 }
