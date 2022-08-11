@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOffers, getUserById } from '../../Redux/Reducer/reducer';
+import { checkSession, getOffers, getUserById } from '../../Redux/Reducer/reducer';
 import Header from '../Header/Header';
 import CardsReview from '../Reviews/CardsReview/CardsReview';
 import decode from "jwt-decode"
@@ -16,6 +16,7 @@ function Profile() {
   useEffect(() => {
     dispatch(getUserById(tokenDecode))
     dispatch(getOffers());
+    dispatch(checkSession())
   },[])
 
   const users = useSelector((state: any) => state.workService.offers)

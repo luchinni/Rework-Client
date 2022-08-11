@@ -13,7 +13,6 @@ import jwtDecode from 'jwt-decode';
 
 
 const Home = () => {
-  /* const token: any = localStorage.getItem("token") */
   const offers = useSelector((state:any) => state.workService.offers);
   const search = useSelector((state:any) => state.workService.search);
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
@@ -21,14 +20,12 @@ const Home = () => {
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
   const dispatch = useDispatch();
-/* 
-  if (token) {
-  } */
   
   useEffect(() => {
     dispatch(getOffers());
     dispatch(checkSession())
   }, [])
+ 
 
   useEffect(() => {
     if(search===""){
