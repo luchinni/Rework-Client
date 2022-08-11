@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import './CardOffer.css';
 import {Link} from 'react-router-dom';
-import more from '../../images/more.svg';
-import save from "../../images/icon_guardar.png";
-import report from '../../images/icon_report.svg';
+import more from '../../../images/more.svg';
+import save from "../../../images/icon_guardar.png";
+import report from '../../../images/icon_report.svg';
 
 const CardOffer = ({props}:any) => {
   

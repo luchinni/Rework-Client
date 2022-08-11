@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import {getOfferId} from '../../Redux/Reducer/reducer';
-import Header from '../Header/Header';
-import copy from '../../images/copy.svg';
+import {getOfferId} from '../../../Redux/Reducer/reducer';
+import Header from '../../Header/Header';
+import copy from '../../../images/copy.svg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Toaster, toast} from "react-hot-toast";
 import { Link } from 'react-router-dom';
