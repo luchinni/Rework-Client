@@ -8,7 +8,7 @@ import Header from '../Header/Header';
 import './Home.css';
 import Banner from './Banner/Banner';
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
-import CardsWorker from '../CardsWorker/CardsWorker';
+import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
 import jwtDecode from 'jwt-decode';
 
 
