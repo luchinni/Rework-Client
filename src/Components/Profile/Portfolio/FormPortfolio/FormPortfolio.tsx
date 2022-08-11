@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import axios from 'axios';
-import * as type from "../../Types"
-import {postNewPortfolio} from "../../Redux/Reducer/reducer"
+import * as type from "../../../../Types";
+import {postNewPortfolio} from "../../../../Redux/Reducer/reducer";
+import './FormPortfolio.css';
 
-const Portfolio = () => {
+//falta linkear el ID del worker
+
+const FormPortfolio = (props:any) => {
 
     //450068a29be8a7447c325e8023535a86
 
@@ -91,6 +94,8 @@ const Portfolio = () => {
         }
 
         postNewPortfolio(newPortfolio)
+
+        props.handle(false)
     }
 
     const parseToImage = () =>{
@@ -99,23 +104,29 @@ const Portfolio = () => {
         return state.photo;
     }
 
+    const handleClose = () => {
+        props.handle(false)
+    }
 
   return (
-    <div>
-        <h1>El form de portfolio</h1>
-         <form onSubmit={(e)=> uploadForm(e)}>
-            <input type="text" name='title' onChange={(e) => handleChange(e)}/>
-            <textarea name="portfolio_description" cols={30} rows={5} onChange={(e) => handleChange(e)}></textarea>
+    <div className='FormPortfolio_component'>
+        <div>
+            <button onClick={handleClose}>x</button>
+            <p>Empecemos</p>
+        </div>
+         <form className='FormPortfolio_form' onSubmit={(e)=> uploadForm(e)}>
+            <input type="text" name='title' placeholder='Título...' onChange={(e) => handleChange(e)}/>
+            <textarea name="portfolio_description" cols={30} rows={5} placeholder='Descripción...' onChange={(e) => handleChange(e)}></textarea>
          <input type="file" name='photo' onChange={(e) => handleChange(e)} accept="image/*"/> 
         <input type="submit" disabled={disabled} />
         </form> 
-        <div>
+        {/* <div>
             <h1>{state.title}</h1>
             <h4>{state.portfolio_description}</h4>
         <img src={`data:image/png;base64,${parseToImage()}`} alt="asd" />
-        </div>
+        </div> */}
     </div>
   )
 }
 
-export default Portfolio
+export default FormPortfolio
