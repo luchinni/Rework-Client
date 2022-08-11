@@ -1,0 +1,11 @@
+.FormPortfolio_component{
+    display: flex;
+    padding: 20px;
+    background-color: aqua;
+    flex-direction: column;
+    position: absolute;
+}
+.FormPortfolio_form{
+    display: flex;
+    flex-direction: column;
+}

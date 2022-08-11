@@ -53,7 +53,7 @@ const DetailOffer = () => {
            <div className='Detail_divUserImage'>
              <img className='Detail_userPhoto' src={offerId.userClient?.photo} alt="fotito" loading='lazy'/>
            </div>
-           <Link to='#' className='Detail_NameUserPost'>{offerId.userClient?.name}</Link>
+           <Link to={`/profile/${offerId.userClientId}`} className='Detail_NameUserPost'>{offerId.userClient?.name}</Link>
            <p className='Detail_UserRating'>Rating {offerId.userClient?.rating}</p>
            <p className='Detail_offersCount'>Publicaciones: {offerId?.offersCount}</p>
            <div>
