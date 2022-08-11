@@ -122,7 +122,7 @@ export class ClientRegister extends Component {
                 </div>
                 <div className='CR_divForm'>
                     <h1 className='CR_h1'>Empecemos</h1>
-                    <p className='CR_goToLogin'>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
+                    <p className='CR_goToLogin'>Ya tienes una cuenta? accede a <a href="/login">Login</a></p>
                     <form className='CR_Form' id='form' onSubmit={(e) => e.preventDefault()}>
                         <div className='CR_Div_inputAndError'>
                             <input className='CR_inpunt' type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>

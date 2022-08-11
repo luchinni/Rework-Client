@@ -192,7 +192,7 @@ console.log(del)
           </div>
           <div className='Worker_registerDivForm'>
             <h1>Empecemos</h1>
-            <p>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
+            <p>Ya tienes una cuenta? accede a <a href="/login">Login</a></p>
             <form className='Worker_registerForm' id='form' onSubmit={(e) => e.preventDefault()}>
               <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
               {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
