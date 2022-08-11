@@ -1,4 +1,4 @@
-import React , {useState, useEffect} from 'react';
+import React , {useState, useEffect, useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOffers, getUserById } from '../../../Redux/Reducer/reducer';
 import FormPortfolio from './FormPortfolio/FormPortfolio';
@@ -13,15 +13,19 @@ const Portfolio = () => {
     const token:any = localStorage.getItem("token")
     const tokenDecode:any = decode(token)
     const userLogged = useSelector((state: any) => state.workService.userLogged)
+    const loading = useSelector((state: any) => state.workService.isLoading)
 
-    const [user, setUser] = useState(userLogged)
+    //const [user, setUser] = useState(userLogged)
+    const [, updateState] = useState<any>();
+    const forceUpdate = useCallback(() => updateState({}), []);
 
     useEffect(() => {
     dispatch(getUserById(tokenDecode))
   },[])
 
   useEffect(() => {
-    setUser(userLogged)
+    console.log("deberia rerenderizar aca");
+    forceUpdate();
   },[userLogged])
 
 
@@ -32,18 +36,19 @@ const Portfolio = () => {
     const handleClose = (value:any) => {
         setModalOpen(value)
     }
-
+    console.log(loading)
+    console.log(userLogged)
   return (
     <div className="Portfolio_component">
         <button onClick={handleOpen}><span>agregar portfolio</span></button>
             <div className="Portfolio_divContent">
                 <div className="Portfolio_divMap">
-               { user.portfolios?.map((e:any) => {
+               {loading===false? userLogged.portfolios?.map((e:any) => {
                 return (<div>
                             <p>{e.title}</p>
                             <img src={`data:image/png;base64,${e.photo}`} className="Portfolio_divItems"/> 
                             </div>)
-                })}
+                }):"loading..."}
                 </div>
             </div>
             {modalOpen && 

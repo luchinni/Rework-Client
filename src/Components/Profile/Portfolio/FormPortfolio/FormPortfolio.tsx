@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as type from "../../../../Types";
-import {postNewPortfolio, getUserById} from "../../../../Redux/Reducer/reducer";
+import {postNewPortfolio, setLoading, getUserById} from "../../../../Redux/Reducer/reducer";
 import decode from "jwt-decode"
 import './FormPortfolio.css';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,6 @@ const FormPortfolio = (props:any) => {
 
     const validarForm = (errors:any)=> {
         let valid = true;
-        console.log(errors);
         Object.values(errors).forEach((val:any) => val.length > 0 && (valid = false));
         if (valid) {
             setDisabled(false)
@@ -45,7 +44,6 @@ const FormPortfolio = (props:any) => {
         let reader:any = new FileReader();
         reader.onload = function(){
             let base64String:any = reader.result?.replace("data:","").replace(/^.+,/,"");
-            console.log(base64String);
             setState({
                 ...state,
                 photo:base64String
@@ -99,8 +97,12 @@ const FormPortfolio = (props:any) => {
         let newPortfolio:type.newPortfolioType = {
             title:title, portfolio_description:portfolio_description, photo:photo
         }
-
+        dispatch(setLoading(true))
         postNewPortfolio(newPortfolio, tokenDecode.id)
+        .then(() => {
+            dispatch(getUserById(tokenDecode))
+            dispatch(setLoading(false))
+        })
         props.handle(false)
         Navigate(`/profile/${tokenDecode.id}`)
 
