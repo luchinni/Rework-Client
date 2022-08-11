@@ -1,6 +1,8 @@
 .Login_component {
   display: flex;
   flex-direction: row-reverse;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.368);
+  border-radius: 10px;
 }
 .Login_divContent {
   background-color: #ffffff;
@@ -10,7 +12,6 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 0 10px 10px 0;
-  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.368);
 }
 .Login_ModalClose {
   position: absolute;
