@@ -22,7 +22,7 @@ const OfferPost = () => {
     post_duration_time:Date | String,
     min_remuneration:Number,
     max_remuneration:Number,
-    // work_duration_time:Number,
+    work_duration_time:String,
     // work_duration_time_select:String,
     offer_description:String,
     photo:String,
@@ -46,7 +46,7 @@ const OfferPost = () => {
         post_duration_time: new Date(),
         min_remuneration: 0,
         max_remuneration: 0,
-        // work_duration_time: 0,
+        work_duration_time: "",
         // work_duration_time_select: '',
         offer_description: '',
         photo: '',
@@ -124,7 +124,7 @@ const handleChange = (e:any) =>{
             break;
         case "offer_description":
             error.offer_description = formulario.offer_description.length > 1000 ? "Solo se permiten 1000 caracteres" 
-            : formulario.offer_description.length < 20? "La cantidad mínima de caracteres es 20"
+            : formulario.offer_description.length < 100? "La cantidad mínima de caracteres es 100"
             : ""
             break;
         case "photo":
@@ -148,18 +148,17 @@ const handleSelect = (e:any) => {
     const select = e.target.value;
     const name = e.target.name;   
     if (select === "default") return;
-    // if(formulario.work_duration_time_select.includes(e.target.value)) return;
+    if(formulario.work_duration_time.includes(e.target.value)) return;
     if(formulario.profession?.includes(select)) return;
     if(name === 'profession'){
         setFormulario({...formulario,
             profession:[...formulario.profession, select]})
-    }
-    // else{
-    //     setFormulario({
-    //         ...formulario,
-    //         work_duration_time_select: select})
-
-    //}   
+        }
+     else{
+         setFormulario({
+             ...formulario,
+             work_duration_time: select})
+    }   
 };
 
 const handleDelete = (e:any) => {
@@ -177,13 +176,13 @@ const handleDelete = (e:any) => {
 
 const handleSubmit = (e:any) => {
     e.preventDefault();
-    let {userClientId, title, min_remuneration, max_remuneration, /*work_duration_time, work_duration_time_select, */offer_description, photo, profession} = formulario
+    let {userClientId, title, min_remuneration, max_remuneration, work_duration_time, /*work_duration_time_select, */offer_description, photo, profession} = formulario
     title = firstWordUpperCase(title)
     let hoy = new Date()
     hoy.setDate(hoy.getDate()+10)
     
 const newOffer:type.newOfferType = {
-    userClientId, title:title, post_duration_time:hoy, min_remuneration:min_remuneration, max_remuneration:max_remuneration, /*work_duration_time:work_duration_time, work_duration_time_select:work_duration_time_select, */offer_description:offer_description, photo:photo, profession:profession
+    userClientId, title:title, post_duration_time:hoy, min_remuneration:min_remuneration, max_remuneration:max_remuneration, work_duration_time:work_duration_time, /*work_duration_time_select:work_duration_time_select, */offer_description:offer_description, photo:photo, profession:profession
 }
     
     postNewOffer(newOffer)
@@ -198,7 +197,7 @@ const newOffer:type.newOfferType = {
         post_duration_time: new Date(),
         min_remuneration: 0,
         max_remuneration: 0,
-        // work_duration_time: 0,
+        work_duration_time:"",
         // work_duration_time_select: '',
         offer_description: '',
         photo: '',
@@ -242,14 +241,14 @@ const newOffer:type.newOfferType = {
                             )}
                         </div>
                     </div>
-                    {/* <span>Duración del trabajo</span> */}
+                    { <span>Duración del trabajo</span> }
                     {/* <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/> */}
-                    {/* <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
+                    { <select name='work_duration_time_select' id='work_duration_time_select' onChange={(e) => handleSelect(e)}>
                         <option selected={true} hidden>Seleccione</option>
-                        {['días', 'semanas', 'meses'].map(e => {
+                        {["Menos de 1 mes", "1 a 3 meses", "4 a 6 meses", "Más de 6 meses"].map(e => {
                             return (<option>{e}</option>)
                         })}
-                    </select> */}
+                    </select> }
                     <div>
                         <input className={errors.offer_description && 'danger'}
                         type='text' name='offer_description' placeholder='Descripción del trabajo' onChange={handleChange}/>
