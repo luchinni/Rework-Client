@@ -29,7 +29,6 @@ const Home = () => {
 
   useEffect(() => {
     if(search===""){
-      console.log(offers);
       setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
     }
   }, [offers, search])

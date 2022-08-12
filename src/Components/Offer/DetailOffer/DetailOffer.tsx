@@ -14,9 +14,9 @@ import { useParams } from 'react-router-dom';
 const DetailOffer = () => {
 
   const offerId = useSelector((state:any) => state.workService.offerById);
-  console.log("la offer", offerId)
+ // console.log("la offer", offerId)
   const currentUser = useSelector((state: any) => state.workService.currentUser)
-  console.log("el user", currentUser)
+ // console.log("el user", currentUser)
   
   const dispatch = useDispatch();
   const params = useParams();

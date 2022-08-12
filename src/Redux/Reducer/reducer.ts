@@ -9,7 +9,7 @@ const initialState = {
     allClients: [],
     infoSearched: [],
     search:"",
-    clientById: {},
+    userById: {},
     offers: [],
     isLoading:false,
     userLogged: {},
@@ -40,8 +40,8 @@ export const workServiceSlice = createSlice({
         setUserLogged: function (state:any, action:any){
           state.userLogged = action.payload;
         },
-        setClientById: function (state:any, action:any){
-            state.clientById = action.payload;
+        setUserById: function (state:any, action:any){
+            state.userById = action.payload;
         },
         setAllOffers: function (state:any, action:any){
             state.offers = action.payload;
@@ -211,7 +211,7 @@ export const workServiceSlice = createSlice({
     }
 })
 
-export const { setAllClients, setClientById, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
+export const { setAllClients, setUserById, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
 
 
 export default workServiceSlice.reducer;
@@ -412,7 +412,7 @@ export const checkSession = () => async (dispatch: any) => {
     const token: any = localStorage.getItem("token")
     let data = {}
     if (token !== "undefined") data = jwtDecode(token)
-    console.log("reducer", data)
+    //console.log("reducer", data)
     // alojamos el id del usuario y los datos relevantes en el estado
     return dispatch(setCurrentUser(data))
   } catch(e){
@@ -435,9 +435,30 @@ export const checkSession = () => async (dispatch: any) => {
         })
       }
     } catch (error) {
+       
+    }
+  } 
+
+  export const getUserByIdOther = (id:any) =>(dispatch:Dispatch<any>) => {
+
+    try {
+      if(true){
+        axios.get(`http://localhost:3001/worker/${id}`)
+        .then((response) => {
+          dispatch(setUserById(response.data))
+        })
+      }else if(true){
+        axios.get(`http://localhost:3001/client/${id}`)
+        .then((response) => {
+          dispatch(setUserById(response.data))
+        })
+      }
+    } catch (error) {
       
     }
   } 
+
+
 
   export const changeLoading = (value:boolean) => (dispatch:Dispatch<any>) => {
     dispatch(setLoading(value))

@@ -46,7 +46,6 @@ import Login from '../Login/Login';
     setOpenModal(value)
   }
 
-  console.log(currentUser)
 
   return (
     <header className='Header_component' id="Header">

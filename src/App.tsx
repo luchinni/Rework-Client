@@ -11,6 +11,7 @@ import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
+import OtherProfile from './Components/Profile/OtherProfile';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSession } from './Redux/Reducer/reducer';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
@@ -38,7 +39,8 @@ function App() {
           <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
           <Route path='register/client' element={<Navigate to='/home' replace/>}/>
           <Route path='login' element={<Navigate to='/home' replace/>} />
-          <Route path='profile/:id' element={<Profile/>} />
+          <Route path='myProfile' element={<Profile/>}/>
+          <Route path='profile/:id' element={<OtherProfile/>} />
           <Route path='post' element={<OfferPost/>} />
           <Route path='detailOffer/:id' element={<DetailOffer/>} />
         </>
@@ -48,6 +50,7 @@ function App() {
           <Route path='register/worker' element={<Worker/>} />
           <Route path='register/client' element={<Client/>} />   
           <Route path='login' element={<Login/>} />
+          <Route path='myProfile' element={<Navigate to='/register' replace/>} />
           <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
           <Route path='post' element={<Navigate to='/register' replace/>} />
           <Route path='detailOffer/:id' element={<Navigate to='/register' replace/>} />
