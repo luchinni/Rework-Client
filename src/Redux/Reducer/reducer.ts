@@ -220,6 +220,9 @@ export const workServiceSlice = createSlice({
             isAdmin: false
           };
         },
+        logOutUserLogged: function (state:any){
+          state.userLogged = {};
+        },
         setVerifiedUser: function (state:any){
           state.userVerified = {
             isActive: true
@@ -228,7 +231,7 @@ export const workServiceSlice = createSlice({
     }
 })
 
-export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser, setVerifiedUser } = workServiceSlice.actions;
+export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser, logOutUserLogged, setVerifiedUser } = workServiceSlice.actions;
 
 
 
@@ -329,8 +332,9 @@ try{
     url: "http://localhost:3001/login/",
     data: user
   })
+  console.log("llegue al login", token)
   // lo pasamos a json y lo guardamos en la consola en application local storage
-  if(token.data){
+  if (token.data) {
     localStorage.setItem("token", JSON.stringify(token.data))
   }
   //desencryptamos el token
@@ -421,7 +425,8 @@ export const newReviewPost = async(newReview:type.reviewFormType) => {
 export const logOut = () => (dispatch: any) => {
   try{
     localStorage.removeItem("token")
-    return dispatch(logOutCurrentUser())
+     dispatch(logOutCurrentUser())
+     return dispatch(logOutUserLogged())
   } catch (e) {
     return e
   }
@@ -440,18 +445,18 @@ export const checkSession = () => async (dispatch: any) => {
   }
   }
   
-  export const getUserById = (tokenDecode:any) =>(dispatch:Dispatch<any>) => {
+  export const getUserById = (tokenDecode:any) => async (dispatch:Dispatch<any>) => {
 
     try {
       if(tokenDecode.isWorker){
-        axios.get(`http://localhost:3001/worker/${tokenDecode.id}`)
+        return axios.get(`http://localhost:3001/worker/${tokenDecode.id}`)
         .then((response) => {
-          dispatch(setUserLogged(response.data))
+          return dispatch(setUserLogged(response.data))
         })
       }else if(!tokenDecode.isWorker){
-        axios.get(`http://localhost:3001/client/${tokenDecode.id}`)
+        return axios.get(`http://localhost:3001/client/${tokenDecode.id}`)
         .then((response) => {
-          dispatch(setUserLogged(response.data))
+          return dispatch(setUserLogged(response.data))
         })
       }
     } catch (error) {
@@ -459,24 +464,20 @@ export const checkSession = () => async (dispatch: any) => {
     }
   } 
 
-  export const getUserByIdOther = (id:any) =>(dispatch:Dispatch<any>) => {
+  export const getUserByIdOther = (id:any) => async (dispatch:Dispatch<any>) => {
 
-    try {
-      if(true){
-        axios.get(`http://localhost:3001/worker/${id}`)
-        .then((response) => {
-          dispatch(setUserById(response.data))
-        })
-      }else if(true){
-        axios.get(`http://localhost:3001/client/${id}`)
-        .then((response) => {
-          dispatch(setUserById(response.data))
-        })
+    try {     
+      const worker:any = await axios.get(`http://localhost:3001/worker/${id}`)
+      const client:any = await axios.get(`http://localhost:3001/client/${id}`)
+      if(worker.data){
+          return dispatch(setUserById(worker.data))  
+      }else if (client.data){    
+          return dispatch(setUserById(client.data))
       }
     } catch (error) {
       
     }
-  } 
+  }  
 
 
 
@@ -492,11 +493,86 @@ export const checkSession = () => async (dispatch: any) => {
     dispatch(removeFavorite(value));
   }
 
+  export const favoritesToDB =  (value:any, idUser:string) => async (dispatch:Dispatch<any>) => {
+    let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
+    let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
+    if(worker.data !== null){
+      //console.log(worker.data.favorites);
+      if(worker.data.favorites===undefined){worker.data.favorites=[...value]}else{
+        worker.data.favorites = [...worker.data.favorites, ...value]
+        console.log("Aca tenes tu identificador: ", worker.data.favorites);
+      }
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/worker/${idUser}`,
+        data: worker.data
+      })
+      localStorage.removeItem("favorites")
+      return dispatch(setUserLogged(worker.data))
+    }else{
+      if(client.favorites===undefined){client.favorites=[value]}else{
+        client.favorites = [...client.favorites, ...value]
+      }
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/client/${idUser}`,
+        data: client.data
+      })
+      localStorage.removeItem("favorites")
+      return dispatch(setUserLogged(client.data))
+    }
+    
+    
+  }
+
+  export const getFavoritestoDB = async (value:any, idUser:string) => {
+    let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
+    let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
+    if(worker.data !== null){
+      if(worker.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      worker.data.favorites = [...worker.data.favorites, value]
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/worker/${idUser}`,
+        data: worker.data
+      })
+    }else{
+      if(client.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      client.data.favorites = [...client.data.favorites, value]
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/client/${idUser}`,
+        data: client.data
+      })
+    }
+  }
+
+  export const remFavoritestoDB = async (value:any, idUser:string) => {
+    let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
+    let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
+    console.log(worker.data)
+    if(worker.data !== null){
+      worker.data.favorites = [...worker.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      console.log(worker.data.favorites)
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/worker/${idUser}`,
+        data: worker.data
+      })
+    }else{
+      client.data.favorites = [...client.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/client/${idUser}`,
+        data: client.data
+      })
+    }
+  }
 
   export const verifyWorker = (id: any) => async (dispatch:any) => {
     try{
         await axios({
-        method:"GET",
+        method:"PUT",
         url: `http://localhost:3001/confirm/worker/${id}`,
         data: id
         })
@@ -518,4 +594,3 @@ export const checkSession = () => async (dispatch: any) => {
       return error
     }
   }
-

@@ -80,7 +80,7 @@ const DetailOffer = () => {
          <div className='Detail_offer'>
            <div className='Detail_titleTime'>
              <h2 className='Detail_title'>{offerId?.title}</h2>
-             <p className='Detail_time'>{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time} dias`}</p>
+             <p className='Detail_time'>{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time}`}</p>
            </div>
            <p className='Detail_remuneration'>{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
            <p className='Detail_description'>{offerId?.offer_description}</p>

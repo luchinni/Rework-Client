@@ -27,7 +27,7 @@
   border: 1px solid #a3a3a3;
   border-radius: 7px;
   z-index: 5;
-  width: 150px;
+  width: 185px;
 }
 .User_DropdownOptions {
   display: flex;
@@ -42,4 +42,34 @@
 }
 .UserDropdownItem:hover {
   background-color: #ff01011a;
+}
+.User_dropUserName {
+  font-size: 13px;
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #3e3e3e;
+}
+.User_hr {
+  margin: 10px 0;
+}
+.User_typeOfUser {
+  padding: 5px 8px;
+  font-size: 14px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 5px 0;
+  color: #3e3e3e;
+  font-weight: 500;
+}
+.User_buttonLogout {
+  width: 100%;
+  padding: 8px 0;
+  margin: 5px 0;
+  background-color: #ce512b;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
 }

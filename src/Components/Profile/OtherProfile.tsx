@@ -14,9 +14,6 @@ const OtherProfile = () => {
     const dispatch = useDispatch();
     const params = useParams();
 
-    console.log('params: ', params)
-    console.log('user: ', user)
-
     useEffect(() => {
          dispatch(getUserByIdOther(params.id));
       }, [dispatch])

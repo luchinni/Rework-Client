@@ -5,7 +5,8 @@ import more from '../../../images/more.svg';
 import save from "../../../images/icon_guardar.png";
 import report from '../../../images/icon_report.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { remFavorite, getFavorites } from '../../../Redux/Reducer/reducer';
+import decode from "jwt-decode"
+import { remFavorite, getFavorites, getFavoritestoDB, remFavoritestoDB, getUserById } from '../../../Redux/Reducer/reducer';
 import {BsBookmarksFill, BsBookmarks} from "react-icons/bs"
 
 const CardOffer = ({props}:any) => {
@@ -13,28 +14,59 @@ const CardOffer = ({props}:any) => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch();
   const favorites = useSelector((state:any) => state.workService.favorites);
+  const currentUser = useSelector((state:any) => state.workService.currentUser);
+  const userLogged = useSelector((state: any) => state.workService.userLogged);
+  const token:any = localStorage.getItem("token")
+  let tokenDecode:any
+  if(token){tokenDecode = decode(token)}
+  
+
+  //console.log(userLogged)
 
   function handleClick() {
     setOpen(!open);
   }
 
-  const addFavorite = (props:any) => {
-    if(favorites.includes(props)){
-        return dispatch(remFavorite(props));
+  const addFavorite = async (props:any) => {
+    //console.log(userLogged)
+    if(currentUser.id !== ''){
+      console.log(props.idOffer);
+      if(userLogged.favorites.find((f:any) => f.idOffer === props.idOffer)){
+        await remFavoritestoDB(props, currentUser.id);
+        return dispatch(getUserById(tokenDecode))
+      }else{
+        await getFavoritestoDB(props, currentUser.id);
+        return dispatch(getUserById(tokenDecode))
+      }
     }else{
+      if(favorites.includes(props)){
+        return dispatch(remFavorite(props));
+      }else{
         console.log(props);
         return dispatch(getFavorites(props));
+      }
     }
+    
 }
 
   const showFavorite = (props:any) => {
     const favoritesStorage:any = localStorage.getItem("favorites");
     const storageParsed:any = JSON.parse(favoritesStorage);
-    const allFavorites = storageParsed?.map((f:any) => {
+    let allFavorites:any
+    if(currentUser.id !== ''){
+      allFavorites = userLogged.favorites?.map((f:any) => {
         if(f?.idOffer === props.idOffer){
             return f
         }
     })
+    }else{
+      allFavorites = storageParsed?.map((f:any) => {
+        if(f?.idOffer === props.idOffer){
+            return f
+        }
+    })
+    }
+    
     if(props.idOffer==="1f8p") return;    
     if(allFavorites?.filter((e:any)=>e)[0]?.title === props.title){
         return <BsBookmarksFill className='guardar_icon'/>
@@ -56,7 +88,7 @@ const CardOffer = ({props}:any) => {
           </div>
         </div>
         <div className='div_cardButton'>
-          <button onClick={handleClick} className='cardButton_options'>
+          <button onClick={()=> handleClick()} className='cardButton_options'>
             <img className='more' src={more} alt="more" />
           </button>
           {open &&

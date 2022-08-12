@@ -76,7 +76,7 @@ export interface newOfferType{
     post_duration_time:Date | String,
     min_remuneration:Integer,
     max_remuneration:Integer,
-    // work_duration_time:Number,
+    work_duration_time:String,
     // work_duration_time_select:String,
     offer_description:String,
     photo:String,
