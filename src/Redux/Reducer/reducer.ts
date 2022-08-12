@@ -327,7 +327,9 @@ try{
     data: user
   })
   // lo pasamos a json y lo guardamos en la consola en application local storage
-  localStorage.setItem("token", JSON.stringify(token.data))
+  if (token.id) {
+    localStorage.setItem("token", JSON.stringify(token.data))
+  }
   //desencryptamos el token
   const data = jwtDecode(token.data)
   console.log("reducer", data)
