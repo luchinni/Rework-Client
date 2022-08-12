@@ -47,13 +47,13 @@ function User() {
             { 
               currentUser?.id !== '' && userLogged?.name !== '' ? 
               <div className='User_dropUserName'>
-                <span>iniciaste como: <b>{userLogged?.name}</b></span>
+                <span>Hola, <b>{userLogged?.name}</b>!</span>
               </div>
               : ""
             }
 
             {
-              currentUser?.id !== '' && userLogged?.isWorker === false ? 
+              currentUser?.id !== '' && userLogged?.isWorker === true ? 
               <div className='User_typeOfUser'>
                 <span>Worker</span>
               </div>

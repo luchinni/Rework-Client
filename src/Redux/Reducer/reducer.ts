@@ -326,8 +326,9 @@ try{
     url: "http://localhost:3001/login/",
     data: user
   })
+  console.log("llegue al login", token)
   // lo pasamos a json y lo guardamos en la consola en application local storage
-  if (token.id) {
+  if (token.data) {
     localStorage.setItem("token", JSON.stringify(token.data))
   }
   //desencryptamos el token
