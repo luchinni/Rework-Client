@@ -6,6 +6,7 @@ import imageClient from "../../images/Online report_Isometric (1).png"
 import imageWorker from "../../images/Money_motivation _Flatline.png"
 
 const Register = () => {
+  console.log("pase por register")
   return (
     <div className='Register_component'>
         <HeaderRegister/>

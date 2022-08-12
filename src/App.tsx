@@ -13,22 +13,15 @@ import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
 import OtherProfile from './Components/Profile/OtherProfile';
 import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkSession } from './Redux/Reducer/reducer';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
 
 
 function App() {
-  const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(checkSession())
-  },[])
-
-  const currentUser = useSelector((state: any) => state.workService.currentUser)
-
+  const token = localStorage.getItem("token")
+  console.log("el token", token)
   return (
     <div className="App">
       <Routes>
@@ -36,7 +29,7 @@ function App() {
         <Route path='home' element={<Home/>} />
         <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
         <Route path='confirm/client/:id' element={<VerifyUser/>}/>
-        { currentUser?.id !== '' ? 
+        {token ? 
         <>
           <Route path='register' element={<Navigate to='/home' replace/>} />
           <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
@@ -57,8 +50,7 @@ function App() {
           <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
           <Route path='post' element={<Navigate to='/register' replace/>} />
           <Route path='detailOffer/:id' element={<Navigate to='/register' replace/>} />
-        </>
-        }
+        </>}
         {/* <Route path="portfolio" element={<Portfolio/>}/> */}
       </Routes>
       <Footer/>
