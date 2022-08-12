@@ -12,6 +12,7 @@ const initialState = {
     userById: {},
     offers: [],
     isLoading:false,
+    favorites:[],
     userLogged: {},
     offerById: {},
     professions:[],
@@ -57,6 +58,14 @@ export const workServiceSlice = createSlice({
         },
         setLoading: function (state:any, action:any){
           state.isLoading = action.payload
+        },
+        setFavorite: function (state:any, action:any) {
+          localStorage.setItem("favorites", JSON.stringify([...state.favorites, action.payload]))
+          state.favorites = [...state.favorites, action.payload]
+        },
+        removeFavorite: function (state:any, action:any) {
+          localStorage.setItem("favorites", JSON.stringify([...state.favorites.filter((g:any) => g.idOffer !== action.payload.idOffer)]))
+          state.favorites = [...state.favorites.filter((g:any) => g.idOffer !== action.payload.idOffer)]
         },
         setSearch: function (state:any, action:any){
           state.search = action.payload
@@ -211,7 +220,8 @@ export const workServiceSlice = createSlice({
     }
 })
 
-export const { setAllClients, setUserById, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
+export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
+
 
 
 export default workServiceSlice.reducer;
@@ -462,4 +472,12 @@ export const checkSession = () => async (dispatch: any) => {
 
   export const changeLoading = (value:boolean) => (dispatch:Dispatch<any>) => {
     dispatch(setLoading(value))
+  }
+
+  export const getFavorites = (value:any) => (dispatch:Dispatch<any>) => {
+    dispatch(setFavorite(value));
+  }
+
+  export const remFavorite = (value:any) => (dispatch:Dispatch<any>) => {
+    dispatch(removeFavorite(value));
   }

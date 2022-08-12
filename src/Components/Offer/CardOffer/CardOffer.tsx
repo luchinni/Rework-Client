@@ -4,14 +4,44 @@ import {Link} from 'react-router-dom';
 import more from '../../../images/more.svg';
 import save from "../../../images/icon_guardar.png";
 import report from '../../../images/icon_report.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { remFavorite, getFavorites } from '../../../Redux/Reducer/reducer';
+import {BsBookmarksFill, BsBookmarks} from "react-icons/bs"
 
 const CardOffer = ({props}:any) => {
   
   const [open, setOpen] = useState(false)
+  const dispatch = useDispatch();
+  const favorites = useSelector((state:any) => state.workService.favorites);
 
   function handleClick() {
     setOpen(!open);
   }
+
+  const addFavorite = (props:any) => {
+    if(favorites.includes(props)){
+        return dispatch(remFavorite(props));
+    }else{
+        console.log(props);
+        return dispatch(getFavorites(props));
+    }
+}
+
+  const showFavorite = (props:any) => {
+    const favoritesStorage:any = localStorage.getItem("favorites");
+    const storageParsed:any = JSON.parse(favoritesStorage);
+    const allFavorites = storageParsed?.map((f:any) => {
+        if(f?.idOffer === props.idOffer){
+            return f
+        }
+    })
+    if(props.idOffer==="1f8p") return;    
+    if(allFavorites?.filter((e:any)=>e)[0]?.title === props.title){
+        return <BsBookmarksFill className='guardar_icon'/>
+    }else{
+        return <BsBookmarks className='guardar_icon'/>
+    }
+}
 
   return (
     <div className='CardOffer_component'>
@@ -31,9 +61,10 @@ const CardOffer = ({props}:any) => {
           </button>
           {open &&
             <div className='Card_option'>
-              <div className='CardOption_divGuardar'>
+              <div className='CardOption_divGuardar' onClick={(e) => {addFavorite(props)}}>
                 <span className='report_cardButton'>Guardar</span>
-                <img className='guardar_icon' src={save} alt="guardar" />
+                {showFavorite(props)}
+                {/*<img className='guardar_icon' src={save} alt="guardar" />*/}
               </div>
               {/* <hr /> */}
               <div className='CardOption_divReport'>
