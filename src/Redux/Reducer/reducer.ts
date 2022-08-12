@@ -21,6 +21,9 @@ const initialState = {
       id: "",
       isWorker: false,
       isAdmin: false
+    },
+    userVerified: {
+      isActive: false
     }
 }
 
@@ -219,13 +222,16 @@ export const workServiceSlice = createSlice({
         },
         logOutUserLogged: function (state:any){
           state.userLogged = {};
+        },
+        setVerifiedUser: function (state:any){
+          state.userVerified = {
+            isActive: true
+          }
         }
     }
 })
 
-
-
-export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser, logOutUserLogged } = workServiceSlice.actions;
+export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser, logOutUserLogged, setVerifiedUser } = workServiceSlice.actions;
 
 
 
@@ -560,5 +566,31 @@ export const checkSession = () => async (dispatch: any) => {
         url: `http://localhost:3001/client/${idUser}`,
         data: client.data
       })
+    }
+  }
+
+  export const verifyWorker = (id: any) => async (dispatch:any) => {
+    try{
+        await axios({
+        method:"PUT",
+        url: `http://localhost:3001/confirm/worker/${id}`,
+        data: id
+        })
+        dispatch(setVerifiedUser())
+    } catch (error) {
+      return error
+    }
+  }
+
+  export const verifyClient = (id: any) => async (dispatch:any) => {
+    try{
+        await axios({
+        method:"PUT",
+        url: `http://localhost:3001/confirm/client/${id}`,
+        data: id
+        })
+        dispatch(setVerifiedUser())
+    } catch (error) {
+      return error
     }
   }

@@ -12,7 +12,6 @@ function User() {
   const userLogged = useSelector((state: any) => state.workService.userLogged)
 
   const token:any = localStorage.getItem("token")
-  
   if(token){
     const tokenDecode:any = decode(token)
   }
