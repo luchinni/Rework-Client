@@ -217,10 +217,15 @@ export const workServiceSlice = createSlice({
             isAdmin: false
           };
         },
+        logOutUserLogged: function (state:any){
+          state.userLogged = {};
+        }
     }
 })
 
-export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
+
+
+export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser, logOutUserLogged } = workServiceSlice.actions;
 
 
 
@@ -411,7 +416,8 @@ export const newReviewPost = async(newReview:type.reviewFormType) => {
 export const logOut = () => (dispatch: any) => {
   try{
     localStorage.removeItem("token")
-    return dispatch(logOutCurrentUser())
+     dispatch(logOutCurrentUser())
+     return dispatch(logOutUserLogged())
   } catch (e) {
     return e
   }
@@ -449,24 +455,20 @@ export const checkSession = () => async (dispatch: any) => {
     }
   } 
 
-  export const getUserByIdOther = (id:any) =>(dispatch:Dispatch<any>) => {
+  export const getUserByIdOther = (id:any) => async (dispatch:Dispatch<any>) => {
 
-    try {
-      if(true){
-        axios.get(`http://localhost:3001/worker/${id}`)
-        .then((response) => {
-          dispatch(setUserById(response.data))
-        })
-      }else if(true){
-        axios.get(`http://localhost:3001/client/${id}`)
-        .then((response) => {
-          dispatch(setUserById(response.data))
-        })
+    try {     
+      const worker:any = await axios.get(`http://localhost:3001/worker/${id}`)
+      const client:any = await axios.get(`http://localhost:3001/client/${id}`)
+      if(worker.data){
+          return dispatch(setUserById(worker.data))  
+      }else if (client.data){    
+          return dispatch(setUserById(client.data))
       }
     } catch (error) {
       
     }
-  } 
+  }  
 
 
 
