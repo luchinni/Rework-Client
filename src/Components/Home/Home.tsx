@@ -14,6 +14,7 @@ import jwtDecode from 'jwt-decode';
 
 
 const Home = () => {
+  
   const offers = useSelector((state:any) => state.workService.offers);
   const search = useSelector((state:any) => state.workService.search);
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
