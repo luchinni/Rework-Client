@@ -57,7 +57,6 @@ import Login from '../Login/Login';
             { 
               currentUser?.id !== '' && userLogged?.name !== '' ? 
               <div>
-                <span>hola, {userLogged?.name}!</span>
                 <User/>
               </div>
               :
