@@ -21,6 +21,9 @@ const initialState = {
       id: "",
       isWorker: false,
       isAdmin: false
+    },
+    userVerified: {
+      isActive: false
     }
 }
 
@@ -217,10 +220,15 @@ export const workServiceSlice = createSlice({
             isAdmin: false
           };
         },
+        setVerifiedUser: function (state:any){
+          state.userVerified = {
+            isActive: true
+          }
+        }
     }
 })
 
-export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser } = workServiceSlice.actions;
+export const { setAllClients, setUserById, setFavorite, removeFavorite, setLoading, setAllOffers, setUserLogged, sortAllOffers15, sortAllOffers51, sortAllOffersZA, sortAllOffersAZ, setSearch, setAllSkills, setOfferById, setAllProfessions, setSearchedWorkers, setSearchedOffers, setCurrentUser, logOutCurrentUser, setVerifiedUser } = workServiceSlice.actions;
 
 
 
@@ -322,7 +330,9 @@ try{
     data: user
   })
   // lo pasamos a json y lo guardamos en la consola en application local storage
-  localStorage.setItem("token", JSON.stringify(token.data))
+  if(token.data){
+    localStorage.setItem("token", JSON.stringify(token.data))
+  }
   //desencryptamos el token
   const data = jwtDecode(token.data)
   console.log("reducer", data)
@@ -481,3 +491,31 @@ export const checkSession = () => async (dispatch: any) => {
   export const remFavorite = (value:any) => (dispatch:Dispatch<any>) => {
     dispatch(removeFavorite(value));
   }
+
+
+  export const verifyWorker = (id: any) => async (dispatch:any) => {
+    try{
+        await axios({
+        method:"GET",
+        url: `http://localhost:3001/confirm/worker/${id}`,
+        data: id
+        })
+        dispatch(setVerifiedUser())
+    } catch (error) {
+      return error
+    }
+  }
+
+  export const verifyClient = (id: any) => async (dispatch:any) => {
+    try{
+        await axios({
+        method:"PUT",
+        url: `http://localhost:3001/confirm/client/${id}`,
+        data: id
+        })
+        dispatch(setVerifiedUser())
+    } catch (error) {
+      return error
+    }
+  }
+

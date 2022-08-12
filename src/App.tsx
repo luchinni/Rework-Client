@@ -12,6 +12,7 @@ import Login from './Components/Login/Login';
 import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
 import OtherProfile from './Components/Profile/OtherProfile';
+import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSession } from './Redux/Reducer/reducer';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
@@ -33,6 +34,8 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='home' element={<Home/>} />
+        <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
+        <Route path='confirm/client/:id' element={<VerifyUser/>}/>
         { currentUser?.id !== '' ? 
         <>
           <Route path='register' element={<Navigate to='/home' replace/>} />

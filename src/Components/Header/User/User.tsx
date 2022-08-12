@@ -9,7 +9,10 @@ import decode from "jwt-decode";
 function User() {
 
   const token:any = localStorage.getItem("token")
-  const tokenDecode:any = decode(token)
+  if(token){
+
+    const tokenDecode:any = decode(token)
+  }
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
