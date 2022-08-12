@@ -1,10 +1,11 @@
 .Home_component {
-  max-width: 1136px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  padding: 0 30px;
 }
 .div_BannerAndCards {
-  max-width: 1136px;
+  max-width: 1200px;
   margin-top: 200px;
 }
 aside {

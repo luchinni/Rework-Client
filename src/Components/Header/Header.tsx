@@ -46,7 +46,6 @@ import Login from '../Login/Login';
     setOpenModal(value)
   }
 
-
   return (
     <header className='Header_component' id="Header">
       <div className='Header_divContent'>

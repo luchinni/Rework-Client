@@ -75,7 +75,7 @@ const CardOffer = ({props}:any) => {
           }
         </div>
       </div>
-      <hr />
+      <hr className='CardOffer_hr' />
       <div className='div_infoWorkSection'>
         <span className='card_title'>{props.title}</span>
         <div className='div_remuneration'>

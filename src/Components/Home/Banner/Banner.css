@@ -4,6 +4,7 @@
 }
 .Banner_Carrusel {
   /* background-color: aqua; */
+  margin-top: 6px;
   display: flex;
 }
 .Banner_divBanner {
@@ -11,10 +12,8 @@
   border-radius: 10px;
 }
 .Banner_divBannerDos {
-  /* display: none; */
   border-radius: 10px;
   text-align: end;
-
 }
 .Banner_image {
   /* position: absolute; */
@@ -35,7 +34,8 @@
   font-size: 42px;
   font-weight: 800;
   color: #FFF;
-  margin: 20px 0 0 60%;
+  margin: 20px 20px 0 0;
+  right: 0;
   max-width: 420px;
   line-height: 50px;
 }

@@ -1,5 +1,6 @@
 .Landing_component {
-  max-width: 1136px;
+  max-width: 1200px;
+  padding: 0 30px;
   margin: 0 auto;
 }
 .Landing_divContent {
