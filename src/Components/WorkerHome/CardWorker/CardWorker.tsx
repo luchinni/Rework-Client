@@ -10,7 +10,6 @@ import './CardWorker.css';
 
 
 const CardWorker = ({props}:any) => {
-console.log(props)
     const [open, setOpen] = useState(false)
 
     function handleClick() {

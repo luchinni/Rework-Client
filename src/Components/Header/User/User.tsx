@@ -36,7 +36,7 @@ function User() {
       
         <div className='User_Dropdown'>
           <div className='User_DropdownOptions'>
-            <Link className='UserDropdownItem' to={`/profile/${tokenDecode.id}`}>Perfil</Link>
+            <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>
             <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
             <div className='UserDropdownItem'>
               <button onClick={handleLogOut} >Logout</button>

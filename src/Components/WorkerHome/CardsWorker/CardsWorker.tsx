@@ -2,7 +2,6 @@ import React from 'react'
 import CardWorker from '../CardWorker/CardWorker'
 
 const CardsWorker = ({props}:any) => {
-    console.log(props);
   return (
     <div>
       {props && props?.map((o:any, i:any) =>{

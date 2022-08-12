@@ -36,8 +36,7 @@ const Portfolio = () => {
     const handleClose = (value:any) => {
         setModalOpen(value)
     }
-    console.log(loading)
-    console.log(userLogged)
+
   return (
     <div className="Portfolio_component">
         <button onClick={handleOpen}><span>agregar portfolio</span></button>

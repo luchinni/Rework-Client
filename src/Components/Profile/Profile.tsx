@@ -19,11 +19,9 @@ function Profile() {
     dispatch(checkSession())
   },[])
 
-  const users = useSelector((state: any) => state.workService.offers)
+ //const users = useSelector((state: any) => state.workService.offers)
   const userLogged = useSelector((state: any) => state.workService.userLogged)
 
-
-  console.log("USERS :",userLogged)
 
   return (
     <div className='Profile_Component'>
