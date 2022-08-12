@@ -439,18 +439,18 @@ export const checkSession = () => async (dispatch: any) => {
   }
   }
   
-  export const getUserById = (tokenDecode:any) =>(dispatch:Dispatch<any>) => {
+  export const getUserById = (tokenDecode:any) => async (dispatch:Dispatch<any>) => {
 
     try {
       if(tokenDecode.isWorker){
-        axios.get(`http://localhost:3001/worker/${tokenDecode.id}`)
+        return axios.get(`http://localhost:3001/worker/${tokenDecode.id}`)
         .then((response) => {
-          dispatch(setUserLogged(response.data))
+          return dispatch(setUserLogged(response.data))
         })
       }else if(!tokenDecode.isWorker){
-        axios.get(`http://localhost:3001/client/${tokenDecode.id}`)
+        return axios.get(`http://localhost:3001/client/${tokenDecode.id}`)
         .then((response) => {
-          dispatch(setUserLogged(response.data))
+          return dispatch(setUserLogged(response.data))
         })
       }
     } catch (error) {
@@ -485,4 +485,80 @@ export const checkSession = () => async (dispatch: any) => {
 
   export const remFavorite = (value:any) => (dispatch:Dispatch<any>) => {
     dispatch(removeFavorite(value));
+  }
+
+  export const favoritesToDB =  (value:any, idUser:string) => async (dispatch:Dispatch<any>) => {
+    let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
+    let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
+    if(worker.data !== null){
+      //console.log(worker.data.favorites);
+      if(worker.data.favorites===undefined){worker.data.favorites=[...value]}else{
+        worker.data.favorites = [...worker.data.favorites, ...value]
+        console.log("Aca tenes tu identificador: ", worker.data.favorites);
+      }
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/worker/${idUser}`,
+        data: worker.data
+      })
+      localStorage.removeItem("favorites")
+      return dispatch(setUserLogged(worker.data))
+    }else{
+      if(client.favorites===undefined){client.favorites=[value]}else{
+        client.favorites = [...client.favorites, ...value]
+      }
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/client/${idUser}`,
+        data: client.data
+      })
+      localStorage.removeItem("favorites")
+      return dispatch(setUserLogged(client.data))
+    }
+    
+    
+  }
+
+  export const getFavoritestoDB = async (value:any, idUser:string) => {
+    let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
+    let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
+    if(worker.data !== null){
+      if(worker.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      worker.data.favorites = [...worker.data.favorites, value]
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/worker/${idUser}`,
+        data: worker.data
+      })
+    }else{
+      if(client.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      client.data.favorites = [...client.data.favorites, value]
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/client/${idUser}`,
+        data: client.data
+      })
+    }
+  }
+
+  export const remFavoritestoDB = async (value:any, idUser:string) => {
+    let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
+    let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
+    console.log(worker.data)
+    if(worker.data !== null){
+      worker.data.favorites = [...worker.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      console.log(worker.data.favorites)
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/worker/${idUser}`,
+        data: worker.data
+      })
+    }else{
+      client.data.favorites = [...client.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      await axios({
+        method: "PUT",
+        url: `http://localhost:3001/client/${idUser}`,
+        data: client.data
+      })
+    }
   }
