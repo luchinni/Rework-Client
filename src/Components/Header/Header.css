@@ -40,13 +40,9 @@
 .nav {
     display: flex;
     gap: 50px;
-    justify-content: space-between;
     align-items: center;
-    max-width: 64%;
-    width: 100%;
 }
 .div_buttons {
-    /* display: none; */
     display: flex;
     gap: 10px;
 }

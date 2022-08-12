@@ -9,14 +9,6 @@ function Footer() {
       <div className='Footer_contentDiv'>
         <div className='Footer_top'>
           <span className='logo'>RE<span className='work'>work</span></span>
-          <div className='div_buttons'>
-            <div>
-              <button className='button_login'>Inicia sesión</button>
-            </div>
-            <div>
-              <Link to='/register'><button className='button_register'>Registrate</button></Link>
-            </div>
-          </div>
         </div>
 
         <div className='Footer_bottom'>

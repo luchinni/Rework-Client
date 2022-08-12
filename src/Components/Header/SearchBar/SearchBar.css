@@ -1,8 +1,15 @@
+.SearchBar_component {
+  position: absolute;
+  /* margin: 0 0 0 10%; */
+  right: 40%;
+}
 .SearchBar {
   display: flex;
   background-color: #efefef;
   border-radius: 10px;
-  padding: 5px
+  padding: 5px;
+  /* position: absolute;
+  top: -10px; */
 }
 .SearchBar_buttons {
   display: flex;
@@ -15,7 +22,6 @@
 }
 .button_filters ,
 .button_search {
-  /* border: 1px solid #949494; */
   border: none;
   margin-top: 1px;
   width: 30px;
@@ -62,17 +68,14 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  /* background-color: aquamarine; */
 }
 .filter_option {
   display: flex;
   /* flex-direction: row; */
   flex-direction: column-reverse;
   align-items: flex-start;
-  /* background-color: aquamarine; */
 }
 .Filter_divRatingProfessions {
   display: flex;
   justify-content: space-between;
-  /* background-color: aquamarine; */
 }

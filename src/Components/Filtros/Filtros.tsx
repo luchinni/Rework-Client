@@ -27,21 +27,25 @@ function Filtros() {
 
   return (
     <div className='Filtros_component'>
-      <span>Ordenamientos </span>
-      <div>
-        <label>ORDENAR POR:</label> 
-        <select name='alpha' id='alpha' onChange={(e)=> handleSelect(e)}>
-        <option selected={true} hidden>Alfabeto</option>
-          <option value="az">A-Z</option>
-          <option value="za">Z-A</option>
-        </select>
-        <br />
-        <label>ORDENAR POR:</label> 
-        <select name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
-        <option selected={true} hidden>Rating</option>
-          <option value="15">1..5</option>
-          <option value="51">5..1</option>
-        </select>
+      <span className='Filtros_title'>Ordenamientos </span>
+      <div className='Filtros_sortDivContent'>
+        <div className='Filtros_sortDiv'>
+          <label>ORDENAR POR:</label> 
+          <select className='Filtro_sortButton' name='alpha' id='alpha' onChange={(e)=> handleSelect(e)}>
+            <option selected={true} hidden>Alfabeto</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+          </select>
+        </div>
+
+        <div className='Filtros_sortDiv'>
+          <label>ORDENAR POR:</label> 
+          <select className='Filtro_sortButton' name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
+            <option selected={true} hidden>Rating</option>
+            <option value="15">1..5</option>
+            <option value="51">5..1</option>
+          </select>
+        </div>
       </div>
     </div>
   )
