@@ -129,3 +129,10 @@ export interface reviewFormType {
     review_description: String,
     
 }
+
+export interface FormProposalType{
+    remuneration: Number,
+        proposal_description: String,
+        worked_time: String,
+        worked_time_select: String
+}
