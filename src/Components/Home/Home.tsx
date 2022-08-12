@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {checkSession, getOffers} from "../../Redux/Reducer/reducer";
+import {checkSession, getOffers, favoritesToDB, getUserById} from "../../Redux/Reducer/reducer";
 import CardsOffer from '../Offer/CardsOffer/CardsOffer';
 import Filtros from '../Filtros/Filtros';
 import Header from '../Header/Header';
+import decode from "jwt-decode"
 import './Home.css';
 import Banner from './Banner/Banner';
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
@@ -16,15 +17,30 @@ const Home = () => {
   const offers = useSelector((state:any) => state.workService.offers);
   const search = useSelector((state:any) => state.workService.search);
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
+  const currentUser = useSelector((state:any) => state.workService.currentUser);
   let [ITEMS_PER_PAGE, setItemsPerPage] = useState(5);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
   const dispatch = useDispatch();
+  const favoritesStorage:any = localStorage.getItem("favorites");
+  const storageParsed:any = JSON.parse(favoritesStorage);
+  const token:any = localStorage.getItem("token")
+  let tokenDecode:any
+  if(token){tokenDecode = decode(token)}
   
+  if(storageParsed?.length>0 && currentUser.id !== ''){
+    dispatch(favoritesToDB(storageParsed, currentUser.id));
+
+  }
+
   useEffect(() => {
     dispatch(getOffers());
     dispatch(checkSession())
   }, [])
+
+  useEffect(() => {
+    dispatch(getUserById(tokenDecode))
+  }, [currentUser])
  
 
   useEffect(() => {
@@ -123,7 +139,6 @@ const showButton = () => {
     // para hacer un console.log y ver si estaba andando la action.
     /*const global = useSelector((state: any) => state.workService.currentUser)
     console.log("AAAAAAAAAAAAAAAAAAA", global)*/
-
   return (
     <div className='Home_component'>
       <Header/>
