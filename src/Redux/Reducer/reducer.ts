@@ -479,6 +479,24 @@ export const checkSession = () => async (dispatch: any) => {
     }
   }  
 
+  export const newProposalPost = async (newProposal:type.FormProposalType) => {
+    try{
+let {remuneration, proposal_description, worked_time} = newProposal
+let newProposal2:object = {
+  remuneration,
+  proposal_description,
+  worked_time
+}
+      return await axios({
+        method: "post",
+        url: "http://localhost:3001/proposal", 
+        data: newProposal2
+      })
+    }catch(error){
+      return error
+    }
+  }
+
 
 
   export const changeLoading = (value:boolean) => (dispatch:Dispatch<any>) => {
