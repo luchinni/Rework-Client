@@ -17,9 +17,12 @@ export interface userLogin{
 }
 
 export interface token{
-    id: "",
+    id: string,
     isWorker: false,
-    isAdmin: false
+    isAdmin: false,
+    user_mail: string,
+    exp: number,
+    iat: number
   }
 
 export interface currentUsers{

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {checkSession, getOffers, favoritesToDB, getUserById} from "../../Redux/Reducer/reducer";
+import {checkSession, getOffers, favoritesToDB, getUserById, verifyToken} from "../../Redux/Reducer/reducer";
 import CardsOffer from '../Offer/CardsOffer/CardsOffer';
 import Filtros from '../Filtros/Filtros';
 import Header from '../Header/Header';
@@ -10,34 +10,47 @@ import './Home.css';
 import Banner from './Banner/Banner';
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
-import jwtDecode from 'jwt-decode';
+import jwt from 'jsonwebtoken'
 
 
 const Home = () => {
-  
+
   const offers = useSelector((state:any) => state.workService.offers);
   const search = useSelector((state:any) => state.workService.search);
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
   const currentUser = useSelector((state:any) => state.workService.currentUser);
+
   let [ITEMS_PER_PAGE, setItemsPerPage] = useState(5);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
+
   const dispatch = useDispatch();
   const favoritesStorage:any = localStorage.getItem("favorites");
   const storageParsed:any = JSON.parse(favoritesStorage);
   const token:any = localStorage.getItem("token")
+
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
+  
   
   if(storageParsed?.length>0 && currentUser.id !== ''){
     dispatch(favoritesToDB(storageParsed, currentUser.id));
 
   }
+  
+  console.log('tokendecode', tokenDecode)
+  console.log('token', token)
+  
+ 
 
   useEffect(() => {
     dispatch(getOffers());
     dispatch(checkSession())
   }, [])
+
+  useEffect(() => {
+    dispatch(verifyToken(tokenDecode))
+  }, [tokenDecode])
 
   useEffect(() => {
     dispatch(getUserById(tokenDecode))
