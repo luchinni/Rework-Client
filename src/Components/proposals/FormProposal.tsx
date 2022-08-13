@@ -6,6 +6,7 @@ import decode from "jwt-decode";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserById } from '../../Redux/Reducer/reducer';
 import OfferPost from '../Offer/OfferPost/OfferPost';
+import { isBreakOrContinueStatement } from 'typescript';
 
 
 const FormProposal = (props:any) => {
@@ -36,7 +37,8 @@ const FormProposal = (props:any) => {
     type errorFormValidate = {
         remuneration: String,
         proposal_description: String,
-        worked_time: String
+        worked_time: String,
+        worked_time_select: String,
         disabled: boolean | undefined
     }
     
@@ -53,6 +55,7 @@ const FormProposal = (props:any) => {
         remuneration: "campo requerido",
         proposal_description: "campo requerido",
         worked_time: "campo requerido",
+        worked_time_select: "campo requerido",
         disabled: true  
     })
     
@@ -100,6 +103,10 @@ const FormProposal = (props:any) => {
                 errors.worked_time = worked_timePattern.test(value) === false? "Solo números enteros son adimitidos."
                 : value[0] === "0"? "No puede inicializar con 0."
                 : parseInt(value) <=0? "No puede ser inferior a 0."
+                : "";
+                break;
+            case "worked_time_select":
+                errors.worked_time_select = formu.worked_time_select === undefined || null ? "elija una opción."
                 : "";
                 break;
                 
@@ -180,6 +187,9 @@ const FormProposal = (props:any) => {
                                         return (<option>{e}</option>)
                                     })}
                                 </select> }
+                                    {error.worked_time_select && (
+                                                <p className="danger">{error.worked_time_select}</p>
+                                    )}
                         </div>
                         <div className='DetailModal_divInputs'>
                             <label className='DetailModal_label'>Descripcion</label>
