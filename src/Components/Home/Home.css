@@ -3,6 +3,7 @@
   margin: 0 auto;
   position: relative;
   padding: 0 30px;
+  background-color: #F6F6F6;
 }
 .div_BannerAndCards {
   max-width: 1200px;
@@ -20,6 +21,7 @@ aside {
   gap: 30px;
   /* background-color: aqua; */
   transition: all 0.3s ease;
+  background-color:  #F6F6F6;
 }
 .div_btnHome{
   display: flex;
