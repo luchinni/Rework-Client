@@ -52,9 +52,9 @@ function Profile() {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <h3>Descripción:</h3>
-        </div>
+        </div> */}
 
         <div className='Profile_divTags'>
           <button className='Profile_tag'>Porfolio</button>

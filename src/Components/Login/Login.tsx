@@ -5,6 +5,7 @@ import {postLogin} from "../../Redux/Reducer/reducer";
 import HeaderRegister from "../Register/HeaderRegister/HeaderRegister";
 import { Link, useNavigate } from "react-router-dom";
 import {Toaster} from "react-hot-toast";
+import login_hero from "../../images/login_hero.jpg";
 import './Login.css'
 
 const Login = (props:any) => {
@@ -77,7 +78,7 @@ const Login = (props:any) => {
           </div>
       </div>
       <div className="Login_divCover">
-        <img className="Login_Cover" src="https://9to5mac.com/wp-content/uploads/sites/6/2015/04/screenshot-2015-04-22-12-15-37.png?w=655" alt="login cover" />
+        <img className="Login_Cover" src={login_hero} alt="login cover" />
       </div>
       <Toaster/>
     </div>
