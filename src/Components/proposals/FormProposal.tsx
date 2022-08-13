@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { newProposalPost } from '../../Redux/Reducer/reducer'
+import { newProposalPost } from '../../Redux/Reducer/reducer';
+import './FormProposal.css';
+import image from '../../images/modal_image_proposal.jpg';
 
 
-const FormProposal = () => {
+const FormProposal = (props:any) => {
 
     type formValidate = {
         remuneration: Number,
@@ -47,6 +49,10 @@ const FormProposal = () => {
             })
         }
     }
+
+    function handleModalClose() {
+        props.close(false)
+      }
     
     const handleChange = (e:any) => {
         const value = e.target.value
@@ -119,43 +125,59 @@ const FormProposal = () => {
         })
         
     }
-    
+     
     
       return (
-        <div>
-            <form id="form" onSubmit={(e) => e.preventDefault()}>
-                    <h1>Montro de presupuesto</h1>
+        <div className='DetailModal_component'>
+            <div className='DetailModal_divContent'>
                 <div>
-                    <input className={error.remuneration && 'danger'}
-                    name="remuneration" type="number" placeholder='Ej: 2500' onChange={handleChange}/>
-                        {error.remuneration && (
-                                    <p className="danger">{error.remuneration}</p>
-                                )}
+                    <p className='DetailModal_title'>Envia tu propuesta</p>
+                    <form id="form" onSubmit={(e) => e.preventDefault()}>
+                        <div className='DetailModal_contentInputs'>    
+                            <div className='DetailModal_divInputs'>
+                                <label className='DetailModal_label'>Tu presupuesto</label>
+                                <input className='DetailModal_input' /*className={error.remuneration && 'danger'}*/
+                                name="remuneration" type="number" placeholder='Ej: 2500' onChange={handleChange}/>
+                                    {error.remuneration && (
+                                                <p className="danger">{error.remuneration}</p>
+                                            )}
+                            </div>
+                            <div className='DetailModal_divInputs'>
+                                <label className='DetailModal_label'>Tiempo estiamdo del trabajo</label>
+                                <input className='DetailModal_input' /*className={error.worked_time && 'danger'}*/
+                                name='worked_time' type='string' placeholder='Ej: 5' onChange={handleChange} />
+                                    {error.worked_time && (
+                                                <p className="danger">{error.worked_time}</p>
+                                            )}
+                            </div>
+                            { <select name='worked_time_select' id='worked_time_select' onChange={(e) => handleSelect(e)}>
+                                    <option selected={true} hidden>Seleccione</option>
+                                    {["días", "semanas", "meses"].map(e => {
+                                        return (<option>{e}</option>)
+                                    })}
+                                </select> }
+                        </div>
+                        <div className='DetailModal_divInputs'>
+                            <label className='DetailModal_label'>Descripcion</label>
+                            <textarea className='DetailModal_input' /*className={error.proposal_description && 'danger'}*/
+                            name="proposal_description" cols={30} rows={5} placeholder='Descripción...' onChange={handleChange}></textarea>
+                                {error.proposal_description && (
+                                            <p className="danger">{error.proposal_description}</p>
+                                        )}
+                        </div>
+                        
+                            <input className='DetailModal_submit' disabled={error.disabled} name="button" type="submit" value="publicar" onSubmit={(e) => handleSubmit(e)}/>
+                    </form>
                 </div>
+            </div>
                 <div>
-                    <span>Escriba su propuesta</span>
-                    <textarea className={error.proposal_description && 'danger'}
-                    name="proposal_description" cols={30} rows={5} placeholder='Descripción...' onChange={handleChange}></textarea>
-                        {error.proposal_description && (
-                                    <p className="danger">{error.proposal_description}</p>
-                                )}
-                </div>
-                <div>
-                    <span>Tiempo estiamdo del trabajo</span>
-                    <input className={error.worked_time && 'danger'}
-                    name='worked_time' type='string' placeholder='Ej: 5' onChange={handleChange} />
-                        {error.worked_time && (
-                                    <p className="danger">{error.worked_time}</p>
-                                )}
-                </div>
-                { <select name='worked_time_select' id='worked_time_select' onChange={(e) => handleSelect(e)}>
-                        <option selected={true} hidden>Seleccione</option>
-                        {["días", "semanas", "meses"].map(e => {
-                            return (<option>{e}</option>)
-                        })}
-                    </select> }
-                    <input disabled={error.disabled} name="button" type="submit" value="publicar" onSubmit={(e) => handleSubmit(e)}/>
-            </form>
+                    <div className='DetailModal_divImage'>
+                        <div className='DetailModal_divButtonClose'>
+                            <button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
+                        </div>
+                        <img className='DetailModal_image' src={image} alt="example" />                 
+                    </div>                
+                </div>                   
         </div>
       )
     }
