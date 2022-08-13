@@ -36,6 +36,8 @@ const DetailOffer = () => {
     setOpen(value)
   }
 
+  console.log(offerId);
+
   return (
     
   <div className={open ? 'Detail_component modalOpen' : 'Detail_component'}>

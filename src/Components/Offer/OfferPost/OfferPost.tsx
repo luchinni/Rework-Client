@@ -62,7 +62,7 @@ const OfferPost = () => {
         // work_duration_time: 0,
         // work_duration_time_select: '',
         offer_description: "Campo requerido.",
-        photo: "campo requerido",
+        photo: "",
         disabled: true
     });
 
@@ -96,12 +96,34 @@ const validarForm = (errors:type.errorsNewOfferType) => {
     }
 }
 
-const handleChange = (e:any) =>{
+const parseImage = async (e:any, cb:Function) => {
+    let file = e.target.files[0]
+    let reader:any = new FileReader();
+    let base64String:any = reader.onload = async function(){
+      base64String = reader.result?.replace("data:","").replace(/^.+,/,""); 
+      //resolve(reader.result);
+      cb(reader.result)
+      // this.setState({
+      //   image:base64String
+      // })
+    }
+    await reader.readAsDataURL(file);
+  }
+
+const handleChange = async (e:any) =>{
     const value = e.target.value;
     const name = e.target.name;
-   console.log(typeof(value))
     let error:type.errorsNewOfferType;
-    error = errors
+    error = errors;
+
+    if(name==="photo"){
+        return await parseImage(e, (base64String:any) => {
+         setFormulario({
+            ...formulario,
+            photo:base64String
+          })
+        })
+   }
 
     switch (name) {
         case "title":
@@ -126,11 +148,7 @@ const handleChange = (e:any) =>{
             error.offer_description = formulario.offer_description.length > 1000 ? "Solo se permiten 1000 caracteres" 
             : formulario.offer_description.length < 100? "La cantidad mínima de caracteres es 100"
             : ""
-            break;
-        case "photo":
-            let photoPattern = /[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)?/gi;
-            error.photo = photoPattern.test(value) ? '' : 'La url de la imagen no es una url valida.';
-            break;            
+            break;           
     }
 
     setErrors(error)
@@ -250,15 +268,15 @@ const newOffer:type.newOfferType = {
                         })}
                     </select> }
                     <div>
-                        <input className={errors.offer_description && 'danger'}
-                        type='text' name='offer_description' placeholder='Descripción del trabajo' onChange={handleChange}/>
+                        <textarea className={errors.offer_description && 'danger'}
+                        name='offer_description' cols={40} rows={5} placeholder='Descripción del trabajo' onChange={handleChange}/>
                         {errors.offer_description && (
                                 <p className="danger">{errors.offer_description}</p>
                             )}
                     </div>
                     <div>
                         <input className={errors.photo && 'danger'}
-                        type='url' name='photo' placeholder='Url de imagen de referencia' onChange={handleChange}/>
+                        type='file' accept="image/*" name='photo' placeholder='Url de imagen de referencia' onChange={handleChange}/>
                         {errors.photo && (
                                 <p className="danger">{errors.photo}</p>
                             )}

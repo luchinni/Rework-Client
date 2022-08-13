@@ -134,7 +134,6 @@ handleSubmit(e:any){
   e.preventDefault();
 
   let { name, lastName, password, user_mail, birthdate, image, profession, skills} = this.state;
-  console.log(this.state)
   name = name?this.firstWordUpperCase(name):name;
   lastName = lastName? this.firstWordUpperCase(lastName):lastName; 
 
