@@ -13,6 +13,7 @@ import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
 import OtherProfile from './Components/Profile/OtherProfile';
 import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
+import { useSelector } from 'react-redux';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -21,7 +22,8 @@ import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
 function App() {
 
   const token = localStorage.getItem("token")
-  console.log("el token", token)
+  const currentUser = useSelector((state: any) => state.workService.currentUser)
+
   return (
     <div className="App">
       <Routes>
@@ -29,7 +31,7 @@ function App() {
         <Route path='home' element={<Home/>} />
         <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
         <Route path='confirm/client/:id' element={<VerifyUser/>}/>
-        {token ? 
+        {token || currentUser.id !== '' ? 
         <>
           <Route path='register' element={<Navigate to='/home' replace/>} />
           <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
