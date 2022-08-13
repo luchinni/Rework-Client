@@ -31,7 +31,7 @@ const CardOffer = ({props}:any) => {
     //console.log(userLogged)
     if(currentUser.id !== ''){
       console.log(props.idOffer);
-      if(userLogged.favorites.find((f:any) => f.idOffer === props.idOffer)){
+      if(userLogged.favorites?.find((f:any) => f.idOffer === props.idOffer)){
         await remFavoritestoDB(props, currentUser.id);
         return dispatch(getUserById(tokenDecode))
       }else{
@@ -53,6 +53,7 @@ const CardOffer = ({props}:any) => {
     const favoritesStorage:any = localStorage.getItem("favorites");
     const storageParsed:any = JSON.parse(favoritesStorage);
     let allFavorites:any
+    console.log(userLogged)
     if(currentUser.id !== ''){
       allFavorites = userLogged.favorites?.map((f:any) => {
         if(f?.idOffer === props.idOffer){

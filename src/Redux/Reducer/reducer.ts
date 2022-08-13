@@ -547,7 +547,8 @@ let newProposal2:object = {
     let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
     let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
     if(worker.data !== null){
-      if(worker.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      if(worker.data.favorites?.find((f:any) => f.idOffer === value.idOffer)) return
+      console.log(worker);
       worker.data.favorites = [...worker.data.favorites, value]
       await axios({
         method: "PUT",
@@ -555,7 +556,7 @@ let newProposal2:object = {
         data: worker.data
       })
     }else{
-      if(client.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      if(client.data.favorites?.find((f:any) => f.idOffer === value.idOffer)) return
       client.data.favorites = [...client.data.favorites, value]
       await axios({
         method: "PUT",
@@ -570,7 +571,7 @@ let newProposal2:object = {
     let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
     console.log(worker.data)
     if(worker.data !== null){
-      worker.data.favorites = [...worker.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      worker.data.favorites = [...worker.data.favorites?.filter((g:any) => g.idOffer !== value.idOffer)]
       console.log(worker.data.favorites)
       await axios({
         method: "PUT",
@@ -578,7 +579,7 @@ let newProposal2:object = {
         data: worker.data
       })
     }else{
-      client.data.favorites = [...client.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      client.data.favorites = [...client.data.favorites?.filter((g:any) => g.idOffer !== value.idOffer)]
       await axios({
         method: "PUT",
         url: `http://localhost:3001/client/${idUser}`,
