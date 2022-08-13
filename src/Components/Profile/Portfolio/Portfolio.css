@@ -1,27 +1,63 @@
-/* .Portfolio_component{
-    position: absolute;
-    height: 100vh;
+.Portfolio_component{
+    max-width: 1200px;
     width: 100%;
-    background-color: black;
-
-} */
-.Portfolio_divContent{
-display: flex;
-
 }
-.Portfolio_divMap{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
+.Portfolio_divContent {
+    /* background-color: aqua; */
 }
-.Portfolio_divItems{
-    background-color: blueviolet;
+.Portfolio_buttonAddPortfolio {
     height: 130px;
     width: 210px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(163, 163, 163);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
+.Portfolio_buttonAddPortfolio:hover {
+    background-color: rgb(126, 126, 126);
+}
+.Portfolio_divMap{
+    display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-rows: repeat(0, 1fr); */
+  grid-gap: 10px;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px; */
+}
+.Portfolio_divTitle {
+    max-width: 210px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+.Portfolio_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.Portfolio_divItemMap {
+    margin-bottom: 24px;
+}
+.Portfolio_divItems{
+    height: 130px;
+    width: 210px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.Portfolio_Item {
+    max-width: 235px;
+}
+
 .Portfolio_formModal{
     position: absolute;
     top: 85%;
     right: 60.5%;
+}
+.Portfolio_CardComponent {
+    position: absolute;
+    top: 80%;
 }

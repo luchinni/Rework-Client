@@ -481,6 +481,26 @@ export const checkSession = () => async (dispatch: any) => {
     }
   }  
 
+  export const newProposalPost = async (newProposal:type.FormProposalType) => {
+    try{
+let {remuneration, proposal_description, worked_time, idWorker, idOffer} = newProposal
+let newProposal2:object = {
+  idWorker,
+  idOffer,
+  remuneration,
+  proposal_description,
+  worked_time
+}
+      return await axios({
+        method: "post",
+        url: "http://localhost:3001/proposal", 
+        data: newProposal2
+      })
+    }catch(error){
+      return error
+    }
+  }
+
 
 
   export const changeLoading = (value:boolean) => (dispatch:Dispatch<any>) => {
@@ -531,7 +551,8 @@ export const checkSession = () => async (dispatch: any) => {
     let worker:any = await axios.get(`http://localhost:3001/worker/${idUser}`);
     let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
     if(worker.data !== null){
-      if(worker.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      if(worker.data.favorites?.find((f:any) => f.idOffer === value.idOffer)) return
+      console.log(worker);
       worker.data.favorites = [...worker.data.favorites, value]
       await axios({
         method: "PUT",
@@ -539,7 +560,7 @@ export const checkSession = () => async (dispatch: any) => {
         data: worker.data
       })
     }else{
-      if(client.data.favorites.find((f:any) => f.idOffer === value.idOffer)) return
+      if(client.data.favorites?.find((f:any) => f.idOffer === value.idOffer)) return
       client.data.favorites = [...client.data.favorites, value]
       await axios({
         method: "PUT",
@@ -554,7 +575,7 @@ export const checkSession = () => async (dispatch: any) => {
     let client:any = await axios.get(`http://localhost:3001/client/${idUser}`);
     console.log(worker.data)
     if(worker.data !== null){
-      worker.data.favorites = [...worker.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      worker.data.favorites = [...worker.data.favorites?.filter((g:any) => g.idOffer !== value.idOffer)]
       console.log(worker.data.favorites)
       await axios({
         method: "PUT",
@@ -562,7 +583,7 @@ export const checkSession = () => async (dispatch: any) => {
         data: worker.data
       })
     }else{
-      client.data.favorites = [...client.data.favorites.filter((g:any) => g.idOffer !== value.idOffer)]
+      client.data.favorites = [...client.data.favorites?.filter((g:any) => g.idOffer !== value.idOffer)]
       await axios({
         method: "PUT",
         url: `http://localhost:3001/client/${idUser}`,

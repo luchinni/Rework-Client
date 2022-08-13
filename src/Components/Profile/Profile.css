@@ -39,15 +39,18 @@
 .Profile_divFotoPerfil {
   max-width: 170px;
   max-height: 170px;
+  /* width: 100%;
+  height: 100%; */
   overflow: hidden;
   border-radius: 10px;
   position: absolute;
   top: -100px;
+  background-color: #D6550D;
 }
 .Profile_foto {
   position: relative;
   /* right: 30px; */
-  max-width: 170px;
+  max-width: 300px;
 }
 .Profile_divNameAndRating {
   margin-left: 190px;

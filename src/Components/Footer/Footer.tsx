@@ -8,15 +8,7 @@ function Footer() {
     <footer className='Footer_component'>
       <div className='Footer_contentDiv'>
         <div className='Footer_top'>
-          <span className='logo'>RE<span className='work'>work</span></span>
-          <div className='div_buttons'>
-            <div>
-              <button className='button_login'>Inicia sesión</button>
-            </div>
-            <div>
-              <Link to='/register'><button className='button_register'>Registrate</button></Link>
-            </div>
-          </div>
+          <span className='logo'>RE<span className='footer_work'>work</span></span>
         </div>
 
         <div className='Footer_bottom'>
@@ -37,12 +29,12 @@ function Footer() {
                 <Link to="#" className='Footer_link'>terminos y condiciones</Link>
               </div>
             </div>
-            <div>
+            {/* <div>
               <h2 className='Footer_titleLinks'>ENLACES</h2>
               <div className='Footer_divLinks'>
                 <Link to="/home" className='Footer_link'>home</Link>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className='Footer_divLogoHenry'>
             <a className='Footer_linkLogoHenry' href="https://www.soyhenry.com/" target="_blanck">

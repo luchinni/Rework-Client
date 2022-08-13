@@ -37,7 +37,7 @@ function Profile() {
             <div className='Profile_DivCont'>
               <div className='Profile_divDivProfile'>
                 <div className='Profile_divFotoPerfil'>
-                  <img className='Profile_foto' src="https://th.bing.com/th/id/R.3fe29c6b3058f48e53e86c9cb687c27f?rik=6eP5XRKYF2C2%2bw&pid=ImgRaw&r=0" alt="profile" />
+                  <img className='Profile_foto' src={userLogged?.photo} alt="profile" />
                 </div>
                 <div className='Profile_divNameAndRating'>
                   <span className='Profile_UserName'>{userLogged.name}</span>
@@ -52,9 +52,9 @@ function Profile() {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <h3>Descripción:</h3>
-        </div>
+        </div> */}
 
         <div className='Profile_divTags'>
           <button className='Profile_tag'>Porfolio</button>

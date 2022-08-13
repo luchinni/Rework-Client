@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import {checkSession, getOfferId} from '../../../Redux/Reducer/reducer';
 import Header from '../../Header/Header';
-import copy from '../../../images/copy.svg';
+import copy from '../../../images/copy.jpg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Toaster, toast} from "react-hot-toast";
 import { Link } from 'react-router-dom';
-import DetailModal from './DetailModal/DetailModal';
+import FormProposal from '../../proposals/FormProposal';
 import './DetailOffer.css';
 import { useParams } from 'react-router-dom';
 
@@ -36,6 +36,8 @@ const DetailOffer = () => {
     setOpen(value)
   }
 
+  console.log(offerId);
+
   return (
     
   <div className={open ? 'Detail_component modalOpen' : 'Detail_component'}>
@@ -44,7 +46,7 @@ const DetailOffer = () => {
     {open && 
     
       <div className='Detail_divModal'>
-        <DetailModal close={handleClose} />
+        <FormProposal idOferta={offerId.idOffer} close={handleClose} />
       </div>
     }
 

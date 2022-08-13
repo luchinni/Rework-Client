@@ -1,12 +1,13 @@
 .CardOffer_component {
-    border: 1px solid #bcbcbc;
-    background-color: #FFFFFF;
-    border-radius: 10px;
+    border: 2px solid #edecd9;
+    background-color: #fffcfc;
+    border-radius: 6px;
     max-width: 730px;
-    min-width: 729px;
+    min-width: 425px;
     overflow: hidden;
     margin-bottom: 30px;
     padding-bottom: 7px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
 }
 .div_profileSection {
     /* background-color: #273141; */
@@ -56,6 +57,10 @@
     height: 35px;
     width: 35px;
     font-size: 26px;
+}
+.CardOffer_hr {
+    border: none;
+    border-top: 1px solid #bcbcbc;;
 }
 
 .div_cardDescription {
@@ -132,7 +137,7 @@
     gap: 10px;
     background-color: #FFFFFF;
     position: absolute;
-    right: -1px;
+    right: -10px;
     margin-top: 5px;
     padding: 10px;
     border-radius: 5px;

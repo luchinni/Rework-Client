@@ -48,11 +48,34 @@ export class ClientRegister extends Component {
         }
     }
 
-    handleChange(e:any) {
+    async parseImage(e:any, cb:Function){
+        let file = e.target.files[0]
+        let reader:any = new FileReader();
+        let base64String:any = reader.onload = async function(){
+          base64String = reader.result?.replace("data:","").replace(/^.+,/,""); 
+          //resolve(reader.result);
+          cb(reader.result)
+          // this.setState({
+          //   image:base64String
+          // })
+        }
+        const algo = await reader.readAsDataURL(file);
+        console.log(reader.result);
+      }
+
+    async handleChange(e:any) {
         const value = e.target.value;
         const name = e.target.name;
         let errors:type.errorsType;
         errors = this.state.errors;
+
+        if(name==="image"){
+            return await this.parseImage(e, (base64String:any) => {
+             this.setState({
+                image:base64String
+              })
+            })
+       }
 
         switch (name) {
             case "name":
@@ -80,10 +103,6 @@ export class ClientRegister extends Component {
                 console.log(fechas);
                 errors.birthdate = dateNow<fechas? 'La fecha ingresada es invalida.' :year[0]>date.getFullYear()? 'La fecha ingresada es invalida.':year[0]<1940?'La año debe ser mayor a 1940': '';
                 break;
-            case "image":
-                let urlPattern = /[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)?/gi;
-                errors.image = urlPattern.test(value) ? '' : 'La url de la imagen no es una url valida.';
-                break;
             default:
                 break;
         }
@@ -97,8 +116,8 @@ export class ClientRegister extends Component {
     handleSubmit(e:any){
         e.preventDefault();
         let { name, lastName, password, user_mail, birthdate, image} = this.state;
-        name = this.firstWordUpperCase(name);
-        lastName = this.firstWordUpperCase(lastName); 
+        name = name?this.firstWordUpperCase(name):name;
+        lastName = lastName? this.firstWordUpperCase(lastName):lastName; 
 
         const newClient:type.newClientType = {
             name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image
@@ -145,7 +164,7 @@ export class ClientRegister extends Component {
                             {!this.state.errors.birthdate ? null : <div className='CR_inputError'>{this.state.errors.birthdate}</div>}
                         </div>
                         <div className='CR_Div_inputAndError'>
-                            <input className='CR_inpunt' type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
+                            <input className='CR_inpunt' type="file" accept="image/*" name="image" placeholder='Imagen de perfil' onChange={(e) => this.handleChange(e)}/>
                             {!this.state.errors.image ? null : <div className='CR_inputError'>{this.state.errors.image}</div>}
                         </div>
                         <input className='CR_inpuntSubmit' disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />

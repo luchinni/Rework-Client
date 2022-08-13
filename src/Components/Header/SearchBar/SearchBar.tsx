@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./SearchBar.css";
 import { useSelector } from "react-redux";
-import icon_filter from "../../../images/icon_filters.svg";
-import icon_search from "../../../images/icon_search.svg";
+import icon_filter from "../../../images/icon_filters.png";
+import icon_search from "../../../images/icon_search.png";
 import { searchWorker, searchOffer } from "../../../Redux/Reducer/reducer";
 import { useDispatch } from "react-redux";
 import { getAllProfession } from "../../../Redux/Reducer/reducer";

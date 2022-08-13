@@ -104,7 +104,7 @@ const FormPortfolio = (props:any) => {
             dispatch(setLoading(false))
         })
         props.handle(false)
-        Navigate(`/profile/${tokenDecode.id}`)
+        Navigate(`/myProfile`)
 
     }
 

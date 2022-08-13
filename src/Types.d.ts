@@ -132,3 +132,11 @@ export interface reviewFormType {
     review_description: String,
     
 }
+
+export interface FormProposalType{
+        idWorker: String,
+        idOffer: String,
+        remuneration: Number,
+        proposal_description: String,
+        worked_time: String,
+}

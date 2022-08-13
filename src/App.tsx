@@ -22,7 +22,7 @@ import { useSelector } from 'react-redux';
 function App() {
 
   const token = localStorage.getItem("token")
-  const currentUser = useSelector((state: any) => state.workService.currentUser)
+  const currentUser: any = useSelector((state: any) => state.workService.currentUser)
 
   return (
     <div className="App">

@@ -7,6 +7,8 @@ import { connect, ConnectedProps } from "react-redux";
 import {postNewWorker, getAllProfession, getAllSkills} from "../../../Redux/Reducer/reducer"
 import HeaderRegister from '../HeaderRegister/HeaderRegister';
 import './WorkerRegister.css';
+import { resolve } from 'node:path/win32';
+import { createBrotliCompress } from 'node:zlib';
 
 interface HeaderState{
 
@@ -37,6 +39,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
       inputProfessions: [],
       inputSkills: []
     }
+    this.setState = this.setState.bind(this);
   }
 
 componentDidMount(){
@@ -63,11 +66,34 @@ validarForm(errors:type.errorsTypeWorker) {
   }
 }
 
-handleChange(e:any) {
+async parseImage(e:any, cb:Function){
+  let file = e.target.files[0]
+  let reader:any = new FileReader();
+  let base64String:any = reader.onload = async function(){
+    base64String = reader.result?.replace("data:","").replace(/^.+,/,""); 
+    //resolve(reader.result);
+    cb(reader.result)
+    // this.setState({
+    //   image:base64String
+    // })
+  }
+  const algo = await reader.readAsDataURL(file);
+  console.log(reader.result);
+}
+
+async handleChange(e:any) {
   const value = e.target.value;
   const name = e.target.name;
   let errors:type.errorsTypeWorker;
   errors = this.state.errors;
+
+  if(name==="image"){
+     return await this.parseImage(e, (base64String:any) => {
+      this.setState({
+         image:base64String
+       })
+     })
+}
 
   switch (name) {
     case "name":
@@ -93,10 +119,6 @@ handleChange(e:any) {
       let dateNow = (date.getFullYear() + "-"+0+ (date.getMonth()+1)+ "-" +date.getDate());
       errors.birthdate = dateNow<fechas? 'La fecha ingresada es invalida.' :year[0]>date.getFullYear()? 'La fecha ingresada es invalida.':year[0]<1940?'La año debe ser mayor a 1940': '';
         break;
-    case "image":
-      let urlPattern = /[-a-zA-Z0-9@:%.~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%.~#?&//=]*)?/gi;
-      errors.image = urlPattern.test(value) ? '' : 'La url de la imagen no es una url valida.';
-        break;
 
     default:
         break;
@@ -112,9 +134,8 @@ handleSubmit(e:any){
   e.preventDefault();
 
   let { name, lastName, password, user_mail, birthdate, image, profession, skills} = this.state;
-
-  name = this.firstWordUpperCase(name);
-  lastName = this.firstWordUpperCase(lastName); 
+  name = name?this.firstWordUpperCase(name):name;
+  lastName = lastName? this.firstWordUpperCase(lastName):lastName; 
 
   const newWorker:type.newWorkerType = {
     name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills
@@ -204,7 +225,7 @@ console.log(del)
               {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
               <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
               {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
-              <input type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
+              <input type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
               {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
               <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
                   <option selected={true} hidden>Profesiones</option>

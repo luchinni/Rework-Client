@@ -5,8 +5,8 @@
     padding: 30px 0;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.878);
-	backdrop-filter: blur(6px);
+    background-color: #fffcfcb8;
+	backdrop-filter: blur(10px);
     z-index: 6;
     transition: all 0.3s ease;
 }
@@ -21,11 +21,11 @@
 .Header_divContent {
     display: flex;
     justify-content: space-between;
-    max-width: 1136px;
     margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 30px;
 }
 .Header_component.scroll {
-    /* padding: 26px 0; */
     box-shadow: rgba(98, 106, 114, 0.301) 0px -10px 40px 10px;
 }
 .logo {
@@ -40,13 +40,9 @@
 .nav {
     display: flex;
     gap: 50px;
-    justify-content: space-between;
     align-items: center;
-    max-width: 64%;
-    width: 100%;
 }
 .div_buttons {
-    /* display: none; */
     display: flex;
     gap: 10px;
 }

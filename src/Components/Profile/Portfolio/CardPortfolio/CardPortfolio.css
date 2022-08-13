@@ -1,0 +1,12 @@
+.CardPortfolio_component {
+  position: relative;
+  background-color: aqua;
+  padding: 20px;
+  max-width: 1000px;
+  width: 100%;
+}
+.CardPortfolio_divContent {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
