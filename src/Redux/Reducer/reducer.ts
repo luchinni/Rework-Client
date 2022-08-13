@@ -3,6 +3,8 @@ import axios from "axios";
 import * as type from "../../Types";
 import { Dispatch } from "redux";
 import jwtDecode from "jwt-decode";
+import jwt from 'jsonwebtoken'
+const {SECRET_KEY} = process.env
 
 
 const initialState = {
@@ -615,3 +617,48 @@ let newProposal2:object = {
       return error
     }
   }
+ 
+  export const verifyToken = (token: type.token) => async (dispatch:Dispatch<any>) => {
+    try {
+      const expDate: any = token.exp
+      let response:any
+      response = await axios({
+        method: "GET",
+        url: `http://localhost:3001/tokenVerify/${expDate}`,
+        data: expDate
+      })
+      
+      
+        if (response.data && response.data === 'destroy'){
+          console.log('destroy')
+          return localStorage.removeItem("token")
+
+        } else if (response.data && response.data === 'renew') {
+          const newToken: type.token = {
+            ...token,
+            exp: token.exp  + 7200 
+          }
+          console.log("newToken",newToken)
+          console.log("token", token)
+          const renewedToken = await axios({
+            method: "POST",
+            url: `http://localhost:3001/tokenVerify/renew/`,
+            data: newToken
+          })
+          console.log("respuesta ->", renewedToken)
+          console.log(JSON.stringify(renewedToken))
+          return localStorage.setItem("token", JSON.stringify(renewedToken.data))
+
+        } else if (response.data && response.data === 'valid'){
+          console.log('valid')
+          return 'Sesion válida'
+        } else {
+          return 'No hay sesion'
+        }
+
+      
+    } catch(e){
+      return e
+    }
+  }
+  

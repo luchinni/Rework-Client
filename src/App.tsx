@@ -22,9 +22,8 @@ import { useSelector } from 'react-redux';
 function App() {
 
   const token = localStorage.getItem("token")
-  const currentUser:any = useSelector((state:any) => state.workService.currentUser)
+  const currentUser: any = useSelector((state: any) => state.workService.currentUser)
 
-  console.log("el token", token)
   return (
     <div className="App">
       <Routes>
@@ -32,7 +31,7 @@ function App() {
         <Route path='home' element={<Home/>} />
         <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
         <Route path='confirm/client/:id' element={<VerifyUser/>}/>
-        {token || currentUser.id !== "" ? 
+        {token || currentUser.id !== '' ? 
         <>
           <Route path='register' element={<Navigate to='/home' replace/>} />
           <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
