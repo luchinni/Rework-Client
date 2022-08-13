@@ -99,7 +99,7 @@
   padding-bottom: 3px;
   border: none;
   border-bottom: 3px solid transparent;
-  background: #FFFFFF;
+  background: transparent;
   transition: all 0.3s ease;
   cursor: pointer;
 }

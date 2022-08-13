@@ -1,26 +1,29 @@
 .DetailModal_component {
   z-index: 2;
   position: relative;
-  background-color: rgba(0, 0, 0, 0.179);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 585px;
-  width: 1136px;
   border-radius: 10px;
+  /* box-shadow: 1px 1px 10px #000000; */
+  box-shadow: 1px 3px 98px 600px #00000032;
 }
+/* .DetailModal_divPadre {
+  display: flex;
+  overflow: hidden;
+  border-radius: 10px;
+  max-height: 580px;
+} */
 .DetailModal_divContent {
-  /* display: inline-block; */
   padding: 30px;
   background-color: rgb(255, 255, 255);
-  border-radius: 10px 0 0 10px;;
+  border-radius: 10px;
 }
 .DetailModal_title {
   margin-bottom: 10px;
 }
 .DetailModal_contentInputs {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  /* gap: 10px; */
+  margin-bottom: 20px;
 }
 .DetailModal_divInputs {
   display: flex;
@@ -30,17 +33,18 @@
 }
 
 .DetailModal_divImage {
-  max-height: 440px;
-  max-width: 300px;
-  width: 300px;
-  height: 440px;
+  max-height: 740px;
+  max-width: 700px;
+  width: 330px;
+  height: 740px;
   border-radius: 0 10px 10px 0;
   overflow: hidden;
   border: none;
 }
 .DetailModal_image {
-
-  max-width: 300px;
+  /* position: relative; */
+  max-width: 400px;
+  right: 5px;
 }
 .DetailModal_divButtonClose {
   position: relative;
@@ -48,12 +52,12 @@
 .DetailModal_buttonClose {
   position: absolute;
   right: 0;
+  /* top: -10px; */
   margin: 10px 10px 0 0;
   padding: 3px 6px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-
 }
 
 .DetailModal_title {
@@ -87,5 +91,9 @@
 }
 
 .danger{
+  font-size: 13px;
   color: red;
+}
+.DetailModal_divSelect {
+  /* displ */
 }
