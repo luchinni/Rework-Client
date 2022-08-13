@@ -70,3 +70,7 @@
     left: 27.5%;
     top: 150%;
 }
+.Header_divButtonsUser {
+    display: flex;
+    gap: 40px;
+}

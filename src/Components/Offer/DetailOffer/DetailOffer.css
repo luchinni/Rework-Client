@@ -232,19 +232,8 @@
 }
 .Detail_divModal {
   position: absolute;
-  top: 0%;
-  right: 36%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
 }
 
-
-
-@media screen and (max-width: 1150px) {
-  .Detail_divModal {
-    right: 33%
-  }
-}
-@media screen and (max-width: 750px) {
-  .Detail_divModal {
-    right: 28%
-  }
-}

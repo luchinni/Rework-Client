@@ -2,15 +2,12 @@
   z-index: 2;
   position: relative;
   border-radius: 10px;
-  /* box-shadow: 1px 1px 10px #000000; */
   box-shadow: 1px 3px 98px 600px #00000032;
 }
-/* .DetailModal_divPadre {
+.DetailModal_divPadre {
   display: flex;
-  overflow: hidden;
-  border-radius: 10px;
-  max-height: 580px;
-} */
+  max-height: 575px;
+}
 .DetailModal_divContent {
   padding: 30px;
   background-color: rgb(255, 255, 255);
@@ -22,7 +19,6 @@
 .DetailModal_contentInputs {
   display: flex;
   flex-direction: column;
-  /* gap: 10px; */
   margin-bottom: 20px;
 }
 .DetailModal_divInputs {
@@ -42,7 +38,6 @@
   border: none;
 }
 .DetailModal_image {
-  /* position: relative; */
   max-width: 400px;
   right: 5px;
 }
@@ -52,7 +47,6 @@
 .DetailModal_buttonClose {
   position: absolute;
   right: 0;
-  /* top: -10px; */
   margin: 10px 10px 0 0;
   padding: 3px 6px;
   border: none;
@@ -93,7 +87,4 @@
 .danger{
   font-size: 13px;
   color: red;
-}
-.DetailModal_divSelect {
-  /* displ */
 }

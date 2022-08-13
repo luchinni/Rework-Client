@@ -161,9 +161,9 @@ const FormProposal = (props:any) => {
       return (
         <div className='DetailModal_component'>
 					<div className='DetailModal_divPadre'>
-						<div className='DetailModal_divButtonClose'>
+						{/* <div className='DetailModal_divButtonClose'>
 								<button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
-						</div>
+						</div> */}
             <div className='DetailModal_divContent'>
                 <div>
                     <p className='DetailModal_title'>Envia tu propuesta</p>
@@ -210,14 +210,14 @@ const FormProposal = (props:any) => {
                             <input className='DetailModal_submit' disabled={error.disabled} name="button" type="submit" value="publicar" onClick={(e) => handleSubmit(e)}/>
                     </form>
                 </div>
-								{/* <div className='DetailModal_divButtonClose'>
-										<button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
-								</div> */}
             </div>
-            <div>
-              {/* <div className='DetailModal_divImage'>
-                  <img className='DetailModal_image' src="https://miro.medium.com/max/1400/1*oIIidLwPFaJcV_2hgsozfQ.jpeg" alt="example" />                 
-              </div>                 */}
+							<div>
+                <div className='DetailModal_divImage'>
+                    <div className='DetailModal_divButtonClose'>
+                        <button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
+                    </div>
+                    <img className='DetailModal_image' src={image} alt="example" />                 
+                </div>                
             </div> 
 					</div>                  
         </div>
