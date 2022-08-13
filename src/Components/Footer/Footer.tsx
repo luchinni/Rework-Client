@@ -29,12 +29,12 @@ function Footer() {
                 <Link to="#" className='Footer_link'>terminos y condiciones</Link>
               </div>
             </div>
-            <div>
+            {/* <div>
               <h2 className='Footer_titleLinks'>ENLACES</h2>
               <div className='Footer_divLinks'>
                 <Link to="/home" className='Footer_link'>home</Link>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className='Footer_divLogoHenry'>
             <a className='Footer_linkLogoHenry' href="https://www.soyhenry.com/" target="_blanck">

@@ -27,9 +27,7 @@
 }
 .Footer_buttonContainerDivs {
   display: flex;
-  justify-content: space-between;
-  max-width: 670px;
-  width: 100%;
+  gap: 150px;
 }
 .Footer_titleLinks {
   font-weight: 700;
@@ -52,4 +50,13 @@
 }
 .Footer_link:hover {
   color: #484848;
+}
+
+.Footer_divLogoHenry {
+  position: relative;
+}
+.Footer_linkLogoHenry {
+  position: absolute;
+  right: 0;
+  top: 32px;
 }

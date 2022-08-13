@@ -38,6 +38,11 @@
   font-weight: 700;
   font-size: 24px;
   color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.Top_buttonAcceder:hover {
+  background-color: #5a626f;
 }
 .new_tabIcon {
   height: 29px;
