@@ -7,7 +7,7 @@ import copy from '../../../images/copy.svg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Toaster, toast} from "react-hot-toast";
 import { Link } from 'react-router-dom';
-import DetailModal from './DetailModal/DetailModal';
+import FormProposal from '../../proposals/FormProposal';
 import './DetailOffer.css';
 import { useParams } from 'react-router-dom';
 
@@ -44,7 +44,7 @@ const DetailOffer = () => {
     {open && 
     
       <div className='Detail_divModal'>
-        <DetailModal close={handleClose} />
+        <FormProposal close={handleClose} />
       </div>
     }
 

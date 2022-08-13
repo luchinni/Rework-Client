@@ -1,9 +1,11 @@
 .DetailModal_component {
+  z-index: 2;
+  position: relative;
   background-color: rgba(0, 0, 0, 0.179);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 557.5px;
+  height: 585px;
   width: 1136px;
   border-radius: 10px;
 }
@@ -12,7 +14,6 @@
   padding: 30px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px 0 0 10px;;
-  z-index: 4;
 }
 .DetailModal_title {
   margin-bottom: 10px;
@@ -29,14 +30,17 @@
 }
 
 .DetailModal_divImage {
-  max-height: 322px;
-  max-width: 250px;
+  max-height: 440px;
+  max-width: 300px;
+  width: 300px;
+  height: 440px;
   border-radius: 0 10px 10px 0;
   overflow: hidden;
   border: none;
 }
 .DetailModal_image {
-  max-width: 250px;
+
+  max-width: 300px;
 }
 .DetailModal_divButtonClose {
   position: relative;
@@ -49,7 +53,7 @@
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  z-index: 5;
+
 }
 
 .DetailModal_title {
