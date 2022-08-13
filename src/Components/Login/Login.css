@@ -56,6 +56,7 @@
   padding: 10px;
   border-radius: 5px;
   border: none;
+  font-size: 17px;
   background-color: #ffffff;
   border: 1px solid #273141c3;
   color: #273141;
@@ -78,7 +79,13 @@
   color: #273141;
   font-weight: 500;
   position: absolute;
-/* left: ; */
+  background-color: #ffffff;
+  top: -37px;
+  left: 71px;
+  padding: 0 10px;
+}
+.Login_inputSubmit {
+  font-size: 17px;
 }
 .Login_inicia {
   font-size: 20px;
@@ -97,17 +104,19 @@
 .Login_recordarContra {
   /* color: #273141; */
   font-size: 14px;
+  color: #4b4b4b;
 }
 .Login_divCover {
   max-width: 300px;
+  width: 100%;
   overflow: hidden;
   border-radius: 10px 0 0 10px;
-  max-height: 470px;
+  max-height: 435px;
 }
 .Login_Cover {
   position: relative;
-  width: 720px;
-  right: 200px;
+  right: 50px;
+  width: 394px ;
 }
 .Login_hr {
   border: none;
