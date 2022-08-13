@@ -44,7 +44,7 @@ const DetailOffer = () => {
     {open && 
     
       <div className='Detail_divModal'>
-        <FormProposal close={handleClose} />
+        <FormProposal idOferta={offerId.idOffer} close={handleClose} />
       </div>
     }
 

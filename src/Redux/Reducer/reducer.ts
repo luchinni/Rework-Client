@@ -481,8 +481,10 @@ export const checkSession = () => async (dispatch: any) => {
 
   export const newProposalPost = async (newProposal:type.FormProposalType) => {
     try{
-let {remuneration, proposal_description, worked_time} = newProposal
+let {remuneration, proposal_description, worked_time, idWorker, idOffer} = newProposal
 let newProposal2:object = {
+  idWorker,
+  idOffer,
   remuneration,
   proposal_description,
   worked_time
