@@ -21,11 +21,11 @@
 .Header_divContent {
     display: flex;
     justify-content: space-between;
-    max-width: 1136px;
     margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 30px;
 }
 .Header_component.scroll {
-    /* padding: 26px 0; */
     box-shadow: rgba(98, 106, 114, 0.301) 0px -10px 40px 10px;
 }
 .logo {

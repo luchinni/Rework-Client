@@ -6,9 +6,8 @@
 }
 .Login_divContent {
   background-color: #ffffff;
-  /* border: 1px solid gray; */
   max-width: 400px;
-  /* width: 100%; */
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   border-radius: 0 10px 10px 0;
@@ -64,15 +63,22 @@
   cursor: pointer;
 }
 .Login_recuperarCon {
+  /* position: absolute; */
   font-size: 13px;
   margin-bottom: 20px;
 }
-.Login_consinuaCon {
+.Login_divContinuaCon {
+  position: relative;
+  background-color: #61666e;
+}
+.Login_continuaCon {
   text-align: center;
-  margin: 20px 0 10px 0;
+  /* margin: 20px 0 10px 0; */
   font-size: 14px;
   color: #273141;
   font-weight: 500;
+  position: absolute;
+/* left: ; */
 }
 .Login_inicia {
   font-size: 20px;
@@ -106,4 +112,5 @@
 .Login_hr {
   border: none;
   border-top: 1px solid rgb(161, 161, 161);
+  margin-bottom: 25px;
 }

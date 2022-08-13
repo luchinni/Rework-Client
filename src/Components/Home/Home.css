@@ -102,11 +102,11 @@ background-color: rgb(84, 84, 84);
   width: 0rem;
   height: 0rem;
   background: rgba(0, 0, 0, 0.463);
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  border-radius: 15%;
+  -webkit-border-radius: 15%;
+  -moz-border-radius: 15%;
+  -ms-border-radius: 15%;
+  -o-border-radius: 15%;
   cursor: pointer;
   transition: .2s;
   top: 50%;
@@ -124,8 +124,8 @@ background-color: rgb(84, 84, 84);
 }
 
 .goTopBut:hover{
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #000;
+  background: rgba(0, 0, 0, 0.679);
+  /* border: 2px solid #000; */
 }
 
 .goTopBut:hover i{
@@ -135,7 +135,7 @@ background-color: rgb(84, 84, 84);
 .goTopBut i{
   position: absolute;
   font-size: 1rem;
-  top: 48%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   -webkit-transform: translate(-50%, -50%) scale(0);

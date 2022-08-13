@@ -65,7 +65,9 @@ const Login = (props:any) => {
             </form>
             <p className="Login_recuperarCon">Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>
             <hr className="Login_hr" />
-            <p className="Login_consinuaCon">O continua con</p>
+            <div className="Login_divContinuaCon">
+              <p className="Login_continuaCon">O continua con</p>
+            </div>
             <div className="Login_divTercero">
               <button className="Login_ButtonGoogle">
                 <img className="Login_googleImg" src={imgGoogle} alt="googleLink" />
