@@ -5,8 +5,8 @@
     padding: 30px 0;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.878);
-	backdrop-filter: blur(6px);
+    background-color: #fffcfcb8;
+	backdrop-filter: blur(10px);
     z-index: 6;
     transition: all 0.3s ease;
 }
