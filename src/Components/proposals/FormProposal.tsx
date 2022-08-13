@@ -1,12 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { newProposalPost } from '../../Redux/Reducer/reducer';
 import './FormProposal.css';
 import image from '../../images/modal_image_proposal.jpg';
+import decode from "jwt-decode";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserById } from '../../Redux/Reducer/reducer';
+import OfferPost from '../Offer/OfferPost/OfferPost';
 
 
 const FormProposal = (props:any) => {
 
+    console.log("esto es props: ", props)
+
+    const dispatch = useDispatch();
+
+    const token:any = localStorage.getItem("token")
+    const tokenDecode:any = decode(token)
+    const userLogged = useSelector((state: any) => state.workService.userLogged)
+
+    console.log(userLogged)
+
+    useEffect(() => {
+        dispatch(getUserById(tokenDecode))
+      },[])
+
     type formValidate = {
+        idWorker: String,
+        idOffer: String,
         remuneration: Number,
         proposal_description: String,
         worked_time: String,
@@ -21,6 +41,8 @@ const FormProposal = (props:any) => {
     }
     
     const [formu, setFormu] = useState<formValidate>({
+        idWorker: userLogged.id,
+        idOffer: props.idOferta,
         remuneration: 0,
         proposal_description: "",
         worked_time: "",
@@ -103,12 +125,12 @@ const FormProposal = (props:any) => {
     
     const handleSubmit = (e:any) => {
         e.preventDefault();
-    
-        let {remuneration, proposal_description, worked_time, worked_time_select} = formu
+    console.log("si entré iupi")
+        let {remuneration, proposal_description, worked_time, worked_time_select, idWorker, idOffer} = formu
     
         worked_time = `${worked_time} ${worked_time_select}`
         const newProposal:formValidate = {
-            remuneration:remuneration, proposal_description:proposal_description, worked_time:worked_time, worked_time_select:worked_time_select
+            remuneration:remuneration, proposal_description:proposal_description, worked_time:worked_time, worked_time_select:worked_time_select, idWorker:idWorker, idOffer:idOffer
         }
     
         newProposalPost(newProposal)
@@ -118,6 +140,8 @@ const FormProposal = (props:any) => {
       }) 
     
         setFormu({
+            idWorker: "",
+            idOffer: "",
             remuneration: 0,
             proposal_description: "",
             worked_time: "",
@@ -166,7 +190,7 @@ const FormProposal = (props:any) => {
                                         )}
                         </div>
                         
-                            <input className='DetailModal_submit' disabled={error.disabled} name="button" type="submit" value="publicar" onSubmit={(e) => handleSubmit(e)}/>
+                            <input className='DetailModal_submit' disabled={error.disabled} name="button" type="submit" value="publicar" onClick={(e) => handleSubmit(e)}/>
                     </form>
                 </div>
             </div>
