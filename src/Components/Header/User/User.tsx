@@ -36,7 +36,7 @@ function User() {
     <div className='User_Component'>
       <div className='User_DivProfile'>
         <button onClick={handleClick} className='User_divImageProfile'>
-          <img className='User_ImageProfile' src="https://th.bing.com/th/id/R.3fe29c6b3058f48e53e86c9cb687c27f?rik=6eP5XRKYF2C2%2bw&pid=ImgRaw&r=0" alt="profile" />
+          <img className='User_ImageProfile' src={userLogged?.photo} alt="profile" />
         </button>
       </div>
       {open &&
