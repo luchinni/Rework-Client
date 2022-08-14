@@ -30,8 +30,6 @@ function User() {
     navigate('/')
   }
 
-  console.log(userLogged)
-
   return (
     <div className='User_Component'>
       <div className='User_DivProfile'>
