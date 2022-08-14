@@ -113,11 +113,11 @@ const SearchBar = () => {
       {open &&
         <div className='filter_dropDown'>
           <div className="Filter_divOptionsCheckbox">
-            <div className='filter_option'>
+            <div className='filter_type_option'>
               <label>FreeLancers</label>
               <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
             </div>
-            <div className='filter_option'>
+            <div className='filter_type_option'>
               <label>Ofertas</label>
               <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
             </div>
@@ -145,10 +145,10 @@ const SearchBar = () => {
               <div>
                   <div className='filter_option'>
                       <label>Remuneracion</label>
-                      <input type="number" name='remuneration-min' id='remuneration-min' placeholder="Min" onChange={(e)=> handleSelect(e)}/>
-                      <input type="number"  name='remuneration-max' id='remuneration-max' placeholder="Max" onChange={(e)=> handleSelect(e)}/>
+                      <input className='filter_remu' type="number" name='remuneration-min' id='remuneration-min' placeholder="Min" onChange={(e)=> handleSelect(e)}/>
+                      <input className='filter_remu' type="number"  name='remuneration-max' id='remuneration-max' placeholder="Max" onChange={(e)=> handleSelect(e)}/>
                   </div>
-                  <div className='filter_option'>
+                  <div className='filter_workDuration'>
                     <select name='workDuration' id='workDuration' onChange={(e)=> handleSelect(e)}>
                      <option selected={true} hidden>Work Duration</option>
                        {["Menos de 1 mes","1 a 3 meses","4 a 6 meses","Más de 6 meses"].map((e:any) => {
