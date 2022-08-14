@@ -7,14 +7,15 @@ import copy from '../../../images/copy.png';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Toaster, toast} from "react-hot-toast";
 import { Link } from 'react-router-dom';
-import FormProposal from '../../proposals/FormProposal';
+import FormProposal from '../../proposals/FormProposal/FormProposal';
+import CardsProposal from '../../proposals/CardsProposal/CardsProposal';
 import './DetailOffer.css';
 import { useParams } from 'react-router-dom';
 
 const DetailOffer = () => {
 
   const offerId = useSelector((state:any) => state.workService.offerById);
- // console.log("la offer", offerId)
+  console.log("la offer", offerId)
   const currentUser = useSelector((state: any) => state.workService.currentUser)
  // console.log("el user", currentUser)
   
@@ -100,29 +101,19 @@ const DetailOffer = () => {
      </div>
      { 
      //triple igual para que funcione correctamente, porfavor chicos!
-     offerId.userClientId !== currentUser.id || currentUser.isAdmin === true || currentUser.isPremium === true ?
+     offerId.userClientId === currentUser.id || currentUser.isAdmin === true || currentUser.isPremium === true ?
      <div>
       <h2 className='Detail_h2Propuestas'>propuestas</h2>
 
       <div className='Detail_divCardPropuestas'>
+        {offerId.userClientId !== currentUser.id || currentUser.isAdmin === true || currentUser.isPremium === true ?
         <div>
           <button className='Detail_premiumButton'>
             Quieres ver las propuestas de tus competidores? Conviertete en premium
           </button>
-        </div>
-     
-        <div className='Detail_divProposal'>
-          {offerId.proposals?.map((e:any)=>{
-            return (
-              <div className='Detail_Proposal'>
-                <p className='DetailP_UserName'>{e.userWorker?.name}</p>
-                <p className='DetailP_remuneration'>{`Presupuesto ARS: ${e?.remuneration}`}</p>
-                <p className='DetailP_propuestaUser'>{e?.proposal_description}</p>
-                <p className='DetailP_timeUser'>{`Tiempo estimado de entrega: ${e?.worked_time}`}</p>
-              </div>
-            )
-          })}
-        </div>
+        </div> 
+        : false }
+        <CardsProposal offer={offerId}/>
       </div>
     </div>
       : <br/> 

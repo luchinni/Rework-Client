@@ -13,6 +13,11 @@ const SearchBar = () => {
   const [open, setOpen] = useState(false);
   const profession = useSelector((state:any) => state.workService.professions);
   const [workerOrOffer, setworkerOrOffer] = useState("offer");
+  const [remuneration, setRemuneration] = useState({
+    min:0,
+    max:0
+  })
+  const [workDuration, setWorkDurantion] = useState("")
   const history = useNavigate()
   const [rating, setRating] = useState("");
   const [prof, setProf] = useState("");
@@ -33,8 +38,6 @@ const SearchBar = () => {
     const value = e.target.value;
     const check = e.target.checked;
 
-    console.log(value);
-
     if(value === "offer" &&workerCheck?.checked === true){
       workerCheck.checked = false;
     }
@@ -53,7 +56,7 @@ const SearchBar = () => {
     e.preventDefault();
     const input = document.getElementById("inputSearch") as HTMLInputElement | null;
     const inputSearch = input?.value;
-    const filters = {rating:rating, profession:prof}
+    const filters = {rating:rating, profession:prof, remuneration:remuneration, workDuration:workDuration}
     if(workerOrOffer === "worker"){
       dispatch(searchWorker(inputSearch?inputSearch:"", filters))
     }else if(workerOrOffer === "offer"){
@@ -64,9 +67,26 @@ const SearchBar = () => {
 
   const handleSelect = (e: any) => {
     const value = e.target.value;
-    const name = e.target.name;    
+    const name = e.target.name;
     
-    console.log(name, value)
+    if(name === "remuneration-min"){
+      setRemuneration({
+        ...remuneration,
+        min:value
+      })
+    }
+
+    if(name === "remuneration-max"){
+      setRemuneration({
+        ...remuneration,
+        max:value
+      })
+    }
+
+    if(name === "workDuration"){
+      setWorkDurantion(value)
+    }
+    
     if(name === "rating"){
       setRating(value);
     }
@@ -102,7 +122,7 @@ const SearchBar = () => {
               <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
             </div>
           </div>
-
+          {/*workerOrOffer===?*/}
           <div className="Filter_divOptions">
 
             <div className='filter_option'>
@@ -121,8 +141,27 @@ const SearchBar = () => {
                 })}
               </select>
             </div>
-
+            {workerOrOffer==="offer"?(
+              <div>
+                  <div className='filter_option'>
+                      <label>Remuneracion</label>
+                      <input type="number" name='remuneration-min' id='remuneration-min' placeholder="Min" onChange={(e)=> handleSelect(e)}/>
+                      <input type="number"  name='remuneration-max' id='remuneration-max' placeholder="Max" onChange={(e)=> handleSelect(e)}/>
+                  </div>
+                  <div className='filter_option'>
+                    <select name='workDuration' id='workDuration' onChange={(e)=> handleSelect(e)}>
+                     <option selected={true} hidden>Work Duration</option>
+                       {["Menos de 1 mes","1 a 3 meses","4 a 6 meses","Más de 6 meses"].map((e:any) => {
+                        return <option value={e} key={e}> {e} </option>
+                        })}
+                    </select>
+            </div>
+              </div>
+            
+            ):<span></span>
+              }
           </div>
+          
         </div>
       }
     </div>

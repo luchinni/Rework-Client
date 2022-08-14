@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { newProposalPost } from '../../Redux/Reducer/reducer';
+import { newProposalPost } from '../../../Redux/Reducer/reducer';
 import './FormProposal.css';
-import image from '../../images/modal_image_proposal.jpg';
+import image from '../../../images/modal_image_proposal.jpg';
 import decode from "jwt-decode";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserById } from '../../Redux/Reducer/reducer';
-import OfferPost from '../Offer/OfferPost/OfferPost';
+import { getUserById } from '../../../Redux/Reducer/reducer';
+import OfferPost from '../../Offer/OfferPost/OfferPost';
 import { isBreakOrContinueStatement } from 'typescript';
 
 
 const FormProposal = (props:any) => {
 
-    //console.log("esto es props: ", props)
+    console.log("esto es props: ", props)
 
     const dispatch = useDispatch();
 
@@ -128,7 +128,7 @@ const FormProposal = (props:any) => {
     
     const handleSubmit = (e:any) => {
         e.preventDefault();
-    console.log("si entré iupi")
+        console.log("si entré iupi")
         let {remuneration, proposal_description, worked_time, worked_time_select, idWorker, idOffer} = formu
         if (worked_time_select === "") worked_time_select = "días";
         worked_time = `${worked_time} ${worked_time_select}`
@@ -150,17 +150,16 @@ const FormProposal = (props:any) => {
             worked_time: "",
             worked_time_select: ""
         })
+      
         
+        props.close(false)
     }
-     
-    
+ 
       return (
         <div className='DetailModal_component'>
-					<div className='DetailModal_divPadre'>
-						{/* <div className='DetailModal_divButtonClose'>
-								<button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
-						</div> */}
-            <div className='DetailModal_divContent'>
+					<div className='DetailModal_divPadre'>         
+		<div className='DetailModal_divContent'>
+
                 <div>
                     <p className='DetailModal_title'>Envia tu propuesta</p>
                     <form id="form" onSubmit={(e) => e.preventDefault()}>
