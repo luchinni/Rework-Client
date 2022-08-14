@@ -661,4 +661,24 @@ let newProposal2:object = {
       return e
     }
   }
+
+  export function putEditProfileClient (value: ClientTypes, id: string) {
+    return async (dispatch: Dispatch<any>) => {
+      try {
+        await axios.put(`http://localhost:3001/client/${id}`, value)
+      } catch (error) {
+        return (error)
+      }
+    }
+  }
+
+  export function putEditProfileWorker (value: WorkerType, id: string) {
+    return async (dispatch: Dispatch<any>) => {
+      try {
+        await axios.put(`http://localhost:3001/worker/${id}`, value)
+      } catch (error) {
+        return (error)
+      }
+    }
+  }
   
