@@ -157,11 +157,13 @@ const FormProposal = (props:any) => {
         
     }
      
-    
       return (
         <div className='DetailModal_component'>
 					<div className='DetailModal_divPadre'>
             <div className='DetailModal_divContent'>
+	    	{/* <div className='DetailModal_divButtonClose'>
+			<button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
+		</div> */}
                 <div>
                     <p className='DetailModal_title'>Envia tu propuesta</p>
                     <form id="form" onSubmit={(e) => e.preventDefault()}>
