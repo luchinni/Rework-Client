@@ -132,7 +132,7 @@ const FormProposal = (props:any) => {
     
     const handleSubmit = (e:any) => {
         e.preventDefault();
-    console.log("si entré iupi")
+        console.log("si entré iupi")
         let {remuneration, proposal_description, worked_time, worked_time_select, idWorker, idOffer} = formu
     
         worked_time = `${worked_time} ${worked_time_select}`
@@ -154,6 +154,8 @@ const FormProposal = (props:any) => {
             worked_time: "",
             worked_time_select: ""
         })
+
+        props.close(false)
         
     }
      
@@ -161,9 +163,6 @@ const FormProposal = (props:any) => {
       return (
         <div className='DetailModal_component'>
 					<div className='DetailModal_divPadre'>
-						{/* <div className='DetailModal_divButtonClose'>
-								<button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
-						</div> */}
             <div className='DetailModal_divContent'>
                 <div>
                     <p className='DetailModal_title'>Envia tu propuesta</p>
