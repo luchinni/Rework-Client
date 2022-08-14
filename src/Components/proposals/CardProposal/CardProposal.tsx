@@ -1,13 +1,13 @@
 import React from 'react'
 import '../../Offer/DetailOffer/DetailOffer.css';
 import { useDispatch } from 'react-redux';
-const dispatch = useDispatch();
 import { acceptProposal } from '../../../Redux/Reducer/reducer';
 
 const CardProposal = ({props, offer}:any) => {
   console.log("la offer que llegan a card: ", offer)
   console.log("las props que llegan a card: ", props)
-
+  const dispatch = useDispatch();
+  
 
  const handleClick = () => {
   props.state = "acepted";
