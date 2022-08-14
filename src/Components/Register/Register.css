@@ -2,7 +2,7 @@
     display: flex;
     gap: 36px;
     max-width: 1136px;
-    margin: 80px auto 0 auto;
+    margin: 0px auto 0 auto;
 }
 
 .Register_Worker {
@@ -60,4 +60,25 @@
     color: white;
     text-decoration: none;
     border-radius: 4px;
+}
+
+.Register_login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 30px 0;
+    font-size: 24px;
+    text-decoration: none;
+    color: gray
+}
+
+.Register_login > a {
+    padding: 0 8px;
+    text-decoration: none;
+    font-size: 26px;
+    color: #273141
+}
+
+.Register_login > a:hover {
+    color: #D6550D
 }
