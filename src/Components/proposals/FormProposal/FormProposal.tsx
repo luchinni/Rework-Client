@@ -11,7 +11,7 @@ import { isBreakOrContinueStatement } from 'typescript';
 
 const FormProposal = (props:any) => {
 
-    //console.log("esto es props: ", props)
+    console.log("esto es props: ", props)
 
     const dispatch = useDispatch();
 
