@@ -37,11 +37,6 @@ const Home = () => {
     dispatch(favoritesToDB(storageParsed, currentUser.id));
 
   }
-  
-  console.log('tokendecode', tokenDecode)
-  console.log('token', token)
-  
- 
 
   useEffect(() => {
     dispatch(getOffers());
@@ -147,7 +142,7 @@ const showButton = () => {
     }
   }
 }
-
+  console.log("current",currentUser)
     //Ejemplo de useSelector con Toolkit.
     // para hacer un console.log y ver si estaba andando la action.
     /*const global = useSelector((state: any) => state.workService.currentUser)

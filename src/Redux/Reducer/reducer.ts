@@ -22,6 +22,7 @@ const initialState = {
     id: "",
     isWorker: false,
     isAdmin: false,
+    isPremium: false
   },
   userVerified: {
     isActive: false,
@@ -88,10 +89,12 @@ export const workServiceSlice = createSlice({
       state.search = action.payload;
     },
     setCurrentUser: function (state: any, action: any) {
+      console.log("lo que llega", action.payload)
       state.currentUser = {
         id: action.payload.id,
         isWorker: action.payload.isWorker,
         isAdmin: action.payload.isAdmin,
+        isPremium: action.payload.premium
       };
     },
     sortAllOffersAZ: function (state: any) {
@@ -247,6 +250,7 @@ export const workServiceSlice = createSlice({
         id: "",
         isWorker: false,
         isAdmin: false,
+        isPremium: false
       };
     },
     logOutUserLogged: function (state: any) {
@@ -294,7 +298,6 @@ export const getClients = (clients: any) => (dispatch: Dispatch<any>) => {
 
 export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
-    console.log(newOffer);
     return await axios({
       method: "post",
       url: "http://localhost:3001/offer",
@@ -325,10 +328,8 @@ export const getOffers = () => async (dispatch: Dispatch<any>) => {
 
 export const getOfferId =
   (id: String | undefined) => async (dispatch: Dispatch<any>) => {
-    console.log(id);
     try {
       const offerId = await axios.get(`http://localhost:3001/offer/${id}`);
-      console.log(offerId);
       return dispatch(setOfferById(offerId.data));
     } catch (e) {
       alert("Error al requerir el detalle.");
@@ -379,14 +380,12 @@ export function postLogin(user: type.userLogin) {
         url: "http://localhost:3001/login/",
         data: user,
       });
-      console.log("llegue al login", token);
       // lo pasamos a json y lo guardamos en la consola en application local storage
       if (token.data) {
         localStorage.setItem("token", JSON.stringify(token.data));
       }
       //desencryptamos el token
       const data = jwtDecode(token.data);
-      console.log("reducer", data);
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
@@ -590,7 +589,6 @@ export function favoritesToDB(value: any, idUser: string) {
         worker.data.favorites = [...value];
       } else {
         worker.data.favorites = [...worker.data.favorites, ...value];
-        console.log("Aca tenes tu identificador: ", worker.data.favorites);
       }
       await axios({
         method: "PUT",
@@ -622,7 +620,6 @@ export async function getFavoritestoDB(value: any, idUser: string) {
   if (worker.data !== null) {
     if (worker.data.favorites?.find((f: any) => f.idOffer === value.idOffer))
       return;
-    console.log(worker);
     worker.data.favorites = [...worker.data.favorites, value];
     await axios({
       method: "PUT",
@@ -644,12 +641,10 @@ export async function getFavoritestoDB(value: any, idUser: string) {
 export async function remFavoritestoDB(value: any, idUser: string) {
   let worker: any = await axios.get(`http://localhost:3001/worker/${idUser}`);
   let client: any = await axios.get(`http://localhost:3001/client/${idUser}`);
-  console.log(worker.data);
   if (worker.data !== null) {
     worker.data.favorites = [
       ...worker.data.favorites?.filter((g: any) => g.idOffer !== value.idOffer),
     ];
-    console.log(worker.data.favorites);
     await axios({
       method: "PUT",
       url: `http://localhost:3001/worker/${idUser}`,
@@ -705,22 +700,17 @@ export const verifyToken =
       });
 
       if (response.data && response.data === "destroy") {
-        console.log("destroy");
         return localStorage.removeItem("token");
       } else if (response.data && response.data === "renew") {
         const newToken: type.token = {
           ...token,
           exp: token.exp + 7200,
         };
-        console.log("newToken", newToken);
-        console.log("token", token);
         const renewedToken = await axios({
           method: "POST",
           url: `http://localhost:3001/tokenVerify/renew/`,
           data: newToken,
         });
-        console.log("respuesta ->", renewedToken);
-        console.log(JSON.stringify(renewedToken));
         return localStorage.setItem("token", JSON.stringify(renewedToken.data));
       } else if (response.data && response.data === "valid") {
         console.log("valid");
