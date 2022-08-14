@@ -74,7 +74,7 @@ const Login = (props:any) => {
                 <img className="Login_googleImg" src={imgGoogle} alt="googleLink" />
               </button>
             </div>
-            <span className="Login_Register">No tienes una cuenta? <Link to="#">registrate</Link></span>
+            <span className="Login_Register">No tienes una cuenta? <a href="" onClick={()=>navigate("/register")}>registrate</a></span>
           </div>
       </div>
       <div className="Login_divCover">
