@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { newProposalPost } from '../../Redux/Reducer/reducer';
+import { newProposalPost } from '../../../Redux/Reducer/reducer';
 import './FormProposal.css';
-import image from '../../images/modal_image_proposal.jpg';
+import image from '../../../images/modal_image_proposal.jpg';
 import decode from "jwt-decode";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserById } from '../../Redux/Reducer/reducer';
-import OfferPost from '../Offer/OfferPost/OfferPost';
+import { getUserById } from '../../../Redux/Reducer/reducer';
+import OfferPost from '../../Offer/OfferPost/OfferPost';
 import { isBreakOrContinueStatement } from 'typescript';
 
 
