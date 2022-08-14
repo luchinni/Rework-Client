@@ -10,6 +10,7 @@ const CardProposal = ({props}:any) => {
                 <p className='DetailP_remuneration'>{`Presupuesto ARS: ${props?.remuneration}`}</p>
                 <p className='DetailP_propuestaUser'>{props?.proposal_description}</p>
                 <p className='DetailP_timeUser'>{`Tiempo estimado de entrega: ${props?.worked_time}`}</p>
+                <button name="button"></button>
               </div>
   )
 }
