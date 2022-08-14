@@ -680,3 +680,7 @@ let newProposal2:object = {
   }
 }
   
+export const getOfferForHistory = async (id:string) => {
+  const offerId = await axios.get(`http://localhost:3001/offer/${id}`)
+  return offerId.data;
+}
