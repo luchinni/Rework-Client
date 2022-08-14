@@ -667,4 +667,16 @@ let newProposal2:object = {
       return e
     }
   }
+
+  export const acceptProposal = async (proposalState:any) => {
+    try{
+      await axios({
+        method:"PUT",
+        url: `http://localhost:3001/proposal/state`,
+        data: proposalState
+        })
+  } catch (error) {
+    return error
+  }
+}
   
