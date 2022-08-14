@@ -8,8 +8,9 @@ import imageWorker from "../../images/Money_motivation _Flatline.png"
 const Register = () => {
   console.log("pase por register")
   return (
-    <div className='Register_component'>
+    <div className='Register_container'>
         <HeaderRegister/>
+        <p className='Register_login'>Ya tienes una cuenta? accede a <a href="/login">Login</a></p>
         <div className='Register_divclientWorker'>
           <div className='Register_Worker'>
             <p className='Register_orTitle'>Registrate como <span className='Register_orTitleOrange'>FreeLancer</span></p>
@@ -30,8 +31,7 @@ const Register = () => {
               <Link className='Register_button' to="/register/client">Registrate</Link>
             </div>
         </div>
-
-    </div>
+      </div>
   )
 }
 
