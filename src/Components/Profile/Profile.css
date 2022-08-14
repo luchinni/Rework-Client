@@ -106,7 +106,7 @@
 .Profile_tag:hover {
   color: #273141;
 }
-.Profile_tag:focus {
+.Profile_tag.open {
   color: #273141;
   border-bottom: 3px solid #273141;
 }
