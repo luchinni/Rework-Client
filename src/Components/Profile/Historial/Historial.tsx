@@ -39,10 +39,14 @@ function Historial() {
         <h2>Historial</h2>
         <div className='Historial_divHistorial'>
           <div className='Historial_historial'>
-            <p>viste el perfil de: <b>Debora meltorozo</b></p>
-          </div>
-          <div className='Historial_historial'>
-            <p>viste el perfil de: <b>Analiza melchoto</b></p>
+          {
+              userLogged.offers.length>0?
+              userLogged.offers?.map((e:any) => {
+                return <HistorialCard props={e}/>
+              })
+              :
+              <p>Aun no hay datos que mostrar</p>
+            }
           </div>
         </div>
       </div>}
