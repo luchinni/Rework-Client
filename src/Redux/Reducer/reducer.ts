@@ -351,7 +351,9 @@ try{
 
 interface filter{
   rating:string,
-  profession:string
+  profession:string,
+  remuneration:{min:number | null,max:number | null},
+  workDuration:string
 }
 
 export const searchWorker =  (input:string, filters:filter) => async (dispatch:Dispatch<any>) => {
@@ -368,8 +370,12 @@ export const searchWorker =  (input:string, filters:filter) => async (dispatch:D
 
 export const searchOffer = (input:string, filters:filter) => async (dispatch:Dispatch<any>) => {
   try {
-    if(input==="")return
-    const offers = await axios.get(`http://localhost:3001/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}`)
+    let offers:any;
+    if(filters.remuneration.max===0 && filters.remuneration.min===0){
+      offers = await axios.get(`http://localhost:3001/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&wdt=${filters.workDuration}`)
+    }else{
+      offers = await axios.get(`http://localhost:3001/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&max=${filters.remuneration.max}&min=${filters.remuneration.min}&wdt=${filters.workDuration}`)
+    }
     dispatch(setSearchedOffers(offers.data))
     dispatch(setSearch("offer"));
   } catch (error) {

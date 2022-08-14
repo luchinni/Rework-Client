@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { newProposalPost } from '../../Redux/Reducer/reducer';
+import { newProposalPost } from '../../../Redux/Reducer/reducer';
 import './FormProposal.css';
-import image from '../../images/modal_image_proposal.jpg';
+import image from '../../../images/modal_image_proposal.jpg';
 import decode from "jwt-decode";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserById } from '../../Redux/Reducer/reducer';
-import OfferPost from '../Offer/OfferPost/OfferPost';
+import { getUserById } from '../../../Redux/Reducer/reducer';
+import OfferPost from '../../Offer/OfferPost/OfferPost';
 import { isBreakOrContinueStatement } from 'typescript';
 
 
 const FormProposal = (props:any) => {
 
-    console.log("esto es props: ", props)
+    //console.log("esto es props: ", props)
 
     const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ const FormProposal = (props:any) => {
     const tokenDecode:any = decode(token)
     const userLogged = useSelector((state: any) => state.workService.userLogged)
 
-    console.log(userLogged)
+    //console.log(userLogged)
 
     useEffect(() => {
         dispatch(getUserById(tokenDecode))
@@ -38,7 +38,6 @@ const FormProposal = (props:any) => {
         remuneration: String,
         proposal_description: String,
         worked_time: String,
-        worked_time_select: String,
         disabled: boolean | undefined
     }
     
@@ -55,7 +54,6 @@ const FormProposal = (props:any) => {
         remuneration: "campo requerido",
         proposal_description: "campo requerido",
         worked_time: "campo requerido",
-        worked_time_select: "campo requerido",
         disabled: true  
     })
     
@@ -84,7 +82,7 @@ const FormProposal = (props:any) => {
         const name = e.target.name
         let errors:errorFormValidate
         errors = error
-    
+        console.log("name: ", name, "value: ",value)
         switch(name) {
             case "remuneration":
                 let remunerationPattern:RegExp = /^[0-9]+$/
@@ -105,10 +103,6 @@ const FormProposal = (props:any) => {
                 : parseInt(value) <=0? "No puede ser inferior a 0."
                 : "";
                 break;
-            case "worked_time_select":
-                errors.worked_time_select = formu.worked_time_select === undefined || null ? "elija una opción."
-                : "";
-                break;
                 
         }
     
@@ -124,17 +118,19 @@ const FormProposal = (props:any) => {
 
     const handleSelect = (e:any) => {
         const select = e.target.value;   
+        console.log(select)
         if (select === "default") return;
         if(formu.worked_time_select.includes(e.target.value)) return;
         setFormu({...formu,
             worked_time_select: select})
         }
+
     
     const handleSubmit = (e:any) => {
         e.preventDefault();
         console.log("si entré iupi")
         let {remuneration, proposal_description, worked_time, worked_time_select, idWorker, idOffer} = formu
-    
+        if (worked_time_select === "") worked_time_select = "días";
         worked_time = `${worked_time} ${worked_time_select}`
         const newProposal:formValidate = {
             remuneration:remuneration, proposal_description:proposal_description, worked_time:worked_time, worked_time_select:worked_time_select, idWorker:idWorker, idOffer:idOffer
@@ -191,11 +187,8 @@ const FormProposal = (props:any) => {
 																			return (<option>{e}</option>)
                             	      })}
                             	  </select> 
-															}
-                              {error.worked_time_select && (
-																<p className="danger">{error.worked_time_select}</p>
-																)}
-														</div>
+											}
+							</div>
                         </div>
                         <div className='DetailModal_divInputs'>
                             <label className='DetailModal_label'>Descripcion</label>
@@ -210,15 +203,15 @@ const FormProposal = (props:any) => {
                     </form>
                 </div>
             </div>
-							<div>
-                <div className='DetailModal_divImage'>
-                    <div className='DetailModal_divButtonClose'>
-                        <button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
-                    </div>
-                    <img className='DetailModal_image' src={image} alt="example" />                 
-                </div>                
-            </div> 
-					</div>                  
+				<div>
+                    <div className='DetailModal_divImage'>
+                        <div className='DetailModal_divButtonClose'>
+                            <button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
+                        </div>
+                        <img className='DetailModal_image' src={image} alt="example" />                 
+                    </div>                
+                </div> 
+			</div>                  
         </div>
       )
     }
