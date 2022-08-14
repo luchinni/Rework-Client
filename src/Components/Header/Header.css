@@ -7,7 +7,7 @@
     width: 100%;
     background-color: #fffcfcb8;
 	backdrop-filter: blur(10px);
-    z-index: 6;
+    z-index: 10;
     transition: all 0.3s ease;
 }
 
@@ -69,4 +69,8 @@
     position: absolute;
     left: 27.5%;
     top: 150%;
+}
+.Header_divButtonsUser {
+    display: flex;
+    gap: 40px;
 }

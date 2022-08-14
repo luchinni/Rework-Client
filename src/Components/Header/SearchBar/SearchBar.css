@@ -1,7 +1,7 @@
 .SearchBar_component {
   position: absolute;
-  /* margin: 0 0 0 10%; */
-  right: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .SearchBar {
   display: flex;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import {checkSession, getOfferId} from '../../../Redux/Reducer/reducer';
 import Header from '../../Header/Header';
-import copy from '../../../images/copy.jpg';
+import copy from '../../../images/copy.png';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Toaster, toast} from "react-hot-toast";
 import { Link } from 'react-router-dom';
@@ -102,19 +102,28 @@ const DetailOffer = () => {
      //triple igual para que funcione correctamente, porfavor chicos!
      offerId.userClientId !== currentUser.id || currentUser.isAdmin === true || currentUser.isPremium === true ?
      <div>
-     <h2 className='Detail_h2Propuestas'>propuestas</h2>
-     <div className='Detail_divProposal'>
-       {offerId.proposals?.map((e:any)=>{
-         return (
-           <div className='Detail_Proposal'>
-             <p className='DetailP_UserName'>{e.userWorker?.name}</p>
-             <p className='DetailP_remuneration'>{`Presupuesto ARS: ${e?.remuneration}`}</p>
-             <p className='DetailP_propuestaUser'>{e?.proposal_description}</p>
-             <p className='DetailP_timeUser'>{`Tiempo estimado de entrega: ${e?.worked_time}`}</p>
-           </div>
-         )
-       })}
-     </div>
+      <h2 className='Detail_h2Propuestas'>propuestas</h2>
+
+      <div className='Detail_divCardPropuestas'>
+        <div>
+          <button className='Detail_premiumButton'>
+            Quieres ver las propuestas de tus competidores? Conviertete en premium
+          </button>
+        </div>
+     
+        <div className='Detail_divProposal'>
+          {offerId.proposals?.map((e:any)=>{
+            return (
+              <div className='Detail_Proposal'>
+                <p className='DetailP_UserName'>{e.userWorker?.name}</p>
+                <p className='DetailP_remuneration'>{`Presupuesto ARS: ${e?.remuneration}`}</p>
+                <p className='DetailP_propuestaUser'>{e?.proposal_description}</p>
+                <p className='DetailP_timeUser'>{`Tiempo estimado de entrega: ${e?.worked_time}`}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </div>
       : <br/> 
     }

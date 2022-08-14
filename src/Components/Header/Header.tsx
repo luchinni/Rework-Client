@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import User from './User/User';
 import jwtDecode from "jwt-decode"
 import Login from '../Login/Login';
+import Notification from './Notification/Notification';
 
   const Header = () => {
 
@@ -55,7 +56,8 @@ import Login from '../Login/Login';
           <div>
             { 
               currentUser?.id !== '' && userLogged?.name !== '' ? 
-              <div>
+              <div className='Header_divButtonsUser'>
+                <Notification />
                 <User/>
               </div>
               :

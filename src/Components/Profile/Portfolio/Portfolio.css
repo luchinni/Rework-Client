@@ -22,13 +22,9 @@
 }
 .Portfolio_divMap{
     display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows: repeat(0, 1fr); */
-  grid-gap: 10px;
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 15px; */
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-rows: repeat(0, 1fr); */
+    grid-gap: 10px;
 }
 .Portfolio_divTitle {
     max-width: 210px;

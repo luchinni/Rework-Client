@@ -160,6 +160,10 @@ const FormProposal = (props:any) => {
     
       return (
         <div className='DetailModal_component'>
+					<div className='DetailModal_divPadre'>
+						{/* <div className='DetailModal_divButtonClose'>
+								<button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
+						</div> */}
             <div className='DetailModal_divContent'>
                 <div>
                     <p className='DetailModal_title'>Envia tu propuesta</p>
@@ -181,20 +185,23 @@ const FormProposal = (props:any) => {
                                                 <p className="danger">{error.worked_time}</p>
                                             )}
                             </div>
-                            { <select name='worked_time_select' id='worked_time_select' onChange={(e) => handleSelect(e)}>
-                                    <option selected={true} hidden>Seleccione</option>
-                                    {["días", "semanas", "meses"].map(e => {
-                                        return (<option>{e}</option>)
-                                    })}
-                                </select> }
-                                    {error.worked_time_select && (
-                                                <p className="danger">{error.worked_time_select}</p>
-                                    )}
+														<div className='DetailModal_divSelect'>
+                            	{ <select name='worked_time_select' id='worked_time_select' onChange={(e) => handleSelect(e)}>
+                            	    <option selected={true} hidden>Seleccione</option>
+                            	      {["días", "semanas", "meses"].map(e => {
+																			return (<option>{e}</option>)
+                            	      })}
+                            	  </select> 
+															}
+                              {error.worked_time_select && (
+																<p className="danger">{error.worked_time_select}</p>
+																)}
+														</div>
                         </div>
                         <div className='DetailModal_divInputs'>
                             <label className='DetailModal_label'>Descripcion</label>
                             <textarea className='DetailModal_input' /*className={error.proposal_description && 'danger'}*/
-                            name="proposal_description" cols={30} rows={5} placeholder='Descripción...' onChange={handleChange}></textarea>
+                            name="proposal_description" cols={30} rows={3} placeholder='Descripción...' onChange={handleChange}></textarea>
                                 {error.proposal_description && (
                                             <p className="danger">{error.proposal_description}</p>
                                         )}
@@ -204,14 +211,15 @@ const FormProposal = (props:any) => {
                     </form>
                 </div>
             </div>
-                <div>
-                    <div className='DetailModal_divImage'>
-                        <div className='DetailModal_divButtonClose'>
-                            <button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
-                        </div>
-                        <img className='DetailModal_image' src={image} alt="example" />                 
-                    </div>                
-                </div>                   
+							<div>
+                <div className='DetailModal_divImage'>
+                    <div className='DetailModal_divButtonClose'>
+                        <button className='DetailModal_buttonClose' onClick={handleModalClose}>x</button>
+                    </div>
+                    <img className='DetailModal_image' src={image} alt="example" />                 
+                </div>                
+            </div> 
+					</div>                  
         </div>
       )
     }
