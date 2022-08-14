@@ -1,7 +1,6 @@
 import React from 'react'
 import '../../Offer/DetailOffer/DetailOffer.css';
 import { useDispatch } from 'react-redux';
-const dispatch = useDispatch();
 import { acceptProposal } from '../../../Redux/Reducer/reducer';
 
 const CardProposal = ({props, offer}:any) => {
@@ -9,16 +8,30 @@ const CardProposal = ({props, offer}:any) => {
   console.log("las props que llegan a card: ", props)
 
 
- const handleClick = () => {
-  props.state = "acepted";
-  const state = props.state
-  const id = props.idProposal
-  const proposalState:object = {
-    state,
-    id
-  }
-  dispatch(acceptProposal(proposalState))
 
+ const handleClick = () => {
+  // props.state = "accepted";
+
+  offer.proposals?.map((e:any) => {
+    if (e.idProposal !== props.idProposal){
+      let state = "rejected"
+      let id = e.idProposal
+      let proposalState: {state:string, id:string} = {
+        state,
+        id
+      }
+      acceptProposal(proposalState)
+    } else {
+      let state = "accepted"
+      let id = props.idProposal
+      let proposalState: {state:string, id:string} = {
+        state,
+        id
+      }
+      acceptProposal(proposalState)
+    }
+
+  })
   }
 
   return (
