@@ -20,8 +20,6 @@ const HistorialCard = ({props}:any) => {
         })
         dispatch(checkSession())
       }, [dispatch])
-
-      console.log(currentOffer)
   return (
     <div className='Historial-contenedor'>
         <p>Realizaste una propuesta de trabajo a la oferta: <b>{currentOffer.userClient?.name}</b><GiArchiveResearch onClick={()=>navigate(`/detailOffer/${currentOffer.idOffer}`)}/></p>
