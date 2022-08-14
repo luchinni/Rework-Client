@@ -9,16 +9,30 @@ const CardProposal = ({props, offer}:any) => {
   const dispatch = useDispatch();
   
 
- const handleClick = () => {
-  props.state = "acepted";
-  const state = props.state
-  const id = props.idProposal
-  const proposalState:object = {
-    state,
-    id
-  }
-  dispatch(acceptProposal(proposalState))
 
+ const handleClick = () => {
+  // props.state = "accepted";
+
+  offer.proposals?.map((e:any) => {
+    if (e.idProposal !== props.idProposal){
+      let state = "rejected"
+      let id = e.idProposal
+      let proposalState: {state:string, id:string} = {
+        state,
+        id
+      }
+      acceptProposal(proposalState)
+    } else {
+      let state = "accepted"
+      let id = props.idProposal
+      let proposalState: {state:string, id:string} = {
+        state,
+        id
+      }
+      acceptProposal(proposalState)
+    }
+
+  })
   }
 
   return (
