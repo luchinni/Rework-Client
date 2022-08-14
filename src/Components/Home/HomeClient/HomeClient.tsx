@@ -147,11 +147,6 @@ const showButton = () => {
     }
   }
 }
-
-    //Ejemplo de useSelector con Toolkit.
-    // para hacer un console.log y ver si estaba andando la action.
-    /*const global = useSelector((state: any) => state.workService.currentUser)
-    console.log("AAAAAAAAAAAAAAAAAAA", global)*/
   return (
     <div className='Home_component'>
       <Header/>
