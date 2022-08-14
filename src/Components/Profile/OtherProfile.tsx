@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import OtherPortfolio from './Portfolio/OtherPorfolio';
 import CardsReview from '../Reviews/CardsReview/CardsReview';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect , useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdOther } from '../../Redux/Reducer/reducer';
 
@@ -17,6 +17,28 @@ const OtherProfile = () => {
     useEffect(() => {
          dispatch(getUserByIdOther(params.id));
       }, [dispatch])
+
+      const [portfolioOpen, setPortfolioOpen] = useState(true);
+      const [informationOpen, setInformationOpen] = useState(false);
+      const [reviewsOpen, setReviewsOpen] = useState(false);
+    
+      function handlePort() {
+        setPortfolioOpen(true)
+        setInformationOpen(false)
+        setReviewsOpen(false)
+      }
+    
+      function handleInfo() {
+        setInformationOpen(true)
+        setPortfolioOpen(false)
+        setReviewsOpen(false)
+      }
+    
+      function handleRevi() {
+        setReviewsOpen(true)
+        setPortfolioOpen(false)
+        setInformationOpen(false)
+      }
 
     return (
         <div className='Profile_Component'>
@@ -43,19 +65,35 @@ const OtherProfile = () => {
               </div>
             </div>
     
-            <div>
-              <h3>Descripción:</h3>
-            </div>
-    
             <div className='Profile_divTags'>
-              <button className='Profile_tag'>Porfolio</button>
-              <button className='Profile_tag'>Informacion</button>
-              <button className='Profile_tag'>Reviews</button>
+              <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
+              <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
+              <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
             </div>
     
-            <div className='Profile_divPortfolio'>
-              <OtherPortfolio/>
-            </div>
+
+        { portfolioOpen ? 
+          <div className='Profile_divPortfolio'>
+            <OtherPortfolio/>
+          </div>
+          : false
+        }
+
+
+        { informationOpen ? 
+          <div className='Profile_divPortfolio'>
+            information
+          </div>
+          : false
+        }
+
+        {
+          reviewsOpen ?
+          <div className='Profile_divPortfolio'>
+            reviews
+          </div>
+          : false
+        }
     
           </div>
           <CardsReview/>
