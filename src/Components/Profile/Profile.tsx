@@ -22,8 +22,11 @@ function Profile() {
     dispatch(checkSession())
   },[])
 
- //const users = useSelector((state: any) => state.workService.offers)
+  //const users = useSelector((state: any) => state.workService.offers)
+  // const currentUser = useSelector((state:any) => state.workService.currentUser)
+  // console.log('current' , currentUser)
   const userLogged = useSelector((state: any) => state.workService.userLogged)
+  // console.log('loged', userLogged)
 
   const [portfolioOpen, setPortfolioOpen] = useState(true);
   const [informationOpen, setInformationOpen] = useState(false);
@@ -102,12 +105,14 @@ function Profile() {
           <button className={historialOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleHist}>Historial</button>
         </div>
 
+
         { portfolioOpen ? 
           <div className='Profile_divPortfolio'>
             <Portfolio/>
           </div>
           : false
         }
+
 
         { informationOpen ? 
           <div className='Profile_divPortfolio'>

@@ -751,3 +751,20 @@ export async function putEditProfileWorker(value: WorkerType, id: string) {
     return error;
   }
 }
+
+  export const acceptProposal = async (proposalState:any) => {
+    try{
+      await axios({
+        method:"PUT",
+        url: `http://localhost:3001/proposal/state`,
+        data: proposalState
+        })
+  } catch (error) {
+    return error
+  }
+}
+  
+export const getOfferForHistory = async (id:string) => {
+  const offerId = await axios.get(`http://localhost:3001/offer/${id}`)
+  return offerId.data;
+}
