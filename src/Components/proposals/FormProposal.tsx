@@ -154,8 +154,6 @@ const FormProposal = (props:any) => {
             worked_time: "",
             worked_time_select: ""
         })
-
-        props.close(false)
         
     }
      
