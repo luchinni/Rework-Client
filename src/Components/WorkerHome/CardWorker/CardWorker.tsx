@@ -85,9 +85,9 @@ console.log(props)
                 </div>
             </div>
             <div className='Card_options'>
-            <button /*onClick={handleClick}*/ className='cardButton_options'>
+          {  /*<button*/ /*onClick={handleClick}*/ /*className='cardButton_options'>
                 <img className='more' src={save} alt="save" />
-            </button>
+                </button>*/}
             <div className='div_cardButton'>
                 <button onClick={handleClick} className='cardButton_options'>
                     <img className='more' src={more} alt="more" />
