@@ -18,6 +18,7 @@ const Carrusel = () => {
     const [offersRating, setOffersRating] = useState([]);
     const [workersRating, setWorkersRating] = useState([]);
     const userLogged = useSelector((state: any) => state.workService.userLogged)
+    const currentUser = useSelector ((state: any) => state.workService.currentUser)
 
     useEffect(() => {
         getOffersMoreRating()
@@ -31,14 +32,18 @@ const Carrusel = () => {
 
         
     }, [])
+    console.log("offers", offersRating)
     
   return (
         <>
+        {currentUser.id !== '' && offersRating[0] !== undefined?
+
+        <div>
         {userLogged.isWorker===true?(
             <div>
             <h2>Ofertas destacadas</h2>
             <Swiper
-            slidesPerView={1}
+            slidesPerView={2}
             spaceBetween={0}
             slidesPerGroup={1}
             loop={true}
@@ -52,6 +57,8 @@ const Carrusel = () => {
             className="mySwiper"
           >
             {offersRating && offersRating?.map((o:any, i:any) =>{
+              console.log("la o", o)
+              console.log("la i", i)
             return(
                 <SwiperSlide><CardOffer key={i} props={o} /></SwiperSlide>
             )
@@ -83,8 +90,11 @@ const Carrusel = () => {
           })}
           </Swiper>
           </div>
+     }
+     </div>
+     :
+     <br/>
     }
-        
         </>
   )
 }

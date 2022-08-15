@@ -81,10 +81,10 @@ const CardOffer = ({props}:any) => {
       <div className='div_profileSection'>
         <div className='div_infoUser'>
           <div className='Card_divContImageProfile'>
-            <img className='Card_profileImage' src={props.userClient?.photo} alt="Client Photo" />
+            <img className='Card_profileImage' src={props.userClient?.photo || props.userWorker?.photo} alt="Client Photo" />
           </div>
           <div className='div_userDatos'>
-            <Link to={`/profile/${props.userClientId}`} className='Card_userName'>{props.userClient?.name}</Link>
+            <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
             <span className='Card_userRating'>Rating: {props.userClient?.rating}</span>
           </div>
         </div>
