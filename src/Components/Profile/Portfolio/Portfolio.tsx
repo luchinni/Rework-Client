@@ -55,7 +55,7 @@ const Portfolio = () => {
                 return (
                   <div className='Portfolio_divItemMap'>
                     <div onClick={handleCardOpen} className='Portfolio_divItems'>
-                      <img src={`data:image/png;base64,${e.photo}`} className="Portfolio_Item"/> 
+                      <img src={e.photo} className="Portfolio_Item"/> 
                     </div>
                   </div>
                 )
