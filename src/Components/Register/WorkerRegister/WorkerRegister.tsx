@@ -9,6 +9,7 @@ import HeaderRegister from '../HeaderRegister/HeaderRegister';
 import './WorkerRegister.css';
 import { resolve } from 'node:path/win32';
 import { createBrotliCompress } from 'node:zlib';
+import Axios, { AxiosResponse } from 'axios';
 
 interface HeaderState{
 
@@ -66,19 +67,18 @@ validarForm(errors:type.errorsTypeWorker) {
   }
 }
 
-async parseImage(e:any, cb:Function){
-  let file = e.target.files[0]
-  let reader:any = new FileReader();
-  let base64String:any = reader.onload = async function(){
-    base64String = reader.result?.replace("data:","").replace(/^.+,/,""); 
-    //resolve(reader.result);
-    cb(reader.result)
-    // this.setState({
-    //   image:base64String
-    // })
+async postImageOnCloudinary(e: any) {
+  const formData = new FormData();
+  formData.append("file", e);
+  formData.append("upload_preset", "re-work");
+
+  try {
+    const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
+    const data: any = response.data;
+    return data.url;
+  } catch (error) {
+    console.log(error);
   }
-  const algo = await reader.readAsDataURL(file);
-  console.log(reader.result);
 }
 
 async handleChange(e:any) {
@@ -87,13 +87,12 @@ async handleChange(e:any) {
   let errors:type.errorsTypeWorker;
   errors = this.state.errors;
 
-  if(name==="image"){
-     return await this.parseImage(e, (base64String:any) => {
-      this.setState({
-         image:base64String
-       })
-     })
-}
+  if (name === "image") {
+    this.setState({
+      image: e.target.files[0]
+    });
+    return
+  };
 
   switch (name) {
     case "name":
@@ -130,10 +129,11 @@ async handleChange(e:any) {
 this.validarForm(this.state.errors)
 }
 
-handleSubmit(e:any){
+async handleSubmit(e:any){
   e.preventDefault();
+  let image = await this.postImageOnCloudinary(this.state.image);
 
-  let { name, lastName, password, user_mail, birthdate, image, profession, skills} = this.state;
+  let { name, lastName, password, user_mail, birthdate, profession, skills} = this.state;
   name = name?this.firstWordUpperCase(name):name;
   lastName = lastName? this.firstWordUpperCase(lastName):lastName; 
 

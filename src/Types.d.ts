@@ -7,7 +7,7 @@ export interface ClientType {
     birthdate:String,
     image:String,
     errors:errorsType,
-    disabled:boolean
+    disabled:boolean,
 }
 
 
