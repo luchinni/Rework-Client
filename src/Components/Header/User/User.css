@@ -2,12 +2,12 @@
   position: relative;
 }
 .User_DivProfile {
-  max-height: 35px;
+  max-height: 50px;
   overflow: hidden;
 }
 .User_divImageProfile {
-  max-width: 35px;
-  max-height: 35px;
+  max-width: 50px;
+  max-height: 50px;
   overflow: hidden;
   border-radius: 6px;
   border: none;
@@ -15,8 +15,8 @@
 }
 .User_ImageProfile {
   position: relative;
-  max-width: 70px;
-  /* right: 17px; */
+  max-width: 50px;
+  max-height: 50px;
 }
 .User_Dropdown {
   position: absolute;
