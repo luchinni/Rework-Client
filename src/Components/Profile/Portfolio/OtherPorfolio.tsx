@@ -25,7 +25,7 @@ const Portfolio = () => {
                {loading===false? user.portfolios?.map((e:any) => {
                 return (<div>
                             <p>{e.title}</p>
-                            <img src={`data:image/png;base64,${e.photo}`} className="Portfolio_divItems"/> 
+                            <img src={e.photo} className="Portfolio_divItems"/> 
                             </div>)
                 }):"loading..."}
                 </div>
