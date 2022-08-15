@@ -30,8 +30,6 @@ function User() {
     navigate('/')
   }
 
-  console.log(userLogged)
-
   return (
     <div className='User_Component'>
       <div className='User_DivProfile'>
@@ -54,18 +52,27 @@ function User() {
             {
               currentUser?.id !== '' && userLogged?.isWorker === true ? 
               <div className='User_typeOfUser'>
-                <span>Worker</span>
+                <span>Freelancer</span>
               </div>
               :
               <div className='User_typeOfUser'>
-                <span>Client</span>
+                <span>Cliente</span>
               </div>
             }
 
             <hr className='User_hr' />
-            <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>
-            <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
-            <Link className='UserDropdownItem' to='#'>Opciones</Link>
+            {currentUser?.isWorker === false ?
+            <div className='User_DropdownOptions'>
+              <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>  
+              <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
+              <Link className='UserDropdownItem' to='#'>Opciones</Link>
+            </div>
+              :
+              <div className='User_DropdownOptions'>
+              <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>
+              <Link className='UserDropdownItem' to='#'>Opciones</Link>
+              </div>
+            }
             <hr className='User_hr' />
             <div>
               <button className='User_buttonLogout' onClick={handleLogOut} >Logout</button>

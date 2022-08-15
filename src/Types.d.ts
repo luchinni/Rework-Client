@@ -107,13 +107,6 @@ export interface errorsType {
     image:String,
 }
 
-export interface errorsTypeEditClient {
-    name:String,
-    lastName:String,
-    birthdate:String,
-    image:String,
-}
-
 export interface errorsTypeWorker {
     name:String,
     lastName:String,
@@ -148,6 +141,13 @@ export interface FormProposalType{
         worked_time: String,
 }
 
+export interface errorsTypeEditClient {
+    name:String,
+    lastName:String,
+    birthdate:String,
+    image:String,
+}
+
 export interface ClientTypeUpdate {
     name:String,
     lastName:String,
@@ -155,4 +155,22 @@ export interface ClientTypeUpdate {
     photo:string,
     disabled: boolean | undefined,
     errors:errorsTypeEditClient,
+}
+
+export interface errorsTypeEditWorker {
+    name:String,
+    lastName:String,
+    birthdate:String,
+    image:String,
+}
+
+export interface WorkerTypeUpdate {
+    name:String,
+    lastName:String,
+    born_date:String,
+    photo:string,
+    profession: String[],
+    skills: String[],
+    disabled: boolean | undefined,
+    errors:errorsTypeEditWorker,
 }
