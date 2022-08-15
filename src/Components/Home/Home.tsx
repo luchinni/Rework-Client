@@ -151,10 +151,12 @@ const showButton = () => {
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
+
         <Banner/> 
         <div>
           <Carrusel/>
         </div>
+
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <Filtros />
