@@ -162,6 +162,7 @@ export interface errorsTypeEditWorker {
     lastName:String,
     birthdate:String,
     image:String,
+    disabled: boolean | undefined,
 }
 
 export interface WorkerTypeUpdate {
@@ -171,6 +172,4 @@ export interface WorkerTypeUpdate {
     photo:string,
     profession: String[],
     skills: String[],
-    disabled: boolean | undefined,
-    errors:errorsTypeEditWorker,
 }

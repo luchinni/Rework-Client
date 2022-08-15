@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { putEditProfileClient } from "../../../Redux/Reducer/reducer";
 import { ClientTypeUpdate, errorsTypeEditClient } from "../../../Types";
@@ -7,7 +7,7 @@ function FormEditProfileClient() {
 
   const userLogged = useSelector((state: any) => state.workService.userLogged)
   
-  const [client, setClient] = useState <ClientTypeUpdate>({
+  const [client, setClient] = React.useState <ClientTypeUpdate>({
     name: "",
     lastName: "",
     born_date: "",
@@ -57,7 +57,7 @@ function FormEditProfileClient() {
     const name = e.target.name;
     let errors:errorsTypeEditClient;
     errors = client.errors;
-
+    
     if (name === "image") {
       return await parseImage(e, (base64String: string) => {
         setClient({
@@ -105,8 +105,8 @@ function FormEditProfileClient() {
             ? "La fecha ingresada es invalida."
             : year[0] > date.getFullYear()
             ? "La fecha ingresada es invalida."
-            : year[0] < 1940
-            ? "La año debe ser mayor a 1940"
+            : year[0] < 1910
+            ? "El año debe ser mayor a 1940"
             : "";
         break;
       default:
@@ -121,6 +121,7 @@ function FormEditProfileClient() {
 
   function onSubmit(e: any) {
     e.preventDefault();
+
   }
 
   function handleSubmit(e: any) {
@@ -150,43 +151,43 @@ function FormEditProfileClient() {
         <form onSubmit={(e) => onSubmit(e)}>
           <div>
             <input
-              className="CR_inpunt"
+              className="Update_inpunt"
               type="text"
               name="name"
               placeholder="Nombre"
               onChange={(e) => handleChange(e)}
             />
             {!client.errors.name ? null : (
-              <div className="CR_inputError">{client.errors.name}</div>
+              <div className="Update_inputError">{client.errors.name}</div>
             )}
           </div>
           <div>
             <input
-              className="CR_inpunt"
+              className="Update_inpunt"
               type="text"
               name="lastName"
               placeholder="Apellido"
               onChange={(e) => handleChange(e)}
             />
             {!client.errors.lastName ? null : (
-              <div className="CR_inputError">{client.errors.lastName}</div>
+              <div className="Update_inputError">{client.errors.lastName}</div>
             )}
           </div>
           <div>
             <input
-              className="CR_inpunt"
+              className="Update_inpunt"
               type="date"
               name="birthdate"
               placeholder="Fecha de Nacimiento"
               onChange={(e) => handleChange(e)}
             />
             {!client.errors.birthdate ? null : (
-              <div className="CR_inputError">{client.errors.birthdate}</div>
+              <div className="Update_inputError">{client.errors.birthdate}</div>
             )}
           </div>
           <div>
             <input
-              className="CR_inpunt"
+              className="Update_inpunt"
               type="file"
               accept="image/*"
               name="image"
@@ -194,15 +195,15 @@ function FormEditProfileClient() {
               onChange={(e) => handleChange(e)}
             />
             {!client.errors.image ? null : (
-              <div className="CR_inputError">{client.errors.image}</div>
+              <div className="Update_inputError">{client.errors.image}</div>
             )}
           </div>
           <input
-            className="CR_inpuntSubmit"
+            className="Update_inpuntSubmit"
             disabled={client.disabled}
             name="button"
             type="submit"
-            value="Registrar"
+            value="Actualizar"
             onClick={(e) => handleSubmit(e)}
           />
         </form>
