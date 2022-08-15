@@ -734,7 +734,7 @@ export async function putEditProfileClient(
   }
 }
 
-export async function putEditProfileWorker(value: WorkerType, id: string) {
+export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: string) {
   try {
     await axios.put(`http://localhost:3001/worker/${id}`, value);
   } catch (error) {
