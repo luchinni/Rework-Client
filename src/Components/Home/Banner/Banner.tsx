@@ -25,7 +25,7 @@ function Banner() {
         </div>
         :
         <div className='Banner_divBannerDos'>
-          <p className='Banner_imageTextDos'>LOS MEJORES FREELANCERS A TU DISPOSICION</p>
+          <p className='Banner_imageTextDos'>LOS MEJORES PROFESIONALES A TU DISPOSICION</p>
           <img className='Banner_image' src={bannerDosHome} alt="banner" />
         </div>
         
