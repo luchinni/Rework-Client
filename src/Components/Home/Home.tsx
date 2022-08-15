@@ -155,6 +155,7 @@ const showButton = () => {
         <div>
         <Banner/> 
         </div>
+
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <Filtros />

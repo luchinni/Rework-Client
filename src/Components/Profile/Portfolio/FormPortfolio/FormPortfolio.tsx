@@ -6,6 +6,7 @@ import decode from "jwt-decode"
 import './FormPortfolio.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Axios, { AxiosResponse } from 'axios';
 
 //falta linkear el ID del worker
 
@@ -39,18 +40,19 @@ const FormPortfolio = (props:any) => {
         }
     }
 
-    const parseImage = (e:any) => {
-        let file = e.target.files[0]
-        let reader:any = new FileReader();
-        reader.onload = function(){
-            let base64String:any = reader.result?.replace("data:","").replace(/^.+,/,"");
-            setState({
-                ...state,
-                photo:base64String
-            })
-        }
-        reader.readAsDataURL(file)
-    }
+    const postImageOnCloudinary = async (e: any) => {
+        const formData = new FormData();
+        formData.append("file", e);
+        formData.append("upload_preset", "re-work");
+    
+        try {
+          const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
+          const data: any = response.data;
+          return data.url;
+        } catch (error) {
+          console.log(error);
+        };
+      };
 
     //console.log(state);
 
@@ -60,8 +62,12 @@ const FormPortfolio = (props:any) => {
     const errors = state.errors;
 
     if(name==="photo"){
-        parseImage(e)
-    }
+        setState({
+            ...state,
+            photo: e.target.files[0]
+          });
+          return
+   };
 
     setState({
         ...state,
@@ -91,7 +97,8 @@ const FormPortfolio = (props:any) => {
 
     const uploadForm = async (e:any) => {
         e.preventDefault()
-        let { title, portfolio_description, photo} = state;
+        let photo = await postImageOnCloudinary(state.photo);
+        let { title, portfolio_description} = state;
         title = firstWordUpperCase(title);
 
         let newPortfolio:type.newPortfolioType = {
@@ -108,11 +115,11 @@ const FormPortfolio = (props:any) => {
 
     }
 
-    const parseToImage = () =>{
+/*     const parseToImage = () =>{
         const image = new Image();
         image.src = state.photo
         return state.photo;
-    }
+    } */
 
     const handleClose = () => {
         props.handle(false)

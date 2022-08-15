@@ -6,6 +6,7 @@ import * as type from "../../../Types";
 import { postNewClient } from "../../../Redux/Reducer/reducer";
 import "./ClientRegister.css";
 import HeaderRegister from "../HeaderRegister/HeaderRegister";
+import Axios, {AxiosResponse}  from "axios";
 
 export class ClientRegister extends Component {
   state: type.ClientType;
@@ -50,19 +51,18 @@ export class ClientRegister extends Component {
     }
   }
 
-  async parseImage(e: any, cb: Function) {
-    let file = e.target.files[0];
-    let reader: any = new FileReader();
-    let base64String: any = (reader.onload = async function () {
-      base64String = reader.result?.replace("data:", "").replace(/^.+,/, "");
-      //resolve(reader.result);
-      cb(reader.result);
-      // this.setState({
-      //   image:base64String
-      // })
-    });
-    await reader.readAsDataURL(file);
-    
+  async postImageOnCloudinary(e: any) {
+    const formData = new FormData();
+    formData.append("file", e);
+    formData.append("upload_preset", "re-work");
+
+    try {
+      const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
+      const data: any = response.data;
+      return data.url;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async handleChange(e: any) {
@@ -72,12 +72,11 @@ export class ClientRegister extends Component {
     errors = this.state.errors;
 
     if (name === "image") {
-      return await this.parseImage(e, (base64String: any) => {
-        this.setState({
-          image: base64String,
-        });
+      this.setState({
+        image: e.target.files[0]
       });
-    }
+      return
+    };
 
     switch (name) {
       case "name":
@@ -147,9 +146,12 @@ export class ClientRegister extends Component {
     this.validarForm(this.state.errors);
   }
 
-  handleSubmit(e: any) {
+  async handleSubmit(e: any) {
     e.preventDefault();
-    let { name, lastName, password, user_mail, birthdate, image } = this.state;
+
+    let image = await this.postImageOnCloudinary(this.state.image);
+
+    let { name, lastName, password, user_mail, birthdate } = this.state;
     name = name ? this.firstWordUpperCase(name) : name;
     lastName = lastName ? this.firstWordUpperCase(lastName) : lastName;
 
