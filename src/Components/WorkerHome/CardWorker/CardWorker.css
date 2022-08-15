@@ -1,43 +1,64 @@
 
 .CardWorker_component{
-border: 1px solid #949494;
+border: 2px solid #edecd9;
 background-color: #FFFFFF;
-border-radius: 10px;
-max-width: 330px;
-min-width: 329px;
+border-radius: 6px;
+max-width: 660px;
+min-width: 659px;
 overflow: hidden;
 margin-bottom: 30px;
 padding-bottom: 7px;
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
 }
 
 .div_infoUser {
     display: flex;
+    justify-content: space-between;
     gap: 12px;
     align-items: center;
+    padding: 18px 20px;
+    
 }
 
 .div_imageProfile{
-    background-color: red;
+    /* background-color: red; */
     height: max-content;
     max-width:46px;
+    max-height: 46px;
     overflow: hidden;
     border-radius: 8px;
 }
 
 .card_profileImage{
-    width: 100%;
+    max-width: 70px;
+    /* width: 100%; */
 }
 
 .div_userDatos {
     display: flex;
     flex-direction: column;
+    gap: 4px;
+    
 }
 
 .Card_userName {
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
+    color: #19202a;
+    transition: all 0.3s;
+    
 }
+
+.Card_userName:hover {
+    color: #485e80;
+}
+
+/* .div_cardButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+} */
 
 .Card_userHabilities {
     font-size: 13px;
@@ -45,6 +66,8 @@ padding-bottom: 7px;
 }
 
 .cardButton_options {
+    display: flex;
+    justify-content: space-between;
     height: 35px;
     width: 35px;
     font-size: 26px;
@@ -55,4 +78,14 @@ padding-bottom: 7px;
 
 .Card_options{
     margin-right: 10px;
+}
+
+.div_info_imgDatos{
+    display: flex;
+    gap: 15px;
+}
+
+.div_description{
+    padding: 18px 20px;
+    max-width: 650px;
 }

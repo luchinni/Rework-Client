@@ -74,13 +74,15 @@ const CardWorker = ({props}:any) => {
 
   return (
     <div className='CardWorker_component'>
-        <div className='div_infoUser'>
-            <div className='div_imageProfile'>
-            <img className='card_profileImage' src={props.photo} alt="profile img" />
-            </div>
-            <div className='div_userDatos'>
-            <Link to={`/profile/${props.id}`}><h1 className='Card_userName'>{props.name}</h1></Link>
-            <h4 className='Card_userHabilities'>{props.profession?.join(", ")}</h4>
+        <div className='div_infoUser' > 
+            <div className="div_info_imgDatos">
+                <div className='div_imageProfile'>
+                    <img className='card_profileImage' src={props.photo} alt="profile img" />
+                </div>
+                <div className='div_userDatos'>
+                    <Link to={`/profile/${props.id}`}><h1 className='Card_userName'>{props.name}</h1></Link>
+                    <h4 className='Card_userHabilities'>{props.profession?.join(", ")}</h4>
+                </div>
             </div>
             <div className='Card_options'>
             <button /*onClick={handleClick}*/ className='cardButton_options'>
@@ -102,7 +104,7 @@ const CardWorker = ({props}:any) => {
             </div>
         </div>
         <hr />
-        <div>
+        <div className="div_description">
             {ratingStars(props.rating)}
             <div>
                 {<GoLocation/>}
@@ -113,8 +115,9 @@ const CardWorker = ({props}:any) => {
                 </div>
                 <h2>Descripción</h2>
             </div>
+            <button>Contratar</button>
         </div>
-        <button>Contratar</button>
+        
     </div>
   )
 }
