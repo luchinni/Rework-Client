@@ -26,10 +26,10 @@ function Profile() {
   // const currentUser = useSelector((state:any) => state.workService.currentUser)
   // console.log('current' , currentUser)
   const userLogged = useSelector((state: any) => state.workService.userLogged)
-  // console.log('loged', userLogged)
+  console.log('loged', userLogged)
 
-  const [portfolioOpen, setPortfolioOpen] = useState(true);
-  const [informationOpen, setInformationOpen] = useState(false);
+  const [portfolioOpen, setPortfolioOpen] = useState(false);
+  const [informationOpen, setInformationOpen] = useState(true);
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const [historialOpen, setHistorialOpen] = useState(false);
 
@@ -99,8 +99,8 @@ function Profile() {
         </div> */}
 
         <div className='Profile_divTags'>
-          <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
           <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
+          <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
           <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
           <button className={historialOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleHist}>Historial</button>
         </div>
@@ -116,7 +116,7 @@ function Profile() {
 
         { informationOpen ? 
           <div className='Profile_divPortfolio'>
-            <Information/>
+            <Information props={userLogged}/>
           </div>
           : false
         }

@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from '../Header/Header';
 import OtherPortfolio from './Portfolio/OtherPorfolio';
+import Information from './Information/Information';
+import Reviews from './Reviews/Reviews';
 import CardsReview from '../Reviews/CardsReview/CardsReview';
 import { useParams } from 'react-router-dom';
 import { useEffect , useState } from 'react';
@@ -10,7 +12,7 @@ import { getUserByIdOther } from '../../Redux/Reducer/reducer';
 const OtherProfile = () => {
 
     const user = useSelector((state:any) => state.workService.userById);
-
+console.log("info del user: ", user)
     const dispatch = useDispatch();
     const params = useParams();
 
@@ -54,7 +56,7 @@ const OtherProfile = () => {
                 <div className='Profile_DivCont'>
                   <div className='Profile_divDivProfile'>
                     <div className='Profile_divFotoPerfil'>
-                      <img className='Profile_foto' src="https://th.bing.com/th/id/R.3fe29c6b3058f48e53e86c9cb687c27f?rik=6eP5XRKYF2C2%2bw&pid=ImgRaw&r=0" alt="profile" />
+                      <img className='Profile_foto' src={user.photo} alt="profile" />
                     </div>
                     <div className='Profile_divNameAndRating'>
                       <span className='Profile_UserName'>{user?.name}</span>
@@ -82,7 +84,8 @@ const OtherProfile = () => {
 
         { informationOpen ? 
           <div className='Profile_divPortfolio'>
-            information
+      
+             <Information props={user}/> 
           </div>
           : false
         }
@@ -90,7 +93,7 @@ const OtherProfile = () => {
         {
           reviewsOpen ?
           <div className='Profile_divPortfolio'>
-            reviews
+            <Reviews />
           </div>
           : false
         }
