@@ -1,0 +1,43 @@
+.TopWorker_component {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+.TopWorker_divDerecha {
+  margin-top: 130px;
+  text-align: end;
+}
+.TopWorker_h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 60px;
+  max-width: 450px;
+  color: #264653;
+  margin-bottom: 17px;
+  max-width: 450px;
+}
+.Top_necesidad {
+  color: #2A9D8F;
+}
+.h1_profesionales {
+  color: #E76F51;
+}
+.TopWorker_pageDescription {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #264653;
+  margin-bottom: 50px;
+  max-width: 450px;
+}
+
+.new_tabIcon {
+  height: 29px;
+  width: 29px;
+}
+
+.TopWorker_hero{
+  max-width: 500px;
+  max-height: 500px;
+}

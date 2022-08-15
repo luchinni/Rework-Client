@@ -8,7 +8,8 @@ import Register from './Components/Register/Register';
 import Worker from './Components/Register/WorkerRegister/WorkerRegister';
 import Client from './Components/Register/ClientRegister/ClientRegister';
 import Footer from './Components/Footer/Footer';
-import Login from './Components/Login/Login';
+// import Login from './Components/Login/Login';
+import LoginComponent from './Components/Login/LoginComponent/LoginComponent';
 import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
 import OtherProfile from './Components/Profile/OtherProfile';
@@ -47,7 +48,7 @@ function App() {
           <Route path='register' element={<Register/>} />
           <Route path='register/worker' element={<Worker/>} />
           <Route path='register/client' element={<Client/>} />   
-          <Route path='login' element={<Login/>} />
+          <Route path='login' element={<LoginComponent/>} />
           <Route path='myProfile' element={<Navigate to='/register' replace/>} />
           <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
           <Route path='post' element={<Navigate to='/register' replace/>} />

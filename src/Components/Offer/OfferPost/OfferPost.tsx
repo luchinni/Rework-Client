@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {checkSession, getAllProfession, postNewOffer} from "../../../Redux/Reducer/reducer";
 import * as type from "../../../Types";
 import decode from "jwt-decode";
-import './OfferPost.css'
-
+import './OfferPost.css';
+import Axios, { AxiosResponse } from 'axios';
 
 const OfferPost = () => {
 
@@ -96,19 +96,19 @@ const validarForm = (errors:type.errorsNewOfferType) => {
     }
 }
 
-const parseImage = async (e:any, cb:Function) => {
-    let file = e.target.files[0]
-    let reader:any = new FileReader();
-    let base64String:any = reader.onload = async function(){
-      base64String = reader.result?.replace("data:","").replace(/^.+,/,""); 
-      //resolve(reader.result);
-      cb(reader.result)
-      // this.setState({
-      //   image:base64String
-      // })
-    }
-    await reader.readAsDataURL(file);
-  }
+const postImageOnCloudinary = async (e: any) => {
+    const formData = new FormData();
+    formData.append("file", e);
+    formData.append("upload_preset", "re-work");
+
+    try {
+      const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
+      const data: any = response.data;
+      return data.url;
+    } catch (error) {
+      console.log(error);
+    };
+  };
 
 const handleChange = async (e:any) =>{
     const value = e.target.value;
@@ -117,13 +117,12 @@ const handleChange = async (e:any) =>{
     error = errors;
 
     if(name==="photo"){
-        return await parseImage(e, (base64String:any) => {
-         setFormulario({
+        setFormulario({
             ...formulario,
-            photo:base64String
-          })
-        })
-   }
+            photo: e.target.files[0]
+          });
+          return
+   };
 
     switch (name) {
         case "title":
@@ -192,9 +191,10 @@ const handleDelete = (e:any) => {
 //   }
 }   
 
-const handleSubmit = (e:any) => {
+const handleSubmit = async (e:any) => {
     e.preventDefault();
-    let {userClientId, title, min_remuneration, max_remuneration, work_duration_time, /*work_duration_time_select, */offer_description, photo, profession} = formulario
+    let photo = await postImageOnCloudinary(formulario.photo);
+    let {userClientId, title, min_remuneration, max_remuneration, work_duration_time, /*work_duration_time_select, */offer_description, profession} = formulario
     title = firstWordUpperCase(title)
     let hoy = new Date()
     hoy.setDate(hoy.getDate()+10)

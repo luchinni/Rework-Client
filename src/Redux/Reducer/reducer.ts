@@ -3,6 +3,7 @@ import axios from "axios";
 import * as type from "../../Types";
 import { Dispatch } from "redux";
 import jwtDecode from "jwt-decode";
+import Swal from 'sweetalert2'
 import jwt from "jsonwebtoken";
 const { SECRET_KEY } = process.env;
 
@@ -320,7 +321,7 @@ export const getOffers = () => async (dispatch: Dispatch<any>) => {
     //axios.get("http://localhost:3001/offer/", {multiplier:50})
     dispatch(setAllOffers(offers.data));
   } catch (error) {
-    alert("Error al requerir las ofertas.");
+    Swal.fire("Error al requerir las ofertas","","warning");
   }
 
   //
@@ -332,7 +333,7 @@ export const getOfferId =
       const offerId = await axios.get(`http://localhost:3001/offer/${id}`);
       return dispatch(setOfferById(offerId.data));
     } catch (e) {
-      alert("Error al requerir el detalle.");
+      Swal.fire("Error al requerir el detalle","","warning")
     }
   };
 
@@ -381,7 +382,9 @@ export function postLogin(user: type.userLogin) {
         data: user,
       });
       // lo pasamos a json y lo guardamos en la consola en application local storage
-      if (token.data) {
+      if (token.data === 'invalid'){
+        Swal.fire("Email o contraseña incorrectos", "Recuerda activar tu cuenta si es la primera vez que inicias sesion","warning")
+      } else if (token.data){
         localStorage.setItem("token", JSON.stringify(token.data));
       }
       //desencryptamos el token
@@ -413,7 +416,7 @@ export function searchWorker(input: string, filters: filter) {
       dispatch(setSearch("worker"));
       return "";
     } catch (error) {
-      alert("Hubo un error al intentar traer los trabajadores");
+      Swal.fire("Hubo un error al intentar traer los trabajadores","intenta nuevamente en unos minutos","warning");
     }
   };
 }
@@ -434,7 +437,7 @@ export function searchOffer(input: string, filters: filter) {
       dispatch(setSearchedOffers(offers.data));
       dispatch(setSearch("offer"));
     } catch (error) {
-      alert("Hubo un error al intentar traer las ofertas");
+      Swal.fire("Hubo un error al intentar traer las ofertas","","warning");
     }
   };
 }
@@ -758,4 +761,24 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
 export const getOfferForHistory = async (id:string) => {
   const offerId = await axios.get(`http://localhost:3001/offer/${id}`)
   return offerId.data;
+}
+
+export const getOffersMoreRating = async () => {
+  const offersRating:any = await axios.get("http://localhost:3001/offer/search?r=5")
+  let response:{}[] = [];
+  for (let x = 0; x < 10 && x < offersRating.data.length -1; x++) {
+    response.push(offersRating.data[x]);
+    
+  }
+  return response
+}
+
+export const getworkersMoreRating = async () => {
+  const offersRating:any = await axios.get("http://localhost:3001/worker/search?r=5")
+  let response:{}[] = [];
+  for (let x = 0; x < 10 && x < offersRating.data.length -1; x++) {
+    response.push(offersRating.data[x]);
+    
+  }
+  return response
 }

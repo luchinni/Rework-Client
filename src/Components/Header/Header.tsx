@@ -74,9 +74,7 @@ import Notification from './Notification/Notification';
         </nav>
       </div>
       {openModal && 
-        <div className='Header_ModalAbiertoBackground'>
-          
-        </div>
+        <div className='Header_ModalAbiertoBackground'></div>
       }
       {openModal && 
         <div className='Header_ModalLogin'>
