@@ -4,6 +4,7 @@ import * as type from "../../Types";
 import { Dispatch } from "redux";
 import jwtDecode from "jwt-decode";
 import jwt from "jsonwebtoken";
+import { workerData } from "worker_threads";
 const { SECRET_KEY } = process.env;
 
 const initialState = {
@@ -26,6 +27,9 @@ const initialState = {
   userVerified: {
     isActive: false,
   },
+  googleLoggedUser: {
+    isActive: false
+  }
 };
 
 export const workServiceSlice = createSlice({
@@ -257,6 +261,10 @@ export const workServiceSlice = createSlice({
         isActive: true,
       };
     },
+    setGoogleLoggedUser: function (state: any, action: any) {
+      state.googleLoggedUser = action.payload
+      }
+    
   },
 });
 
@@ -282,6 +290,7 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
+  setGoogleLoggedUser
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -767,4 +776,27 @@ export async function putEditProfileWorker(value: WorkerType, id: string) {
 export const getOfferForHistory = async (id:string) => {
   const offerId = await axios.get(`http://localhost:3001/offer/${id}`)
   return offerId.data;
+}
+
+export const createGoogleWorker = () => async (dispatch: any) => {
+  try {
+    const worker = await axios({
+    method: "POST",
+    url: `http://localhost:3001/login/google/worker`,
+  })
+  dispatch(setGoogleLoggedUser(worker))
+  } catch(error) {
+    return error
+  }
+}
+
+export const createGoogleClient = () => async (dispatch: any) => {
+  console.log("entre a action")
+  try {
+    const client = await axios.post("http://localhost:3001/login/google/client")
+    console.log("llegue al back")
+    dispatch(setGoogleLoggedUser(client))
+  } catch(error) {
+    return error
+  }
 }

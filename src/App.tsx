@@ -14,6 +14,7 @@ import OfferPost from './Components/Offer/OfferPost/OfferPost';
 import OtherProfile from './Components/Profile/OtherProfile';
 import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
 import { useSelector } from 'react-redux';
+import LoginGoogle from './Components/Login/LoginGoogle';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -43,8 +44,9 @@ function App() {
           <Route path='detailOffer/:id' element={<DetailOffer/>} />
         </>
           : 
-        <>
+          <>
           <Route path='register' element={<Register/>} />
+          <Route path='auth/google' element={<LoginGoogle/>} />
           <Route path='register/worker' element={<Worker/>} />
           <Route path='register/client' element={<Client/>} />   
           <Route path='login' element={<Login/>} />
