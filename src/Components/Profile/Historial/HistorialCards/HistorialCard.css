@@ -2,10 +2,12 @@
     margin: 5px;
     padding: 15px;
     width: 100%;
+    max-width: 90%;
     background-color: rgb(222, 222, 222);
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
+    word-break: break-all;
 }
