@@ -1,28 +1,19 @@
-.Login_component {
-  display: flex;
-  flex-direction: row-reverse;
-  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.368);
-  border-radius: 10px;
+.LoginComponent_component {
+  max-width: 1200px;
+  padding: 0 30px;
+  margin: 0 auto;
 }
-.Login_divContent {
+.Login_divOtroDiv {
+  margin-top: 50px;
+}
+.LoginComponent_divContent {
   background-color: #ffffff;
   max-width: 400px;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
-  border-radius: 0 10px 10px 0;
-}
-.Login_ModalClose {
-  position: absolute;
-  right: 0;
-  margin-right:20px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  color: #273141c3;
-  border: 1px solid #273141c3;
-  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.186);
 }
 .Login_form {
   display: flex;

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import {verifyClient, verifyWorker} from "../../../Redux/Reducer/reducer"
+import HeaderRegister from '../HeaderRegister/HeaderRegister';
 
 const VerifyUser = () => {
     const dispatch = useDispatch()
@@ -17,8 +18,9 @@ const VerifyUser = () => {
     
     return (
         <div>
+            <HeaderRegister />
             <h2>Cuenta verificada exitosamente!</h2>
-            <Link to={"/login"}>Ingresar</Link>
+            <Link to={"/login"}>Ingresaaaaaaaaaaaar</Link>
         </div>
     )
 }
