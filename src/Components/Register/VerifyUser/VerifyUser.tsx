@@ -20,7 +20,7 @@ const VerifyUser = () => {
         <div>
             {/* <HeaderRegister /> */}
             <h2>Cuenta verificada exitosamente!</h2>
-            <Link to={"/login"}>Ingresar</Link>
+            <Link to={"/login"}>Ingresar!</Link>
         </div>
     )
 }
