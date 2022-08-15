@@ -151,10 +151,9 @@ const showButton = () => {
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
-
-        <Banner/> 
+        <Carrusel/>
         <div>
-          <Carrusel/>
+        <Banner/> 
         </div>
 
         <div className='div_homeCards'>
