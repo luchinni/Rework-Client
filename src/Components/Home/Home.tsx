@@ -11,6 +11,7 @@ import Banner from './Banner/Banner';
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
 import jwt from 'jsonwebtoken'
+import Carrusel from './Carrusel/Carrusel';
 
 
 const Home = () => {
@@ -142,7 +143,6 @@ const showButton = () => {
     }
   }
 }
-  console.log("current",currentUser)
     //Ejemplo de useSelector con Toolkit.
     // para hacer un console.log y ver si estaba andando la action.
     /*const global = useSelector((state: any) => state.workService.currentUser)
@@ -151,7 +151,12 @@ const showButton = () => {
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
-        {/* <Banner/>  */}
+
+        <Banner/> 
+        <div>
+          <Carrusel/>
+        </div>
+
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <Filtros />

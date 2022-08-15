@@ -1,5 +1,5 @@
 .Footer_component {
-  background: #273141;
+  background: #264653;
   margin-top: 100px;
 }
 .Footer_contentDiv {
@@ -49,8 +49,19 @@
   transition: all 0.3s ease;
 }
 .Footer_link:hover {
-  color: #D6550D;
+  color: #E76F51;
 }
+
+.footer_logo{
+  font-size: 32px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #E76F51;
+}
+.footer_work{
+  color: #2A9D8F;
+}
+
 
 .Footer_divLogoHenry {
   position: relative;
@@ -59,7 +70,4 @@
   position: absolute;
   right: 0;
   top: 32px;
-}
-.footer_work{
-  color:#D6550D;
 }

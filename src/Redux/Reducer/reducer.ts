@@ -734,7 +734,7 @@ export async function putEditProfileClient(
   }
 }
 
-export async function putEditProfileWorker(value: WorkerType, id: string) {
+export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: string) {
   try {
     await axios.put(`http://localhost:3001/worker/${id}`, value);
   } catch (error) {
@@ -757,4 +757,24 @@ export async function putEditProfileWorker(value: WorkerType, id: string) {
 export const getOfferForHistory = async (id:string) => {
   const offerId = await axios.get(`http://localhost:3001/offer/${id}`)
   return offerId.data;
+}
+
+export const getOffersMoreRating = async () => {
+  const offersRating:any = await axios.get("http://localhost:3001/offer/search?r=5")
+  let response:{}[] = [];
+  for (let x = 0; x < 10; x++) {
+    response.push(offersRating.data[x]);
+    
+  }
+  return response
+}
+
+export const getworkersMoreRating = async () => {
+  const offersRating:any = await axios.get("http://localhost:3001/worker/search?r=5")
+  let response:{}[] = [];
+  for (let x = 0; x < 10; x++) {
+    response.push(offersRating.data[x]);
+    
+  }
+  return response
 }
