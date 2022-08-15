@@ -7,6 +7,9 @@ import { connect, ConnectedProps } from "react-redux";
 import {postNewWorker, getAllProfession, getAllSkills} from "../../../Redux/Reducer/reducer"
 import HeaderRegister from '../HeaderRegister/HeaderRegister';
 import './WorkerRegister.css';
+import { resolve } from 'node:path/win32';
+import { createBrotliCompress } from 'node:zlib';
+import Axios, { AxiosResponse } from 'axios';
 
 interface HeaderState{
 
@@ -37,6 +40,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
       inputProfessions: [],
       inputSkills: []
     }
+    this.setState = this.setState.bind(this);
   }
 
 componentDidMount(){
@@ -63,11 +67,32 @@ validarForm(errors:type.errorsTypeWorker) {
   }
 }
 
-handleChange(e:any) {
+async postImageOnCloudinary(e: any) {
+  const formData = new FormData();
+  formData.append("file", e);
+  formData.append("upload_preset", "re-work");
+
+  try {
+    const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
+    const data: any = response.data;
+    return data.url;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async handleChange(e:any) {
   const value = e.target.value;
   const name = e.target.name;
   let errors:type.errorsTypeWorker;
   errors = this.state.errors;
+
+  if (name === "image") {
+    this.setState({
+      image: e.target.files[0]
+    });
+    return
+  };
 
   switch (name) {
     case "name":
@@ -93,10 +118,6 @@ handleChange(e:any) {
       let dateNow = (date.getFullYear() + "-"+0+ (date.getMonth()+1)+ "-" +date.getDate());
       errors.birthdate = dateNow<fechas? 'La fecha ingresada es invalida.' :year[0]>date.getFullYear()? 'La fecha ingresada es invalida.':year[0]<1940?'La año debe ser mayor a 1940': '';
         break;
-    case "image":
-      let urlPattern = /[-a-zA-Z0-9@:%.~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%.~#?&//=]*)?/gi;
-      errors.image = urlPattern.test(value) ? '' : 'La url de la imagen no es una url valida.';
-        break;
 
     default:
         break;
@@ -108,16 +129,16 @@ handleChange(e:any) {
 this.validarForm(this.state.errors)
 }
 
-handleSubmit(e:any){
+async handleSubmit(e:any){
   e.preventDefault();
+  let image = await this.postImageOnCloudinary(this.state.image);
 
-  let { name, lastName, password, user_mail, birthdate, image, profession, skills} = this.state;
-
-  name = this.firstWordUpperCase(name);
-  lastName = this.firstWordUpperCase(lastName); 
+  let { name, lastName, password, user_mail, birthdate, profession, skills} = this.state;
+  name = name?this.firstWordUpperCase(name):name;
+  lastName = lastName? this.firstWordUpperCase(lastName):lastName; 
 
   const newWorker:type.newWorkerType = {
-    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, image:image, profession:profession, skills:skills
+    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills
   }
   postNewWorker(newWorker);
   let form = document.getElementById("form") as HTMLFormElement | null;
@@ -192,7 +213,6 @@ console.log(del)
           </div>
           <div className='Worker_registerDivForm'>
             <h1>Empecemos</h1>
-            <p>Ya tienes una cuenta? accede a <a href="#">Login</a></p>
             <form className='Worker_registerForm' id='form' onSubmit={(e) => e.preventDefault()}>
               <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
               {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
@@ -204,7 +224,7 @@ console.log(del)
               {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
               <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
               {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
-              <input type="url" name="image" placeholder='URL - imagen de perfil' onChange={(e) => this.handleChange(e)}/>
+              <input type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
               {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
               <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
                   <option selected={true} hidden>Profesiones</option>

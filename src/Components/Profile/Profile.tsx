@@ -1,20 +1,69 @@
-import React, {useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { getOffers } from '../../Redux/Reducer/reducer'
-import Header from '../Header/Header'
+import React, {useEffect, useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkSession, getOffers, getUserById } from '../../Redux/Reducer/reducer';
+import Header from '../Header/Header';
+import CardsReview from '../Reviews/CardsReview/CardsReview';
+import decode from "jwt-decode"
+import Portfolio from './Portfolio/Portfolio';
+import Information from './Information/Information';
 import './Profile.css'
+import Reviews from './Reviews/Reviews';
+import Historial from './Historial/Historial';
 
 function Profile() {
 
   const dispatch = useDispatch();
+  const token:any = localStorage.getItem("token")
+  const tokenDecode:any = decode(token)
 
   useEffect(() => {
+    dispatch(getUserById(tokenDecode))
     dispatch(getOffers());
+    dispatch(checkSession())
   },[])
 
-  const users = useSelector((state: any) => state.workService.offers)
+  //const users = useSelector((state: any) => state.workService.offers)
+  // const currentUser = useSelector((state:any) => state.workService.currentUser)
+  // console.log('current' , currentUser)
+  const userLogged = useSelector((state: any) => state.workService.userLogged)
+  // console.log('loged', userLogged)
 
-  console.log("USERS :",users)
+  const [portfolioOpen, setPortfolioOpen] = useState(true);
+  const [informationOpen, setInformationOpen] = useState(false);
+  const [reviewsOpen, setReviewsOpen] = useState(false);
+  const [historialOpen, setHistorialOpen] = useState(false);
+
+  function handlePort() {
+    setPortfolioOpen(true)
+    setInformationOpen(false)
+    setReviewsOpen(false)
+    setHistorialOpen(false)
+  }
+
+  function handleInfo() {
+    setInformationOpen(true)
+    setPortfolioOpen(false)
+    setReviewsOpen(false)
+    setHistorialOpen(false)
+  }
+
+  function handleRevi() {
+    setReviewsOpen(true)
+    setPortfolioOpen(false)
+    setInformationOpen(false)
+    setHistorialOpen(false)
+  }
+
+  function handleHist() {
+    setHistorialOpen(true)
+    setReviewsOpen(false)
+    setPortfolioOpen(false)
+    setInformationOpen(false)
+  }
+
+  // useEffect(() => {
+  //   handlePort()
+  // })
 
   return (
     <div className='Profile_Component'>
@@ -30,11 +79,11 @@ function Profile() {
             <div className='Profile_DivCont'>
               <div className='Profile_divDivProfile'>
                 <div className='Profile_divFotoPerfil'>
-                  <img className='Profile_foto' src="https://th.bing.com/th/id/R.3fe29c6b3058f48e53e86c9cb687c27f?rik=6eP5XRKYF2C2%2bw&pid=ImgRaw&r=0" alt="profile" />
+                  <img className='Profile_foto' src={userLogged?.photo} alt="profile" />
                 </div>
                 <div className='Profile_divNameAndRating'>
-                  <span className='Profile_UserName'>Esteban Longo</span>
-                  <span className='Profile_UserRating'>Rating 3.7</span>
+                  <span className='Profile_UserName'>{userLogged.name}</span>
+                  <span className='Profile_UserRating'>Rating: {userLogged.rating?userLogged.rating:0}</span>
                 </div>
               </div>
 
@@ -45,24 +94,51 @@ function Profile() {
           </div>
         </div>
 
+        {/* <div>
+          <h3>Descripción:</h3>
+        </div> */}
+
         <div className='Profile_divTags'>
-          <button className='Profile_tag'>Porfolio</button>
-          <button className='Profile_tag'>Informacion</button>
-          <button className='Profile_tag'>Reviews</button>
+          <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
+          <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
+          <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
+          <button className={historialOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleHist}>Historial</button>
         </div>
 
-        <div className='Profile_divPortfolio'>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-          <div className='Profile_portfolio'></div>
-        </div>
+
+        { portfolioOpen ? 
+          <div className='Profile_divPortfolio'>
+            <Portfolio/>
+          </div>
+          : false
+        }
+
+
+        { informationOpen ? 
+          <div className='Profile_divPortfolio'>
+            <Information/>
+          </div>
+          : false
+        }
+
+        {
+          reviewsOpen ?
+          <div className='Profile_divPortfolio'>
+            <Reviews/>
+          </div>
+          : false
+        }
+
+        {
+          historialOpen ?
+          <div className='Profile_divPortfolio'>
+            <Historial/>
+          </div>
+          : false
+        }
 
       </div>
+      <CardsReview/>
     </div>
   )
 }

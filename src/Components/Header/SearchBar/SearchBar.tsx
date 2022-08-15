@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./SearchBar.css";
 import { useSelector } from "react-redux";
-import icon_filter from "../../../images/icon_filters.svg";
-import icon_search from "../../../images/icon_search.svg";
+import icon_filter from "../../../images/icon_filters.png";
+import icon_search from "../../../images/icon_search.png";
 import { searchWorker, searchOffer } from "../../../Redux/Reducer/reducer";
 import { useDispatch } from "react-redux";
 import { getAllProfession } from "../../../Redux/Reducer/reducer";
@@ -13,6 +13,11 @@ const SearchBar = () => {
   const [open, setOpen] = useState(false);
   const profession = useSelector((state:any) => state.workService.professions);
   const [workerOrOffer, setworkerOrOffer] = useState("offer");
+  const [remuneration, setRemuneration] = useState({
+    min:0,
+    max:0
+  })
+  const [workDuration, setWorkDurantion] = useState("")
   const history = useNavigate()
   const [rating, setRating] = useState("");
   const [prof, setProf] = useState("");
@@ -33,8 +38,6 @@ const SearchBar = () => {
     const value = e.target.value;
     const check = e.target.checked;
 
-    console.log(value);
-
     if(value === "offer" &&workerCheck?.checked === true){
       workerCheck.checked = false;
     }
@@ -53,7 +56,7 @@ const SearchBar = () => {
     e.preventDefault();
     const input = document.getElementById("inputSearch") as HTMLInputElement | null;
     const inputSearch = input?.value;
-    const filters = {rating:rating, profession:prof}
+    const filters = {rating:rating, profession:prof, remuneration:remuneration, workDuration:workDuration}
     if(workerOrOffer === "worker"){
       dispatch(searchWorker(inputSearch?inputSearch:"", filters))
     }else if(workerOrOffer === "offer"){
@@ -64,9 +67,26 @@ const SearchBar = () => {
 
   const handleSelect = (e: any) => {
     const value = e.target.value;
-    const name = e.target.name;    
+    const name = e.target.name;
     
-    console.log(name, value)
+    if(name === "remuneration-min"){
+      setRemuneration({
+        ...remuneration,
+        min:value
+      })
+    }
+
+    if(name === "remuneration-max"){
+      setRemuneration({
+        ...remuneration,
+        max:value
+      })
+    }
+
+    if(name === "workDuration"){
+      setWorkDurantion(value)
+    }
+    
     if(name === "rating"){
       setRating(value);
     }
@@ -92,30 +112,56 @@ const SearchBar = () => {
       </div>
       {open &&
         <div className='filter_dropDown'>
-          <div className='filter_option'>
-            <label>FreeLancers</label>
-            <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
+          <div className="Filter_divOptionsCheckbox">
+            <div className='filter_type_option'>
+              <label>FreeLancers</label>
+              <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
+            </div>
+            <div className='filter_type_option'>
+              <label>Ofertas</label>
+              <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
+            </div>
           </div>
-          <div className='filter_option'>
-            <label>Ofertas</label>
-            <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
+          {/*workerOrOffer===?*/}
+          <div className="Filter_divOptions">
+
+            <div className='filter_option'>
+              <select name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
+                <option selected={true} hidden>Rating</option>
+                {["1+","2+","3+","4+","5+"].map((e:any) => {
+                  return <option value={e} key={e}> {e} </option>
+                })}
+              </select>
+            </div>
+            <div className='filter_option'>
+              <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
+              <option selected={true} hidden>Professions</option>
+                {profession.map((e:any) => {
+                  return <option value={e} key={e}> {e} </option>
+                })}
+              </select>
+            </div>
+            {workerOrOffer==="offer"?(
+              <div>
+                  <div className='filter_option'>
+                      <label>Remuneracion</label>
+                      <input className='filter_remu' type="number" name='remuneration-min' id='remuneration-min' placeholder="Min" onChange={(e)=> handleSelect(e)}/>
+                      <input className='filter_remu' type="number"  name='remuneration-max' id='remuneration-max' placeholder="Max" onChange={(e)=> handleSelect(e)}/>
+                  </div>
+                  <div className='filter_workDuration'>
+                    <select name='workDuration' id='workDuration' onChange={(e)=> handleSelect(e)}>
+                     <option selected={true} hidden>Work Duration</option>
+                       {["Menos de 1 mes","1 a 3 meses","4 a 6 meses","Más de 6 meses"].map((e:any) => {
+                        return <option value={e} key={e}> {e} </option>
+                        })}
+                    </select>
+            </div>
+              </div>
+            
+            ):<span></span>
+              }
           </div>
-          <div className='filter_option'>
-          <select name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
-          <option selected={true} hidden>Rating</option>
-            {["1+","2+","3+","4+","5+"].map((e:any) => {
-               return <option value={e} key={e}> {e} </option>
-            })}
-            </select>
-          </div>
-          <div className='filter_option'>
-          <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
-          <option selected={true} hidden>Professions</option>
-            {profession.map((e:any) => {
-               return <option value={e} key={e}> {e} </option>
-            })}
-            </select>
-          </div>
+          
         </div>
       }
     </div>

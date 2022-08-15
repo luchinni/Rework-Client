@@ -1,11 +1,11 @@
 .Footer_component {
-  background: #F6F6F6;
+  background: #264653;
   margin-top: 100px;
 }
 .Footer_contentDiv {
-  max-width: 1136px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 30px;
 }
 .Final_Div {
   text-align: center;
@@ -13,7 +13,7 @@
   font-size: 16px;
   line-height: 24px;
   color: #AFAAA7;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 .Footer_top {
   display: flex ;
@@ -27,15 +27,13 @@
 }
 .Footer_buttonContainerDivs {
   display: flex;
-  justify-content: space-between;
-  max-width: 670px;
-  width: 100%;
+  gap: 150px;
 }
 .Footer_titleLinks {
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
-  color: #333333;
+  color: #dcdada;
 }
 .Footer_divLinks {
   display: flex;
@@ -51,5 +49,25 @@
   transition: all 0.3s ease;
 }
 .Footer_link:hover {
-  color: #484848;
+  color: #E76F51;
+}
+
+.footer_logo{
+  font-size: 32px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #E76F51;
+}
+.footer_work{
+  color: #2A9D8F;
+}
+
+
+.Footer_divLogoHenry {
+  position: relative;
+}
+.Footer_linkLogoHenry {
+  position: absolute;
+  right: 0;
+  top: 32px;
 }

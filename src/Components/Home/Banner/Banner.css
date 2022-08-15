@@ -1,19 +1,56 @@
 .Banner_component {
-  margin: 50px 0;
+  position: relative;
+  margin: 10px 0;
+}
+.Banner_Carrusel {
+  /* background-color: aqua; */
+  margin-top: 6px;
+  display: flex;
 }
 .Banner_divBanner {
+  /* display: none; */
   border-radius: 10px;
 }
+.Banner_divBannerDos {
+  border-radius: 10px;
+  text-align: end;
+}
 .Banner_image {
+  /* position: absolute; */
+  overflow: hidden;
   width: 100%;
   border-radius: 10px;
 }
-.Banner_imageText {
+.Banner_imageTextUno{
   position: absolute;
   font-size: 42px;
   font-weight: 800;
   color: #FFF;
-  margin: 20px 0 0 35px;
+  right: 0;
+  /* //margin: 20px 20px 0 20px; */
+  margin: 20px -70px 35px 0px; 
+  max-width: 420px;
+  line-height: 50px;
+}
+
+.Banner_imageTextTres {
+  position: absolute;
+  font-size: 42px;
+  font-weight: 800;
+  color: #FFF;
+  bottom: 0;
+  margin: 20px 20px 20px 30px;
+  /* margin: 20px -80px 35px 0px; */
+  max-width: 420px;
+  line-height: 50px;
+}
+.Banner_imageTextDos {
+  position: absolute;
+  font-size: 42px;
+  font-weight: 800;
+  color: #FFF;
+  margin: 20px 20px 0 0;
+  right: 0;
   max-width: 420px;
   line-height: 50px;
 }
