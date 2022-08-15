@@ -1,0 +1,39 @@
+.Top_component {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.Top_divIzquierda {
+  margin-top: 170px
+}
+.Top_h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 60px;
+  max-width: 500px;
+  color: #264653;
+  margin-bottom: 17px;
+}
+.h1_necesidad {
+  color: #2A9D8F;
+}
+.h1_profesionales {
+  color: #E76F51;
+}
+.Top_pageDescription {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #264653;
+  margin-bottom: 40px;
+  max-width: 400px;
+}
+.new_tabIcon {
+  height: 29px;
+  width: 29px;
+}
+
+.Top_hero{
+  max-width: 420px;
+  max-height: 515px;
+}

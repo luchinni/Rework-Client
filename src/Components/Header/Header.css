@@ -2,7 +2,7 @@
     left: 0;
     position: fixed;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 20px 0;
     top: 0;
     width: 100%;
     background-color: #fffcfcb8;
@@ -32,10 +32,10 @@
     font-size: 32px;
     font-weight: 700;
     text-decoration: none;
-    color: #757F8F;
+    color: #E76F51;
 }
 .work {
-    color: #273141;
+    color: #264653;
 }
 .nav {
     display: flex;
@@ -57,13 +57,23 @@
     cursor: pointer;
 }
 .button_login {
-    color: #757F8F;
-    border: 1px solid #8D8D8D;
-    background-color: transparent
+    color: white;
+    border: 1px solid #2A9D8F;
+    background-color: #2A9D8F
+}
+.button_login:hover{
+    background-color: #264653;
+    border: 1px solid #264653;
 }
 .button_register {
-   background-color: #757F8F;
-   color: #FFF
+   background-color: #F4A261;
+   border: 1px solid #F4A261;
+   color: white
+
+}
+.button_register:hover{
+   background-color: #E76F51;
+   border: 1px solid #E76F51;
 }
 .Header_ModalLogin {
     position: absolute;

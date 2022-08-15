@@ -4,5 +4,30 @@
   margin: 0 auto;
 }
 .Landing_divContent {
-  margin-top: 120px;
+  margin-top: 100px;
+}
+
+.Landing_buttonAcceder {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 50px;
+  padding: 18px 24px;
+  background-color: #2A9D8F;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+ 
+}
+.Landing_buttonAcceder:hover {
+  background-color: #264653;
+}
+
+.Landing_buttonLogin{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
