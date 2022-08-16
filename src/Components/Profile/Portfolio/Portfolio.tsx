@@ -9,7 +9,7 @@ import './Portfolio.css'
 const Portfolio = () => {
 
     const [modalOpen, setModalOpen] = useState(false)
-
+    const [currentId, setCurrentId] = useState("")
     const [modalCard, setCardOpen] = useState(false)
 
     const dispatch = useDispatch();
@@ -37,7 +37,9 @@ const Portfolio = () => {
         setModalOpen(true)
     }
 
-    const handleCardOpen = () => {
+    const handleCardOpen = (id:any) => {
+      console.log(id);
+      setCurrentId(id)
       setCardOpen(true)
     }
     const handleCardClose = (value:any) => {
@@ -56,16 +58,20 @@ const Portfolio = () => {
                 <button className='Portfolio_buttonAddPortfolio' onClick={handleOpen}>agregar portafolio</button>
               </div>
               {loading===false? userLogged.portfolios?.map((e:any) => {
+                console.log(e)
                 return (
                   <div className='Portfolio_divItemMap'>
-                    <div onClick={handleCardOpen} className='Portfolio_divItems'>
+                    <div onClick={() => handleCardOpen(e.idPortfolio)} className='Portfolio_divItems'>
                       <img src={e.photo} className="Portfolio_Item"/> 
                     </div>
                     {
+                      modalCard===true && currentId===e.idPortfolio?
                     modalCard &&
                       <div className='Portfolio_CardComponent'>
                         <CardPorfolio portfolio={e} close={handleCardClose} />
                       </div>
+                      :
+                      false
                     }
                   </div>
                 )
