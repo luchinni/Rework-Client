@@ -4,6 +4,8 @@ background-color: #FFFFFF;
 border-radius: 6px;
 max-width: 320px;
 min-width: 319px;
+min-height: 480px;
+max-height: 480px;
 overflow: hidden;
 margin: 0 0 30px 40px;
 padding-bottom: 7px;

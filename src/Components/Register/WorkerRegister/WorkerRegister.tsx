@@ -10,6 +10,8 @@ import './WorkerRegister.css';
 import { resolve } from 'node:path/win32';
 import { createBrotliCompress } from 'node:zlib';
 import Axios, { AxiosResponse } from 'axios';
+import Swal from "sweetalert2";
+
 
 interface HeaderState{
 
@@ -165,7 +167,7 @@ async handleSubmit(e:any){
       inputProfessions: [],
       inputSkills: []
   })
-
+  Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
 }
 
 handleSelect(e:any){
