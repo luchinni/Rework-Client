@@ -40,6 +40,9 @@ const Portfolio = () => {
     const handleCardOpen = () => {
       setCardOpen(true)
     }
+    const handleCardClose = (value:any) => {
+      setCardOpen(value)
+    }
 
     const handleClose = (value:any) => {
         setModalOpen(value)
@@ -58,6 +61,12 @@ const Portfolio = () => {
                     <div onClick={handleCardOpen} className='Portfolio_divItems'>
                       <img src={e.photo} className="Portfolio_Item"/> 
                     </div>
+                    {
+                    modalCard &&
+                      <div className='Portfolio_CardComponent'>
+                        <CardPorfolio portfolio={e} close={handleCardClose} />
+                      </div>
+                    }
                   </div>
                 )
               }):"loading..."}
@@ -66,13 +75,6 @@ const Portfolio = () => {
             {modalOpen && 
               <div className="Portfolio_formModal">
                 <FormPortfolio handle={handleClose}/>
-              </div>
-            }
-
-            {
-              modalCard &&
-              <div className='Portfolio_CardComponent'>
-                <CardPorfolio />
               </div>
             }
     </div>

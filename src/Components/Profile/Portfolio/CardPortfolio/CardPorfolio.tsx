@@ -1,21 +1,25 @@
 import React from 'react'
 import './CardPortfolio.css'
 
-function CardPorfolio() {
+function CardPorfolio(props:any) {
+
+  const handleClose = () => {
+    props.close(false)
+}
+
   return (
     <div className='CardPortfolio_component'>
+      <button className='CardPortfolio_button' onClick={handleClose}>x</button>
       <div className='CardPortfolio_divContent'>
-
         <div>
-          <img src="https://th.bing.com/th/id/OIP.VlznYjH4Qqw0N5XSmNzWJwHaFj?pid=ImgDet&rs=1" alt="imagen" />
+          <img src={props.portfolio.photo} alt="imagen" />
         </div>
-
         <div>
-          <div>
-            <span>titulo</span>
+          <div className='CardPortfolio_title'>
+            <span>{props.portfolio.title}</span>
           </div>
-          <div>
-            <p>descripcion</p>
+          <div className='CardPortfolio_description'>
+            <p>{props.portfolio.portfolio_description}</p>
           </div>
         </div>
         
