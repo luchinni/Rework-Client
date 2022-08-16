@@ -20,8 +20,8 @@ console.log("info del user: ", user)
          dispatch(getUserByIdOther(params.id));
       }, [dispatch])
 
-      const [portfolioOpen, setPortfolioOpen] = useState(true);
-      const [informationOpen, setInformationOpen] = useState(false);
+      const [portfolioOpen, setPortfolioOpen] = useState(false);
+      const [informationOpen, setInformationOpen] = useState(true);
       const [reviewsOpen, setReviewsOpen] = useState(false);
     
       function handlePort() {
@@ -68,8 +68,11 @@ console.log("info del user: ", user)
             </div>
     
             <div className='Profile_divTags'>
-              <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
               <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
+              {   user?.isWorker ?
+                         <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
+                         : false
+}
               <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
             </div>
     
