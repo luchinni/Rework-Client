@@ -43,7 +43,7 @@ const Carrusel = () => {
             <div>
             <h2>Ofertas destacadas</h2>
             <Swiper
-            slidesPerView={2}
+            slidesPerView={1}
             spaceBetween={0}
             slidesPerGroup={1}
             loop={true}
@@ -70,7 +70,7 @@ const Carrusel = () => {
           <div>
             <h2>Freelancers destacados</h2>
             <Swiper
-            slidesPerView={3}
+            slidesPerView={2}
             spaceBetween={30}
             slidesPerGroup={1}
             loop={true}
