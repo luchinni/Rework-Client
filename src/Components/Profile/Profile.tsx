@@ -82,8 +82,8 @@ function Profile() {
                   <img className='Profile_foto' src={userLogged?.photo} alt="profile" />
                 </div>
                 <div className='Profile_divNameAndRating'>
-                  <span className='Profile_UserName'>{userLogged.name}</span>
-                  <span className='Profile_UserRating'>Rating: {userLogged.rating?userLogged.rating:0}</span>
+                  <span className='Profile_UserName'>{userLogged?.name}</span>
+                  <span className='Profile_UserRating'>Rating: {userLogged?.rating ? userLogged.rating : 0}</span>
                 </div>
               </div>
 
