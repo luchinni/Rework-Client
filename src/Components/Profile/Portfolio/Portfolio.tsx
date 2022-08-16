@@ -78,11 +78,11 @@ const Portfolio = () => {
               }):"loading..."}
               </div>
             </div>
-            {/* {modalOpen && 
+            {modalOpen && 
               <div className="Portfolio_formModal">
                 <FormPortfolio handle={handleClose}/>
               </div>
-            } */}
+            }
     </div>
   )
 }
