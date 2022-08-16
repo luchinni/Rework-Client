@@ -74,8 +74,8 @@ function Profile() {
 
   }
 
-  function UpdateClose() {
-    setEditOpen(false);
+  function UpdateClose(value : any) {
+    setEditOpen(value);
   }
 
   // useEffect(() => {
@@ -99,12 +99,12 @@ function Profile() {
               <div>
               {editOpen && (
                 <div className="Profile_divModalUpdate">
-                  <div className="Profile_divModalUpdateBtn">
+                  {/* <div className="Profile_divModalUpdateBtn">
                     <button className="Profile_modalUpdateCloseButton" onClick={() => UpdateClose()}>X</button>
-                  </div>
+                  </div> */}
                   {currentUser.isWorker === false ?
-                    <FormEditProfileClient /> 
-                  : <FormEditProfileWorker/>
+                    <FormEditProfileClient props={UpdateClose} /> 
+                  : <FormEditProfileWorker props={UpdateClose} />
                 }
                 </div>
               )}

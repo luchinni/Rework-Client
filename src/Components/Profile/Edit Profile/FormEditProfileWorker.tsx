@@ -1,14 +1,15 @@
-import { Console } from "console";
+import decode from "jwt-decode";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProfession,
   getAllSkills,
+  getUserById,
   putEditProfileWorker,
 } from "../../../Redux/Reducer/reducer";
 import { errorsTypeEditWorker, WorkerTypeUpdate } from "../../../Types";
 
-function FormEditProfileWorker() {
+function FormEditProfileWorker({ props}: any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
   const professions = useSelector(
     (state: any) => state.workService.professions
@@ -143,6 +144,9 @@ function FormEditProfileWorker() {
   function onSubmit(e: any) {
     e.preventDefault();
   }
+  const token:any = localStorage.getItem("token")
+    let tokenDecode:any
+    if(token) tokenDecode = decode(token)
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -160,9 +164,14 @@ function FormEditProfileWorker() {
     };
     const id = userLogged.id;
 
-    putEditProfileWorker(newWorker, id);
+    putEditProfileWorker(newWorker, id)
+    .then(() => {
+      dispatch(getUserById(tokenDecode))
+    })
+
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
+    props(false)
   }
 
   function handleSelect(e: any) {
@@ -192,12 +201,17 @@ function FormEditProfileWorker() {
       setWorker({ ...worker, skills: borrado2 });
     }
   }
+  function handleClose () {
+    props(false)
+  }
 
   return (
-    <div className="WorkerRegister_component">
-      <div className="Worker_registerContent">
-        <div className="Worker_registerDivForm">
-          <h1>Empecemos</h1>
+    <div >
+      <div >
+      <div>
+        <button onClick={() => handleClose()}>x</button>
+      </div>
+        <div >
           <form
             className="Worker_registerForm"
             id="form"
