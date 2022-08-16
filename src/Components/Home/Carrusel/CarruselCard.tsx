@@ -5,9 +5,9 @@ import "./CarruselCard.css"
 const CarruselCard = () => {
   return (
     <div className="body">
-            {/* <div className="slide-container swiper">
+             <div className="slide-container swiper">
                 <div className="slide-content">
-                    <div className="card-wrapper swiper-wrapper"> */}
+                    <div className="card-wrapper swiper-wrapper"> 
                         <div className="card swiper-slide">
                             <div className="image-content">
                                 <span className="overlay"></span>
@@ -24,9 +24,9 @@ const CarruselCard = () => {
                             </div>
                         </div>
                     </div>
-            //     </div>
-            // </div>
-    // </div>
+                </div>
+             </div>
+     </div>
   )
 }
 
