@@ -1,3 +1,4 @@
+import { Console } from "console";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,7 +10,9 @@ import { errorsTypeEditWorker, WorkerTypeUpdate } from "../../../Types";
 
 function FormEditProfileWorker() {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
-  const professions = useSelector((state: any) => state.workService.professions);
+  const professions = useSelector(
+    (state: any) => state.workService.professions
+  );
   const skills = useSelector((state: any) => state.workService.skills);
   const dispatch = useDispatch();
 
@@ -20,13 +23,13 @@ function FormEditProfileWorker() {
     photo: "",
     profession: [],
     skills: [],
+  });
+  const [errors, setErrors] = React.useState<errorsTypeEditWorker>({
+    name: "",
+    lastName: "",
+    birthdate: "",
+    image: "",
     disabled: true,
-    errors: {
-      name: "Campo requerido",
-      lastName: "Campo requerido",
-      birthdate: "Campo requerido",
-      image: "",
-    },
   });
 
   useEffect(() => {
@@ -48,24 +51,35 @@ function FormEditProfileWorker() {
     return word[0].toUpperCase() + word.slice(1);
   }
 
-  function validarForm(errors: errorsTypeEditWorker) {
+  /* function validarForm(errors: errorsTypeEditWorker) {
+    Object.values(errors).forEach(
+      (val: any) => val.length > 0  ? setWorker({ ...worker, disabled: false }) : setWorker({ ...worker, disabled: true })
+    );
+  } */
+
+  const validarForm = (errors: errorsTypeEditWorker) => {
     let valid = true;
     Object.values(errors).forEach(
       (val: any) => val.length > 0 && (valid = false)
     );
     if (valid) {
-      setWorker({ ...worker, disabled: false });
+      setErrors({
+        ...errors,
+        disabled: false,
+      });
     } else {
-      setWorker({ ...worker, disabled: true });
+      setErrors({
+        ...errors,
+        disabled: true,
+      });
     }
-  }
+  };
 
   async function handleChange(e: any) {
     e.preventDefault();
     const value = e.target.value;
     const name = e.target.name;
-    let errors: errorsTypeEditWorker;
-    errors = worker.errors;
+    let error: errorsTypeEditWorker = errors;
 
     if (name === "image") {
       return await parseImage(e, (base64String: string) => {
@@ -78,24 +92,24 @@ function FormEditProfileWorker() {
 
     switch (name) {
       case "name":
-        let namePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
-        errors.name = value.startsWith(" ")
+        let namePattern: RegExp = /^(?!\s*$)[A-Za-z _-]*$/;
+        error.name = value.startsWith(" ")
           ? "El nombre no puede iniciar con un espacio."
           : !namePattern.test(value)
-          ? "El nombre no puede contener caracteres especiales."
+          ? "El nombre solo puede contener letras"
           : value.endsWith(" ")
           ? "El nombre no puede terminar con espacio."
           : "";
         break;
       case "lastName":
-        let lastNamePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
-        errors.lastName = value.startsWith(" ")
+        let lastNamePattern: RegExp = /^(?!\s*$)[A-Za-z _-]*$/;
+        error.lastName = value.startsWith(" ")
           ? "El apellido no puede iniciar con un espacio."
           : lastNamePattern.test(value)
           ? value.endsWith(" ")
             ? "El apellido no puede terminar con espacio."
             : ""
-          : "El apellido no puede contener caracteres especiales.";
+          : "El apellido solo puede contener letras";
         break;
       case "birthdate":
         let fechas = value;
@@ -109,7 +123,7 @@ function FormEditProfileWorker() {
           "-" +
           0 +
           date.getDate();
-        errors.birthdate =
+        error.birthdate =
           dateNow < fechas
             ? "La fecha ingresada es invalida."
             : year[0] > date.getFullYear()
@@ -121,8 +135,9 @@ function FormEditProfileWorker() {
       default:
         break;
     }
-    setWorker({ ...worker, [name]: value, errors });
-    validarForm(worker.errors);
+    setErrors(error);
+    validarForm(error);
+    setWorker({ ...worker, [name]: value });
   }
 
   function onSubmit(e: any) {
@@ -131,16 +146,7 @@ function FormEditProfileWorker() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    let {
-      name,
-      lastName,
-      born_date,
-      photo,
-      profession,
-      skills,
-      disabled,
-      errors,
-    } = worker;
+    let { name, lastName, born_date, photo, profession, skills } = worker;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
 
@@ -151,8 +157,6 @@ function FormEditProfileWorker() {
       photo,
       profession,
       skills,
-      disabled,
-      errors,
     };
     const id = userLogged.id;
 
@@ -192,41 +196,36 @@ function FormEditProfileWorker() {
   return (
     <div className="WorkerRegister_component">
       <div className="Worker_registerContent">
-        
         <div className="Worker_registerDivForm">
           <h1>Empecemos</h1>
           <form
             className="Worker_registerForm"
             id="form"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => onSubmit(e)}
           >
             <input
+              autoComplete="off"
               type="text"
               name="name"
               placeholder="Nombre"
               onChange={(e) => handleChange(e)}
             />
-            {!worker.errors.name ? null : (
-              <div>{worker.errors.name}</div>
-            )}
+            {!errors.name ? null : <div>{errors.name}</div>}
             <input
+              autoComplete="off"
               type="text"
               name="lastName"
               placeholder="Apellido"
               onChange={(e) => handleChange(e)}
             />
-            {!worker.errors.lastName ? null : (
-              <div>{worker.errors.lastName}</div>
-            )}
+            {!errors.lastName ? null : <div>{errors.lastName}</div>}
             <input
               type="date"
               name="birthdate"
               placeholder="Fecha de Nacimiento"
               onChange={(e) => handleChange(e)}
             />
-            {!worker.errors.birthdate ? null : (
-              <div>{worker.errors.birthdate}</div>
-            )}
+            {!errors.birthdate ? null : <div>{errors.birthdate}</div>}
             <input
               type="file"
               name="image"
@@ -234,9 +233,7 @@ function FormEditProfileWorker() {
               accept="image/*"
               onChange={(e) => handleChange(e)}
             />
-            {!worker.errors.image ? null : (
-              <div>{worker.errors.image}</div>
-            )}
+            {!errors.image ? null : <div>{errors.image}</div>}
             <select
               name="profession"
               id="profession"
@@ -267,11 +264,7 @@ function FormEditProfileWorker() {
               })}
             </div>
 
-            <select
-              name="skills"
-              id="skills"
-              onChange={(e) => handleSelect(e)}
-            >
+            <select name="skills" id="skills" onChange={(e) => handleSelect(e)}>
               <option selected={true} hidden>
                 Habilidades
               </option>
@@ -300,10 +293,10 @@ function FormEditProfileWorker() {
             <span>Ingeniero, Diseñador</span>
             <span>Phyton, Css...</span>
             <input
-              disabled={worker.disabled}
+              disabled={errors.disabled}
               name="button"
               type="submit"
-              value="Registrar"
+              value="Actualizar"
               onClick={(e) => handleSubmit(e)}
             />
           </form>

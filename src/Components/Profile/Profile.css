@@ -125,3 +125,12 @@
   margin-bottom: 30px;
   border-radius: 10px;
 }
+
+.Profile_divModalUpdate{
+  padding: 20px;
+  background-color: red;
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  transform: translateX(-50%);
+}
