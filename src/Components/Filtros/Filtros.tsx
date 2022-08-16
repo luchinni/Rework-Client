@@ -27,7 +27,9 @@ function Filtros() {
 
   return (
     <div className='Filtros_component'>
-      <span className='Filtros_title'>Ordenamientos </span>
+      <div className='Filtros_title'>
+        <span>Ordenamientos</span>
+      </div>
       <div className='Filtros_sortDivContent'>
         <div className='Filtros_sortDiv'>
           <label>ORDENAR POR:</label> 

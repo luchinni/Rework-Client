@@ -9,26 +9,28 @@
     padding-bottom: 7px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
 }
-.div_profileSection {
-    /* background-color: #273141; */
+.div_userSection {
     display: flex;
     justify-content: space-between;
-    padding: 14px 0px 14px 14px;
+    padding: 7px 0px ;
 }
 .Card_divContImageProfile {
-    height: 75px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
     overflow: hidden;
-    border-radius: 8px;
     margin-right: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Card_profileImage{
-    max-width: 100px;
-    max-height: 75px;
+    border-radius: 8px;
+    max-width: 90px;
+    max-height: 90px;
 }
 
-.div_infoUser {
+.div_dataUser {
     display: flex;
     justify-content: space-between;
     gap: 12px;
@@ -49,7 +51,7 @@
     font-size: 18px;
     color: #264653;
 }
-.div_userDatos {
+.div_userData {
     display: flex;
     flex-direction: column;
 }
@@ -135,12 +137,10 @@
 .Card_option {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    gap: 10px;
+    gap: 5px;
     background-color: #FFFFFF;
     position: absolute;
-    right: -10px;
-    margin-top: 5px;
+    right: 10px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #949494;

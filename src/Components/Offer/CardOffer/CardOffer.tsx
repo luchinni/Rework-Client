@@ -78,12 +78,12 @@ const CardOffer = ({props}:any) => {
 
   return (
     <div className='CardOffer_component'>
-      <div className='div_profileSection'>
-        <div className='div_infoUser'>
+      <div className='div_userSection'>
+        <div className='div_dataUser'>
           <div className='Card_divContImageProfile'>
             <img className='Card_profileImage' src={props.userClient?.photo || props.userWorker?.photo} alt="Client Photo" />
           </div>
-          <div className='div_userDatos'>
+          <div className='div_userData'>
             <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
             <span className='Card_userRating'>Rating: {props.userClient?.rating}</span>
           </div>
