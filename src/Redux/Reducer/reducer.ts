@@ -670,7 +670,7 @@ export const verifyWorker = (id: any) => async (dispatch: any) => {
   try {
     await axios({
       method: "PUT",
-      url: `https://rework.up.railway.app/worker/${id}` || `http://localhost:3001/confirm/worker/${id}`,
+      url: `https://rework.up.railway.app/confirm/worker/${id}` || `http://localhost:3001/confirm/worker/${id}`,
       data: id,
     });
     dispatch(setVerifiedUser());
@@ -683,7 +683,7 @@ export const verifyClient = (id: any) => async (dispatch: any) => {
   try {
     await axios({
       method: "PUT",
-      url: `https://rework.up.railway.app/client/${id}` || `http://localhost:3001/confirm/client/${id}`,
+      url: `https://rework.up.railway.app/confirm/client/${id}` || `http://localhost:3001/confirm/client/${id}`,
       data: id,
     });
     dispatch(setVerifiedUser());
