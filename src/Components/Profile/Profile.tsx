@@ -218,8 +218,9 @@ function Profile() {
       </div>
       <CardsReview />
     </div>
+    </div>
   );
-}
+};
 
 export default Profile;
 
