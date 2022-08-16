@@ -2,12 +2,19 @@ import React from 'react'
 import './Information.css'
 
 function Information({props}:any) {
+  console.log(props)
   return (
     <div className='Information_Component'>
       <div className='Invormation'>
         <h2>Información</h2>
-        <h3 className='UserProfessions'>Profesiones: {props?.profession?.join(", ")}</h3>
-        <p className='UserHabilities'>Habilidades: {props?.skills?.join(", ")}</p>
+        
+       { props?.isWorker === true ?
+       <div>
+         <h3 className='UserProfessions'>Profesiones: {props?.profession?.join(", ")}</h3>
+          <p className='UserHabilities'>Habilidades: {props?.skills?.join(", ")}</p>
+       </div>
+      : false }
+        
         <div className="UserDescription">
           <p>Diseñadora gráfica con tres años de experiencia en agencias de publicidad. 
           Especializada en ilustración digital en 2D para redes sociales. 
