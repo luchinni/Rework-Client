@@ -103,7 +103,7 @@ const DetailOffer = () => {
              <img className='Detail_images' src={offerId?.photo} alt="fotito offer" loading='lazy'/>
            </div>
            <p className='Detail_tags'>{offerId.profession?.join(', ')}</p>
-           {alreadyApply === false ?
+           {alreadyApply === false && currentUser.isWorker === true ?
            <button className='Detail_buttonApply' onClick={handleOpen}>Aplicar</button>
            :
             <br/>

@@ -28,6 +28,7 @@ function Profile() {
   }, []);
 
   //const users = useSelector((state: any) => state.workService.offers)
+
   const currentUser = useSelector((state:any) => state.workService.currentUser)
   // console.log('current' , currentUser)
   const userLogged = useSelector((state: any) => state.workService.userLogged);
@@ -115,11 +116,17 @@ function Profile() {
                     alt="profile"
                   />
                 </div>
+
                 <div className="Profile_divNameAndRating">
                   <span className="Profile_UserName">{userLogged.name}</span>
                   <span className="Profile_UserRating">
                     Rating: {userLogged.rating ? userLogged.rating : 0}
                   </span>
+                  
+                <div className='Profile_divNameAndRating'>
+                  <span className='Profile_UserName'>{userLogged?.name}</span>
+                  <span className='Profile_UserRating'>Rating: {userLogged?.rating ? userLogged.rating : 0}</span>
+
                 </div>
               </div>
 
@@ -135,9 +142,20 @@ function Profile() {
           </div>
         </div>
 
-        {/* <div>
-          <h3>Descripción:</h3>
-        </div> */}
+        {currentUser?.isWorker === true ?
+          <div className='Profile_divTags'>
+            <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
+            <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
+            <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
+            <button className={historialOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleHist}>Historial</button>
+          </div>
+          :
+          <div className='Profile_divTags'>
+            <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
+            <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
+            <button className={historialOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleHist}>Historial</button>
+          </div>
+        }
 
         <div className="Profile_divTags">
           <button
