@@ -15,6 +15,7 @@ import Reviews from "./Reviews/Reviews";
 import Historial from "./Historial/Historial";
 import FormEditProfileClient from "./Edit Profile/FormEditProfileClient";
 import FormEditProfileWorker from "./Edit Profile/FormEditProfileWorker";
+import { current } from "@reduxjs/toolkit";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ function Profile() {
 
   function handleUpdate() {
     setEditOpen(true);
+
   }
 
   function UpdateClose() {
@@ -117,18 +119,18 @@ function Profile() {
                   />
                 </div>
 
-                <div className="Profile_divNameAndRating">
-                  <span className="Profile_UserName">{userLogged.name}</span>
+                {/* <div className="Profile_divNameAndRating"> */}
+                  {/* <span className="Profile_UserName">{userLogged.name}</span>
                   <span className="Profile_UserRating">
                     Rating: {userLogged.rating ? userLogged.rating : 0}
-                  </span>
+                  </span> */}
                   
                 <div className='Profile_divNameAndRating'>
-                  <span className='Profile_UserName'>{userLogged?.name}</span>
+                  <span className='Profile_UserName'>{userLogged?.name} {userLogged?.lastName} </span>
                   <span className='Profile_UserRating'>Rating: {userLogged?.rating ? userLogged.rating : 0}</span>
 
                 </div>
-              </div>
+              {/* </div> */}
 
               <div>
                 <button
@@ -157,7 +159,7 @@ function Profile() {
           </div>
         }
 
-        <div className="Profile_divTags">
+        {/* <div className="Profile_divTags">
           <button
             className={portfolioOpen ? "Profile_tag open" : "Profile_tag"}
             onClick={handlePort}
@@ -182,9 +184,9 @@ function Profile() {
           >
             Historial
           </button>
-        </div>
+        </div> */}
 
-        {portfolioOpen ? (
+        {portfolioOpen && currentUser?.isWorker === true ? (
           <div className="Profile_divPortfolio">
             <Portfolio />
           </div>
@@ -194,7 +196,7 @@ function Profile() {
 
         {informationOpen ? (
           <div className="Profile_divPortfolio">
-            <Information />
+            <Information  props={userLogged}/>
           </div>
         ) : (
           false
