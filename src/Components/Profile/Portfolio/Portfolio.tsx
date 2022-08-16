@@ -14,7 +14,8 @@ const Portfolio = () => {
 
     const dispatch = useDispatch();
     const token:any = localStorage.getItem("token")
-    const tokenDecode:any = decode(token)
+    let tokenDecode:any
+    if(token) tokenDecode = decode(token)
     const userLogged = useSelector((state: any) => state.workService.userLogged)
     const loading = useSelector((state: any) => state.workService.isLoading)
 

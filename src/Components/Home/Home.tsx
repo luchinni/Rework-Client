@@ -12,6 +12,7 @@ import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
 import jwt from 'jsonwebtoken'
 import Carrusel from './Carrusel/Carrusel';
+import CarruselCard from './Carrusel/CarruselCard';
 
 
 const Home = () => {
@@ -155,7 +156,6 @@ const showButton = () => {
         <div>
         <Carrusel/>
         </div>
-
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <div className={'div_fitros_buttonUp'}>
