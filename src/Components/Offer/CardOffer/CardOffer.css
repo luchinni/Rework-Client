@@ -13,16 +13,18 @@
     /* background-color: #273141; */
     display: flex;
     justify-content: space-between;
-    padding: 18px 20px;
+    padding: 14px 0px 14px 14px;
 }
 .Card_divContImageProfile {
-    height: 46px;
-    width:46px;
+    height: 75px;
+    width: 100px;
     overflow: hidden;
     border-radius: 8px;
+    margin-right: 14px;
 }
 .Card_profileImage{
-    max-width: 70px;
+    max-width: 100px;
+    max-height: 75px;
 }
 .div_infoUser {
     display: flex;
@@ -30,18 +32,18 @@
     align-items: center;
 }
 .Card_userName {
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 500;
     text-decoration: none;
-    color: #19202a;
+    color: #264653;
     transition: all 0.3s;
 }
 .Card_userName:hover {
-    color: #485e80;
+    color: #2A9D8F;
 }
 .Card_userRating {
-    font-size: 13px;
-    color: #575757;
+    font-size: 18px;
+    color: #264653;
 }
 .div_userDatos {
     display: flex;
@@ -66,7 +68,7 @@
 .div_cardDescription {
     font-size: 16px;
     line-height: 24px;
-    color: #273141;
+    color: #264653;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -83,20 +85,20 @@
     font-size: 13px;
     font-weight: 400;
     line-height: 15px;
-    color: #333333;
+    color: #F4A261;
     /* background-color: #D9D9D9; */
 }
 .card_title {
     font-size: 22px;
     font-weight: 500;
-    color: #273141;
+    color: #2A9D8F;
     max-width: 475px;
 }
 .div_remuneration {
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;
-    color: #D6550D;
+    color: #E76F51;
     margin-top: 5px;
 }
 .card_divTags {
@@ -108,14 +110,14 @@
     line-height: 27px;
     color: #FFFFFF;
     padding: 7px 32px;
-    background: #273141;
+    background: #264653;
     border-radius: 7px;
     margin: 10px 0;
     transition: all 0.3s ease;
     text-decoration: none;
 }
 .button_details:hover {
-    background-color: #19202a;
+    background-color: #2A9D8F;
 }
 .div_cardButton {
     position: relative;
@@ -124,7 +126,7 @@
     padding: 1px;
     background-color: #FFFFFF;
     border: none;
-    margin-top: 7px;
+    margin: 5px 10px 0 0;
     cursor: pointer;
 }
 .more {
@@ -155,7 +157,7 @@
     background-color: rgba(252, 1, 1, 0.201);
 }
 .report_cardButton {
-    color: #273141;
+    color: #264653;
     cursor: pointer;
 }
 .report_icon {
@@ -172,7 +174,9 @@
     align-items: center;
     border-radius: 4px;
     transition: all 0.2s ease;
+    
 }
 .CardOption_divGuardar:hover {
-    background-color: rgba(252, 1, 1, 0.201);
+    background-color: #2a9d9065;
+
 }
