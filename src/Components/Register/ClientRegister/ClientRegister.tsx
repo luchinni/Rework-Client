@@ -167,6 +167,25 @@ export class ClientRegister extends Component {
     postNewClient(newClient);
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
+
+    this.state = {
+      name: "",
+      lastName: "",
+      password: "",
+      user_mail: "",
+      birthdate: "",
+      image: "",
+      errors: {
+        name: "Campo requerido.",
+        lastName: "Campo requerido.",
+        password: "Campo requerido",
+        user_mail: "Campo requerido",
+        birthdate: "Campo requerido",
+        image: "",
+      }, 
+      disabled: true,
+    }; 
+
   }
 
   render() {
