@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as type from "../../../../Types";
 import {postNewPortfolio, setLoading, getUserById} from "../../../../Redux/Reducer/reducer";
 import decode from "jwt-decode"
+import image from "../../../../images/portfolioImage.jpg"
 import './FormPortfolio.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -126,17 +127,18 @@ const FormPortfolio = (props:any) => {
     }
 
   return (
-    <div className='FormPortfolio_component'>
-        <div>
-            <button onClick={handleClose}>x</button>
-            <p>Empecemos</p>
-        </div>
-         <form className='FormPortfolio_form' onSubmit={(e)=> uploadForm(e)}>
-            <input type="text" name='title' placeholder='Título...' onChange={(e) => handleChange(e)}/>
-            <textarea name="portfolio_description" cols={30} rows={5} placeholder='Descripción...' onChange={(e) => handleChange(e)}></textarea>
-         <input type="file" name='photo' onChange={(e) => handleChange(e)} accept="image/*"/> 
-        <input type="submit" disabled={disabled} />
-        </form> 
+        <div className='FormPortfolio_contenedor'>
+            <div className='FormPortfolio_component'>
+                <button className='FormPortfolio_button' onClick={handleClose}>x</button>
+                <form className='FormPortfolio_form' onSubmit={(e)=> uploadForm(e)}>
+                    <label>Publica un nuevo portfolio</label>
+                    <input className='Portfolio_input' type="text" name='title' placeholder='Título...' onChange={(e) => handleChange(e)}/>
+                    <textarea className='Portfolio_input' name="portfolio_description" cols={30} rows={5} placeholder='Descripción...' onChange={(e) => handleChange(e)}></textarea>
+                    <input className='Portfolio_input_file' type="file" name='photo' onChange={(e) => handleChange(e)} accept="image/*"/> 
+                    <input className='Portfolio_input_submit' type="submit" disabled={disabled} />
+                </form> 
+                <img className='Portfolio_image' src={image} alt="show art" />
+            </div>
         {/* <div>
             <h1>{state.title}</h1>
             <h4>{state.portfolio_description}</h4>
