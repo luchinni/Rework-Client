@@ -29,20 +29,20 @@
 .Register_orTitle {
     font-size: 30px;
     font-weight: 600;
-    color: #273141;
+    color: #2A9D8F;
 }
 .Register_orTitleOrange {
-    color: #D6550D;
+    color: #E76F51;
 }
 .Register_PortOrPublic {
     font-size: 20px;
-    color: gray;
+    color: #264653;
     margin-top: 20px;
 }
 .Register_OrDescript {
     font-size: 22px;
     font-weight: 600;
-    color: gray;
+    color: #264653;
 }
 .Register_divImage {
     height: 200px;
@@ -55,7 +55,14 @@
     width: inherit;
 }
 .Register_button {
-    background-color: #757F8F;;
+    background-color: #264653;;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.Register_button:hover{
+    background-color: #2A9D8F;;
     padding: 10px 20px;
     color: white;
     text-decoration: none;
@@ -69,16 +76,16 @@
     padding: 0 0 30px 0;
     font-size: 24px;
     text-decoration: none;
-    color: gray
+    color: #273141
 }
 
 .Register_login > a {
     padding: 0 8px;
     text-decoration: none;
     font-size: 26px;
-    color: #273141
+    color: #F4A261
 }
 
 .Register_login > a:hover {
-    color: #D6550D
+    color: #E76F51
 }
