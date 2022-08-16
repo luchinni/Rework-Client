@@ -28,20 +28,88 @@
 }
 .Worker_empecemos{
     text-align: center;
+    color: #264653
 }
-.Worker_names, .Worker_passwordDate{
+.Worker_names, .Worker_passwordDate, .Worker_bothInputs{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-.Worker_nameInput, .Worker_lastnameInput{
+.Worker_mailImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap:10px
+}
+.Worker_nameInput, .Worker_lastnameInput, .Worker_pass, .Worker_date, .Worker_image, .Worker_mail, .Worker_profession, .Worker_skills{
     flex-direction: column;
     display: flex;
     align-items: center;
 }
-.Worker_nameInput > input , .Worker_lastnameInput > input{
-    font-size: 17px;
+.Worker_error{
+    font-size: 13px;
+    color: #b30505fd;
+    font-weight: 600;
+    max-width: 200px;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.Worker_br{
+    height: 54px;
+}
+
+.Worker_errorPw{
+    max-width: 200px;
+    font-size: 12px;
+    color: #b30505fd;
+    font-weight: 600;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.Worker_names{
+    width: 550px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.Worker_names > div > input {
+    width: 260px;
+}
+
+.Worker_image{
+    margin-bottom: 15px;
+}
+.Worker_registerForm > div > div > label {
+    color:#264653;
+    font-weight: 500;
+}
+
+.Worker_date > input, .Worker_pass > input{
+    width: 200px
+}
+.Worker_nameInput > input , .Worker_lastnameInput > input, .Worker_pass >input, .Worker_date >input{
+    font-size: 18px;
     margin: 5px 0;
+    padding-left: 10px;
+}
+.Worker_mail > input{
+    font-size: 18px;
+    margin: 5px 0;
+    padding-left: 10px;
+    width: 350px
+}
+.Worker_image > input{
+    font-size: 15px;
+    margin: 10px 0;
+}
+.Worker_skills > select, .Worker_profession > select{
+    font-size: 18px;
+}
+.Worker_image > input{
+    flex-direction: row-reverse;
+    max-width: 130
 }
 .Worker_registerImage {
     max-width: 200px;
@@ -49,7 +117,9 @@
 .Worker_registerDivForm {
     display: flex;
     flex-direction: column;
+    height: 700px;
     max-width: 600px;
+    align-items: center;
     width: 100%;
     background-color: #ffffff;
     padding: 15px;
@@ -58,28 +128,64 @@
 }
 .Worker_registerForm {
     background-color: rgb(255, 255, 255);
+    height: 700px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: flex-start;
 }
 .profession_div{
     display: flex;
     gap: 5px;
+    flex-wrap: wrap;
+    width: 230px;
+    max-width: 230px;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .profession_btn{
-    background-color: cadetblue;
+    background-color: #2a9d90d2;
     border-radius: 5px;
-    padding: 2px;
+    padding: 4px 6px;
+    margin: 4px 0
 }
 
 .skills_div{
     display: flex;
     gap: 5px;
+    flex-wrap: wrap;
+    width: 230px;
+    max-width: 230px;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .skills_btn{
-    background-color: cadetblue;
+    background-color: #F4A261;
     border-radius: 5px;
-    padding: 2px;
+    padding: 4px 6px;
+    margin: 5px 0
+}
+
+.Worker_submit > input{
+    width: 150px;
+    text-align: center;
+    font-size: 23px;
+    border: 2px solid #E9C46A ;
+    border-radius: 4px;
+    background-color: #e9c56a;
+    color:white;
+    margin: 0 0 10px 0
+}
+
+.Worker_submit > input:hover{
+    width: 150px;
+    text-align: center;
+    font-size: 23px;
+    border: 2px solid #E76F51 ;
+    border-radius: 4px;
+    background-color: #E76F51;
+    color:white;
+    margin: 0 0 10px 0;
+    cursor: pointer;
 }

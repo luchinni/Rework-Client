@@ -107,7 +107,7 @@ async handleChange(e:any) {
         break;
     case "password":
       let passwordPattern:RegExp = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
-      errors.password = passwordPattern.test(value)? "" : "La contraseña debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y un 1 número."
+      errors.password = passwordPattern.test(value)? "" : "Debe tener entre 8 y 16 caracteres, 1 mayuscula, 1 minuscula y un 1 número."
       break;
     case "user_mail":
       let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i
@@ -219,65 +219,80 @@ console.log(del)
             </div>
           </div>
           <div className='Worker_registerDivForm'>
-            <h1 className='Worker_empecemos'>Empecemos</h1>
             <form className='Worker_registerForm' id='form' onSubmit={(e) => e.preventDefault()}>
+              <h1 className='Worker_empecemos'>Empecemos</h1>
               <div className='Worker_names'>
                 <div className='Worker_nameInput'>
                   <label>Nombres</label>
                   <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
+                  {!this.state.errors.name ? null : <div className='Worker_error'>{this.state.errors.name}</div>}
                 </div>
                 <div className='Worker_lastnameInput'>
                   <label>Apellidos</label>
                   <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.lastName ? null : <div>{this.state.errors.lastName}</div>}
+                  {!this.state.errors.lastName ? null : <div className='Worker_error'>{this.state.errors.lastName}</div>}
                 </div>
               </div>
               <div className='Worker_passwordDate'>
                 <div className='Worker_pass'>
                   <label>Contraseña</label>
                   <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.password ? null : <div>{this.state.errors.password}</div>}
+                  {!this.state.errors.password ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.password}</div>}
                 </div>
                 <div className='Worker_date'>
                   <label>Fecha de nacimiento</label>
-                  <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
+                    <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
+                    {!this.state.errors.birthdate ? null : <div className='Worker_error'>{this.state.errors.birthdate}</div>}
                 </div>
               </div>
-              <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
-              <input type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
-              <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
-                  <option selected={true} hidden>Profesiones</option>
-                  {
-                    this.props.professions?.map((e:any) =>{
-                        return <option value={e} key={e}> {e} </option>
-                    })
-                  }
-              </select>
-              <div className='profession_div'>
-                {this.state.profession?.map((e:any) => {
-                  return (<span className='profession_btn' id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
-                })}
+              <div className='Worker_mailImage'>
+                <div className='Worker_mail'>
+                  <label>Email</label>
+                  <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.user_mail ? null : <div className='Worker_error'>{this.state.errors.user_mail}</div>}
+                </div>
+                <div className='Worker_image'>
+                  <label>¡Carga tu foto!</label>
+                  <input className='Worker_image' type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.image ? null : <div className='Worker_error'>{this.state.errors.image}</div>}
+                </div>
               </div>
-
-              <select  name="skills" id='skills' onChange={(e) => this.handleSelect(e)}>
-                  <option selected={true} hidden>Habilidades</option>
-                  {
-                    this.props.skills?.map((e:any) =>{
-                        return <option value={e} key={e}> {e} </option>
-                    })
-                  }
-              </select>
-              <div className='skills_div'>
-                {this.state.skills?.map((e:any) => {
-                  return (<span className='skills_btn' id="skills" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
-                })}
-              </div> 
-              <input disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
+              <div className='Worker_bothInputs'>
+                <div className='Worker_profession'>
+                  <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
+                    <option selected={true} hidden>Profesiones</option>
+                    {
+                      this.props.professions?.map((e:any) =>{
+                          return <option value={e} key={e}> {e} </option>
+                      })
+                    }
+                  </select>
+                  <div className='profession_div'>
+                    {this.state.profession?.map((e:any) => {
+                      return (<span className='profession_btn' id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+                    })}
+                  </div>
+                </div>
+                <div className='Worker_skills'>
+                  <select  name="skills" id='skills' onChange={(e) => this.handleSelect(e)}>
+                      <option selected={true} hidden>Habilidades</option>
+                      {
+                        this.props.skills?.map((e:any) =>{
+                            return <option value={e} key={e}> {e} </option>
+                        })
+                      }
+                  </select>
+                  <div className='skills_div'>
+                    {this.state.skills?.map((e:any) => {
+                      return (<span className='skills_btn' id="skills" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+                    })}
+                  </div> 
+                </div>
+              </div>
             </form>
+            <div className='Worker_submit'>
+              <input  disabled={this.state.disabled} name="button" type="submit" value="¡Registrate!" onClick={(e) => this.handleSubmit(e)} />
+            </div>
           </div>
         </div>
       </div>
