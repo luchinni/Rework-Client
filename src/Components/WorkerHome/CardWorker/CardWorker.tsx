@@ -70,7 +70,7 @@ const CardWorker = ({props}:any) => {
                 break;
         }
     }
-
+console.log(props)
 
   return (
     <div className='CardWorker_component'>
@@ -80,14 +80,14 @@ const CardWorker = ({props}:any) => {
                     <img className='card_profileImage' src={props.photo} alt="profile img" />
                 </div>
                 <div className='div_userDatos'>
-                    <Link to={`/profile/${props.id}`}><h1 className='Card_userName'>{props.name}</h1></Link>
+                    <Link to={`/profile/${props.id}`}><h1  className='Card_userName'>{props.name}</h1></Link>
                     <h4 className='Card_userHabilities'>{props.profession?.join(", ")}</h4>
                 </div>
             </div>
             <div className='Card_options'>
-            <button /*onClick={handleClick}*/ className='cardButton_options'>
+          {  /*<button*/ /*onClick={handleClick}*/ /*className='cardButton_options'>
                 <img className='more' src={save} alt="save" />
-            </button>
+                </button>*/}
             <div className='div_cardButton'>
                 <button onClick={handleClick} className='cardButton_options'>
                     <img className='more' src={more} alt="more" />
@@ -107,15 +107,17 @@ const CardWorker = ({props}:any) => {
         <div className="div_description">
             {ratingStars(props.rating)}
             <div>
-                {<GoLocation/>}
-                <h3>Argentina</h3>
+                <div className="div_location">
+                    {<GoLocation/>}
+                    <h3>Argentina</h3>
+                </div>
                 <div>
                     <p>Habilidades: {props.skills?.join(", ")}</p>
-                    <p>Valor hora: AR$ </p>
+                    <p className="valorHora">Valor hora: AR$ </p>
                 </div>
-                <h2>Descripción</h2>
+                {/* <p className="description">Descripción</p> */}
             </div>
-            <button>Contratar</button>
+            {/* <button className="button_contratar">Contratar</button> */}
         </div>
         
     </div>

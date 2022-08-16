@@ -38,7 +38,11 @@ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
     display: flex;
     flex-direction: column;
     gap: 4px;
-    
+    text-decoration: none;
+}
+
+.div_userDatos > a{
+    text-decoration: none;
 }
 
 .Card_userName {
@@ -88,4 +92,35 @@ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
 .div_description{
     padding: 18px 20px;
     max-width: 650px;
+}
+
+.div_location{
+    display:flex;
+}
+
+.valorHora{
+    color:#D6550D
+}
+
+.description{
+    font-size: 16px;
+    line-height: 24px;
+    color: #273141;
+}
+
+.button_contratar{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    color: #FFFFFF;
+    padding: 7px 32px;
+    background: #273141;
+    border-radius: 7px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none
+}
+
+.button_contratar:hover {
+    background-color: #19202a;
 }

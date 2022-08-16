@@ -33,8 +33,8 @@ function Profile() {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
   // console.log('loged', userLogged)
 
-  const [portfolioOpen, setPortfolioOpen] = useState(true);
-  const [informationOpen, setInformationOpen] = useState(false);
+  const [portfolioOpen, setPortfolioOpen] = useState(false);
+  const [informationOpen, setInformationOpen] = useState(true);
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const [historialOpen, setHistorialOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
