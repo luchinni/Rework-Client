@@ -127,7 +127,8 @@
   flex-wrap: wrap;
   gap: 30px;
   /* justify-content: space-between; */
-  margin-bottom: 100px;
+  margin: 50px 0 100px 0 ;
+  justify-content: center;
 }
 .Detail_Proposal {
   border: 1px solid #bcbcbc;
