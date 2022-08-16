@@ -3,7 +3,7 @@
     justify-content: space-between;
     max-width: 1136px;
     margin: 0 auto;
-    padding: 36px 0;
+    padding: 20px 0;
 }
 
 .logo_register{
@@ -21,4 +21,10 @@
     white-space: nowrap;
     border: 1px solid transparent;
     cursor: pointer;
+    background-color: #F4A261;
+    color: white
+}
+
+.btn_volver:hover{
+    background-color: #E76F51;
 }
