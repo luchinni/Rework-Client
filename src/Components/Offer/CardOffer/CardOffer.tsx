@@ -111,19 +111,23 @@ const CardOffer = ({props}:any) => {
       <hr className='CardOffer_hr' />
       <div className='div_infoWorkSection'>
         <span className='card_title'>{props.title}</span>
-        <div className='div_remuneration'>
-          <span>ARS </span>
-          <span>{`${props.min_remuneration} - ${props.max_remuneration}`}</span>
-          <span>$</span>
-        </div>
         <div className='div_cardDescription'>
           <p>{props.offer_description}</p>
         </div>
-        <div className='card_divTags'>
-          <span className='card_tags'>{props.profession?.join(', ')}</span>
-        </div>
-        <div>
-          <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver mas</Link>
+        <div className='div_bottomData'>
+          <div>
+            <div className='div_remuneration'>
+              <span>ARS </span>
+              <span>{`${props.min_remuneration} - ${props.max_remuneration}`}</span>
+              <span>$</span>
+            </div>
+            <div className='card_divTags'>
+              <span className='card_tags'>{props.profession?.join(', ')}</span>
+            </div>
+          </div>
+          <div>
+            <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver mas</Link>
+          </div>
         </div>
       </div>
     </div>

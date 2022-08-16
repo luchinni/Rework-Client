@@ -19,7 +19,6 @@ aside {
   flex-direction: row-reverse;
   justify-content: space-between;
   gap: 30px;
-  /* background-color: aqua; */
   transition: all 0.3s ease;
 
 }
@@ -47,6 +46,7 @@ aside {
   -o-border-radius: 50%;
   opacity: .6;
 }
+
 .span_more #dos{
   width: 7px;
   height: 7px;
