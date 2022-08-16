@@ -68,11 +68,11 @@ const Home = () => {
 const handleMore = () => {
   setItemsPerPage(ITEMS_PER_PAGE+5)
   if(search==="worker"){
-    setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+    setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE+5))
   }else if(search==="offer"){
-    setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+    setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE+5))
   }else{
-    setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
+    setItems([...offers]?.splice(0, ITEMS_PER_PAGE+5))
   }
 }
 

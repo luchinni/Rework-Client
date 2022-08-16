@@ -105,19 +105,22 @@ console.log(props)
         </div>
         <hr />
         <div className="div_description">
-            {ratingStars(props.rating)}
-            <div>
+            <div className='div_descriptionTop'>
                 <div className="div_location">
                     {<GoLocation/>}
                     <h3>Argentina</h3>
                 </div>
+                <div className='div_rating'>
+                    {ratingStars(props.rating)}
+                </div>
+            </div>
+            <div>
                 <div>
-                    <p>Habilidades: {props.skills?.join(", ")}</p>
+                    <p className="habilidades">Habilidades: {props.skills?.join(", ")}</p>
                     <p className="valorHora">Valor hora: AR$ </p>
                 </div>
                 {/* <p className="description">Descripción</p> */}
             </div>
-            {/* <button className="button_contratar">Contratar</button> */}
         </div>
         
     </div>

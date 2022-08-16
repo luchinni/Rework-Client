@@ -38,7 +38,7 @@ aside {
 .span_more #uno{
   width: 5px;
   height: 5px;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   margin: 3px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -50,7 +50,7 @@ aside {
 .span_more #dos{
   width: 7px;
   height: 7px;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   margin: 3px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -62,7 +62,7 @@ aside {
 .span_more #tres{
   width: 10px;
   height: 10px;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   margin: 3px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -78,7 +78,7 @@ aside {
   color: #FFFFFF;
   padding: 7px 32px;
   border: none;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   border-radius: 7px;
   margin: 10px 0;
   transition: all 0.3s ease;
@@ -86,7 +86,7 @@ aside {
   cursor: pointer;
 }
 .btn_moreCards2:hover{
-background-color: rgb(84, 84, 84);
+background-color: #E76F51;
 }
 
 .goTopCont{
