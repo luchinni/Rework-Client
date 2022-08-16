@@ -182,7 +182,7 @@ export class ClientRegister extends Component {
         user_mail: "Campo requerido",
         birthdate: "Campo requerido",
         image: "",
-      },
+      }, 
       disabled: true,
     }; 
 
