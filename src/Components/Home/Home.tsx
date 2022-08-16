@@ -158,15 +158,19 @@ const showButton = () => {
 
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
-          <Filtros />
+          <div className={'div_fitros_buttonUp'}>
+            <Filtros />
+            <div id='goTopCont' className="goTopCont">
+              <div className="goTopBut" onClick={goUp}>
+                <i><img src={goUpIcon} alt="goUpIcon" /></i>
+              </div>
+            </div>
+          </div>
+        
         </div>
         {showButton()}
           </div>
-      <div id='goTopCont' className="goTopCont">
-        <div className="goTopBut" onClick={goUp}>
-          <i><img src={goUpIcon} alt="goUpIcon" /></i>
-        </div>
-      </div>
+      
     </div>
   )
 }
