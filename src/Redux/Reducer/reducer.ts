@@ -301,7 +301,7 @@ export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
     return await axios({
       method: "post",
-      url: "https://rework.up.railway.app/offer",
+      url: "http://localhost:3001/offer" || "https://rework.up.railway.app/offer",
       data: newOffer,
     });
   } catch (error) {
@@ -312,7 +312,7 @@ export const postNewOffer = async (newOffer: type.newOfferType) => {
 export const getOffers = () => async (dispatch: Dispatch<any>) => {
   let pagination = { multiplier: 2 };
   try {
-    const offers = await axios.get("https://rework.up.railway.app/offer?multiplier=50");
+    const offers = await axios.get("http://localhost:3001/offer?multiplier=50" || "https://rework.up.railway.app/offer?multiplier=50");
     // axios({
     //   method:"get",
     //   url: "http://localhost:3001/offer/",
