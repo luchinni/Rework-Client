@@ -7,6 +7,7 @@ import { postNewClient } from "../../../Redux/Reducer/reducer";
 import "./ClientRegister.css";
 import HeaderRegister from "../HeaderRegister/HeaderRegister";
 import Axios, {AxiosResponse}  from "axios";
+import Swal from "sweetalert2";
 
 export class ClientRegister extends Component {
   state: type.ClientType;
@@ -30,12 +31,11 @@ export class ClientRegister extends Component {
       disabled: true,
     };
   }
-
   firstWordUpperCase(word: String) {
     return word[0].toUpperCase() + word.slice(1);
   }
-
   validarForm(errors: type.errorsType) {
+
     let valid = true;
     Object.values(errors).forEach(
       (val: any) => val.length > 0 && (valid = false)
@@ -50,6 +50,7 @@ export class ClientRegister extends Component {
       });
     }
   }
+
 
   async postImageOnCloudinary(e: any) {
     const formData = new FormData();
@@ -185,10 +186,12 @@ export class ClientRegister extends Component {
       }, 
       disabled: true,
     }; 
-
+    Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
+    
   }
 
   render() {
+   console.log(this.props)
     return (
       <div>
         <HeaderRegister />
@@ -287,7 +290,8 @@ export class ClientRegister extends Component {
                 )}
               </div>
               <input
-                className="CR_inpuntSubmit"
+
+                className="CR_inputSubmit"
                 disabled={this.state.disabled}
                 name="button"
                 type="submit"

@@ -40,7 +40,7 @@ const Carrusel = () => {
 
         <div>
         {userLogged?.isWorker===true?(
-            <div>
+            <div className='carrusel_container'>
             <h2>Ofertas destacadas</h2>
             <Swiper
             slidesPerView={1}
@@ -67,10 +67,10 @@ const Carrusel = () => {
           </div>
         )
           :
-          <div>
+          <div className='carrusel_container'>
             <h2>Freelancers destacados</h2>
             <Swiper
-            slidesPerView={2}
+            slidesPerView={3}
             spaceBetween={30}
             slidesPerGroup={1}
             loop={true}

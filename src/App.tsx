@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Navigate, Route } from 'react-router-dom';
+import { Routes, Navigate, Route, useNavigate, useNavigationType } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/Home/Home';
@@ -19,9 +19,9 @@ import { useSelector } from 'react-redux';
 
 
 
-
 function App() {
-
+  
+  const navigate:any = useNavigate()
   const token = localStorage.getItem("token")
   const currentUser: any = useSelector((state: any) => state.workService.currentUser)
 
