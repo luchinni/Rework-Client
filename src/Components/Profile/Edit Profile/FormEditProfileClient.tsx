@@ -4,28 +4,28 @@ import { putEditProfileClient } from "../../../Redux/Reducer/reducer";
 import { ClientTypeUpdate, errorsTypeEditClient } from "../../../Types";
 
 function FormEditProfileClient() {
+  const userLogged = useSelector((state: any) => state.workService.userLogged);
 
-  const userLogged = useSelector((state: any) => state.workService.userLogged)
-  
-  const [client, setClient] = React.useState <ClientTypeUpdate>({
+  const [client, setClient] = React.useState<ClientTypeUpdate>({
     name: "",
     lastName: "",
     born_date: "",
     photo: "",
+  });
+
+  const [errors, setErrors] = React.useState<errorsTypeEditClient>({
+    name: "",
+    lastName: "",
+    birthdate: "",
+    image: "",
     disabled: true,
-    errors: {
-      name: "Campo requerido",
-      lastName: "Campo requerido",
-      birthdate: "Campo requerido",
-      image: "",
-    },
   });
 
   async function parseImage(e: any, cb: Function) {
     let file = e.target.files[0];
     let reader: any = new FileReader();
     reader.onload = async function () {
-     reader.result?.replace("data:", "").replace(/^.+,/, "");
+      reader.result?.replace("data:", "").replace(/^.+,/, "");
       cb(reader.result);
     };
     await reader.readAsDataURL(file);
@@ -41,11 +41,13 @@ function FormEditProfileClient() {
       (val: any) => val.length > 0 && (valid = false)
     );
     if (valid) {
-      setClient({...client,
+      setErrors({
+        ...errors,
         disabled: false,
       });
     } else {
-      setClient({...client,
+      setErrors({
+        ...errors,
         disabled: true,
       });
     }
@@ -55,14 +57,13 @@ function FormEditProfileClient() {
     e.preventDefault();
     const value = e.target.value;
     const name = e.target.name;
-    let errors:errorsTypeEditClient;
-    errors = client.errors;
-    
+    let error: errorsTypeEditClient = errors;
+
     if (name === "image") {
       return await parseImage(e, (base64String: string) => {
         setClient({
           ...client,
-          photo: base64String
+          photo: base64String,
         });
       });
     }
@@ -70,7 +71,7 @@ function FormEditProfileClient() {
     switch (name) {
       case "name":
         let namePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
-        errors.name = value.startsWith(" ")
+        error.name = value.startsWith(" ")
           ? "El nombre no puede iniciar con un espacio."
           : !namePattern.test(value)
           ? "El nombre no puede contener caracteres especiales."
@@ -80,7 +81,7 @@ function FormEditProfileClient() {
         break;
       case "lastName":
         let lastNamePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
-        errors.lastName = value.startsWith(" ")
+        error.lastName = value.startsWith(" ")
           ? "El apellido no puede iniciar con un espacio."
           : lastNamePattern.test(value)
           ? value.endsWith(" ")
@@ -100,7 +101,7 @@ function FormEditProfileClient() {
           "-" +
           0 +
           date.getDate();
-        errors.birthdate =
+        error.birthdate =
           dateNow < fechas
             ? "La fecha ingresada es invalida."
             : year[0] > date.getFullYear()
@@ -112,21 +113,17 @@ function FormEditProfileClient() {
       default:
         break;
     }
-    setClient({...client,
-      [name]: value,
-      errors,
-    });
-    validarForm(client.errors);
+    validarForm(error);
+    setClient({ ...client, [name]: value });
   }
 
   function onSubmit(e: any) {
     e.preventDefault();
-
   }
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    let { name, lastName, born_date, photo, disabled, errors } = client;
+    let { name, lastName, born_date, photo } = client;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
 
@@ -135,10 +132,8 @@ function FormEditProfileClient() {
       lastName: lastName,
       born_date: born_date,
       photo: photo,
-      disabled,
-      errors
     };
-    const id = userLogged.id
+    const id = userLogged.id;
 
     putEditProfileClient(newClient, id);
     let form = document.getElementById("form") as HTMLFormElement | null;
@@ -157,8 +152,8 @@ function FormEditProfileClient() {
               placeholder="Nombre"
               onChange={(e) => handleChange(e)}
             />
-            {!client.errors.name ? null : (
-              <div className="Update_inputError">{client.errors.name}</div>
+            {!errors.name ? null : (
+              <div className="Update_inputError">{errors.name}</div>
             )}
           </div>
           <div>
@@ -169,8 +164,8 @@ function FormEditProfileClient() {
               placeholder="Apellido"
               onChange={(e) => handleChange(e)}
             />
-            {!client.errors.lastName ? null : (
-              <div className="Update_inputError">{client.errors.lastName}</div>
+            {!errors.lastName ? null : (
+              <div className="Update_inputError">{errors.lastName}</div>
             )}
           </div>
           <div>
@@ -181,8 +176,8 @@ function FormEditProfileClient() {
               placeholder="Fecha de Nacimiento"
               onChange={(e) => handleChange(e)}
             />
-            {!client.errors.birthdate ? null : (
-              <div className="Update_inputError">{client.errors.birthdate}</div>
+            {!errors.birthdate ? null : (
+              <div className="Update_inputError">{errors.birthdate}</div>
             )}
           </div>
           <div>
@@ -194,13 +189,13 @@ function FormEditProfileClient() {
               placeholder="Imagen de perfil"
               onChange={(e) => handleChange(e)}
             />
-            {!client.errors.image ? null : (
-              <div className="Update_inputError">{client.errors.image}</div>
+            {!errors.image ? null : (
+              <div className="Update_inputError">{errors.image}</div>
             )}
           </div>
           <input
             className="Update_inpuntSubmit"
-            disabled={client.disabled}
+            disabled={errors.disabled}
             name="button"
             type="submit"
             value="Actualizar"

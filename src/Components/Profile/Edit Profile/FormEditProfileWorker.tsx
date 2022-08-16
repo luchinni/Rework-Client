@@ -25,12 +25,12 @@ function FormEditProfileWorker() {
     skills: [],
   });
   const [errors, setErrors] = React.useState<errorsTypeEditWorker>({
-      name: "",
-      lastName: "",
-      birthdate: "",
-      image: "",
-      disabled: true,
-  })
+    name: "",
+    lastName: "",
+    birthdate: "",
+    image: "",
+    disabled: true,
+  });
 
   useEffect(() => {
     dispatch(getAllProfession());
@@ -51,25 +51,23 @@ function FormEditProfileWorker() {
     return word[0].toUpperCase() + word.slice(1);
   }
 
-   /* function validarForm(errors: errorsTypeEditWorker) {
+  /* function validarForm(errors: errorsTypeEditWorker) {
     Object.values(errors).forEach(
       (val: any) => val.length > 0  ? setWorker({ ...worker, disabled: false }) : setWorker({ ...worker, disabled: true })
     );
   } */
-  
+
   const validarForm = (errors: errorsTypeEditWorker) => {
     let valid = true;
     Object.values(errors).forEach(
       (val: any) => val.length > 0 && (valid = false)
     );
     if (valid) {
-      console.log("entre a valid");
       setErrors({
         ...errors,
         disabled: false,
       });
     } else {
-      console.log("entre a else");
       setErrors({
         ...errors,
         disabled: true,
@@ -81,8 +79,7 @@ function FormEditProfileWorker() {
     e.preventDefault();
     const value = e.target.value;
     const name = e.target.name;
-    let error: errorsTypeEditWorker = errors
- 
+    let error: errorsTypeEditWorker = errors;
 
     if (name === "image") {
       return await parseImage(e, (base64String: string) => {
@@ -138,12 +135,9 @@ function FormEditProfileWorker() {
       default:
         break;
     }
-
-    console.log(errors.disabled)
-    setErrors(error)
+    setErrors(error);
     validarForm(error);
     setWorker({ ...worker, [name]: value });
-    console.log(errors.disabled);
   }
 
   function onSubmit(e: any) {
@@ -152,14 +146,7 @@ function FormEditProfileWorker() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    let {
-      name,
-      lastName,
-      born_date,
-      photo,
-      profession,
-      skills,
-    } = worker;
+    let { name, lastName, born_date, photo, profession, skills } = worker;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
 
@@ -231,18 +218,14 @@ function FormEditProfileWorker() {
               placeholder="Apellido"
               onChange={(e) => handleChange(e)}
             />
-            {!errors.lastName ? null : (
-              <div>{errors.lastName}</div>
-            )}
+            {!errors.lastName ? null : <div>{errors.lastName}</div>}
             <input
               type="date"
               name="birthdate"
               placeholder="Fecha de Nacimiento"
               onChange={(e) => handleChange(e)}
             />
-            {!errors.birthdate ? null : (
-              <div>{errors.birthdate}</div>
-            )}
+            {!errors.birthdate ? null : <div>{errors.birthdate}</div>}
             <input
               type="file"
               name="image"
