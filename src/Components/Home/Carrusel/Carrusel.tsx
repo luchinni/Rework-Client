@@ -36,10 +36,10 @@ const Carrusel = () => {
     
   return (
         <>
-        {currentUser.id !== '' && offersRating[0] !== undefined?
+        {currentUser?.id !== '' && offersRating[0] !== undefined?
 
         <div>
-        {userLogged.isWorker===true?(
+        {userLogged?.isWorker===true?(
             <div>
             <h2>Ofertas destacadas</h2>
             <Swiper
