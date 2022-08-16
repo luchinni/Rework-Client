@@ -207,23 +207,44 @@ console.log(del)
       <div className='WorkerRegister_component'>
         <HeaderRegister/>
         <div className='Worker_registerContent'>
-
-          <div className='Worker_registerDivImage'>
-            <img className='Worker_registerImage' src={image1} alt="place1" />
-            <img className='Worker_registerImage' src={image2} alt="place2" />
-            <img className='Worker_registerImage' src={image3} alt="place3" />
+          <div className='Worker_imageContainer'>
+            <div className='Worker_registerDivImage1'>
+              <img className='Worker_registerImage' src={image1} alt="place1" />
+            </div>
+            <div className='Worker_registerDivImage2'>
+              <img className='Worker_registerImage' src={image2} alt="place2" />
+            </div>
+            <div className='Worker_registerDivImage3'>
+              <img className='Worker_registerImage' src={image3} alt="place3" />
+            </div>
           </div>
           <div className='Worker_registerDivForm'>
-            <h1>Empecemos</h1>
+            <h1 className='Worker_empecemos'>Empecemos</h1>
             <form className='Worker_registerForm' id='form' onSubmit={(e) => e.preventDefault()}>
-              <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
-              <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.lastName ? null : <div>{this.state.errors.lastName}</div>}
-              <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.password ? null : <div>{this.state.errors.password}</div>}
-              <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
+              <div className='Worker_names'>
+                <div className='Worker_nameInput'>
+                  <label>Nombres</label>
+                  <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
+                </div>
+                <div className='Worker_lastnameInput'>
+                  <label>Apellidos</label>
+                  <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.lastName ? null : <div>{this.state.errors.lastName}</div>}
+                </div>
+              </div>
+              <div className='Worker_passwordDate'>
+                <div className='Worker_pass'>
+                  <label>Contraseña</label>
+                  <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.password ? null : <div>{this.state.errors.password}</div>}
+                </div>
+                <div className='Worker_date'>
+                  <label>Fecha de nacimiento</label>
+                  <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
+                </div>
+              </div>
               <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
               {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
               <input type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
@@ -254,10 +275,7 @@ console.log(del)
                 {this.state.skills?.map((e:any) => {
                   return (<span className='skills_btn' id="skills" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
                 })}
-              </div>  
-                  
-              <span>Ingeniero, Diseñador</span>
-              <span>Phyton, Css...</span>
+              </div> 
               <input disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
             </form>
           </div>

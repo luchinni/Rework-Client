@@ -34,15 +34,16 @@ const CardProposal = ({props, offer}:any) => {
 
   })
   }
-
+  
   return (
     <div className='Detail_Proposal'>              
-                <p className='DetailP_UserName'>{props.userWorker?.name}</p>
-                <p className='DetailP_remuneration'>{`Presupuesto ARS: ${props?.remuneration}`}</p>
-                <p className='DetailP_propuestaUser'>{props?.proposal_description}</p>
-                <p className='DetailP_timeUser'>{`Tiempo estimado de entrega: ${props?.worked_time}`}</p>
-                <button name="button" onClick={handleClick}>Aceptar</button>
-              </div>
+      <p className='DetailP_UserName'>{props.userWorker?.name}</p>
+      <p className='DetailP_remuneration'>{`Presupuesto ARS: ${props?.remuneration}`}</p>
+      <p className='DetailP_propuestaUser'>{props?.proposal_description}</p>
+      <p className='DetailP_timeUser'>{`Tiempo estimado de entrega: ${props?.worked_time}`}</p>
+      {props.userWorker.isWorker === false ?
+      <button name="button" onClick={handleClick}>Aceptar</button> : null}
+    </div>
   )
 }
 
