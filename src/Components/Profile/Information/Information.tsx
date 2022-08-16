@@ -6,8 +6,8 @@ function Information({props}:any) {
     <div className='Information_Component'>
       <div className='Invormation'>
         <h2>Información</h2>
-        <h3 className='UserProfessions'>Profesiones: {props.profession?.join(", ")}</h3>
-        <p className='UserHabilities'>Habilidades: {props.skills?.join(", ")}</p>
+        <h3 className='UserProfessions'>Profesiones: {props?.profession?.join(", ")}</h3>
+        <p className='UserHabilities'>Habilidades: {props?.skills?.join(", ")}</p>
         <div className="UserDescription">
           <p>Diseñadora gráfica con tres años de experiencia en agencias de publicidad. 
           Especializada en ilustración digital en 2D para redes sociales. 
