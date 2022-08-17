@@ -28,7 +28,6 @@ const Login = (props:any) => {
     
     let password  = user.password
     let user_mail = user.user_mail.toLowerCase();
-    console.log (password, user_mail)
     let newLoggedUser = {
       user_mail:user_mail, password:password
     }
