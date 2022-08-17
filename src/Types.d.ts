@@ -98,6 +98,7 @@ export interface errorsType {
   name: String;
   lastName: String;
   password: String;
+  password2: String;
   user_mail: String;
   birthdate: String;
   image: String;
@@ -107,6 +108,7 @@ export interface errorsTypeWorker {
   name: String;
   lastName: String;
   password: String;
+  password2: String;
   user_mail: String;
   birthdate: String;
   image: String;

@@ -34,6 +34,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
         password: "Campo requerido.",
+        password2: "Campo requerido",
         user_mail: "Campo requerido.",
         birthdate: "Campo requerido.",
         image: "",
@@ -98,17 +99,29 @@ async handleChange(e:any) {
 
   switch (name) {
     case "name":
-        let namePattern:RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/
-        errors.name = value.startsWith(" ")?"El nombre no puede iniciar con un espacio": namePattern.test(value)? value.endsWith(" ")? "El nombre no puede terminar con espacio":"":"El nombre no puede contener caracteres especiales";
+        let namePattern:RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/
+        errors.name = value.startsWith(" ")?"El nombre no puede iniciar con un espacio"
+        : namePattern.test(value)? value.endsWith(" ")? "El nombre no puede terminar con espacio":""
+        :"El nombre no puede contener números o caracteres especiales.";
         break;
     case "lastName":
-      let lastNamePattern:RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/
-      errors.lastName = value.startsWith(" ")?"El apellido no puede iniciar con un espacio": lastNamePattern.test(value)? value.endsWith(" ")? "El apellido no puede terminar con espacio":"":"El apellido no puede contener caracteres especiales";
+      let lastNamePattern:RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/
+      errors.lastName = value.startsWith(" ")?"El apellido no puede iniciar con un espacio"
+      : lastNamePattern.test(value)? value.endsWith(" ")? "El apellido no puede terminar con espacio":""
+      :"El apellido no puede contener números o caracteres especiales.";
         break;
     case "password":
       let passwordPattern:RegExp = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
       errors.password = passwordPattern.test(value)? "" : "Debe tener entre 8 y 16 caracteres, 1 mayuscula, 1 minuscula y un 1 número."
       break;
+      case "password2":
+        let passwordPattern2: RegExp =
+        /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/; 
+        errors.password2 = passwordPattern2.test(value) ?
+        value === this.state.password ? "" 
+        : "Las contraseñas no coinciden"
+        : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
+        break;
     case "user_mail":
       let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i
       errors.user_mail = value.startsWith(" ")? "El mail no puede iniciar con un espacio": user_mailPattern.test(value) ? value.endsWith(" ")? "el mail no puede terminar con espacio" : "" : "mail inválido";
@@ -159,6 +172,7 @@ async handleSubmit(e:any){
         name: "",
         lastName: "",
         password: "",
+        password2: "",
         user_mail: "",
         birthdate: "",
         image: "",
@@ -239,6 +253,20 @@ console.log(del)
                   <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
                   {!this.state.errors.password ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.password}</div>}
                 </div>
+                <div className="CR_Div_inputAndError">
+                <input
+                  className="CR_inpunt"
+                  type="password"
+                  name="password2"
+                  placeholder="Repita contraseña"
+                  onChange={(e) => this.handleChange(e)}
+                />
+                {!this.state.errors.password2 ? null : (
+                  <div className="CR_inputError">
+                    {this.state.errors.password2}
+                  </div>
+                )}
+              </div>
                 <div className='Worker_date'>
                   <label>Fecha de nacimiento</label>
                     <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
