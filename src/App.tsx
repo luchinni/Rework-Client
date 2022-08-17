@@ -46,7 +46,7 @@ function App() {
           : 
           <>
           <Route path='register' element={<Register/>} />
-          <Route path='auth/google' element={<LoginGoogle/>} />
+          <Route path='google' element={<LoginGoogle/>} />
           <Route path='register/worker' element={<Worker/>} />
           <Route path='register/client' element={<Client/>} />   
           <Route path='login' element={<Login/>} />

@@ -70,7 +70,7 @@ const Login = (props:any) => {
             </div>
             <div className="Login_divTercero">
               <button className="Login_ButtonGoogle">
-                <Link to = {"/auth/google"} ><img className="Login_googleImg" src={imgGoogle} alt="googleLink" /></Link>
+                <Link to = {"/google"} ><img className="Login_googleImg" src={imgGoogle} alt="googleLink" /></Link>
               </button>
             </div>
             <span className="Login_Register">No tienes una cuenta? <Link to="#">registrate</Link></span>

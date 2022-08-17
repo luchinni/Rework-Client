@@ -27,9 +27,6 @@ const initialState = {
   userVerified: {
     isActive: false,
   },
-  googleLoggedUser: {
-    isActive: false
-  }
 };
 
 export const workServiceSlice = createSlice({
@@ -260,11 +257,7 @@ export const workServiceSlice = createSlice({
       state.userVerified = {
         isActive: true,
       };
-    },
-    setGoogleLoggedUser: function (state: any, action: any) {
-      state.googleLoggedUser = action.payload
-      }
-    
+    },  
   },
 });
 
@@ -290,7 +283,6 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
-  setGoogleLoggedUser
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -779,12 +771,22 @@ export const getOfferForHistory = async (id:string) => {
 }
 
 export const createGoogleWorker = () => async (dispatch: any) => {
+  console.log("action worker")
   try {
+    console.log("entre al try worker")
     const worker = await axios({
     method: "POST",
-    url: `http://localhost:3001/login/google/worker`,
+    url: `http://localhost:3001/auth/worker`,
+    /* withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true
+    } */
   })
-  dispatch(setGoogleLoggedUser(worker))
+  console.log("llegue al back")
+  console.log("worker", worker.data)
+  dispatch(setCurrentUser(worker))
   } catch(error) {
     return error
   }
@@ -793,9 +795,20 @@ export const createGoogleWorker = () => async (dispatch: any) => {
 export const createGoogleClient = () => async (dispatch: any) => {
   console.log("entre a action")
   try {
-    const client = await axios.post("http://localhost:3001/login/google/client")
+    console.log("entre al try")
+    const client = await axios({
+    method: "POST",
+    url: 'http://localhost:3001/auth/client',
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true
+    }
+  })
     console.log("llegue al back")
-    dispatch(setGoogleLoggedUser(client))
+    console.log("client", client.data)
+    return client
   } catch(error) {
     return error
   }
