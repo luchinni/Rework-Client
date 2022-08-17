@@ -62,7 +62,10 @@ const SearchBar = () => {
     }else if(workerOrOffer === "offer"){
       dispatch(searchOffer(inputSearch?inputSearch:"", filters))
     }
+    let form = document.getElementById("form") as HTMLFormElement | null;
+    form?.reset()
     history("/home")
+
   }
 
   const handleSelect = (e: any) => {
@@ -99,7 +102,7 @@ const SearchBar = () => {
   return (
     <div className='SearchBar_component'>
       <div className='SearchBar'>
-        <form action="" onSubmit={(e) => submitHandler(e)}>
+        <form id="form" action="" onSubmit={(e) => submitHandler(e)}>
         <input className='input_search' type="text" id='inputSearch' placeholder='Busca usuario/trabajo' />
         </form>
         <div className='SearchBar_buttons'>
