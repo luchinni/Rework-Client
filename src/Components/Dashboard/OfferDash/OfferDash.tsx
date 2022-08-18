@@ -35,7 +35,31 @@ function OfferDash() {
 						modalEdit &&
 						<div className='OfferDash_Modal'>
 							<div>
-								<p className='OfferDash_edittext'>Aca debeira haber un input o select para actualizar el estado de la publicacion</p>
+
+								<div className='OfferDash_divInfoModal'>
+									<div>
+										<p>Id de la publicacion: </p>
+										<span>6a54df5a-6a45-adfa2-hgj33toha</span>
+									</div>
+									
+									<div>
+										<p>Dueño de la publicacion: </p>
+										<span>Esteban longo</span>
+									</div>
+
+									<div>
+										<p>estado actual: </p>
+										<span>Abierta</span>
+									</div>
+								</div>
+
+								<div className='OfferDash_divInputEdit'>
+									<label>Actualiza el estado</label>
+									<select name="" id="">
+										<option value="">Abierta</option>
+										<option value="">Cerrada</option>
+									</select>
+								</div>
 							</div>
 							<div className='OfferDash_modalButtonsDiv'>
 								<button className='OfferDash_modalOk'>guardar</button>
@@ -47,8 +71,9 @@ function OfferDash() {
 					{
 						modalDelete &&
 						<div className='OfferDash_Modal'>
-							<div>
-								<p className='OfferDash_edittext'>Estas seguro de que deseas eliminar esta oferta? </p>
+							<div className='OfferDash_modalDeleteText'>
+								<p>Estas seguro que deseas borrar la oferta con el id:</p>
+								<p>6a54df5a-6a45-adfa2-hgj33toha</p>
 							</div>
 							<div className='OfferDash_modalButtonsDiv'>
 								<button className='OfferDash_modalOk'>si</button>

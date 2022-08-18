@@ -19,6 +19,7 @@ table {
 
 thead {
     text-align: left;
+    color: #444444;
 }
 
 tbody tr:nth-child(odd) {
@@ -81,6 +82,9 @@ td {
     box-shadow: 0 0 10px 1200px rgba(0, 0, 0, 0.493);
     left: 50%;
     transform: translateX(-50%);
+    top: 250px;
+    max-width: 400px;
+    width: 100%;
 }
 
 .OfferDash_closeEditModal {
@@ -92,10 +96,31 @@ td {
     max-width: 300px;
 }
 
+
+
+.OfferDash_divInfoModal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.OfferDash_divInputEdit {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+
+.OfferDash_modalDeleteText {
+    margin-bottom: 20px;
+}
+
+
 /* ----- Botones modal de editar ----- */
 .OfferDash_modalButtonsDiv {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     justify-content: flex-end;
 }
 

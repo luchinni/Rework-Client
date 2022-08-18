@@ -77,7 +77,6 @@ function Dashboard() {
             <div className='Dashboard_divTags'>
               <button className={offCli ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleoffCli} >Ofertas</button>
               <button className={user ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleUser}>Usuarios</button>
-              <button className={reviews ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReview}>Reviews</button>
               <button className={reports ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReports}>Reportes</button>
             </div>
 
@@ -86,11 +85,11 @@ function Dashboard() {
             }
 
             {
-              proWor && <ProposalDash />
+              user && <UserDash />
             }
 
             {
-              user && <UserDash />
+              reports && <p>falta el componente de Reportes</p>
             }
 
           </div>
