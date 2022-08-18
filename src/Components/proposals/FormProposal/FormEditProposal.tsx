@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { newProposalPost } from "../../../Redux/Reducer/reducer";
+import { editProposalWorkerPremium } from "../../../Redux/Reducer/reducer";
 import "./FormProposal.css";
 import image from "../../../images/modal_image_proposal.jpg";
 import decode from "jwt-decode";
@@ -22,8 +22,7 @@ const FormProposal = (props: any) => {
   }, []);
 
   type formValidate = {
-    idWorker: String;
-    idOffer: String;
+    idProposal: String;
     remuneration: Number;
     proposal_description: String;
     worked_time: String;
@@ -38,8 +37,7 @@ const FormProposal = (props: any) => {
   };
 
   const [formu, setFormu] = useState<formValidate>({
-    idWorker: userLogged.id,
-    idOffer: props.idOferta,
+    idProposal: props.proposal.idProposal,
     remuneration: 0,
     proposal_description: "",
     worked_time: "",
@@ -133,34 +131,25 @@ const FormProposal = (props: any) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("si entré iupi");
- 
-      let {
-        remuneration,
-        proposal_description,
-        worked_time,
-        worked_time_select,
-        idWorker,
-        idOffer,
-      } = formu;
-      if (worked_time_select === "") worked_time_select = "días";
+
+        let { worked_time, worked_time_select } = formu;
+      if (worked_time_select === "" && worked_time) worked_time_select = "días";
       worked_time = `${worked_time} ${worked_time_select}`;
-      const newProposal: formValidate = {
-        remuneration: remuneration,
-        proposal_description: proposal_description,
-        worked_time: worked_time,
-        worked_time_select: worked_time_select,
-        idWorker: idWorker,
-        idOffer: idOffer,
+      const editProposal: formValidate = {
+        remuneration: (!formu.remuneration || formu.remuneration === props.proposal.remuneration) ? props.proposal.remuneration : formu.remuneration,
+        proposal_description: (!formu.proposal_description || formu.proposal_description === props.proposal.proposal_description) ? props.proposal.proposal_description : formu.proposal_description,
+        worked_time: (!formu.worked_time || formu.worked_time === props.proposal.worked_time) ? props.proposal.worked_time : formu.worked_time,
+        worked_time_select: formu.worked_time_select,
+        idProposal: props.proposal.id
       };
 
-      newProposalPost(newProposal).then(() => {
+      editProposalWorkerPremium(editProposal).then(() => {
         let form = document.getElementById("form") as HTMLFormElement | null;
         form?.reset();
       });
 
     setFormu({
-      idWorker: "",
-      idOffer: "",
+      idProposal: "",
       remuneration: 0,
       proposal_description: "",
       worked_time: "",
@@ -181,10 +170,14 @@ const FormProposal = (props: any) => {
                 <div className="DetailModal_divInputs">
                   <label className="DetailModal_label">Tu presupuesto</label>
                   <input
-                    className="DetailModal_input"
+                    className="DetailModal_input" /*className={error.remuneration && 'danger'}*/
                     name="remuneration"
                     type="number"
-                    placeholder="Ej: 2500"
+                    placeholder={
+                      props.proposal?.remuneration
+                        ? props.proposal?.remuneration
+                        : "Ej: 2500"
+                    }
                     onChange={handleChange}
                   />
                   {error.remuneration && (
@@ -196,7 +189,7 @@ const FormProposal = (props: any) => {
                     Tiempo estiamdo del trabajo
                   </label>
                   <input
-                    className="DetailModal_input"
+                    className="DetailModal_input" /*className={error.worked_time && 'danger'}*/
                     name="worked_time"
                     type="string"
                     placeholder="Ej: 5"
@@ -226,17 +219,32 @@ const FormProposal = (props: any) => {
               <div className="DetailModal_divInputs">
                 <label className="DetailModal_label">Descripcion</label>
                 <textarea
-                  className="DetailModal_input"
+                  className="DetailModal_input" /*className={error.proposal_description && 'danger'}*/
                   name="proposal_description"
                   cols={30}
                   rows={3}
-                  placeholder="Descripción..."
+                  placeholder={
+                    props.proposal?.proposal_description
+                      ? props.proposal?.proposal_description
+                      : "Descripción..."
+                  }
                   onChange={handleChange}
                 ></textarea>
                 {error.proposal_description && (
                   <p className="danger">{error.proposal_description}</p>
                 )}
               </div>
+
+              {props.proposal ? (
+                <input
+                  className="DetailModal_submit"
+                  disabled={error.disabled}
+                  name="button"
+                  type="submit"
+                  value="Editar"
+                  onClick={(e) => handleSubmit(e)}
+                />
+              ) : (
                 <input
                   className="DetailModal_submit"
                   name="button"
@@ -244,6 +252,7 @@ const FormProposal = (props: any) => {
                   value="Publicar"
                   onClick={(e) => handleSubmit(e)}
                 />
+              )}
             </form>
           </div>
         </div>
