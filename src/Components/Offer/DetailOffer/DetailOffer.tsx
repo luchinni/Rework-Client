@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import {checkSession, getOfferId} from '../../../Redux/Reducer/reducer';
+import {checkSession, getOfferId, stateCancelledOfferPost, isActiveFalseOfferPost} from '../../../Redux/Reducer/reducer';
 import Header from '../../Header/Header';
 import copy from '../../../images/copy.png';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -12,6 +12,7 @@ import CardsProposal from '../../proposals/CardsProposal/CardsProposal';
 import './DetailOffer.css';
 import { useParams } from 'react-router-dom';
 import OwnProposal from '../../proposals/OwnProposal/OwnProposal';
+import Swal from "sweetalert2";
 
 const DetailOffer = () => {
 
@@ -37,6 +38,28 @@ const DetailOffer = () => {
   function handleClose(value:any) {
     setOpen(value)
   }
+
+  function handleDelete(id: string) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        stateCancelledOfferPost(id);
+        isActiveFalseOfferPost(id);
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
+      };
+    });
+  };
 
   let alreadyApply: boolean = false
 
@@ -105,6 +128,11 @@ const DetailOffer = () => {
            <p className='Detail_tags'>{offerId.profession?.join(', ')}</p>
            {alreadyApply === false && currentUser.isWorker === true ?
            <button className='Detail_buttonApply' onClick={handleOpen}>Aplicar</button>
+           :
+            <br/>
+           }
+           {currentUser?.id === offerId.userClientId ?
+           <button className='Detail_buttonApply' onClick={() => handleDelete(offerId.idOffer)}>Eliminar</button>
            :
             <br/>
            }
