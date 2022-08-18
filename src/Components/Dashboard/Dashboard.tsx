@@ -70,24 +70,15 @@ function Dashboard() {
                 <span className='Dasboard_AdminRol'>Administrador</span>
               </div>
             </div>
-
-            <div>
-
-              {/* <div className='Analytics_divImg'>
-                <img className='Analytics_Img' src="https://c8.alamy.com/comp/2BHDDXW/analytics-and-statistics-user-and-admin-dashboard-for-financial-economy-and-digital-marketing-control-panels-website-administrative-panel-mockup-2BHDDXW.jpg" alt="" />
-              </div> */}
-
-            </div>
           </div>
 
           <div className='Dashboard_divBot'>
 
             <div className='Dashboard_divTags'>
-              <button className={offCli ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleoffCli} >Offers Clients</button>
-              <button className={proWor ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleproWor}>Proposals Workers</button>
-              <button className={user ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleUser}>Users</button>
+              <button className={offCli ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleoffCli} >Ofertas</button>
+              <button className={user ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleUser}>Usuarios</button>
               <button className={reviews ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReview}>Reviews</button>
-              <button className={reports ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReports}>Reports</button>
+              <button className={reports ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReports}>Reportes</button>
             </div>
 
             {
