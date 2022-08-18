@@ -5,7 +5,7 @@ import {
   acceptProposal,
   isActiveFalseProposal,
 } from "../../../Redux/Reducer/reducer";
-import FormProposal from "../FormProposal/FormProposal"
+import FormEditProposal from "../FormProposal/FormEditProposal"
 import Swal from "sweetalert2";
 import Header from "../../Header/Header";
 
@@ -16,7 +16,6 @@ const CardProposal = ({ props, offer }: any) => {
     (state: any) => state.workService.currentUser
   );
 
-  console.log("currentUser", currentUser);
   const handleClick = () => {
     // props.state = "accepted";
     offer.proposals?.forEach((e: any) => {
@@ -79,7 +78,7 @@ const CardProposal = ({ props, offer }: any) => {
     <div className="Detail_Proposal">
       {edition && (
         <div className="Detail_divModal">
-          <FormProposal
+          <FormEditProposal
             idOferta={offer}
             close={handleCloseEdition}
             proposal={props}
@@ -94,7 +93,7 @@ const CardProposal = ({ props, offer }: any) => {
       <br></br>
       <br></br>
       <p className="DetailP_timeUser">{`Tiempo estimado de entrega: ${props?.worked_time}`}</p>
-      {props.userWorker.isWorker === false ? (
+      {offer.userClientId === currentUser.id ? (
         <button name="button" className="DetailP_button" onClick={handleClick}>
           Aceptar
         </button>
