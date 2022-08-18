@@ -47,7 +47,6 @@ const DetailOffer = () => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
         stateCancelledOfferPost(id);
@@ -131,7 +130,7 @@ const DetailOffer = () => {
            :
             <br/>
            }
-           {currentUser?.id === offerId.userClientId ?
+           {currentUser?.id === offerId.userClientId && offerId.isActive === true ?
            <button className='Detail_buttonApply' onClick={() => handleDelete(offerId.idOffer)}>Eliminar</button>
            :
             <br/>
