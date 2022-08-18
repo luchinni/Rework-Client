@@ -579,6 +579,24 @@ export async function newProposalPost(newProposal: type.FormProposalType) {
   }
 }
 
+export async function editProposalWorkerPremium(newProposal: type.FormProposalType) {
+  try {
+    let { remuneration, proposal_description, worked_time, idProposal } = newProposal;
+    let editProposal: object = {
+      remuneration,
+      proposal_description,
+      worked_time,
+    };
+    return await axios({
+      method: "PUT",
+      url: `https://rework.up.railway.app/proposal/${idProposal}` || `http://localhost:3001/proposal/${idProposal}`,
+      data: editProposal,
+    });
+  } catch (error) {
+    return error;
+  }
+}
+
 export const changeLoading = (value: boolean) => (dispatch: Dispatch<any>) => {
   dispatch(setLoading(value));
 };
