@@ -201,7 +201,6 @@ export class ClientRegister extends Component {
   }
 
   render() {
-   console.log(this.props)
     return (
       <div>
         <HeaderRegister />
