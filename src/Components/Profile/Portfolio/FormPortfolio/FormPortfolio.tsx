@@ -133,7 +133,7 @@ const FormPortfolio = (props:any) => {
                 <form className='FormPortfolio_form' onSubmit={(e)=> uploadForm(e)}>
                     <label>Publica un nuevo portfolio</label>
                     <input className='Portfolio_input' type="text" name='title' placeholder='Título...' onChange={(e) => handleChange(e)}/>
-                    <textarea className='Portfolio_input' name="portfolio_description" cols={30} rows={5} placeholder='Descripción...' onChange={(e) => handleChange(e)}></textarea>
+                    <textarea className='Portfolio_input textArea' name="portfolio_description" cols={30} rows={5} placeholder='Descripción...' onChange={(e) => handleChange(e)}></textarea>
                     <input className='Portfolio_input_file' type="file" name='photo' onChange={(e) => handleChange(e)} accept="image/*"/> 
                     <input className='Portfolio_input_submit' type="submit" disabled={disabled} />
                 </form> 

@@ -1,0 +1,31 @@
+.OfferDash_divContent {
+    border: 1px solid gray;
+    max-width: 300px;
+    border-radius: 5px;
+}
+
+.OfferDash_top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.OfferDash_profileDiv {
+    display: flex;
+    gap: 15px;
+}
+
+.OfferDash_divProfileImage {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.OfferDash_ProfileImage {
+    max-width: 50px;
+}
+
+
+.OfferDash_bot {
+    padding: 10px;
+}

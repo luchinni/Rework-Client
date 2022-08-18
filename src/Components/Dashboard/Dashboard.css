@@ -1,0 +1,83 @@
+.Dashboard_Component{
+    max-width: 1200px;
+    padding: 0 30px;
+    margin: 150px auto 0 auto;
+}
+
+.Dashboard_divContent {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.Dashboard_divTop {
+    display: flex;
+    justify-content: space-between;
+
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.Dashboard_divAdminProfile {
+    display: flex;
+    gap: 20px;
+}
+.Dashboard_divAdminPhoto {
+    max-width: 200px;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.Dashboard_AdminPhoto {
+    max-width: 200px;
+}
+
+.Dashboard_divBot {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+
+.Dashboard_divTags {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+
+.Analytics_divImg {
+    max-width: 500px;
+    max-height: 200px;
+    overflow: hidden;
+    background-color: aqua;
+}
+.Analytics_Img {
+    position: relative;
+    right: 47px;
+    top: -89px;
+    max-width: 962px;
+}
+
+
+.Dashboard_tag {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #6F6F6F;
+    padding-bottom: 3px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .Dashboard_tag:hover {
+    color: #273141;
+  }
+  .Dashboard_tag.open {
+    color: #273141;
+    border-bottom: 3px solid #273141;
+  }
+  
