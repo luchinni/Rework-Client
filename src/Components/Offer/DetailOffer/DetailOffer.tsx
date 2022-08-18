@@ -41,8 +41,8 @@ const DetailOffer = () => {
 
   function handleDelete(id: string) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro que quieres eliminar tu publicación?',
+      text: "No podrás revertir el cambio",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -52,8 +52,8 @@ const DetailOffer = () => {
         stateCancelledOfferPost(id);
         isActiveFalseOfferPost(id);
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          '¡Eliminada!',
+          'Tu publicación fue eliminada.',
           'success'
         );
       };

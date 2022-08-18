@@ -812,3 +812,19 @@ export const isActiveFalseOfferPost = async (id: string) => {
     return error;
   };
 };
+
+export const isActiveFalseProposal = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/proposal/isActive" || "http://localhost:3001/proposal/isActive",
+      data: {
+        id,
+        isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
