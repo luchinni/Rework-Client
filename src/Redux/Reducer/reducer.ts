@@ -293,7 +293,7 @@ export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getClients = (clients: any) => async (dispatch: Dispatch<any>) => {
+export const getClients = () => async (dispatch: Dispatch<any>) => {
   try {
     const clients = await axios({
       method: "GET",
