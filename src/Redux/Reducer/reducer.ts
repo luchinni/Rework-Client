@@ -782,3 +782,49 @@ export const getworkersMoreRating = async () => {
   }
   return response
 }
+
+export const stateCancelledOfferPost = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/offer/state" || "http://localhost:3001/offer/state",
+      data: {
+        id,
+        state: "cancelled",
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveFalseOfferPost = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/offer/isActive" || "http://localhost:3001/offer/isActive",
+      data: {
+        id,
+        isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveFalseProposal = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/proposal/isActive" || "http://localhost:3001/proposal/isActive",
+      data: {
+        id,
+        isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
