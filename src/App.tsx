@@ -15,6 +15,7 @@ import OfferPost from './Components/Offer/OfferPost/OfferPost';
 import OtherProfile from './Components/Profile/OtherProfile';
 import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
 import { useSelector } from 'react-redux';
+import Dashboard from './Components/Dashboard/Dashboard';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -32,7 +33,7 @@ function App() {
         <Route path='home' element={<Home/>} />
         <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
         <Route path='confirm/client/:id' element={<VerifyUser/>}/>
-        {token || currentUser.id !== '' ? 
+        {token || currentUser.id !== '' ?
         <>
           <Route path='register' element={<Navigate to='/home' replace/>} />
           <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
@@ -42,12 +43,13 @@ function App() {
           <Route path='profile/:id' element={<OtherProfile/>} />
           <Route path='post' element={<OfferPost/>} />
           <Route path='detailOffer/:id' element={<DetailOffer/>} />
+          <Route path='dashboard' element={<Dashboard />} />
         </>
-          : 
+          :
         <>
           <Route path='register' element={<Register/>} />
           <Route path='register/worker' element={<Worker/>} />
-          <Route path='register/client' element={<Client/>} />   
+          <Route path='register/client' element={<Client/>} />
           <Route path='login' element={<LoginComponent/>} />
           <Route path='myProfile' element={<Navigate to='/register' replace/>} />
           <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
