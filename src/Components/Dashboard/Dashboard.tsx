@@ -3,6 +3,7 @@ import './Dashboard.css'
 import Header from '../Header/Header'
 import OfferDash from './OfferDash/OfferDash'
 import ProposalDash from './ProposalDash/ProposalDash'
+import UserDash from './UserDash/UserDash'
 
 function Dashboard() {
 
@@ -61,20 +62,20 @@ function Dashboard() {
               <div className='Dashboard_divAdminPhoto'>
                 <img className='Dashboard_AdminPhoto' src="https://pbs.twimg.com/media/E1JoNK6WQAsPu5x.jpg:large" alt="Admin photo" />
               </div>
-              <div>
-                <span>ADMIN :</span>
-                <div>
+              <div className='Dashboard_divAdminInfo'>
+                <div className='Dasboard_divAdminName'>
                   <span>Esteban </span>
                   <span>Longo</span>
                 </div>
+                <span className='Dasboard_AdminRol'>Administrador</span>
               </div>
             </div>
 
             <div>
 
-              <div className='Analytics_divImg'>
+              {/* <div className='Analytics_divImg'>
                 <img className='Analytics_Img' src="https://c8.alamy.com/comp/2BHDDXW/analytics-and-statistics-user-and-admin-dashboard-for-financial-economy-and-digital-marketing-control-panels-website-administrative-panel-mockup-2BHDDXW.jpg" alt="" />
-              </div>
+              </div> */}
 
             </div>
           </div>
@@ -95,6 +96,10 @@ function Dashboard() {
 
             {
               proWor && <ProposalDash />
+            }
+
+            {
+              user && <UserDash />
             }
 
           </div>

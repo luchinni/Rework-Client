@@ -1,31 +1,49 @@
-.OfferDash_divContent {
-    border: 1px solid gray;
-    max-width: 300px;
-    border-radius: 5px;
+.OfferDash_Component {
+    /* margin-top: 100px; */
 }
-
 .OfferDash_top {
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
 
-.OfferDash_profileDiv {
+.OfferDash_divMap {
+    margin-top: 50px;
+}
+
+.OfferDash_divOffer {
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-top: 1px solid gray ;
 }
-
-.OfferDash_divProfileImage {
-    max-width: 50px;
-    max-height: 50px;
-    border-radius: 4px;
+.OfferDash_divCardOffer {
+    display: flex;
+    gap: 10px;
+}
+.OfferDash_divUserImage {
+    max-width: 40px;
+    max-height: 40px;
     overflow: hidden;
+    border-radius: 5px;
 }
-.OfferDash_ProfileImage {
-    max-width: 50px;
+.OfferDash_userImage {
+    max-width: 80px;
 }
 
-
-.OfferDash_bot {
-    padding: 10px;
+.OfferDash_userName {
+    font-size: 14px;
+    color: #616161;
+    /* background-color: aqua; */
 }
+
+.OfferDash_divUserMail {
+    font-size: 14px;
+    color: #616161;
+}
+
+.OfferDash_divUserRol {
+    font-size: 14px;
+    color: #616161;
+}
+

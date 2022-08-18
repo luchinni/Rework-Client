@@ -13,10 +13,10 @@
 .Dashboard_divTop {
     display: flex;
     justify-content: space-between;
-
-    border: 1px solid gray;
     border-radius: 10px;
     padding: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 15px rgba(39, 49, 65, 0.176);
 }
 
 .Dashboard_divAdminProfile {
@@ -24,19 +24,30 @@
     gap: 20px;
 }
 .Dashboard_divAdminPhoto {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 50px;
+    max-height: 50px;
     overflow: hidden;
     border-radius: 10px;
 }
 .Dashboard_AdminPhoto {
-    max-width: 200px;
+    max-width: 50px;
+}
+.Dashboard_divAdminInfo {
+    color: #273141;
+    font-weight: 500;
+}
+.Dasboard_AdminRol {
+    font-size: 14px;
+    color: #6F6F6F;
+    font-weight: 400;
 }
 
 .Dashboard_divBot {
-    border: 1px solid gray;
     border-radius: 10px;
     padding: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 15px rgba(39, 49, 65, 0.176);
+    position: relative;
 }
 
 
@@ -44,20 +55,6 @@
     display: flex;
     gap: 20px;
     margin-bottom: 50px;
-}
-
-
-.Analytics_divImg {
-    max-width: 500px;
-    max-height: 200px;
-    overflow: hidden;
-    background-color: aqua;
-}
-.Analytics_Img {
-    position: relative;
-    right: 47px;
-    top: -89px;
-    max-width: 962px;
 }
 
 
