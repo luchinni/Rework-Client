@@ -293,15 +293,23 @@ export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getClients = (clients: any) => (dispatch: Dispatch<any>) => {
-  dispatch(setAllClients(clients));
+export const getClients = () => async (dispatch: Dispatch<any>) => {
+  try {
+    const clients = await axios({
+      method: "GET",
+      url: "https://rework.up.railway.app/client" || "http://localhost:3001/client"
+    });
+    dispatch(setAllClients(clients));
+  } catch (error) {
+    Swal.fire("Error al requerir los clientes","","warning");
+  };
 };
 
 export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
     return await axios({
       method: "post",
-      url: "https://rework.up.railway.app/offer" ||"http://localhost:3001/offer",
+      url: "https://rework.up.railway.app/offer" || "http://localhost:3001/offer",
       data: newOffer,
     });
   } catch (error) {
@@ -782,3 +790,49 @@ export const getworkersMoreRating = async () => {
   }
   return response
 }
+
+export const stateCancelledOfferPost = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/offer/state" || "http://localhost:3001/offer/state",
+      data: {
+        id,
+        state: "cancelled",
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveFalseOfferPost = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/offer/isActive" || "http://localhost:3001/offer/isActive",
+      data: {
+        id,
+        isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveFalseProposal = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/proposal/isActive" || "http://localhost:3001/proposal/isActive",
+      data: {
+        id,
+        isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
