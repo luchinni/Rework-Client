@@ -293,15 +293,23 @@ export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getClients = (clients: any) => (dispatch: Dispatch<any>) => {
-  dispatch(setAllClients(clients));
+export const getClients = () => async (dispatch: Dispatch<any>) => {
+  try {
+    const clients = await axios({
+      method: "GET",
+      url: "https://rework.up.railway.app/client" || "http://localhost:3001/client"
+    });
+    dispatch(setAllClients(clients));
+  } catch (error) {
+    Swal.fire("Error al requerir los clientes","","warning");
+  };
 };
 
 export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
     return await axios({
       method: "post",
-      url: "https://rework.up.railway.app/offer" ||"http://localhost:3001/offer",
+      url: "https://rework.up.railway.app/offer" || "http://localhost:3001/offer",
       data: newOffer,
     });
   } catch (error) {
