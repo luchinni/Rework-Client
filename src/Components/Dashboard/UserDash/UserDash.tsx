@@ -22,9 +22,9 @@ function UserDash() {
             <thead>
               <tr>
                 <th>Usuario</th>
-                <th>Id usuario</th>
-                <th>tipo usuario</th>
-                <th>plan</th>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Plan</th>
                 <th>Activo</th>
               </tr>
             </thead>

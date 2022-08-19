@@ -98,10 +98,10 @@ function OfferDash() {
 						<thead >
 							<tr>
 								<th>Dueño</th>
-								<th>Id offer</th>
+								<th>Id</th>
 								<th>Fecha</th>
 								<th>Estado</th>
-								<th>Accion</th>
+								<th>Mas</th>
 							</tr>
 						</thead>
 						<tbody className='OfferDash_tableBody'>
@@ -121,11 +121,11 @@ function OfferDash() {
 										</td>
 										
 										<td>
-												{offer.post_date}
+											{offer.post_date.slice(0,10)}
 										</td>
 
 										<td>
-												{offer.isActive === false ? "Cerrada" : "Abierta"}
+											{offer.isActive === false ? "Cerrada" : "Abierta"}
 										</td>
 
 										<td className='OfferDash_tdButtons'>
