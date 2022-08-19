@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 const { SECRET_KEY } = process.env;
 
 const initialState = {
+  allUsers: [],
   allClients: [],
   infoSearched: [],
   search: "",
@@ -19,6 +20,7 @@ const initialState = {
   offerById: {},
   professions: [],
   skills: [],
+  paymentInfo:"",
   currentUser: {
     id: "",
     isWorker: false,
@@ -28,14 +30,21 @@ const initialState = {
   userVerified: {
     isActive: false,
   },
+  googleRoute:''
 };
 
 export const workServiceSlice = createSlice({
   name: "workService",
   initialState,
   reducers: {
+    setAllUsers: function (state: any, action: any) {
+      state.allUsers = action.payload;
+    },
     setAllClients: function (state: any, action: any) {
       state.allClients = action.payload;
+    },
+    setPaymentInfo: function (state: any, action: any) {
+      state.paymentInfo = action.payload;
     },
     setSearchedWorkers: function (state: any, action: any) {
       state.infoSearched = action.payload;
@@ -261,11 +270,16 @@ export const workServiceSlice = createSlice({
       state.userVerified = {
         isActive: true,
       };
-    },
+    },  
+    setGoogleRoute: function (state: any, action:any){
+      console.log("action payload", action.payload)
+      state.googleRoute = action.payload
+    }
   },
 });
 
 export const {
+  setAllUsers,
   setAllClients,
   setUserById,
   setFavorite,
@@ -280,6 +294,7 @@ export const {
   setSearch,
   setAllSkills,
   setOfferById,
+  setPaymentInfo,
   setAllProfessions,
   setSearchedWorkers,
   setSearchedOffers,
@@ -287,11 +302,25 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
+  setGoogleRoute
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
 
 //aca van las actions
+
+export const getAllUsers = () => async (dispatch: Dispatch<any>) => {
+  try {
+    const users = await axios({
+      method: "GET",
+      url:"http://localhost:3001/admin/users"
+    });
+    console.log("action:",users.data)
+    dispatch(setAllUsers(users.data))
+  } catch(error) {
+    return error;
+  }
+}
 
 export const getClients = () => async (dispatch: Dispatch<any>) => {
   try {
@@ -579,6 +608,24 @@ export async function newProposalPost(newProposal: type.FormProposalType) {
   }
 }
 
+export async function editProposalWorkerPremium(newProposal: type.FormProposalType) {
+  try {
+    let { remuneration, proposal_description, worked_time, idProposal } = newProposal;
+    let editProposal: object = {
+      remuneration,
+      proposal_description,
+      worked_time,
+    };
+    return await axios({
+      method: "PUT",
+      url: `https://rework.up.railway.app/proposal/${idProposal}` || `http://localhost:3001/proposal/${idProposal}`,
+      data: editProposal,
+    });
+  } catch (error) {
+    return error;
+  }
+}
+
 export const changeLoading = (value: boolean) => (dispatch: Dispatch<any>) => {
   dispatch(setLoading(value));
 };
@@ -791,6 +838,17 @@ export const getworkersMoreRating = async () => {
   return response
 }
 
+export const getPaymentLink = (newPayment:any) => async (dispatch: Dispatch<any>) => {
+console.log(newPayment)
+const infoMP:any = await axios({
+  method: "POST",
+  url: "http://localhost:3001/payments/payment",
+  data: newPayment
+})
+  dispatch(setPaymentInfo(infoMP.data))
+
+}
+
 export const stateCancelledOfferPost = async (id: string) => {
   try {
     await axios({
@@ -836,3 +894,95 @@ export const isActiveFalseProposal = async (id: string) => {
   };
 };
 
+export const createGoogleWorker = () => async (dispatch: any) => {
+  console.log("action worker")
+  try {
+    console.log("entre al try worker")
+    const googleWorker = await axios({
+    method: "POST",
+    url: `http://localhost:3001/auth/worker`,
+    /* withCredentials: true, */
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": "true"
+    } 
+  })
+  console.log("llegue al back")
+  console.log("googleResponse", googleWorker.request)
+  dispatch(setGoogleRoute(googleWorker.request.responseURL))
+  /* window.open(googleResponse.request.responseURL) */
+  } catch(error) {
+    return error
+  }
+}
+
+
+export const createGoogleClient = () => async (dispatch: any) => {
+  console.log("entre a action")
+  try {
+    console.log("entre al try")
+    const googleClient = await axios({
+    method: "POST",
+    url: 'http://localhost:3001/auth/client',
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": "true"
+    } 
+  })
+  dispatch(setGoogleRoute(googleClient.request.responseURL))
+  } catch(error) {
+    return error
+  }
+}
+
+export const getGoogleWorker = () => async (dispatch: any) => {
+      fetch("http://localhost:3001/auth/successWorker", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": "true"
+          } 
+      }).then((response) => {
+          if(response.status === 200) {
+            const respuesta = response.json()
+            console.log(respuesta)
+            return respuesta
+          } else {
+            throw new Error("Autenticación fallida, por favor intente de nuevo.")
+          }
+      }).then((resObject) => {
+        console.log("el obyec",resObject)
+        localStorage.setItem("token", JSON.stringify(resObject.token));
+        console.log("el worker", resObject.worker)
+        dispatch(setCurrentUser(resObject.worker))
+      }
+      ).catch((error) => {
+          console.log(error)
+      })
+    }
+
+    
+  /* export const getGoogleWorker = () => async (dispatch: any) => {
+    console.log("entre a googleWorker")
+    try {
+      const backResponse = await axios({
+        method: "GET",
+        url: `http://localhost:3001/auth/successWorker`,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true"
+        } 
+      })
+        dispatch(setCurrentUser(backResponse))
+  
+      
+    } catch (error) {
+      return error
+    }
+  }
+}*/

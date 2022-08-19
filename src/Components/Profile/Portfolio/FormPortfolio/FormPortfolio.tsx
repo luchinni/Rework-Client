@@ -20,8 +20,9 @@ const FormPortfolio = (props:any) => {
         photo:"",
         portfolio_description:"",
         errors:{
-            title:"campo requerido",
-            portfolio_description:"campo requerido"
+            title:"Campo requerido",
+            portfolio_description:"Campo requerido",
+            photo:"Campo requerido"
         },
     });
     const dispatch = useDispatch();
@@ -79,14 +80,18 @@ const FormPortfolio = (props:any) => {
 
     switch (name) {
         case "title":
-            let titlePattern:RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/
+            let titlePattern:RegExp = /^(?!\s*$)[A-Za-zÑ-ñ0-9 _-]*$/
             errors.title = value.startsWith(" ")?"El título no puede iniciar con un espacio.": titlePattern.test(value)? value.endsWith(" ")? "El título no puede terminar con espacio.":"":"El título no puede contener caracteres especiales.";
             break;
         case "portfolio_description":
             errors.portfolio_description = state.portfolio_description.length > 1000 ? "Solo se permiten 1000 caracteres" 
             : state.portfolio_description.length < 20? "La cantidad mínima de caracteres es 20"
             : ""
-            break;       
+            break;
+        case "photo":
+            errors.photo = state.photo ? ""
+            : "elija una foto de su portfolio";
+            break;      
     }
 
     validarForm(state.errors);
@@ -133,8 +138,11 @@ const FormPortfolio = (props:any) => {
                 <form className='FormPortfolio_form' onSubmit={(e)=> uploadForm(e)}>
                     <label>Publica un nuevo portfolio</label>
                     <input className='Portfolio_input' type="text" name='title' placeholder='Título...' onChange={(e) => handleChange(e)}/>
-                    <textarea className='Portfolio_input' name="portfolio_description" cols={30} rows={5} placeholder='Descripción...' onChange={(e) => handleChange(e)}></textarea>
+                    {!state.errors.title ? null : <p className='title_error'>{state.errors.title}</p>}
+                    <textarea className='Portfolio_input textArea' name="portfolio_description" cols={30} rows={5} placeholder='Descripción...' onChange={(e) => handleChange(e)}></textarea>
+                    {!state.errors.portfolio_description ? null : <p className='portfolioDescription_error'>{state.errors.portfolio_description}</p>}
                     <input className='Portfolio_input_file' type="file" name='photo' onChange={(e) => handleChange(e)} accept="image/*"/> 
+                    {!state.errors.photo ? null : <p className='photo_error'>{state.errors.photo}</p>}
                     <input className='Portfolio_input_submit' type="submit" disabled={disabled} />
                 </form> 
                 <img className='Portfolio_image' src={image} alt="show art" />

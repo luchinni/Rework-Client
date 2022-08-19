@@ -94,6 +94,20 @@ export interface errorsNewOfferType {
   disabled: boolean | undefined;
 }
 
+type errorsNewpayout = {
+  Name:string,
+  Lastname: string,
+  Phone_Number: string,
+  Email: string,
+  Direction: string,
+  Postal_code: string,
+  City: string,
+  Province: string,
+  Country: string,
+  DNI: string,
+  disabled:boolean | undefined
+}
+
 export interface errorsType {
   name: String;
   lastName: String;
@@ -131,8 +145,9 @@ export interface reviewFormType {
 }
 
 export interface FormProposalType {
-  idWorker: String;
-  idOffer: String;
+  idWorker?: String;
+  idOffer?: String;
+  idProposal?: String;
   remuneration: Number;
   proposal_description: String;
   worked_time: String;

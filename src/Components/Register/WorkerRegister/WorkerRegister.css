@@ -26,9 +26,17 @@
     display: flex;
     justify-content: center;
 }
+.Worker_registerDivForm{
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 100%;
+}
 .Worker_empecemos{
-    text-align: center;
-    color: #264653
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 54px; 
+    color: #273141;
 }
 .Worker_names, .Worker_passwordDate, .Worker_bothInputs{
     display: flex;
