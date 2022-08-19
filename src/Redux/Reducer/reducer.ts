@@ -19,6 +19,7 @@ const initialState = {
   offerById: {},
   professions: [],
   skills: [],
+  paymentInfo:"",
   currentUser: {
     id: "",
     isWorker: false,
@@ -36,6 +37,9 @@ export const workServiceSlice = createSlice({
   reducers: {
     setAllClients: function (state: any, action: any) {
       state.allClients = action.payload;
+    },
+    setPaymentInfo: function (state: any, action: any) {
+      state.paymentInfo = action.payload;
     },
     setSearchedWorkers: function (state: any, action: any) {
       state.infoSearched = action.payload;
@@ -280,6 +284,7 @@ export const {
   setSearch,
   setAllSkills,
   setOfferById,
+  setPaymentInfo,
   setAllProfessions,
   setSearchedWorkers,
   setSearchedOffers,
@@ -780,4 +785,16 @@ export const getworkersMoreRating = async () => {
     
   }
   return response
+}
+
+export const getPaymentLink = (newPayment:any) => async (dispatch: Dispatch<any>) => {
+console.log(newPayment)
+const infoMP:any = await axios({
+  method: "POST",
+  url: "http://localhost:3001/payments/payment",
+  data: newPayment
+})
+  console.log(infoMP)
+  dispatch(setPaymentInfo(infoMP.data))
+
 }

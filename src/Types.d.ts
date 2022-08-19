@@ -94,6 +94,20 @@ export interface errorsNewOfferType {
   disabled: boolean | undefined;
 }
 
+type errorsNewpayout = {
+  Name:string,
+  Lastname: string,
+  Phone_Number: string,
+  Email: string,
+  Direction: string,
+  Postal_code: string,
+  City: string,
+  Province: string,
+  Country: string,
+  DNI: string,
+  disabled:boolean | undefined
+}
+
 export interface errorsType {
   name: String;
   lastName: String;
