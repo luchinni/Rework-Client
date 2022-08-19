@@ -3,9 +3,9 @@ import axios from "axios";
 import * as type from "../../Types";
 import { Dispatch } from "redux";
 import jwtDecode from "jwt-decode";
-import jwt from "jsonwebtoken";
+/* import jwt from "jsonwebtoken";
 import { workerData } from "worker_threads";
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY } = process.env; */
 
 const initialState = {
   allClients: [],
@@ -27,6 +27,7 @@ const initialState = {
   userVerified: {
     isActive: false,
   },
+  googleRoute:''
 };
 
 export const workServiceSlice = createSlice({
@@ -258,6 +259,10 @@ export const workServiceSlice = createSlice({
         isActive: true,
       };
     },  
+    setGoogleRoute: function (state: any, action:any){
+      console.log("action payload", action.payload)
+      state.googleRoute = action.payload
+    }
   },
 });
 
@@ -283,6 +288,7 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
+  setGoogleRoute
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -774,42 +780,91 @@ export const createGoogleWorker = () => async (dispatch: any) => {
   console.log("action worker")
   try {
     console.log("entre al try worker")
-    const worker = await axios({
+    const googleWorker = await axios({
     method: "POST",
     url: `http://localhost:3001/auth/worker`,
-    /* withCredentials: true,
+    /* withCredentials: true, */
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": true
-    } */
+      "Access-Control-Allow-Credentials": "true"
+    } 
   })
   console.log("llegue al back")
-  console.log("worker", worker.data)
-  dispatch(setCurrentUser(worker))
+  console.log("googleResponse", googleWorker.request)
+  dispatch(setGoogleRoute(googleWorker.request.responseURL))
+  /* window.open(googleResponse.request.responseURL) */
   } catch(error) {
     return error
   }
 }
 
+
 export const createGoogleClient = () => async (dispatch: any) => {
   console.log("entre a action")
   try {
     console.log("entre al try")
-    const client = await axios({
+    const googleClient = await axios({
     method: "POST",
     url: 'http://localhost:3001/auth/client',
-    withCredentials: true,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": true
-    }
+      "Access-Control-Allow-Credentials": "true"
+    } 
   })
-    console.log("llegue al back")
-    console.log("client", client.data)
-    return client
+  dispatch(setGoogleRoute(googleClient.request.responseURL))
   } catch(error) {
     return error
   }
 }
+
+export const getGoogleWorker = () => async (dispatch: any) => {
+      fetch("http://localhost:3001/auth/successWorker", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": "true"
+          } 
+      }).then((response) => {
+          if(response.status === 200) {
+            const respuesta = response.json()
+            console.log(respuesta)
+            return respuesta
+          } else {
+            throw new Error("Autenticación fallida, por favor intente de nuevo.")
+          }
+      }).then((resObject) => {
+        console.log("el obyec",resObject)
+        localStorage.setItem("token", JSON.stringify(resObject.token));
+        console.log("el worker", resObject.worker)
+        dispatch(setCurrentUser(resObject.worker))
+      }
+      ).catch((error) => {
+          console.log(error)
+      })
+    }
+
+    
+  /* export const getGoogleWorker = () => async (dispatch: any) => {
+    console.log("entre a googleWorker")
+    try {
+      const backResponse = await axios({
+        method: "GET",
+        url: `http://localhost:3001/auth/successWorker`,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true"
+        } 
+      })
+        dispatch(setCurrentUser(backResponse))
+  
+      
+    } catch (error) {
+      return error
+    }
+  }
+}*/
