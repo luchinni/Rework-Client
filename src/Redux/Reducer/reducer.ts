@@ -803,9 +803,10 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
 
   export const acceptProposal = async (proposalState:any) => {
     try{
+      console.log("entre: ", proposalState)
       await axios({
         method:"PUT",
-        url: "https://rework.up.railway.app//proposal/state" || `http://localhost:3001/proposal/state`,
+        url: "https://rework.up.railway.app/proposal/state" || `http://localhost:3001/proposal/state`,
         data: proposalState
         })
   } catch (error) {
