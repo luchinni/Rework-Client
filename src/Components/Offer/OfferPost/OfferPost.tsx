@@ -304,11 +304,10 @@ const OfferPost = () => {
               />
               {errors.title && <p className="danger">{errors.title}</p>}
             </div>
-            <div>
+            <div className="OfferPost_divInput">
               <span>Remuneración</span>
               <div>
                 <input
-                  className={errors.min_remuneration && "danger"}
                   type="number"
                   name="min_remuneration"
                   placeholder="Min"
