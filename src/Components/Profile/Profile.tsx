@@ -30,7 +30,9 @@ function Profile() {
 
   //const users = useSelector((state: any) => state.workService.offers)
 
-  const currentUser = useSelector((state:any) => state.workService.currentUser)
+  const currentUser = useSelector(
+    (state: any) => state.workService.currentUser
+  );
   // console.log('current' , currentUser)
   const userLogged = useSelector((state: any) => state.workService.userLogged);
   // console.log('loged', userLogged)
@@ -71,10 +73,9 @@ function Profile() {
 
   function handleUpdate() {
     setEditOpen(true);
-
   }
 
-  function UpdateClose(value : any) {
+  function UpdateClose(value: any) {
     setEditOpen(value);
   }
 
@@ -96,16 +97,18 @@ function Profile() {
           </div>
 
           <div>
-              <div>
+            <div>
               {editOpen && (
                 <div className="Profile_divModalUpdate">
-                  {/* <div className="Profile_divModalUpdateBtn">
-                    <button className="Profile_modalUpdateCloseButton" onClick={() => UpdateClose()}>X</button>
-                  </div> */}
-                  {currentUser.isWorker === false ?
-                    <FormEditProfileClient props={UpdateClose} /> 
-                  : <FormEditProfileWorker props={UpdateClose} />
-                }
+                  {currentUser.isWorker === false ? (
+                    <div className="Profile_divModalUpdate_Cli">
+                      <FormEditProfileClient props={UpdateClose} />
+                    </div>
+                  ) : (
+                    <div className="Profile_divModalUpdate_Worker">
+                      <FormEditProfileWorker props={UpdateClose} />
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -120,46 +123,84 @@ function Profile() {
                 </div>
 
                 {/* <div className="Profile_divNameAndRating"> */}
-                  {/* <span className="Profile_UserName">{userLogged.name}</span>
+                {/* <span className="Profile_UserName">{userLogged.name}</span>
                   <span className="Profile_UserRating">
                     Rating: {userLogged.rating ? userLogged.rating : 0}
                   </span> */}
-                  
-                <div className='Profile_divNameAndRating'>
-                  <span className='Profile_UserName'>{userLogged?.name} {userLogged?.lastName} </span>
-                  <span className='Profile_UserRating'>Rating: {userLogged?.rating ? userLogged.rating : 0}</span>
 
+                <div className="Profile_divNameAndRating">
+                  <span className="Profile_UserName">
+                    {userLogged?.name} {userLogged?.lastName}{" "}
+                  </span>
+                  <span className="Profile_UserRating">
+                    Rating: {userLogged?.rating ? userLogged.rating : 0}
+                  </span>
                 </div>
-              {/* </div> */}
+                {/* </div> */}
 
-              <div>
-                <button
-                  className="Profile_editProfile"
-                  onClick={() => handleUpdate()}
-                >
-                  Editar perfil
-                </button>
+                <div>
+                  <button
+                    className="Profile_editProfile"
+                    onClick={() => handleUpdate()}
+                  >
+                    Editar perfil
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {currentUser?.isWorker === true ?
-          <div className='Profile_divTags'>
-            <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
-            <button className={portfolioOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handlePort}>Porfolio</button>
-            <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
-            <button className={historialOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleHist}>Historial</button>
-          </div>
-          :
-          <div className='Profile_divTags'>
-            <button className={informationOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleInfo}>Informacion</button>
-            <button className={reviewsOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleRevi}>Reviews</button>
-            <button className={historialOpen ? 'Profile_tag open' : 'Profile_tag'} onClick={handleHist}>Historial</button>
-          </div>
-        }
+          {currentUser?.isWorker === true ? (
+            <div className="Profile_divTags">
+              <button
+                className={informationOpen ? "Profile_tag open" : "Profile_tag"}
+                onClick={handleInfo}
+              >
+                Informacion
+              </button>
+              <button
+                className={portfolioOpen ? "Profile_tag open" : "Profile_tag"}
+                onClick={handlePort}
+              >
+                Porfolio
+              </button>
+              <button
+                className={reviewsOpen ? "Profile_tag open" : "Profile_tag"}
+                onClick={handleRevi}
+              >
+                Reviews
+              </button>
+              <button
+                className={historialOpen ? "Profile_tag open" : "Profile_tag"}
+                onClick={handleHist}
+              >
+                Historial
+              </button>
+            </div>
+          ) : (
+            <div className="Profile_divTags">
+              <button
+                className={informationOpen ? "Profile_tag open" : "Profile_tag"}
+                onClick={handleInfo}
+              >
+                Informacion
+              </button>
+              <button
+                className={reviewsOpen ? "Profile_tag open" : "Profile_tag"}
+                onClick={handleRevi}
+              >
+                Reviews
+              </button>
+              <button
+                className={historialOpen ? "Profile_tag open" : "Profile_tag"}
+                onClick={handleHist}
+              >
+                Historial
+              </button>
+            </div>
+          )}
 
-        {/* <div className="Profile_divTags">
+          {/* <div className="Profile_divTags">
           <button
             className={portfolioOpen ? "Profile_tag open" : "Profile_tag"}
             onClick={handlePort}
@@ -186,43 +227,43 @@ function Profile() {
           </button>
         </div> */}
 
-        {portfolioOpen && currentUser?.isWorker === true ? (
-          <div className="Profile_divPortfolio">
-            <Portfolio />
-          </div>
-        ) : (
-          false
-        )}
+          {portfolioOpen && currentUser?.isWorker === true ? (
+            <div className="Profile_divPortfolio">
+              <Portfolio />
+            </div>
+          ) : (
+            false
+          )}
 
-        {informationOpen ? (
-          <div className="Profile_divPortfolio">
-            <Information  props={userLogged}/>
-          </div>
-        ) : (
-          false
-        )}
+          {informationOpen ? (
+            <div className="Profile_divPortfolio">
+              <Information props={userLogged} />
+            </div>
+          ) : (
+            false
+          )}
 
-        {reviewsOpen ? (
-          <div className="Profile_divPortfolio">
-            <Reviews />
-          </div>
-        ) : (
-          false
-        )}
+          {reviewsOpen ? (
+            <div className="Profile_divPortfolio">
+              <Reviews />
+            </div>
+          ) : (
+            false
+          )}
 
-        {historialOpen ? (
-          <div className="Profile_divPortfolio">
-            <Historial />
-          </div>
-        ) : (
-          false
-        )}
+          {historialOpen ? (
+            <div className="Profile_divPortfolio">
+              <Historial />
+            </div>
+          ) : (
+            false
+          )}
+        </div>
+        <CardsReview />
       </div>
-      <CardsReview />
-    </div>
     </div>
   );
-};
+}
 
 export default Profile;
 

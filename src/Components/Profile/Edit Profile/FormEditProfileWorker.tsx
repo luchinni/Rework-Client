@@ -8,8 +8,9 @@ import {
   putEditProfileWorker,
 } from "../../../Redux/Reducer/reducer";
 import { errorsTypeEditWorker, WorkerTypeUpdate } from "../../../Types";
+import './FormEditProfileWorker.css'
 
-function FormEditProfileWorker({ props}: any) {
+function FormEditProfileWorker({ props }: any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
   const professions = useSelector(
     (state: any) => state.workService.professions
@@ -144,9 +145,9 @@ function FormEditProfileWorker({ props}: any) {
   function onSubmit(e: any) {
     e.preventDefault();
   }
-  const token:any = localStorage.getItem("token")
-    let tokenDecode:any
-    if(token) tokenDecode = decode(token)
+  const token: any = localStorage.getItem("token");
+  let tokenDecode: any;
+  if (token) tokenDecode = decode(token);
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -164,14 +165,13 @@ function FormEditProfileWorker({ props}: any) {
     };
     const id = userLogged.id;
 
-    putEditProfileWorker(newWorker, id)
-    .then(() => {
-      dispatch(getUserById(tokenDecode))
-    })
+    putEditProfileWorker(newWorker, id).then(() => {
+      dispatch(getUserById(tokenDecode));
+    });
 
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
-    props(false)
+    props(false);
   }
 
   function handleSelect(e: any) {
@@ -201,53 +201,59 @@ function FormEditProfileWorker({ props}: any) {
       setWorker({ ...worker, skills: borrado2 });
     }
   }
-  function handleClose () {
-    props(false)
+  function handleClose() {
+    props(false);
   }
 
   return (
-    <div >
-      <div >
-      <div>
-        <button onClick={() => handleClose()}>x</button>
-      </div>
-        <div >
-          <form
-            className="Worker_registerForm"
-            id="form"
-            onSubmit={(e) => onSubmit(e)}
-          >
-            <input
-              autoComplete="off"
-              type="text"
-              name="name"
-              placeholder="Nombre"
-              onChange={(e) => handleChange(e)}
-            />
-            {!errors.name ? null : <div>{errors.name}</div>}
-            <input
-              autoComplete="off"
-              type="text"
-              name="lastName"
-              placeholder="Apellido"
-              onChange={(e) => handleChange(e)}
-            />
-            {!errors.lastName ? null : <div>{errors.lastName}</div>}
-            <input
-              type="date"
-              name="birthdate"
-              placeholder="Fecha de Nacimiento"
-              onChange={(e) => handleChange(e)}
-            />
-            {!errors.birthdate ? null : <div>{errors.birthdate}</div>}
-            <input
-              type="file"
-              name="image"
-              placeholder="carga una imagen de perfil"
-              accept="image/*"
-              onChange={(e) => handleChange(e)}
-            />
-            {!errors.image ? null : <div>{errors.image}</div>}
+    <div>
+      <div className="updateCli_mainContainer">
+        <div className="updateCli_closeBtnContainer">
+          <button className="updateCli_closeBtn" onClick={() => handleClose()}>
+            x
+          </button>
+        </div>
+          <form className="updateWorker_Form" onSubmit={(e) => onSubmit(e)}>
+            <div className="update_Div_inputAndError">
+              <input
+                required
+                className="update_inpunt"
+                autoComplete="off"
+                type="text"
+                name="name"
+                onChange={(e) => handleChange(e)}
+              />
+              <span>Nombre</span>
+              {!errors.name ? null : <div>{errors.name}</div>}
+            </div>
+            <div className="update_Div_inputAndError">
+              <input
+                required
+                className="update_inpunt"
+                type="text"
+                name="lastName"
+                autoComplete="off"
+                onChange={(e) => handleChange(e)}
+              />
+              <span>Apellido</span>
+              {!errors.lastName ? null : (
+                <div className="update_inputError">{errors.lastName}</div>
+              )}
+            </div>
+            <div className="update_Div_inputAndError">
+              <input
+                required
+                className="update_inpunt"
+                id="birthday_input"
+                type="date"
+                name="birthdate"
+                onChange={(e) => handleChange(e)}
+              />
+              <span>Fecha de Nacimiento</span>
+              {!errors.birthdate ? null : (
+                <div className="update_inputError">{errors.birthdate}</div>
+              )}
+            </div>
             <select
               name="profession"
               id="profession"
@@ -306,16 +312,33 @@ function FormEditProfileWorker({ props}: any) {
 
             <span>Ingeniero, Diseñador</span>
             <span>Phyton, Css...</span>
-            <input
-              disabled={errors.disabled}
-              name="button"
-              type="submit"
-              value="Actualizar"
-              onClick={(e) => handleSubmit(e)}
-            />
+            <div className="update_Div_inputFile">
+              <input
+                className="update_inpuntImg"
+                id="file_input"
+                type="file"
+                accept="image/*"
+                name="image"
+                onChange={(e) => handleChange(e)}
+              />
+              {!errors.image ? null : (
+                <div className="update_inputError">{errors.image}</div>
+              )}
+            </div>
+            <div className="updateCli_submitBtnContainer">
+              <input
+                className="update_inpuntSubmit"
+                disabled={errors.disabled}
+                name="button"
+                type="submit"
+                value="Actualizar"
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
+              />
+            </div>
           </form>
         </div>
-      </div>
     </div>
   );
 }
