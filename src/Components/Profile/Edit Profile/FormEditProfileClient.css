@@ -5,46 +5,11 @@
   padding: 0;
   background-color: transparent;
 }
-.updateCli_closeBtnContainer{
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 10px 10px 0;
-}
-
-.updateCli_closeBtn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgb(255, 21, 21);
-  text-decoration: none;
-  border: 1px solid rgb(199, 6, 6);
-  width: 25px;
-  height: 25px;
-  border-radius: 3px;
-  color: #fffcfc;
-  font-weight: 700;
-  font-size: 1.2em;
-  box-shadow: -2px -2px 8px rgb(255, 255, 255, 1),
-              -2px -2px 12px rgba(255, 255, 255, 0.5),
-              inset 2px 2px 4px rgba(255, 255, 255, 0.1)
-              2px 2px 8px rgba(255, 255, 255, 0.12);
-}
-
-.updateCli_closeBtn:hover{
-  box-shadow: inset -2px -2px 8px rgb(199, 6, 6, 1),
-              inset -2px -2px 12px rgba(199, 6, 6, 0.5),
-              inset 2px 2px 4px rgba(199, 6, 6, 0.1),
-              inset 2px 2px 8px rgba(199, 6, 6, 0.15);
-  font-size: 1.16em;
-  color: #dfdfdf;
-  transition: 0.25s;
-}
 
 .updateCli_Form {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 30vh;
   flex-direction: column;
   gap: 30px;
   letter-spacing: 1.5px;
@@ -171,3 +136,38 @@
   color: crimson;
 }
 
+.updateCli_closeBtnContainer{
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10px 10px 0;
+}
+
+.updateCli_closeBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(255, 21, 21);
+  text-decoration: none;
+  border: 1px solid rgb(199, 6, 6);
+  width: 25px;
+  height: 25px;
+  border-radius: 3px;
+  color: #fffcfc;
+  font-weight: 700;
+  font-size: 1.2em;
+  box-shadow: -2px -2px 8px rgb(255, 255, 255, 1),
+              -2px -2px 12px rgba(255, 255, 255, 0.5),
+              inset 2px 2px 4px rgba(255, 255, 255, 0.1)
+              2px 2px 8px rgba(255, 255, 255, 0.12);
+}
+
+.updateCli_closeBtn:hover{
+  box-shadow: inset -2px -2px 8px rgb(199, 6, 6, 1),
+              inset -2px -2px 12px rgba(199, 6, 6, 0.5),
+              inset 2px 2px 4px rgba(199, 6, 6, 0.1),
+              inset 2px 2px 8px rgba(199, 6, 6, 0.15);
+  font-size: 1.16em;
+  color: #dfdfdf;
+  transition: 0.25s;
+  cursor: pointer;
+}

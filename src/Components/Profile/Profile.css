@@ -141,5 +141,14 @@
   border: 2px solid #edecd9;
   background-color: #fffcfc;
   border-radius: 5px;
-  height: 500px;
+}
+
+.Profile_divModalUpdate_Cli {
+  height: auto;
+  min-height: 400px;
+}
+
+.Profile_divModalUpdate_Worker {
+  height: auto;
+  min-height: 700px;
 }

@@ -157,7 +157,6 @@ function FormEditProfileClient({ props }: any) {
   }
 
   return (
-    <div>
       <div className="updateCli_mainContainer">
         <div className="updateCli_closeBtnContainer">
           <button className="updateCli_closeBtn" onClick={() => handleClose()}>
@@ -208,8 +207,6 @@ function FormEditProfileClient({ props }: any) {
               )}
           </div>
           <div className="update_Div_inputFile">
-           {/*  <label className="custom_file_upload">
-              Subir Imagen */}
             <input
               className="update_inpuntImg"
               id="file_input"
@@ -218,7 +215,6 @@ function FormEditProfileClient({ props }: any) {
               name="image"
               onChange={(e) => handleChange(e)}
             />
-            {/* </label> */}
             {!errors.image ? null : (
               <div className="update_inputError">{errors.image}</div>
             )}
@@ -237,7 +233,6 @@ function FormEditProfileClient({ props }: any) {
           </div>
         </form>
       </div>
-    </div>
   );
 }
 
