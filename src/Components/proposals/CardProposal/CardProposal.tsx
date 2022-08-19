@@ -79,7 +79,6 @@ const CardProposal = ({ props, offer }: any) => {
       {edition && (
         <div className="Detail_divModal">
           <FormEditProposal
-            idOferta={offer}
             close={handleCloseEdition}
             proposal={props}
           />

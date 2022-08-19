@@ -239,6 +239,7 @@ const FormProposal = (props: any) => {
               </div>
                 <input
                   className="DetailModal_submit"
+                  disabled={error.disabled}
                   name="button"
                   type="submit"
                   value="Publicar"
