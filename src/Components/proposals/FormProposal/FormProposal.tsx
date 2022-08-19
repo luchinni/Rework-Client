@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { newProposalPost } from "../../../Redux/Reducer/reducer";
+import { getOfferId, newProposalPost } from "../../../Redux/Reducer/reducer";
 import "./FormProposal.css";
 import image from "../../../images/modal_image_proposal.jpg";
 import decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../../Redux/Reducer/reducer";
+import { useParams } from "react-router-dom";
 
 const FormProposal = (props: any) => {
   console.log("esto es props: ", props);
 
   const dispatch = useDispatch();
-
+  const params = useParams();
   const token: any = localStorage.getItem("token");
   const tokenDecode: any = decode(token);
   const userLogged = useSelector((state: any) => state.workService.userLogged);
@@ -154,6 +155,7 @@ const FormProposal = (props: any) => {
       };
 
       newProposalPost(newProposal).then(() => {
+        dispatch(getOfferId(params.id));
         let form = document.getElementById("form") as HTMLFormElement | null;
         form?.reset();
       });
