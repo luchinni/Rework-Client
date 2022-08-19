@@ -108,7 +108,8 @@ const validarForm = (errors:type.errorsNewpayout) => {
 
 const getCost = () => {
     const cost = currentOffer?.proposals.filter((p:any)=> p.state === "accepted")
-    return cost[0].remuneration
+    console.log(cost)
+    return cost[0]?.remuneration
 }
 
 const handleChange = async (e:any) =>{
