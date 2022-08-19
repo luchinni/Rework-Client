@@ -50,13 +50,11 @@
     position: relative;
 }
 
-
 .Dashboard_divTags {
     display: flex;
     gap: 20px;
     margin-bottom: 50px;
 }
-
 
 .Dashboard_tag {
     font-weight: 600;

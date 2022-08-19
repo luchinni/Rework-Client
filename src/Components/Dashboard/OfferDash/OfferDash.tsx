@@ -13,19 +13,28 @@ function OfferDash() {
 
 	const offers = useSelector((state:any) => state.workService.offers);
 
-	console.log("offers :" ,offers)
-
 	const [modalEdit, setModalEdit] = useState(false)
-
 	const [modalDelete, setModalDelete] = useState(false)
 
-	function handleModalEdit() {
+	const [dataOffer, setDataOffer] = useState<any>({})
+
+	function handleModalEdit(offers:any) {
 		setModalEdit(true)
+		setDataOffer(offers)
 	}
 
-	function handleModalDelete() {
-		setModalDelete(true)
+
+	function handleModalEditClose() {
+		setModalEdit(false)
 	}
+
+
+	function handleModalDelete(offers:any) {
+		setModalDelete(true)
+		setDataOffer(offers)
+	}
+
+
 
   return (
     <div className='OfferDash_Component'>
@@ -35,11 +44,38 @@ function OfferDash() {
 						modalEdit &&
 						<div className='OfferDash_Modal'>
 							<div>
-								<p className='OfferDash_edittext'>Aca debeira haber un input o select para actualizar el estado de la publicacion</p>
+
+								<div className='OfferDash_divInfoModal'>
+									<div>
+										<p className='OfferDash_divModalTitle'>Id de la publicacion: </p>
+										<span className='OfferDash_MOdalTextInfo'>{dataOffer.idOffer}</span>
+									</div>
+									
+									<div>
+										<p className='OfferDash_divModalTitle'>Dueño de la publicacion: </p>
+										<span className='OfferDash_MOdalTextInfo'>{dataOffer.userClient.name} </span>
+										<span className='OfferDash_MOdalTextInfo'>{dataOffer.userClient.lastName}</span>
+									</div>
+
+									<div>
+										<p className='OfferDash_divModalTitle'>estado actual: </p>
+										<span className='OfferDash_MOdalTextInfo'>Abierta</span>
+									</div>
+								</div>
+
+								<hr className='OfferDash_hr' />
+
+								<div className='OfferDash_divInputEdit'>
+									<label className='OfferDash_divModalTitle'>Actualiza el estado</label>
+									<select name="" id="">
+										<option value="">Abierta</option>
+										<option value="">Cerrada</option>
+									</select>
+								</div>
 							</div>
 							<div className='OfferDash_modalButtonsDiv'>
 								<button className='OfferDash_modalOk'>guardar</button>
-								<button className='OfferDash_modalCancelar' onClick={() => setModalEdit(false)}>cancelar</button>
+								<button className='OfferDash_modalCancelar' onClick={handleModalEditClose}>cancelar</button>
 							</div>
 						</div>
 					}
@@ -47,8 +83,9 @@ function OfferDash() {
 					{
 						modalDelete &&
 						<div className='OfferDash_Modal'>
-							<div>
-								<p className='OfferDash_edittext'>Estas seguro de que deseas eliminar esta oferta? </p>
+							<div className='OfferDash_modalDeleteText'>
+								<p className='OfferDash_divModalTitle'>Estas seguro que deseas borrar la oferta con el id:</p>
+								<span className='OfferDash_MOdalTextInfo'>{dataOffer.idOffer}</span>
 							</div>
 							<div className='OfferDash_modalButtonsDiv'>
 								<button className='OfferDash_modalOk'>si</button>
@@ -68,32 +105,32 @@ function OfferDash() {
 							</tr>
 						</thead>
 						<tbody className='OfferDash_tableBody'>
-							{offers.map((e:any, i:any) => {
+							{offers.map((offer:any, i:any) => {
 								return (
 									<tr className='OfferDash_divOffer' key={i}>
 
 										<td className='OfferDash_divCardOffer'>
 											<div className='OfferDash_divUserInfo'>
-												<span className='OfferDash_userName'>{e.userClient.name} </span>
-												<span className='OfferDash_userName'>{e.userClient.lastName}</span>
+												<span className='OfferDash_userName'>{offer.userClient.name} </span>
+												<span className='OfferDash_userName'>{offer.userClient.lastName}</span>
 											</div>
 										</td>
 
 										<td className='OfferDash_divUserMail'>
-											{e.idOffer}
+											{offer.idOffer}
 										</td>
 										
 										<td>
-												{e.post_date}
+												{offer.post_date}
 										</td>
 
 										<td>
-												{e.isActive === false ? "Cerrada" : "Abierta"}
+												{offer.isActive === false ? "Cerrada" : "Abierta"}
 										</td>
 
 										<td className='OfferDash_tdButtons'>
-											<button className='OfferDash_editButton' onClick={handleModalEdit}>Editar</button>
-											<button className='OfferDash_deleteButton' onClick={handleModalDelete}>Eliminar</button>
+											<button className='OfferDash_editButton' onClick={() => handleModalEdit(offers[i])}>Editar</button>
+											<button className='OfferDash_deleteButton' onClick={() => handleModalDelete(offers[i])}>Eliminar</button>
 										</td>
 
 									</tr>
