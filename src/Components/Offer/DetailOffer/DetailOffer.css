@@ -127,7 +127,8 @@
   flex-wrap: wrap;
   gap: 30px;
   /* justify-content: space-between; */
-  margin-bottom: 100px;
+  margin: 50px 0 100px 0 ;
+  justify-content: center;
 }
 .Detail_Proposal {
   border: 1px solid #bcbcbc;
@@ -182,6 +183,17 @@
   line-height: 21px;
   color: #262626;
   max-width: 190px;
+}
+.DetailP_button {
+  font-weight: 500;
+  font-size: 14px;
+  color: #FFFFFF;
+  padding: 9px 20px;
+  background: #72AD5E;
+  border-radius: 6px;
+  border: none;
+  margin-top: 30px;
+  cursor: pointer;
 }
 
 .Detail_urlCopy {

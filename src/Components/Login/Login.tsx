@@ -27,7 +27,6 @@ const Login = (props:any) => {
     
     let password  = user.password
     let user_mail = user.user_mail.toLowerCase();
-    console.log (password, user_mail)
     let newLoggedUser = {
       user_mail:user_mail, password:password
     }
@@ -73,7 +72,7 @@ const Login = (props:any) => {
                 <Link to = {"/google"} ><img className="Login_googleImg" src={imgGoogle} alt="googleLink" /></Link>
               </button>
             </div>
-            <span className="Login_Register">No tienes una cuenta? <Link to="#">registrate</Link></span>
+            <span className="Login_Register">No tienes una cuenta? <a href="" onClick={()=>navigate("/register")}>registrate</a></span>
           </div>
       </div>
       <div className="Login_divCover">

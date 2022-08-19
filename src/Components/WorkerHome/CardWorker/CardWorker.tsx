@@ -70,51 +70,52 @@ const CardWorker = ({props}:any) => {
                 break;
         }
     }
-
+console.log(props)
 
   return (
     <div className='CardWorker_component'>
-        <div className='div_infoUser'>
-            <div className='div_imageProfile'>
-            <img className='card_profileImage' src={props.photo} alt="profile img" />
-            </div>
-            <div className='div_userDatos'>
-            <Link to={`/profile/${props.id}`}><h1 className='Card_userName'>{props.name}</h1></Link>
-            <h4 className='Card_userHabilities'>{props.profession?.join(", ")}</h4>
-            </div>
-            <div className='Card_options'>
-            <button /*onClick={handleClick}*/ className='cardButton_options'>
-                <img className='more' src={save} alt="save" />
-            </button>
-            <div className='div_cardButton'>
-                <button onClick={handleClick} className='cardButton_options'>
-                    <img className='more' src={more} alt="more" />
-                </button>
-                {open &&
-                <div className='Card_option'>
-                  <div className='CardOption_divReport'>
-                    <span className='report_cardButton'>Reportar</span>
-                    <img className='report_icon' src={report} alt="report" />
-                  </div>
+        <div className='div_infoUser' > 
+            <div className="div_info_imgDatos">
+                <div className='div_workerButton'>
+                    <button onClick={handleClick} className='workerButton_options'>
+                        <img className='more' src={more} alt="more" />
+                    </button>
+                    {open &&
+                    <div className='Card_option'>
+                    <div className='CardOption_divReport'>
+                        <span className='report_cardButton'>Reportar</span>
+                        <img className='report_icon' src={report} alt="report" />
+                    </div>
+                    </div>
+                    }
                 </div>
-                }
-            </div>
+                <div className='div_userDatos'>
+                <div className='div_imageWorker'>
+                    <img className='card_workerImage' src={props.photo} alt="profile img"/>
+                </div>
+                    <Link to={`/profile/${props.id}`}><h1  className='Card_userName'>{props.name}</h1></Link>
+                    <div className='div_rating'>
+                    {ratingStars(props.rating)}
+                    </div>
+                </div>
             </div>
         </div>
-        <hr />
-        <div>
-            {ratingStars(props.rating)}
+        <div className="div_description">
             <div>
+                <div>
+                    <h4 className='Card_userProfessions'>{props.profession?.join(", ")}</h4>
+                    <h4 className='Card_userHabilities'>Habilidades: <br/><span>{props.skills?.join(", ")}</span></h4>
+                </div>
+                {/* <p className="description">Descripción</p> */}
+            </div>
+        </div>
+        <div className='div_descriptionTop'>
+            <p className="valorHora">Valor hora: AR$ </p>
+            <div className="div_location">
                 {<GoLocation/>}
                 <h3>Argentina</h3>
-                <div>
-                    <p>Habilidades: {props.skills?.join(", ")}</p>
-                    <p>Valor hora: AR$ </p>
-                </div>
-                <h2>Descripción</h2>
             </div>
-        </div>
-        <button>Contratar</button>
+        </div>  
     </div>
   )
 }

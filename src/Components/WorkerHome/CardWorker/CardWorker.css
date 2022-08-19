@@ -1,58 +1,154 @@
-
 .CardWorker_component{
-border: 1px solid #949494;
+border: 2px solid #edecd9;
 background-color: #FFFFFF;
-border-radius: 10px;
-max-width: 330px;
-min-width: 329px;
+border-radius: 6px;
+max-width: 320px;
+min-width: 319px;
+min-height: 480px;
+max-height: 480px;
 overflow: hidden;
-margin-bottom: 30px;
+margin: 0 0 30px 40px;
 padding-bottom: 7px;
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+position: relative
 }
 
 .div_infoUser {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     gap: 12px;
     align-items: center;
 }
 
-.div_imageProfile{
-    background-color: red;
-    height: max-content;
-    max-width:46px;
+.div_imageWorker{
+    height: 165px;
+    width: 220px;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 15px;
 }
 
-.card_profileImage{
-    width: 100%;
+.card_workerImage{
+    max-width: 220px;
+    max-height: 165px;
 }
 
 .div_userDatos {
     display: flex;
     flex-direction: column;
-}
-
-.Card_userName {
-    font-size: 16px;
-    font-weight: 500;
+    gap: 4px;
     text-decoration: none;
 }
 
-.Card_userHabilities {
-    font-size: 13px;
-    color: #575757;
+.div_userDatos > a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
 }
 
-.cardButton_options {
+.Card_userName {
+    font-size: 25px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #264653;
+    transition: all 0.3s;
+}
+
+.Card_userName:hover {
+    color: #2A9D8F;
+}
+
+.Card_userProfessions {
+    font-size: 22px;
+    color: #2A9D8F;
+    font-weight: 400;
+    text-align: center;
+}
+
+.Card_userProfessions > span{
+    color: #F4A261
+}
+
+.div_workerButton{
+    right: 4px;
+    position: absolute;
+}
+
+.workerButton_options {
     height: 35px;
     width: 35px;
     font-size: 26px;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
 }
 .more {
     max-width: 30px;
 }
 
-.Card_options{
-    margin-right: 10px;
+.div_info_imgDatos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0
+}
+
+.div_description{
+    padding: 0 0 20px 0;
+}
+
+.div_location{
+    display:flex;
+    align-items: center;
+    color: #264653;
+}
+
+.div_location > svg {
+    color:#ec0a0a98;
+    font-size: 25px;
+}
+
+.valorHora{
+    color:#E76F51
+}
+
+.description{
+    font-size: 16px;
+    line-height: 24px;
+    color: #273141;
+}
+
+.div_rating{
+    display: flex;
+    align-items: center;
+    padding-bottom: 2px;
+    justify-content: center;
+}
+
+.div_rating > svg {
+    color: #E9C46A;
+}
+
+.div_descriptionTop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+
+}
+
+.Card_userHabilities{
+    color: #264653;
+    font-size: 20px;
+    margin: 5px 0 15px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.Card_userHabilities > span {
+    color: #F4A261;
 }

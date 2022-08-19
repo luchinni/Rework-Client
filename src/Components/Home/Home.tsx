@@ -11,6 +11,8 @@ import Banner from './Banner/Banner';
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
 import jwt from 'jsonwebtoken'
+import Carrusel from './Carrusel/Carrusel';
+import CarruselCard from './Carrusel/CarruselCard';
 
 
 const Home = () => {
@@ -20,7 +22,7 @@ const Home = () => {
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
   const currentUser = useSelector((state:any) => state.workService.currentUser);
 
-  let [ITEMS_PER_PAGE, setItemsPerPage] = useState(5);
+  let [ITEMS_PER_PAGE, setItemsPerPage] = useState(6);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
 
@@ -37,11 +39,6 @@ const Home = () => {
     dispatch(favoritesToDB(storageParsed, currentUser.id));
 
   }
-  
-  console.log('tokendecode', tokenDecode)
-  console.log('token', token)
-  
- 
 
   useEffect(() => {
     dispatch(getOffers());
@@ -70,13 +67,13 @@ const Home = () => {
   }, [infoSearched])
 
 const handleMore = () => {
-  setItemsPerPage(ITEMS_PER_PAGE+5)
+  setItemsPerPage(ITEMS_PER_PAGE+6)
   if(search==="worker"){
-    setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+    setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE+6))
   }else if(search==="offer"){
-    setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE))
+    setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE+6))
   }else{
-    setItems([...offers]?.splice(0, ITEMS_PER_PAGE))
+    setItems([...offers]?.splice(0, ITEMS_PER_PAGE+6))
   }
 }
 
@@ -147,7 +144,6 @@ const showButton = () => {
     }
   }
 }
-
     //Ejemplo de useSelector con Toolkit.
     // para hacer un console.log y ver si estaba andando la action.
     /*const global = useSelector((state: any) => state.workService.currentUser)
@@ -157,6 +153,9 @@ const showButton = () => {
       <Header/>
       <div className='div_BannerAndCards'>
         <Banner/> 
+        <div>
+        <Carrusel/>
+        </div>
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <Filtros />

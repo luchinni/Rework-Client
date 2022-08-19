@@ -9,12 +9,13 @@ import './Portfolio.css'
 const Portfolio = () => {
 
     const [modalOpen, setModalOpen] = useState(false)
-
+    const [currentId, setCurrentId] = useState("")
     const [modalCard, setCardOpen] = useState(false)
 
     const dispatch = useDispatch();
     const token:any = localStorage.getItem("token")
-    const tokenDecode:any = decode(token)
+    let tokenDecode:any
+    if(token) tokenDecode = decode(token)
     const userLogged = useSelector((state: any) => state.workService.userLogged)
     const loading = useSelector((state: any) => state.workService.isLoading)
 
@@ -36,8 +37,13 @@ const Portfolio = () => {
         setModalOpen(true)
     }
 
-    const handleCardOpen = () => {
+    const handleCardOpen = (id:any) => {
+      console.log(id);
+      setCurrentId(id)
       setCardOpen(true)
+    }
+    const handleCardClose = (value:any) => {
+      setCardOpen(value)
     }
 
     const handleClose = (value:any) => {
@@ -52,11 +58,21 @@ const Portfolio = () => {
                 <button className='Portfolio_buttonAddPortfolio' onClick={handleOpen}>agregar portafolio</button>
               </div>
               {loading===false? userLogged.portfolios?.map((e:any) => {
+                console.log(e)
                 return (
                   <div className='Portfolio_divItemMap'>
-                    <div onClick={handleCardOpen} className='Portfolio_divItems'>
-                      <img src={`data:image/png;base64,${e.photo}`} className="Portfolio_Item"/> 
+                    <div onClick={() => handleCardOpen(e.idPortfolio)} className='Portfolio_divItems'>
+                      <img src={e.photo} className="Portfolio_Item"/> 
                     </div>
+                    {
+                      modalCard===true && currentId===e.idPortfolio?
+                    modalCard &&
+                      <div className='Portfolio_CardComponent'>
+                        <CardPorfolio portfolio={e} close={handleCardClose} />
+                      </div>
+                      :
+                      false
+                    }
                   </div>
                 )
               }):"loading..."}
@@ -65,13 +81,6 @@ const Portfolio = () => {
             {modalOpen && 
               <div className="Portfolio_formModal">
                 <FormPortfolio handle={handleClose}/>
-              </div>
-            }
-
-            {
-              modalCard &&
-              <div className='Portfolio_CardComponent'>
-                <CardPorfolio />
               </div>
             }
     </div>

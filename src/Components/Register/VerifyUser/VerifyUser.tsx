@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import {verifyClient, verifyWorker} from "../../../Redux/Reducer/reducer"
+import HeaderRegister from '../HeaderRegister/HeaderRegister';
 
 // esta funcion se ejecuta una sola vez y es para verificar el mail del usuario recien registrado.
 const VerifyUser = () => {
@@ -18,8 +19,9 @@ const VerifyUser = () => {
     // notificamos al user que su cuenta fue verificada y lo hacemos ingresar
     return (
         <div>
+            {/* <HeaderRegister /> */}
             <h2>Cuenta verificada exitosamente!</h2>
-            <Link to={"/login"}>Ingresar</Link>
+            <Link to={"/login"}>Ingresar!</Link>
         </div>
     )
 }

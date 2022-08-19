@@ -6,6 +6,8 @@ import * as type from "../../../Types";
 import { postNewClient } from "../../../Redux/Reducer/reducer";
 import "./ClientRegister.css";
 import HeaderRegister from "../HeaderRegister/HeaderRegister";
+import Axios, {AxiosResponse}  from "axios";
+import Swal from "sweetalert2";
 
 export class ClientRegister extends Component {
   state: type.ClientType;
@@ -22,6 +24,7 @@ export class ClientRegister extends Component {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
         password: "Campo requerido",
+        password2: "Campo requerido",
         user_mail: "Campo requerido",
         birthdate: "Campo requerido",
         image: "",
@@ -29,12 +32,11 @@ export class ClientRegister extends Component {
       disabled: true,
     };
   }
-
   firstWordUpperCase(word: String) {
     return word[0].toUpperCase() + word.slice(1);
   }
-
   validarForm(errors: type.errorsType) {
+
     let valid = true;
     Object.values(errors).forEach(
       (val: any) => val.length > 0 && (valid = false)
@@ -50,19 +52,19 @@ export class ClientRegister extends Component {
     }
   }
 
-  async parseImage(e: any, cb: Function) {
-    let file = e.target.files[0];
-    let reader: any = new FileReader();
-    let base64String: any = (reader.onload = async function () {
-      base64String = reader.result?.replace("data:", "").replace(/^.+,/, "");
-      //resolve(reader.result);
-      cb(reader.result);
-      // this.setState({
-      //   image:base64String
-      // })
-    });
-    await reader.readAsDataURL(file);
-    
+
+  async postImageOnCloudinary(e: any) {
+    const formData = new FormData();
+    formData.append("file", e);
+    formData.append("upload_preset", "re-work");
+
+    try {
+      const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
+      const data: any = response.data;
+      return data.url;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async handleChange(e: any) {
@@ -72,33 +74,32 @@ export class ClientRegister extends Component {
     errors = this.state.errors;
 
     if (name === "image") {
-      return await this.parseImage(e, (base64String: any) => {
-        this.setState({
-          image: base64String,
-        });
+      this.setState({
+        image: e.target.files[0]
       });
-    }
+      return
+    };
 
     switch (name) {
       case "name":
-        let namePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
+        let namePattern: RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/;
         errors.name = value.startsWith(" ")
           ? "El nombre no puede iniciar con un espacio."
           : !namePattern.test(value)
-          ? "El nombre no puede contener caracteres especiales."
+          ? "El nombre no puede contener números o caracteres especiales."
           : value.endsWith(" ")
           ? "El nombre no puede terminar con espacio."
           : "";
         break;
       case "lastName":
-        let lastNamePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
+        let lastNamePattern: RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/;
         errors.lastName = value.startsWith(" ")
           ? "El apellido no puede iniciar con un espacio."
           : lastNamePattern.test(value)
           ? value.endsWith(" ")
             ? "El apellido no puede terminar con espacio."
             : ""
-          : "El apellido no puede contener caracteres especiales.";
+          : "El apellido no puede contener números o caracteres especiales.";
         break;
       case "password":
         let passwordPattern: RegExp =
@@ -106,6 +107,14 @@ export class ClientRegister extends Component {
         errors.password = passwordPattern.test(value)
           ? ""
           : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
+        break;
+      case "password2":
+        let passwordPattern2: RegExp =
+        /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/; 
+        errors.password2 = passwordPattern2.test(value) ?
+        value === this.state.password ? "" 
+        : "Las contraseñas no coinciden"
+        : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
         break;
       case "user_mail":
         let user_mailPattern: RegExp =
@@ -147,9 +156,12 @@ export class ClientRegister extends Component {
     this.validarForm(this.state.errors);
   }
 
-  handleSubmit(e: any) {
+  async handleSubmit(e: any) {
     e.preventDefault();
-    let { name, lastName, password, user_mail, birthdate, image } = this.state;
+
+    let image = await this.postImageOnCloudinary(this.state.image);
+
+    let { name, lastName, password, user_mail, birthdate } = this.state;
     name = name ? this.firstWordUpperCase(name) : name;
     lastName = lastName ? this.firstWordUpperCase(lastName) : lastName;
 
@@ -165,6 +177,27 @@ export class ClientRegister extends Component {
     postNewClient(newClient);
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
+
+    this.state = {
+      name: "",
+      lastName: "",
+      password: "",
+      user_mail: "",
+      birthdate: "",
+      image: "",
+      errors: {
+        name: "Campo requerido.",
+        lastName: "Campo requerido.",
+        password: "Campo requerido",
+        password2: "Campo requerido",
+        user_mail: "Campo requerido",
+        birthdate: "Campo requerido",
+        image: "",
+      }, 
+      disabled: true,
+    }; 
+    Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
+    
   }
 
   render() {
@@ -179,9 +212,6 @@ export class ClientRegister extends Component {
           </div>
           <div className="CR_divForm">
             <h1 className="CR_h1">Empecemos</h1>
-            <p className="CR_goToLogin">
-              Ya tienes una cuenta? accede a <a href="/login">Login</a>
-            </p>
             <form
               className="CR_Form"
               id="form"
@@ -230,6 +260,20 @@ export class ClientRegister extends Component {
               <div className="CR_Div_inputAndError">
                 <input
                   className="CR_inpunt"
+                  type="password"
+                  name="password2"
+                  placeholder="Repita contraseña"
+                  onChange={(e) => this.handleChange(e)}
+                />
+                {!this.state.errors.password2 ? null : (
+                  <div className="CR_inputError">
+                    {this.state.errors.password2}
+                  </div>
+                )}
+              </div>
+              <div className="CR_Div_inputAndError">
+                <input
+                  className="CR_inpunt"
                   type="email"
                   name="user_mail"
                   placeholder="E-mail"
@@ -269,7 +313,8 @@ export class ClientRegister extends Component {
                 )}
               </div>
               <input
-                className="CR_inpuntSubmit"
+
+                className="CR_inputSubmit"
                 disabled={this.state.disabled}
                 name="button"
                 type="submit"

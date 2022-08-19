@@ -1,15 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './HeaderRegister.css'
 
+
 const HeaderRegister = () => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate(-1)
+  }
+
   return (
     <div className='header_register'>
       <Link to="/home" className='logo'>
         RE
         <span className='work'>work</span>
       </Link>
-          <Link to='/home' ><button className='btn_volver'>Volver</button></Link>
+          <button className='btn_volver' onClick={handleClick}>Volver</button>
     </div>
   )
 }

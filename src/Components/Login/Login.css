@@ -64,7 +64,6 @@
   cursor: pointer;
 }
 .Login_recuperarCon {
-  /* position: absolute; */
   font-size: 13px;
   margin-bottom: 20px;
 }
@@ -74,7 +73,6 @@
 }
 .Login_continuaCon {
   text-align: center;
-  /* margin: 20px 0 10px 0; */
   font-size: 14px;
   color: #273141;
   font-weight: 500;
@@ -102,12 +100,10 @@
   gap: 10px;
 }
 .Login_recordarContra {
-  /* color: #273141; */
   font-size: 14px;
   color: #4b4b4b;
 }
 .Login_divCover {
-  max-width: 300px;
   width: 100%;
   overflow: hidden;
   border-radius: 10px 0 0 10px;

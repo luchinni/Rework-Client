@@ -3,9 +3,9 @@ import axios from "axios";
 import * as type from "../../Types";
 import { Dispatch } from "redux";
 import jwtDecode from "jwt-decode";
-/* import jwt from "jsonwebtoken";
-import { workerData } from "worker_threads";
-const { SECRET_KEY } = process.env; */
+import Swal from 'sweetalert2'
+import jwt from "jsonwebtoken";
+const { SECRET_KEY } = process.env;
 
 const initialState = {
   allClients: [],
@@ -19,10 +19,12 @@ const initialState = {
   offerById: {},
   professions: [],
   skills: [],
+  paymentInfo:"",
   currentUser: {
     id: "",
     isWorker: false,
     isAdmin: false,
+    isPremium: false
   },
   userVerified: {
     isActive: false,
@@ -36,6 +38,9 @@ export const workServiceSlice = createSlice({
   reducers: {
     setAllClients: function (state: any, action: any) {
       state.allClients = action.payload;
+    },
+    setPaymentInfo: function (state: any, action: any) {
+      state.paymentInfo = action.payload;
     },
     setSearchedWorkers: function (state: any, action: any) {
       state.infoSearched = action.payload;
@@ -90,10 +95,12 @@ export const workServiceSlice = createSlice({
       state.search = action.payload;
     },
     setCurrentUser: function (state: any, action: any) {
+      console.log("lo que llega", action.payload)
       state.currentUser = {
         id: action.payload.id,
         isWorker: action.payload.isWorker,
         isAdmin: action.payload.isAdmin,
+        isPremium: action.payload.premium
       };
     },
     sortAllOffersAZ: function (state: any) {
@@ -249,6 +256,7 @@ export const workServiceSlice = createSlice({
         id: "",
         isWorker: false,
         isAdmin: false,
+        isPremium: false
       };
     },
     logOutUserLogged: function (state: any) {
@@ -281,6 +289,7 @@ export const {
   setSearch,
   setAllSkills,
   setOfferById,
+  setPaymentInfo,
   setAllProfessions,
   setSearchedWorkers,
   setSearchedOffers,
@@ -295,16 +304,23 @@ export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getClients = (clients: any) => (dispatch: Dispatch<any>) => {
-  dispatch(setAllClients(clients));
+export const getClients = () => async (dispatch: Dispatch<any>) => {
+  try {
+    const clients = await axios({
+      method: "GET",
+      url: "https://rework.up.railway.app/client" || "http://localhost:3001/client"
+    });
+    dispatch(setAllClients(clients));
+  } catch (error) {
+    Swal.fire("Error al requerir los clientes","","warning");
+  };
 };
 
 export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
-    console.log(newOffer);
     return await axios({
       method: "post",
-      url: "http://localhost:3001/offer",
+      url: "https://rework.up.railway.app/offer" || "http://localhost:3001/offer",
       data: newOffer,
     });
   } catch (error) {
@@ -315,7 +331,7 @@ export const postNewOffer = async (newOffer: type.newOfferType) => {
 export const getOffers = () => async (dispatch: Dispatch<any>) => {
   let pagination = { multiplier: 2 };
   try {
-    const offers = await axios.get("http://localhost:3001/offer?multiplier=50");
+    const offers = await axios.get("https://rework.up.railway.app/offer?multiplier=50" || "http://localhost:3001/offer?multiplier=50");
     // axios({
     //   method:"get",
     //   url: "http://localhost:3001/offer/",
@@ -324,7 +340,7 @@ export const getOffers = () => async (dispatch: Dispatch<any>) => {
     //axios.get("http://localhost:3001/offer/", {multiplier:50})
     dispatch(setAllOffers(offers.data));
   } catch (error) {
-    alert("Error al requerir las ofertas.");
+    Swal.fire("Error al requerir las ofertas","","warning");
   }
 
   //
@@ -332,24 +348,22 @@ export const getOffers = () => async (dispatch: Dispatch<any>) => {
 
 export const getOfferId =
   (id: String | undefined) => async (dispatch: Dispatch<any>) => {
-    console.log(id);
     try {
-      const offerId = await axios.get(`http://localhost:3001/offer/${id}`);
-      console.log(offerId);
+      const offerId = await axios.get(`https://rework.up.railway.app/offer/${id}` || `http://localhost:3001/offer/${id}`);
       return dispatch(setOfferById(offerId.data));
     } catch (e) {
-      alert("Error al requerir el detalle.");
+      Swal.fire("Error al requerir el detalle","","warning")
     }
   };
 
 export const getAllProfession = () => async (dispatch: any) => {
-  const profs = await axios(`http://localhost:3001/profession`);
+  const profs = await axios("https://rework.up.railway.app/profession" ||`http://localhost:3001/profession`);
   return dispatch(setAllProfessions(profs.data));
 };
 
 export const getAllSkills = () => async (dispatch: any) => {
   //http://localhost:3001/skills
-  const skills = await axios(`http://localhost:3001/skills`);
+  const skills = await axios("https://rework.up.railway.app/skills" ||`http://localhost:3001/skills`);
   return dispatch(setAllSkills(skills.data));
 };
 
@@ -357,7 +371,7 @@ export const postNewClient = async (newClient: type.newClientType) => {
   try {
     return await axios({
       method: "post",
-      url: "http://localhost:3001/register/client",
+      url: "https://rework.up.railway.app/register/client" || "http://localhost:3001/register/client",
       data: newClient,
     });
   } catch (error) {
@@ -369,7 +383,7 @@ export const postNewWorker = async (newWorker: type.newWorkerType) => {
   try {
     return await axios({
       method: "post",
-      url: "http://localhost:3001/register/worker",
+      url: "https://rework.up.railway.app/register/worker" || "http://localhost:3001/register/worker",
       data: newWorker,
     });
   } catch (error) {
@@ -383,17 +397,17 @@ export function postLogin(user: type.userLogin) {
       // generamos el token conectando con el back
       const token: any = await axios({
         method: "post",
-        url: "http://localhost:3001/login/",
+        url: "https://rework.up.railway.app/login" ||"http://localhost:3001/login/",
         data: user,
       });
-      console.log("llegue al login", token);
       // lo pasamos a json y lo guardamos en la consola en application local storage
-      if (token.data) {
+      if (token.data === 'invalid'){
+        Swal.fire("Email o contraseña incorrectos", "Recuerda activar tu cuenta si es la primera vez que inicias sesion","warning")
+      } else if (token.data){
         localStorage.setItem("token", JSON.stringify(token.data));
       }
       //desencryptamos el token
       const data = jwtDecode(token.data);
-      console.log("reducer", data);
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
@@ -415,13 +429,14 @@ export function searchWorker(input: string, filters: filter) {
       if (input === "")
         return "";
       const workers = await axios.get(
+        `https://rework.up.railway.app/worker/search?q=${input}&r=${filters.rating}&p=${filters.profession}` || 
         `http://localhost:3001/worker/search?q=${input}&r=${filters.rating}&p=${filters.profession}`
       );
       dispatch(setSearchedWorkers(workers.data));
       dispatch(setSearch("worker"));
       return "";
     } catch (error) {
-      alert("Hubo un error al intentar traer los trabajadores");
+      Swal.fire("Hubo un error al intentar traer los trabajadores","intenta nuevamente en unos minutos","warning");
     }
   };
 }
@@ -431,18 +446,18 @@ export function searchOffer(input: string, filters: filter) {
     try {
       let offers: any;
       if (filters.remuneration.max === 0 && filters.remuneration.min === 0) {
-        offers = await axios.get(
+        offers = await axios.get(`https://rework.up.railway.app/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&wdt=${filters.workDuration}` || 
           `http://localhost:3001/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&wdt=${filters.workDuration}`
         );
       } else {
-        offers = await axios.get(
+        offers = await axios.get(`https://rework.up.railway.app/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&max=${filters.remuneration.max}&min=${filters.remuneration.min}&wdt=${filters.workDuration}` || 
           `http://localhost:3001/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&max=${filters.remuneration.max}&min=${filters.remuneration.min}&wdt=${filters.workDuration}`
-        );
+          );
       }
       dispatch(setSearchedOffers(offers.data));
       dispatch(setSearch("offer"));
     } catch (error) {
-      alert("Hubo un error al intentar traer las ofertas");
+      Swal.fire("Hubo un error al intentar traer las ofertas","","warning");
     }
   };
 }
@@ -474,7 +489,7 @@ export const postNewPortfolio = async (
   try {
     return await axios({
       method: "POST",
-      url: `http://localhost:3001/portfolio/${idUser}`,
+      url: `https://rework.up.railway.app/portfolio/${idUser}` || `http://localhost:3001/portfolio/${idUser}`,
       data: newPortfolio,
     });
   } catch (error) {
@@ -487,7 +502,7 @@ export async function newReviewPost(newReview: type.reviewFormType) {
   try {
     return await axios({
       method: "post",
-      url: "http://localhost:3001/",
+      url: `https://rework.up.railway.app/` || "http://localhost:3001/",
       data: newReview,
     });
   } catch (error) {
@@ -526,13 +541,13 @@ export function getUserById(tokenDecode: any) {
     try {
       if (tokenDecode.isWorker) {
         return axios
-          .get(`http://localhost:3001/worker/${tokenDecode.id}`)
+          .get(`https://rework.up.railway.app/worker/${tokenDecode.id}` || `http://localhost:3001/worker/${tokenDecode.id}`)
           .then((response) => {
             return dispatch(setUserLogged(response.data));
           });
       } else if (!tokenDecode.isWorker) {
         return axios
-          .get(`http://localhost:3001/client/${tokenDecode.id}`)
+          .get(`https://rework.up.railway.app/client/${tokenDecode.id}` || `http://localhost:3001/client/${tokenDecode.id}`)
           .then((response) => {
             return dispatch(setUserLogged(response.data));
           });
@@ -544,8 +559,8 @@ export function getUserById(tokenDecode: any) {
 export function getUserByIdOther(id: any) {
   return async (dispatch: Dispatch<any>) => {
     try {
-      const worker: any = await axios.get(`http://localhost:3001/worker/${id}`);
-      const client: any = await axios.get(`http://localhost:3001/client/${id}`);
+      const worker: any = await axios.get(`https://rework.up.railway.app/worker/${id}` || `http://localhost:3001/worker/${id}`);
+      const client: any = await axios.get(`https://rework.up.railway.app/client/${id}` || `http://localhost:3001/client/${id}`);
       if (worker.data) {
         return dispatch(setUserById(worker.data));
       } else if (client.data) {
@@ -567,8 +582,26 @@ export async function newProposalPost(newProposal: type.FormProposalType) {
     };
     return await axios({
       method: "post",
-      url: "http://localhost:3001/proposal",
+      url: `https://rework.up.railway.app/proposal` || "http://localhost:3001/proposal",
       data: newProposal2,
+    });
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function editProposalWorkerPremium(newProposal: type.FormProposalType) {
+  try {
+    let { remuneration, proposal_description, worked_time, idProposal } = newProposal;
+    let editProposal: object = {
+      remuneration,
+      proposal_description,
+      worked_time,
+    };
+    return await axios({
+      method: "PUT",
+      url: `https://rework.up.railway.app/proposal/${idProposal}` || `http://localhost:3001/proposal/${idProposal}`,
+      data: editProposal,
     });
   } catch (error) {
     return error;
@@ -589,19 +622,18 @@ export const remFavorite = (value: any) => (dispatch: Dispatch<any>) => {
 
 export function favoritesToDB(value: any, idUser: string) {
   return async (dispatch: Dispatch<any>) => {
-    let worker: any = await axios.get(`http://localhost:3001/worker/${idUser}`);
-    let client: any = await axios.get(`http://localhost:3001/client/${idUser}`);
+    let worker: any = await axios.get(`https://rework.up.railway.app/worker/${idUser}` || `http://localhost:3001/worker/${idUser}`);
+    let client: any = await axios.get(`https://rework.up.railway.app/client/${idUser}` || `http://localhost:3001/client/${idUser}`);
     if (worker.data !== null) {
       //console.log(worker.data.favorites);
       if (worker.data.favorites === undefined) {
         worker.data.favorites = [...value];
       } else {
         worker.data.favorites = [...worker.data.favorites, ...value];
-        console.log("Aca tenes tu identificador: ", worker.data.favorites);
       }
       await axios({
         method: "PUT",
-        url: `http://localhost:3001/worker/${idUser}`,
+        url: `https://rework.up.railway.app/worker/${idUser}` || `http://localhost:3001/worker/${idUser}`,
         data: worker.data,
       });
       localStorage.removeItem("favorites");
@@ -614,7 +646,7 @@ export function favoritesToDB(value: any, idUser: string) {
       }
       await axios({
         method: "PUT",
-        url: `http://localhost:3001/client/${idUser}`,
+        url: `https://rework.up.railway.app/client/${idUser}` || `http://localhost:3001/client/${idUser}`,
         data: client.data,
       });
       localStorage.removeItem("favorites");
@@ -624,16 +656,15 @@ export function favoritesToDB(value: any, idUser: string) {
 }
 
 export async function getFavoritestoDB(value: any, idUser: string) {
-  let worker: any = await axios.get(`http://localhost:3001/worker/${idUser}`);
-  let client: any = await axios.get(`http://localhost:3001/client/${idUser}`);
+  let worker: any = await axios.get(`https://rework.up.railway.app/worker/${idUser}` || `http://localhost:3001/worker/${idUser}`);
+  let client: any = await axios.get(`https://rework.up.railway.app/client/${idUser}` || `http://localhost:3001/client/${idUser}`);
   if (worker.data !== null) {
     if (worker.data.favorites?.find((f: any) => f.idOffer === value.idOffer))
       return;
-    console.log(worker);
     worker.data.favorites = [...worker.data.favorites, value];
     await axios({
       method: "PUT",
-      url: `http://localhost:3001/worker/${idUser}`,
+      url: `https://rework.up.railway.app/worker/${idUser}` || `http://localhost:3001/worker/${idUser}`,
       data: worker.data,
     });
   } else {
@@ -642,24 +673,22 @@ export async function getFavoritestoDB(value: any, idUser: string) {
     client.data.favorites = [...client.data.favorites, value];
     await axios({
       method: "PUT",
-      url: `http://localhost:3001/client/${idUser}`,
+      url: `https://rework.up.railway.app/client/${idUser}` || `http://localhost:3001/client/${idUser}`,
       data: client.data,
     });
   }
 }
 
 export async function remFavoritestoDB(value: any, idUser: string) {
-  let worker: any = await axios.get(`http://localhost:3001/worker/${idUser}`);
-  let client: any = await axios.get(`http://localhost:3001/client/${idUser}`);
-  console.log(worker.data);
+  let worker: any = await axios.get(`https://rework.up.railway.app/worker/${idUser}` || `http://localhost:3001/worker/${idUser}`);
+  let client: any = await axios.get(`https://rework.up.railway.app/client/${idUser}` || `http://localhost:3001/client/${idUser}`);
   if (worker.data !== null) {
     worker.data.favorites = [
       ...worker.data.favorites?.filter((g: any) => g.idOffer !== value.idOffer),
     ];
-    console.log(worker.data.favorites);
     await axios({
       method: "PUT",
-      url: `http://localhost:3001/worker/${idUser}`,
+      url: `https://rework.up.railway.app/worker/${idUser}` || `http://localhost:3001/worker/${idUser}`,
       data: worker.data,
     });
   } else {
@@ -668,7 +697,7 @@ export async function remFavoritestoDB(value: any, idUser: string) {
     ];
     await axios({
       method: "PUT",
-      url: `http://localhost:3001/client/${idUser}`,
+      url: `https://rework.up.railway.app/client/${idUser}` || `http://localhost:3001/client/${idUser}`,
       data: client.data,
     });
   }
@@ -678,7 +707,7 @@ export const verifyWorker = (id: any) => async (dispatch: any) => {
   try {
     await axios({
       method: "PUT",
-      url: `http://localhost:3001/confirm/worker/${id}`,
+      url: `https://rework.up.railway.app/confirm/worker/${id}` || `http://localhost:3001/confirm/worker/${id}`,
       data: id,
     });
     dispatch(setVerifiedUser());
@@ -691,7 +720,7 @@ export const verifyClient = (id: any) => async (dispatch: any) => {
   try {
     await axios({
       method: "PUT",
-      url: `http://localhost:3001/confirm/client/${id}`,
+      url: `https://rework.up.railway.app/confirm/client/${id}` || `http://localhost:3001/confirm/client/${id}`,
       data: id,
     });
     dispatch(setVerifiedUser());
@@ -707,27 +736,22 @@ export const verifyToken =
       let response: any;
       response = await axios({
         method: "GET",
-        url: `http://localhost:3001/tokenVerify/${expDate}`,
+        url: `https://rework.up.railway.app/tokenVerify/${expDate}` || `http://localhost:3001/tokenVerify/${expDate}`,
         data: expDate,
       });
 
       if (response.data && response.data === "destroy") {
-        console.log("destroy");
         return localStorage.removeItem("token");
       } else if (response.data && response.data === "renew") {
         const newToken: type.token = {
           ...token,
           exp: token.exp + 7200,
         };
-        console.log("newToken", newToken);
-        console.log("token", token);
         const renewedToken = await axios({
           method: "POST",
-          url: `http://localhost:3001/tokenVerify/renew/`,
+          url: `https://rework.up.railway.app/tokenVerify/renew/` || `http://localhost:3001/tokenVerify/renew/`,
           data: newToken,
         });
-        console.log("respuesta ->", renewedToken);
-        console.log(JSON.stringify(renewedToken));
         return localStorage.setItem("token", JSON.stringify(renewedToken.data));
       } else if (response.data && response.data === "valid") {
         console.log("valid");
@@ -745,15 +769,15 @@ export async function putEditProfileClient(
   id: string
 ) {
   try {
-    await axios.put(`http://localhost:3001/client/${id}`, value);
+    await axios.put( `https://rework.up.railway.app/client/${id}` || `http://localhost:3001/client/${id}`, value);
   } catch (error) {
     return error;
   }
 }
 
-export async function putEditProfileWorker(value: WorkerType, id: string) {
+export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: string) {
   try {
-    await axios.put(`http://localhost:3001/worker/${id}`, value);
+    await axios.put( `https://rework.up.railway.app/worker/${id}` || `http://localhost:3001/worker/${id}`, value);
   } catch (error) {
     return error;
   }
@@ -763,7 +787,7 @@ export async function putEditProfileWorker(value: WorkerType, id: string) {
     try{
       await axios({
         method:"PUT",
-        url: `http://localhost:3001/proposal/state`,
+        url: "https://rework.up.railway.app//proposal/state" || `http://localhost:3001/proposal/state`,
         data: proposalState
         })
   } catch (error) {
@@ -772,9 +796,85 @@ export async function putEditProfileWorker(value: WorkerType, id: string) {
 }
   
 export const getOfferForHistory = async (id:string) => {
-  const offerId = await axios.get(`http://localhost:3001/offer/${id}`)
+  const offerId = await axios.get(`https://rework.up.railway.app/offer/${id}` || `http://localhost:3001/offer/${id}`)
   return offerId.data;
 }
+
+export const getOffersMoreRating = async () => {
+  const offersRating:any = await axios.get("https://rework.up.railway.app/offer/search?r=5" || "http://localhost:3001/offer/search?r=5")
+  let response:{}[] = [];
+  for (let x = 0; x < 10 && x < offersRating.data.length -1; x++) {
+    response.push(offersRating.data[x]);
+    
+  }
+  return response
+}
+
+export const getworkersMoreRating = async () => {
+  const offersRating:any = await axios.get("https://rework.up.railway.app/worker/search?r=5" || "http://localhost:3001/worker/search?r=5")
+  let response:{}[] = [];
+  for (let x = 0; x < 10 && x < offersRating.data.length -1; x++) {
+    response.push(offersRating.data[x]);
+    
+  }
+  return response
+}
+
+export const getPaymentLink = (newPayment:any) => async (dispatch: Dispatch<any>) => {
+console.log(newPayment)
+const infoMP:any = await axios({
+  method: "POST",
+  url: "http://localhost:3001/payments/payment",
+  data: newPayment
+})
+  dispatch(setPaymentInfo(infoMP.data))
+
+}
+
+export const stateCancelledOfferPost = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/offer/state" || "http://localhost:3001/offer/state",
+      data: {
+        id,
+        state: "cancelled",
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveFalseOfferPost = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/offer/isActive" || "http://localhost:3001/offer/isActive",
+      data: {
+        id,
+        isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveFalseProposal = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "https://rework.up.railway.app/proposal/isActive" || "http://localhost:3001/proposal/isActive",
+      data: {
+        id,
+        isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
 
 export const createGoogleWorker = () => async (dispatch: any) => {
   console.log("action worker")
