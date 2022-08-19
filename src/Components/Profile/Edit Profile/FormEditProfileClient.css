@@ -1,3 +1,5 @@
+
+
 .updateCli_mainContainer{
   margin: 0;
   padding: 0;
@@ -10,6 +12,9 @@
 }
 
 .updateCli_closeBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgb(255, 21, 21);
   text-decoration: none;
   border: 1px solid rgb(199, 6, 6);
@@ -18,6 +23,7 @@
   border-radius: 3px;
   color: #fffcfc;
   font-weight: 700;
+  font-size: 1.2em;
   box-shadow: -2px -2px 8px rgb(255, 255, 255, 1),
               -2px -2px 12px rgba(255, 255, 255, 0.5),
               inset 2px 2px 4px rgba(255, 255, 255, 0.1)
@@ -29,6 +35,9 @@
               inset -2px -2px 12px rgba(199, 6, 6, 0.5),
               inset 2px 2px 4px rgba(199, 6, 6, 0.1),
               inset 2px 2px 8px rgba(199, 6, 6, 0.15);
+  font-size: 1.16em;
+  color: #dfdfdf;
+  transition: 0.25s;
 }
 
 .updateCli_Form {
@@ -90,29 +99,8 @@
 #birthday_input{
   text-align-last: right;
   letter-spacing: 7px;
-}
-
-
-/* input[type="file"] {
-  display: none;
-}
-
-.custom_file_upload {
-  position: absolute;
-  right: 75%;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 20px;
-  color: #ffffff;
-  padding: 6px 11px;
-  background-color: #2A9D8F;
-  border-radius: 6px;
-  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-  letter-spacing: 0.1px;
-} */
+}
 
 .update_Div_inputFile{
   width: 100%;
@@ -122,33 +110,38 @@
   background: #fffcfc;
   border-radius: 5px;
   border: 1px solid #2A9D8F;
-  width: 100%;
   outline: none;
+  height: 55px;
 }
 
 ::-webkit-file-upload-button{
+  width: 140px;
   color: #fffcfc;
-  background: #2A9D8F;
+  background: rgb(42, 157, 143);
   padding: 10px;
   border: none;
   border-radius: 5px;
   outline: none;
+  box-shadow:   inset -2px -2px 8px rgb(35, 128, 117);
 }
 
 ::-webkit-file-upload-button:hover {
   background: #278a7e;
-  box-shadow: inset -2px -2px 8px rgba(25, 122, 106, 1),
+  color: #dddada;
+  box-shadow: inset -2px -2px 8px rgb(22, 107, 93),
               inset -2px -2px 12px rgba(25, 122, 106, 0.5),
               inset 2px 2px 4px rgba(25, 122, 106, 0.1),
               inset 2px 2px 8px rgba(25, 122, 106, 0.15);
-  transition: 0.5s;
+  transition: 0.35s;
+  cursor: pointer;
+  font-size: 0.98em;
 }
 
 .update_inpuntSubmit{
   position: absolute;
   right: 42%;
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 400;
+  font-size: 1em;
   line-height: 20px;
   color: #ffffff;
   padding: 6px 11px;
@@ -158,5 +151,23 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 10px;
+  width: 100px;
+}
+
+.update_inpuntSubmit:hover {
+  background: rgb(228, 130, 50);
+  color: #dfdfdf;
+  box-shadow: inset -2px -2px 8px rgb(228, 130, 50),
+              inset -2px -2px 12px rgba(228, 130, 50, 0.5),
+              inset 2px 2px 4px rgba(228, 130, 50, 0.1),
+              inset 2px 2px 8px rgba(228, 130, 50, 0.15);
+  transition: 0.35s;
+  font-size: 0.98em;
+}
+
+.update_inputError{
+  font-size: small;
+  font-style: italic;
+  color: crimson;
 }
 

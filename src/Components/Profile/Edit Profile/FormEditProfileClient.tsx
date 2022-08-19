@@ -112,7 +112,7 @@ function FormEditProfileClient({ props }: any) {
             ? "La fecha ingresada es invalida."
             : year[0] > date.getFullYear()
             ? "La fecha ingresada es invalida."
-            : year[0] < 1910
+            : year[0] < 1940
             ? "El año debe ser mayor a 1940"
             : "";
         break;
