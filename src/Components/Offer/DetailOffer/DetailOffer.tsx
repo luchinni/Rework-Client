@@ -73,7 +73,7 @@ const DetailOffer = () => {
   let alreadyApply: boolean = false;
 
   const filtred: any = offerId.proposals?.filter(
-    (p: any) => p.userWorker?.id === currentUser?.id
+    (p: any) => p.userWorker?.id === currentUser?.id && p.isActive === true
   );
 
   if (filtred?.length > 0) {

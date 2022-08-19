@@ -18,16 +18,16 @@ const CardProposal = ({ props, offer }: any) => {
 
   const handleClick = () => {
     // props.state = "accepted";
-    offer.proposals?.forEach((e: any) => {
-      if (e.idProposal !== props.idProposal) {
-        let state = "rejected";
-        let id = e.idProposal;
-        let proposalState: { state: string; id: string } = {
-          state,
-          id,
-        };
-        acceptProposal(proposalState);
-      } else {
+    // offer.proposals?.forEach((e: any) => {
+    //   if (e.idProposal !== props.idProposal) {
+    //     let state = "rejected";
+    //     let id = e.idProposal;
+    //     let proposalState: { state: string; id: string } = {
+    //       state,
+    //       id,
+    //     };
+    //     acceptProposal(proposalState);
+    //   } else {
         let state = "accepted";
         let id = props.idProposal;
         let proposalState: { state: string; id: string } = {
@@ -35,9 +35,9 @@ const CardProposal = ({ props, offer }: any) => {
           id,
         };
         acceptProposal(proposalState);
-      }
-    });
-  };
+      // }
+    };
+  
 
   const [edition, setEdition] = useState(false);
 
@@ -79,7 +79,6 @@ const CardProposal = ({ props, offer }: any) => {
       {edition && (
         <div className="Detail_divModal">
           <FormEditProposal
-            idOferta={offer}
             close={handleCloseEdition}
             proposal={props}
           />
