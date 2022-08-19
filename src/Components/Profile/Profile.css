@@ -5,14 +5,12 @@
 .Profile {
   border: 1px solid #c5c5c5;
   max-width: 1136px;
-  margin-top: 200px;
+  margin-top: 100px;
   border-radius: 10px;
   overflow: hidden;
   padding-bottom: 45px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
-
 }
-
 
 .Profile_divPortada {
   max-height: 260px;
@@ -69,7 +67,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #D6550D;
+  color: #d6550d;
 }
 .Profile_editProfile {
   position: absolute;
@@ -77,7 +75,7 @@
   font-weight: 600;
   font-size: 13px;
   line-height: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 6px 11px;
   background-color: #273141;
   border-radius: 6px;
@@ -100,7 +98,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #6F6F6F;
+  color: #6f6f6f;
   padding-bottom: 3px;
   border: none;
   border-bottom: 3px solid transparent;
@@ -131,11 +129,16 @@
   border-radius: 10px;
 }
 
-.Profile_divModalUpdate{
-  padding: 20px;
-  background-color: red;
+.Profile_divModalUpdate {
+  padding: 10px;
   position: absolute;
-  z-index: 6;
+  top: 25%;
   left: 50%;
+  z-index: 6;
   transform: translateX(-50%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
+  border: 2px solid #edecd9;
+  background-color: #fffcfc;
+  border-radius: 5px;
+  height: 500px;
 }
