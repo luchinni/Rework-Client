@@ -112,6 +112,7 @@ export interface errorsType {
   name: String;
   lastName: String;
   password: String;
+  password2: String;
   user_mail: String;
   birthdate: String;
   image: String;
@@ -121,6 +122,7 @@ export interface errorsTypeWorker {
   name: String;
   lastName: String;
   password: String;
+  password2: String;
   user_mail: String;
   birthdate: String;
   image: String;
@@ -143,8 +145,9 @@ export interface reviewFormType {
 }
 
 export interface FormProposalType {
-  idWorker: String;
-  idOffer: String;
+  idWorker?: String;
+  idOffer?: String;
+  idProposal?: String;
   remuneration: Number;
   proposal_description: String;
   worked_time: String;

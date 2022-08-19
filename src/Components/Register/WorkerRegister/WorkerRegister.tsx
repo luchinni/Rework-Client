@@ -10,6 +10,8 @@ import './WorkerRegister.css';
 import { resolve } from 'node:path/win32';
 import { createBrotliCompress } from 'node:zlib';
 import Axios, { AxiosResponse } from 'axios';
+import Swal from "sweetalert2";
+
 
 interface HeaderState{
 
@@ -32,6 +34,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
         password: "Campo requerido.",
+        password2: "Campo requerido",
         user_mail: "Campo requerido.",
         birthdate: "Campo requerido.",
         image: "",
@@ -96,17 +99,29 @@ async handleChange(e:any) {
 
   switch (name) {
     case "name":
-        let namePattern:RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/
-        errors.name = value.startsWith(" ")?"El nombre no puede iniciar con un espacio": namePattern.test(value)? value.endsWith(" ")? "El nombre no puede terminar con espacio":"":"El nombre no puede contener caracteres especiales";
+        let namePattern:RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/
+        errors.name = value.startsWith(" ")?"El nombre no puede iniciar con un espacio"
+        : namePattern.test(value)? value.endsWith(" ")? "El nombre no puede terminar con espacio":""
+        :"El nombre no puede contener números o caracteres especiales.";
         break;
     case "lastName":
-      let lastNamePattern:RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/
-      errors.lastName = value.startsWith(" ")?"El apellido no puede iniciar con un espacio": lastNamePattern.test(value)? value.endsWith(" ")? "El apellido no puede terminar con espacio":"":"El apellido no puede contener caracteres especiales";
+      let lastNamePattern:RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/
+      errors.lastName = value.startsWith(" ")?"El apellido no puede iniciar con un espacio"
+      : lastNamePattern.test(value)? value.endsWith(" ")? "El apellido no puede terminar con espacio":""
+      :"El apellido no puede contener números o caracteres especiales.";
         break;
     case "password":
       let passwordPattern:RegExp = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
-      errors.password = passwordPattern.test(value)? "" : "La contraseña debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y un 1 número."
+      errors.password = passwordPattern.test(value)? "" : "Debe tener entre 8 y 16 caracteres, 1 mayuscula, 1 minuscula y un 1 número."
       break;
+      case "password2":
+        let passwordPattern2: RegExp =
+        /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/; 
+        errors.password2 = passwordPattern2.test(value) ?
+        value === this.state.password ? "" 
+        : "Las contraseñas no coinciden"
+        : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
+        break;
     case "user_mail":
       let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i
       errors.user_mail = value.startsWith(" ")? "El mail no puede iniciar con un espacio": user_mailPattern.test(value) ? value.endsWith(" ")? "el mail no puede terminar con espacio" : "" : "mail inválido";
@@ -157,6 +172,7 @@ async handleSubmit(e:any){
         name: "",
         lastName: "",
         password: "",
+        password2: "",
         user_mail: "",
         birthdate: "",
         image: "",
@@ -165,7 +181,7 @@ async handleSubmit(e:any){
       inputProfessions: [],
       inputSkills: []
   })
-
+  Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
 }
 
 handleSelect(e:any){
@@ -205,59 +221,106 @@ console.log(del)
       <div className='WorkerRegister_component'>
         <HeaderRegister/>
         <div className='Worker_registerContent'>
-
-          <div className='Worker_registerDivImage'>
-            <img className='Worker_registerImage' src={image1} alt="place1" />
-            <img className='Worker_registerImage' src={image2} alt="place2" />
-            <img className='Worker_registerImage' src={image3} alt="place3" />
+          <div className='Worker_imageContainer'>
+            <div className='Worker_registerDivImage1'>
+              <img className='Worker_registerImage' src={image1} alt="place1" />
+            </div>
+            <div className='Worker_registerDivImage2'>
+              <img className='Worker_registerImage' src={image2} alt="place2" />
+            </div>
+            <div className='Worker_registerDivImage3'>
+              <img className='Worker_registerImage' src={image3} alt="place3" />
+            </div>
           </div>
           <div className='Worker_registerDivForm'>
-            <h1>Empecemos</h1>
             <form className='Worker_registerForm' id='form' onSubmit={(e) => e.preventDefault()}>
-              <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
-              <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.lastName ? null : <div>{this.state.errors.lastName}</div>}
-              <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.password ? null : <div>{this.state.errors.password}</div>}
-              <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.user_mail ? null : <div>{this.state.errors.user_mail}</div>}
-              <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.birthdate ? null : <div>{this.state.errors.birthdate}</div>}
-              <input type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
-              {!this.state.errors.image ? null : <div>{this.state.errors.image}</div>}
-              <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
-                  <option selected={true} hidden>Profesiones</option>
-                  {
-                    this.props.professions?.map((e:any) =>{
-                        return <option value={e} key={e}> {e} </option>
-                    })
-                  }
-              </select>
-              <div className='profession_div'>
-                {this.state.profession?.map((e:any) => {
-                  return (<span className='profession_btn' id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
-                })}
+              <h1 className='Worker_empecemos'>Empecemos</h1>
+              <div className='Worker_names'>
+                <div className='Worker_nameInput'>
+                  <label>Nombres</label>
+                  <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.name ? null : <div className='Worker_error'>{this.state.errors.name}</div>}
+                </div>
+                <div className='Worker_lastnameInput'>
+                  <label>Apellidos</label>
+                  <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.lastName ? null : <div className='Worker_error'>{this.state.errors.lastName}</div>}
+                </div>
               </div>
-
-              <select  name="skills" id='skills' onChange={(e) => this.handleSelect(e)}>
-                  <option selected={true} hidden>Habilidades</option>
-                  {
-                    this.props.skills?.map((e:any) =>{
-                        return <option value={e} key={e}> {e} </option>
-                    })
-                  }
-              </select>
-              <div className='skills_div'>
-                {this.state.skills?.map((e:any) => {
-                  return (<span className='skills_btn' id="skills" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
-                })}
-              </div>  
-                  
-              <span>Ingeniero, Diseñador</span>
-              <span>Phyton, Css...</span>
-              <input disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
+              <div className='Worker_passwordDate'>
+                <div className='Worker_pass'>
+                  <label>Contraseña</label>
+                  <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.password ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.password}</div>}
+                </div>
+                <div className="CR_Div_inputAndError">
+                <input
+                  className="CR_inpunt"
+                  type="password"
+                  name="password2"
+                  placeholder="Repita contraseña"
+                  onChange={(e) => this.handleChange(e)}
+                />
+                {!this.state.errors.password2 ? null : (
+                  <div className="CR_inputError">
+                    {this.state.errors.password2}
+                  </div>
+                )}
+              </div>
+                <div className='Worker_date'>
+                  <label>Fecha de nacimiento</label>
+                    <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
+                    {!this.state.errors.birthdate ? null : <div className='Worker_error'>{this.state.errors.birthdate}</div>}
+                </div>
+              </div>
+              <div className='Worker_mailImage'>
+                <div className='Worker_mail'>
+                  <label>Email</label>
+                  <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.user_mail ? null : <div className='Worker_error'>{this.state.errors.user_mail}</div>}
+                </div>
+                <div className='Worker_image'>
+                  <label>¡Carga tu foto!</label>
+                  <input className='Worker_image' type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.image ? null : <div className='Worker_error'>{this.state.errors.image}</div>}
+                </div>
+              </div>
+              <div className='Worker_bothInputs'>
+                <div className='Worker_profession'>
+                  <select name="profession" id='profession' onChange={(e) => this.handleSelect(e)}>
+                    <option selected={true} hidden>Profesiones</option>
+                    {
+                      this.props.professions?.map((e:any) =>{
+                          return <option value={e} key={e}> {e} </option>
+                      })
+                    }
+                  </select>
+                  <div className='profession_div'>
+                    {this.state.profession?.map((e:any) => {
+                      return (<span className='profession_btn' id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+                    })}
+                  </div>
+                </div>
+                <div className='Worker_skills'>
+                  <select  name="skills" id='skills' onChange={(e) => this.handleSelect(e)}>
+                      <option selected={true} hidden>Habilidades</option>
+                      {
+                        this.props.skills?.map((e:any) =>{
+                            return <option value={e} key={e}> {e} </option>
+                        })
+                      }
+                  </select>
+                  <div className='skills_div'>
+                    {this.state.skills?.map((e:any) => {
+                      return (<span className='skills_btn' id="skills" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+                    })}
+                  </div> 
+                </div>
+              </div>
             </form>
+            <div className='Worker_submit'>
+              <input  disabled={this.state.disabled} name="button" type="submit" value="¡Registrate!" onClick={(e) => this.handleSubmit(e)} />
+            </div>
           </div>
         </div>
       </div>

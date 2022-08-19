@@ -22,7 +22,7 @@ const Home = () => {
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
   const currentUser = useSelector((state:any) => state.workService.currentUser);
 
-  let [ITEMS_PER_PAGE, setItemsPerPage] = useState(5);
+  let [ITEMS_PER_PAGE, setItemsPerPage] = useState(6);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
 
@@ -67,13 +67,13 @@ const Home = () => {
   }, [infoSearched])
 
 const handleMore = () => {
-  setItemsPerPage(ITEMS_PER_PAGE+5)
+  setItemsPerPage(ITEMS_PER_PAGE+6)
   if(search==="worker"){
-    setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE+5))
+    setItemSearched([...infoSearched]?.splice(0, ITEMS_PER_PAGE+6))
   }else if(search==="offer"){
-    setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE+5))
+    setItems([...infoSearched]?.splice(0, ITEMS_PER_PAGE+6))
   }else{
-    setItems([...offers]?.splice(0, ITEMS_PER_PAGE+5))
+    setItems([...offers]?.splice(0, ITEMS_PER_PAGE+6))
   }
 }
 

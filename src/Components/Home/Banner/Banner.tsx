@@ -13,12 +13,12 @@ function Banner() {
   return (
     <div className='Banner_component'>
       <div className='Banner_Carrusel'>
-        {currentUser.id===""? 
+        {currentUser?.id===""? 
         <div className='Banner_divBanner'>
           <p className='Banner_imageTextUno'>MAS DE MIL FREELANCERS Y OFERTAS <b>ESPERANDOTE</b></p>
           <img className='Banner_image' src={bannerTresHome} alt="banner"/>
         </div>
-        :userLogged.isWorker===true?
+        :userLogged?.isWorker===true?
         <div className='Banner_divBanner'>
           <p className='Banner_imageTextTres'>LAS MEJORES OFERTAS A TU DISPOSICION</p>
           <img className='Banner_image' src={bannerUnoHome} alt="banner" />

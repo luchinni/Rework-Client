@@ -2,9 +2,6 @@
     max-width: 1200px;
     width: 100%;
 }
-.Portfolio_divContent {
-    /* background-color: aqua; */
-}
 .Portfolio_buttonAddPortfolio {
     height: 130px;
     width: 210px;
@@ -43,9 +40,15 @@
     width: 210px;
     overflow: hidden;
     border-radius: 10px;
+    cursor: pointer;
 }
 .Portfolio_Item {
     max-width: 235px;
+    transition: all 0.3s ease;
+}
+.Portfolio_divItems , .Portfolio_Item:hover {
+    max-width: 250px;
+    backdrop-filter: blur(1)
 }
 
 .Portfolio_formModal{

@@ -7,6 +7,7 @@ import { postNewClient } from "../../../Redux/Reducer/reducer";
 import "./ClientRegister.css";
 import HeaderRegister from "../HeaderRegister/HeaderRegister";
 import Axios, {AxiosResponse}  from "axios";
+import Swal from "sweetalert2";
 
 export class ClientRegister extends Component {
   state: type.ClientType;
@@ -23,6 +24,7 @@ export class ClientRegister extends Component {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
         password: "Campo requerido",
+        password2: "Campo requerido",
         user_mail: "Campo requerido",
         birthdate: "Campo requerido",
         image: "",
@@ -30,12 +32,11 @@ export class ClientRegister extends Component {
       disabled: true,
     };
   }
-
   firstWordUpperCase(word: String) {
     return word[0].toUpperCase() + word.slice(1);
   }
-
   validarForm(errors: type.errorsType) {
+
     let valid = true;
     Object.values(errors).forEach(
       (val: any) => val.length > 0 && (valid = false)
@@ -50,6 +51,7 @@ export class ClientRegister extends Component {
       });
     }
   }
+
 
   async postImageOnCloudinary(e: any) {
     const formData = new FormData();
@@ -80,24 +82,24 @@ export class ClientRegister extends Component {
 
     switch (name) {
       case "name":
-        let namePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
+        let namePattern: RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/;
         errors.name = value.startsWith(" ")
           ? "El nombre no puede iniciar con un espacio."
           : !namePattern.test(value)
-          ? "El nombre no puede contener caracteres especiales."
+          ? "El nombre no puede contener números o caracteres especiales."
           : value.endsWith(" ")
           ? "El nombre no puede terminar con espacio."
           : "";
         break;
       case "lastName":
-        let lastNamePattern: RegExp = /^(?!\s*$)[A-Za-z0-9 _-]*$/;
+        let lastNamePattern: RegExp = /^(?!\s*$)[A-Za-z-Ñ-ñ _-]*$/;
         errors.lastName = value.startsWith(" ")
           ? "El apellido no puede iniciar con un espacio."
           : lastNamePattern.test(value)
           ? value.endsWith(" ")
             ? "El apellido no puede terminar con espacio."
             : ""
-          : "El apellido no puede contener caracteres especiales.";
+          : "El apellido no puede contener números o caracteres especiales.";
         break;
       case "password":
         let passwordPattern: RegExp =
@@ -105,6 +107,14 @@ export class ClientRegister extends Component {
         errors.password = passwordPattern.test(value)
           ? ""
           : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
+        break;
+      case "password2":
+        let passwordPattern2: RegExp =
+        /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/; 
+        errors.password2 = passwordPattern2.test(value) ?
+        value === this.state.password ? "" 
+        : "Las contraseñas no coinciden"
+        : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
         break;
       case "user_mail":
         let user_mailPattern: RegExp =
@@ -167,6 +177,27 @@ export class ClientRegister extends Component {
     postNewClient(newClient);
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
+
+    this.state = {
+      name: "",
+      lastName: "",
+      password: "",
+      user_mail: "",
+      birthdate: "",
+      image: "",
+      errors: {
+        name: "Campo requerido.",
+        lastName: "Campo requerido.",
+        password: "Campo requerido",
+        password2: "Campo requerido",
+        user_mail: "Campo requerido",
+        birthdate: "Campo requerido",
+        image: "",
+      }, 
+      disabled: true,
+    }; 
+    Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
+    
   }
 
   render() {
@@ -229,6 +260,20 @@ export class ClientRegister extends Component {
               <div className="CR_Div_inputAndError">
                 <input
                   className="CR_inpunt"
+                  type="password"
+                  name="password2"
+                  placeholder="Repita contraseña"
+                  onChange={(e) => this.handleChange(e)}
+                />
+                {!this.state.errors.password2 ? null : (
+                  <div className="CR_inputError">
+                    {this.state.errors.password2}
+                  </div>
+                )}
+              </div>
+              <div className="CR_Div_inputAndError">
+                <input
+                  className="CR_inpunt"
                   type="email"
                   name="user_mail"
                   placeholder="E-mail"
@@ -268,7 +313,8 @@ export class ClientRegister extends Component {
                 )}
               </div>
               <input
-                className="CR_inpuntSubmit"
+
+                className="CR_inputSubmit"
                 disabled={this.state.disabled}
                 name="button"
                 type="submit"

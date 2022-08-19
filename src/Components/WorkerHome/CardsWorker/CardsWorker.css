@@ -1,0 +1,4 @@
+.div_cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+  }

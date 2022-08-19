@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Navigate, Route } from 'react-router-dom';
+import { Routes, Navigate, Route, useNavigate, useNavigationType } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/Home/Home';
@@ -16,13 +16,14 @@ import OtherProfile from './Components/Profile/OtherProfile';
 import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
 import { useSelector } from 'react-redux';
 import FormPago from './Components/FormPago/FormPago';
+import Dashboard from './Components/Dashboard/Dashboard';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
 
-
 function App() {
-
+  
+  const navigate:any = useNavigate()
   const token = localStorage.getItem("token")
   const currentUser: any = useSelector((state: any) => state.workService.currentUser)
 
@@ -33,7 +34,7 @@ function App() {
         <Route path='home' element={<Home/>} />
         <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
         <Route path='confirm/client/:id' element={<VerifyUser/>}/>
-        {token || currentUser.id !== '' ? 
+        {token || currentUser.id !== '' ?
         <>
           <Route path='register' element={<Navigate to='/home' replace/>} />
           <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
@@ -44,12 +45,13 @@ function App() {
           <Route path='post' element={<OfferPost/>} />
           <Route path='pago/:id' element={<FormPago/>} />
           <Route path='detailOffer/:id' element={<DetailOffer/>} />
+          <Route path='dashboard' element={<Dashboard />} />
         </>
-          : 
+          :
         <>
           <Route path='register' element={<Register/>} />
           <Route path='register/worker' element={<Worker/>} />
-          <Route path='register/client' element={<Client/>} />   
+          <Route path='register/client' element={<Client/>} />
           <Route path='login' element={<LoginComponent/>} />
           <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
           <Route path='myProfile' element={<Navigate to='/register' replace/>} />

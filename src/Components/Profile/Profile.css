@@ -1,6 +1,7 @@
 .Profile_Component {
-  max-width: 1136px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 30px
 }
 .Profile {
   border: 1px solid #c5c5c5;
@@ -8,11 +9,9 @@
   margin-top: 200px;
   border-radius: 10px;
   overflow: hidden;
-  padding-bottom: 45px;
+  padding-bottom: 80px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
-
 }
-
 
 .Profile_divPortada {
   max-height: 260px;

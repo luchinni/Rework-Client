@@ -73,6 +73,9 @@ function User() {
               <Link className='UserDropdownItem' to='#'>Opciones</Link>
               </div>
             }
+            <div className='User_DropdownOptions'>
+              <Link className='UserDropdownItem' to='/dashboard'>Dashboard</Link>
+            </div>
             <hr className='User_hr' />
             <div>
               <button className='User_buttonLogout' onClick={handleLogOut} >Logout</button>

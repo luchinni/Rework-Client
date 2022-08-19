@@ -1,10 +1,15 @@
+import decode from "jwt-decode";
 import React from "react";
-import { useSelector } from "react-redux";
-import { putEditProfileClient } from "../../../Redux/Reducer/reducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUserById,
+  putEditProfileClient,
+} from "../../../Redux/Reducer/reducer";
 import { ClientTypeUpdate, errorsTypeEditClient } from "../../../Types";
 
-function FormEditProfileClient() {
+function FormEditProfileClient( { props } : any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
+  const dispatch = useDispatch();
 
   const [client, setClient] = React.useState<ClientTypeUpdate>({
     name: "",
@@ -112,17 +117,21 @@ function FormEditProfileClient() {
         break;
       default:
         break;
+      }
+      validarForm(error);
+      setClient({ ...client, [name]: value });
     }
-    validarForm(error);
-    setClient({ ...client, [name]: value });
-  }
-
-  function onSubmit(e: any) {
-    e.preventDefault();
-  }
-
-  function handleSubmit(e: any) {
-    e.preventDefault();
+    
+    function onSubmit(e: any) {
+      e.preventDefault();
+    }
+    
+    const token: any = localStorage.getItem("token");
+    let tokenDecode: any;
+    if (token) tokenDecode = decode(token);
+    
+    function handleSubmit(e: any) {
+      e.preventDefault();
     let { name, lastName, born_date, photo } = client;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
@@ -134,14 +143,24 @@ function FormEditProfileClient() {
       photo: photo,
     };
     const id = userLogged.id;
-
-    putEditProfileClient(newClient, id);
+    putEditProfileClient(newClient, id)
+    .then(() => {
+      dispatch(getUserById(tokenDecode));
+    });
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
+    props(false)
+  }
+
+  function handleClose () {
+    props(false)
   }
 
   return (
     <div>
+      <div>
+        <button onClick={() => handleClose()}>x</button>
+      </div>
       {
         <form onSubmit={(e) => onSubmit(e)}>
           <div>
@@ -199,7 +218,9 @@ function FormEditProfileClient() {
             name="button"
             type="submit"
             value="Actualizar"
-            onClick={(e) => handleSubmit(e)}
+            onClick={(e) => {
+              handleSubmit(e)
+            }}
           />
         </form>
       }
