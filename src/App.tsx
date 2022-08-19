@@ -15,6 +15,7 @@ import OfferPost from './Components/Offer/OfferPost/OfferPost';
 import OtherProfile from './Components/Profile/OtherProfile';
 import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
 import { useSelector } from 'react-redux';
+import FormPago from './Components/FormPago/FormPago';
 import Dashboard from './Components/Dashboard/Dashboard';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
@@ -42,6 +43,7 @@ function App() {
           <Route path='myProfile' element={<Profile/>}/>
           <Route path='profile/:id' element={<OtherProfile/>} />
           <Route path='post' element={<OfferPost/>} />
+          <Route path='pago/:id' element={<FormPago/>} />
           <Route path='detailOffer/:id' element={<DetailOffer/>} />
           <Route path='dashboard' element={<Dashboard />} />
         </>
@@ -51,6 +53,7 @@ function App() {
           <Route path='register/worker' element={<Worker/>} />
           <Route path='register/client' element={<Client/>} />
           <Route path='login' element={<LoginComponent/>} />
+          <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
           <Route path='myProfile' element={<Navigate to='/register' replace/>} />
           <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
           <Route path='post' element={<Navigate to='/register' replace/>} />
