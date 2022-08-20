@@ -763,7 +763,7 @@ export const verifyToken =
       } else if (response.data && response.data === "renew") {
         const newToken: type.token = {
           ...token,
-          exp: token.exp + 7200,
+          exp: token.exp + 14400,
         };
         const renewedToken = await axios({
           method: "POST",

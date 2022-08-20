@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { newReviewPost } from '../../../Redux/Reducer/reducer';
 
 
-const FormReview = () => {
+const FormReview = ({offer}:any) => {
 
 type formValidate = {
     valoration: Number,
@@ -56,7 +56,7 @@ const handleChange = (e:any) => {
             : parseInt(value) <=0? "La valoración tiene que ser entre 1 a 5."
             : parseInt(value) >5? "La valoración tiene que ser entre 1 a 5." : "";
             break;
-        case "description":
+        case "review_description":
             errors.review_description = formu.review_description.length > 200 ? "Solo se permiten 200 caracteres"
             : formu.review_description.length < 20 ? "La cantidad mínima de caracteres es 20"
             : "";
@@ -101,7 +101,7 @@ const handleSubmit = (e:any) => {
         <form id="form" onSubmit={(e) => e.preventDefault()}>
                 <h1>Dejar una valoración</h1>
             <div>
-                <input className={error.valoration && 'danger'}
+                <input 
                 name="valoration" type="number" placeholder='puntaje de 1 a 5' onChange={handleChange}/>
                     {error.valoration && (
                                 <p className="danger">{error.valoration}</p>
@@ -109,8 +109,8 @@ const handleSubmit = (e:any) => {
             </div>
             <div>
                 <span>Escriba un comentario</span>
-                <input className={error.review_description && 'danger'}
-                name="description" type="text" onChange={handleChange}/>
+                <input 
+                name="review_description" type="text" onChange={handleChange}/>
                     {error.review_description && (
                                 <p className="danger">{error.review_description}</p>
                             )}
