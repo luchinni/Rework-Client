@@ -13,7 +13,7 @@ import firebase from '../../firebase'
 const Login = (props:any) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
-  // console.log(token)
+
   const [user, setUser] = useState({user_mail: "", password: ""})
   const dispatch = useDispatch()
 
@@ -42,23 +42,20 @@ const Login = (props:any) => {
 
   function handleClose() {
     props.close(false)}
- 
-  const [UserGoogle,setUserGoogle] = useState({name:"",email:"",photo:""})
-  const googleLogin = async () => {
 
+  const googleLogin = async () => {
+    //ejecutamos la auth de firebase y guardamos la respuesta
     let provider = new firebase.auth.GoogleAuthProvider()
+    //se ejecuta la verificacion con el usuario recibido
       firebase.auth().signInWithPopup(provider)
       .then((result:any) =>{
+        //guardamos en user la respuesta de google
          let user = result.user
-         console.log(user)
-         setUserGoogle({
-            name: user.displayName,
-            email: user.email,
-            photo: user.photoURL 
-         });
+         console.log("el user", user)
+         //dispatch de la action para hacer la verificacion
+         return user
+         //si tiene mail (client o worker) inicia, sino redirije a ruta para preguntar primer inicio: client o worker?
       })
-      console.log("el estado loco",UserGoogle )
-
   }
 
       //Ejemplo de useSelector con Toolkit.

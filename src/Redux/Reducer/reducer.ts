@@ -270,10 +270,6 @@ export const workServiceSlice = createSlice({
       state.userVerified = {
         isActive: true,
       };
-    },  
-    setGoogleRoute: function (state: any, action:any){
-      console.log("action.payload", action.payload)
-      state.googleRoute = action.payload
     }
   },
 });
@@ -301,8 +297,7 @@ export const {
   setCurrentUser,
   logOutCurrentUser,
   logOutUserLogged,
-  setVerifiedUser,
-  setGoogleRoute
+  setVerifiedUser
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -895,47 +890,6 @@ export const isActiveFalseProposal = async (id: string) => {
   };
 };
 
-/* export const createGoogleWorker = () => async (dispatch: any) => {
-  console.log("action worker")
-  try {
-    console.log("entre al try worker")
-    const googleWorker = await axios({
-    method: "POST",
-    url: `http://localhost:3001/auth/worker`, */
-    /* withCredentials: true, */
-    /* headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": "true"
-    } 
-  })
-  console.log("llegue al back")
-  dispatch(setGoogleRoute(googleWorker.request.responseURL))
-  window.open(googleWorker.request.responseURL)
-  } catch(error) {
-    return error
-  }
-} */
-
-export const createGoogleClient = () => async (dispatch: any) => {
-  console.log("entre a action")
-  try {
-    console.log("entre al try")
-    const googleClient = await axios({
-    method: "POST",
-    url: 'http://localhost:3001/auth/client',
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": "true"
-    } 
-  })
-  dispatch(setGoogleRoute(googleClient.request.responseURL))
-  } catch(error) {
-    return error
-  }
-}
-
 export const getGoogleWorker = () => async (dispatch: any) => {
       fetch("http://localhost:3001/auth/successWorker", {
           method: "GET",
@@ -991,25 +945,46 @@ export const getGoogleWorker = () => async (dispatch: any) => {
           console.log(error)
       })
     }
- 
 
-    export const createGoogleWorker = () => async (dispatch: any) => {
-      console.log("action worker")
-      try {
-      let params = {
-          headers: { 'Content-Type': 'application/json' },
-          mode: 'no-cors',
-      };
-        console.log("entre al try worker")
-        const googleWorker = await axios.get(`http://localhost:3001/google`,{
-          headers: {
-            mode: 'no-cors'
-        } 
+    export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
+      try{ 
+        // "limpiamos" la data de google
+        const cleanUser = {
+          name: user.displayName,
+          user_mail: user.email,
+          photo: user.photoURL
+        }
+        const existingUser: any = await axios({
+          method: "get",
+          url: "https://rework.up.railway.app/auth/" || "http://localhost:3001/auth/",
+          data: cleanUser
         })
-      console.log("llegue al back")
-      dispatch(setGoogleRoute(googleWorker.request.responseURL))
-      window.open(googleWorker.request.responseURL)
+        if (existingUser !== null){
+          localStorage.setItem("token", JSON.stringify(existingUser.data))
+        } else {
+          window.open("https://rework-xi.vercel.app/google/" || "http://localhost:3000/google/", "_self")
+        }
+        // lo pasamos a json y lo guardamos en la consola en application local storage
+        const data = jwtDecode(existingUser.data);
+        return dispatch(setCurrentUser(data));
+        } catch (e){
+          return e
+        }
+      }
+ 
+ 
+    export const createGoogleWorker = (user: any) => async (dispatch: any) => {
+      try {
+        return user
       } catch(error) {
         return error
       }
-    }
+    } 
+
+    export const createGoogleClient = (user: any) => async (dispatch: any) => {
+      try {
+        return user
+      } catch(error) {
+        return error
+      }
+    } 
