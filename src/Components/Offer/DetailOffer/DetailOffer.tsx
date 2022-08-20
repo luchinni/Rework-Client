@@ -18,6 +18,7 @@ import "./DetailOffer.css";
 import { useParams } from "react-router-dom";
 import OwnProposal from "../../proposals/OwnProposal/OwnProposal";
 import Swal from "sweetalert2";
+import FormReview from "../../Reviews/FormReview/FormReview";
 
 const DetailOffer = () => {
   const offerId = useSelector((state: any) => state.workService.offerById);
@@ -43,6 +44,16 @@ const DetailOffer = () => {
 
   function handleClose(value: any) {
     setOpen(value);
+  }
+
+  const [openReview, setOpenReview] = useState(false)
+
+  function OpenModalReview(){
+    setOpenReview(true);
+  }
+
+  function CloseModalReview(){
+    setOpenReview(false);
   }
 
   function handleDelete(id: string) {
@@ -73,7 +84,7 @@ const DetailOffer = () => {
   let alreadyApply: boolean = false;
 
   const filtred: any = offerId.proposals?.filter(
-    (p: any) => p.userWorker?.id === currentUser?.id
+    (p: any) => p.userWorker?.id === currentUser?.id && p.isActive === true
   );
 
   if (filtred?.length > 0) {
@@ -175,6 +186,12 @@ const DetailOffer = () => {
             ) : (
               <br />
             )}
+            {openReview && 
+        <div className="div_formReview">
+          <FormReview offer={offerId} close={CloseModalReview} />
+        </div>
+      }
+            <button onClick={OpenModalReview}>Trabajo finalizado</button>
           </div>
         </div>
       </div>

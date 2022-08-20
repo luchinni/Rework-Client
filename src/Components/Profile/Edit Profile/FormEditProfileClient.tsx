@@ -6,8 +6,9 @@ import {
   putEditProfileClient,
 } from "../../../Redux/Reducer/reducer";
 import { ClientTypeUpdate, errorsTypeEditClient } from "../../../Types";
+import "./FormEditProfileClient.css";
 
-function FormEditProfileClient( { props } : any) {
+function FormEditProfileClient({ props }: any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
   const dispatch = useDispatch();
 
@@ -111,27 +112,27 @@ function FormEditProfileClient( { props } : any) {
             ? "La fecha ingresada es invalida."
             : year[0] > date.getFullYear()
             ? "La fecha ingresada es invalida."
-            : year[0] < 1910
+            : year[0] < 1940
             ? "El año debe ser mayor a 1940"
             : "";
         break;
       default:
         break;
-      }
-      validarForm(error);
-      setClient({ ...client, [name]: value });
     }
-    
-    function onSubmit(e: any) {
-      e.preventDefault();
-    }
-    
-    const token: any = localStorage.getItem("token");
-    let tokenDecode: any;
-    if (token) tokenDecode = decode(token);
-    
-    function handleSubmit(e: any) {
-      e.preventDefault();
+    validarForm(error);
+    setClient({ ...client, [name]: value });
+  }
+
+  function onSubmit(e: any) {
+    e.preventDefault();
+  }
+
+  const token: any = localStorage.getItem("token");
+  let tokenDecode: any;
+  if (token) tokenDecode = decode(token);
+
+  function handleSubmit(e: any) {
+    e.preventDefault();
     let { name, lastName, born_date, photo } = client;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
@@ -143,88 +144,95 @@ function FormEditProfileClient( { props } : any) {
       photo: photo,
     };
     const id = userLogged.id;
-    putEditProfileClient(newClient, id)
-    .then(() => {
+    putEditProfileClient(newClient, id).then(() => {
       dispatch(getUserById(tokenDecode));
     });
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
-    props(false)
+    props(false);
   }
 
-  function handleClose () {
-    props(false)
+  function handleClose() {
+    props(false);
   }
 
   return (
-    <div>
-      <div>
-        <button onClick={() => handleClose()}>x</button>
-      </div>
-      {
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div>
+      <div className="updateCli_mainContainer">
+        <div className="updateCli_closeBtnContainer">
+          <button className="updateCli_closeBtn" onClick={() => handleClose()}>
+            x
+          </button>
+        </div>
+        <form className="updateCli_Form" onSubmit={(e) => onSubmit(e)}>
+          <div className="update_Div_inputAndError">
             <input
-              className="Update_inpunt"
+              required
+              className="update_inpunt"
               type="text"
               name="name"
-              placeholder="Nombre"
+              autoComplete="off"
               onChange={(e) => handleChange(e)}
             />
+            <span>Nombre</span>
             {!errors.name ? null : (
-              <div className="Update_inputError">{errors.name}</div>
+              <div className="update_inputError">{errors.name}</div>
             )}
           </div>
-          <div>
+          <div className="update_Div_inputAndError">
             <input
-              className="Update_inpunt"
+              required
+              className="update_inpunt"
               type="text"
               name="lastName"
-              placeholder="Apellido"
+              autoComplete="off"
               onChange={(e) => handleChange(e)}
             />
+            <span>Apellido</span>
             {!errors.lastName ? null : (
-              <div className="Update_inputError">{errors.lastName}</div>
+              <div className="update_inputError">{errors.lastName}</div>
             )}
           </div>
-          <div>
+          <div className="update_Div_inputAndError">
             <input
-              className="Update_inpunt"
+              required
+              className="update_inpunt"
+              id= 'birthday_input'
               type="date"
               name="birthdate"
-              placeholder="Fecha de Nacimiento"
               onChange={(e) => handleChange(e)}
-            />
+              />
+              <span>Fecha de Nacimiento</span>
             {!errors.birthdate ? null : (
-              <div className="Update_inputError">{errors.birthdate}</div>
-            )}
+              <div className="update_inputError">{errors.birthdate}</div>
+              )}
           </div>
-          <div>
+          <div className="update_Div_inputFile">
             <input
-              className="Update_inpunt"
+              className="update_inpuntImg"
+              id="file_input"
               type="file"
               accept="image/*"
               name="image"
-              placeholder="Imagen de perfil"
               onChange={(e) => handleChange(e)}
             />
             {!errors.image ? null : (
-              <div className="Update_inputError">{errors.image}</div>
+              <div className="update_inputError">{errors.image}</div>
             )}
           </div>
-          <input
-            className="Update_inpuntSubmit"
-            disabled={errors.disabled}
-            name="button"
-            type="submit"
-            value="Actualizar"
-            onClick={(e) => {
-              handleSubmit(e)
-            }}
-          />
+          <div className="updateCli_submitBtnContainer">
+            <input
+              className="update_inpuntSubmit"
+              disabled={errors.disabled}
+              name="button"
+              type="submit"
+              value="Actualizar"
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+            />
+          </div>
         </form>
-      }
-    </div>
+      </div>
   );
 }
 

@@ -6,7 +6,7 @@ import decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../../Redux/Reducer/reducer";
 
-const FormProposal = (props: any) => {
+const FormEditProposal = (props: any) => {
   console.log("esto es props: ", props);
 
   const dispatch = useDispatch();
@@ -14,8 +14,6 @@ const FormProposal = (props: any) => {
   const token: any = localStorage.getItem("token");
   const tokenDecode: any = decode(token);
   const userLogged = useSelector((state: any) => state.workService.userLogged);
-
-  //console.log(userLogged)
 
   useEffect(() => {
     dispatch(getUserById(tokenDecode));
@@ -36,7 +34,7 @@ const FormProposal = (props: any) => {
     disabled: boolean | undefined;
   };
 
-  const [formu, setFormu] = useState<formValidate>({
+  const [form, setForm] = useState<formValidate>({
     idProposal: props.proposal.idProposal,
     remuneration: 0,
     proposal_description: "",
@@ -51,21 +49,23 @@ const FormProposal = (props: any) => {
     disabled: true,
   });
 
-  const validarForm = (errors:errorFormValidate) => {
+  const validarForm = (errors: errorFormValidate) => {
     let valid = true;
-    Object.values(errors).forEach((val:any) => val.length > 0 && (valid = false));
+    Object.values(errors).forEach(
+      (val: any) => val.length > 0 && (valid = false)
+    );
     if (valid) {
-        setError({
-            ...error,
-            disabled: false
-        })
+      setError({
+        ...error,
+        disabled: false,
+      });
     } else {
-        setError({
-            ...error,
-            disabled: true
-        })
-    };
-};
+      setError({
+        ...error,
+        disabled: true,
+      });
+    }
+  };
 
   function handleModalClose() {
     props.close(false);
@@ -91,9 +91,9 @@ const FormProposal = (props: any) => {
         break;
       case "proposal_description":
         errors.proposal_description =
-          formu.proposal_description.length > 400
+          form.proposal_description.length > 400
             ? "Solo se permiten 400 caracteres."
-            : formu.proposal_description.length < 50
+            : form.proposal_description.length < 50
             ? "La cantidad mínima de caracteres es 50."
             : "";
         break;
@@ -114,8 +114,8 @@ const FormProposal = (props: any) => {
 
     validarForm(errors);
 
-    setFormu({
-      ...formu,
+    setForm({
+      ...form,
       [e.target.name]: e.target.value,
     });
   };
@@ -124,31 +124,40 @@ const FormProposal = (props: any) => {
     const select = e.target.value;
     console.log(select);
     if (select === "default") return;
-    if (formu.worked_time_select.includes(e.target.value)) return;
-    setFormu({ ...formu, worked_time_select: select });
+    if (form.worked_time_select.includes(e.target.value)) return;
+    setForm({ ...form, worked_time_select: select });
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("si entré iupi");
 
-        let { worked_time, worked_time_select } = formu;
-      if (worked_time_select === "" && worked_time) worked_time_select = "días";
-      worked_time = `${worked_time} ${worked_time_select}`;
-      const editProposal: formValidate = {
-        remuneration: (!formu.remuneration || formu.remuneration === props.proposal.remuneration) ? props.proposal.remuneration : formu.remuneration,
-        proposal_description: (!formu.proposal_description || formu.proposal_description === props.proposal.proposal_description) ? props.proposal.proposal_description : formu.proposal_description,
-        worked_time: (!formu.worked_time || formu.worked_time === props.proposal.worked_time) ? props.proposal.worked_time : formu.worked_time,
-        worked_time_select: formu.worked_time_select,
-        idProposal: props.proposal.id
-      };
+    let { worked_time, worked_time_select } = form;
+    if (worked_time_select === "" && worked_time) worked_time_select = "días";
+    worked_time = `${worked_time} ${worked_time_select}`;
+    const editProposal: formValidate = {
+      remuneration:
+        !form.remuneration || form.remuneration === props.proposal.remuneration
+          ? props.proposal.remuneration
+          : form.remuneration,
+      proposal_description:
+        !form.proposal_description ||
+        form.proposal_description === props.proposal.proposal_description
+          ? props.proposal.proposal_description
+          : form.proposal_description,
+      worked_time:
+        !form.worked_time || form.worked_time === props.proposal.worked_time
+          ? props.proposal.worked_time
+          : form.worked_time,
+      worked_time_select: form.worked_time_select,
+      idProposal: props.proposal.id,
+    };
 
-      editProposalWorkerPremium(editProposal).then(() => {
-        let form = document.getElementById("form") as HTMLFormElement | null;
-        form?.reset();
-      });
+    editProposalWorkerPremium(editProposal).then(() => {
+      let form = document.getElementById("form") as HTMLFormElement | null;
+      form?.reset();
+    });
 
-    setFormu({
+    setForm({
       idProposal: "",
       remuneration: 0,
       proposal_description: "",
@@ -170,7 +179,7 @@ const FormProposal = (props: any) => {
                 <div className="DetailModal_divInputs">
                   <label className="DetailModal_label">Tu presupuesto</label>
                   <input
-                    className="DetailModal_input" /*className={error.remuneration && 'danger'}*/
+                    className="DetailModal_input"
                     name="remuneration"
                     type="number"
                     placeholder={
@@ -180,24 +189,27 @@ const FormProposal = (props: any) => {
                     }
                     onChange={handleChange}
                   />
-                  {error.remuneration && (
+                  {form.remuneration ? error.remuneration && (
                     <p className="danger">{error.remuneration}</p>
-                  )}
+                  ) : null}
                 </div>
                 <div className="DetailModal_divInputs">
                   <label className="DetailModal_label">
                     Tiempo estiamdo del trabajo
                   </label>
                   <input
-                    className="DetailModal_input" /*className={error.worked_time && 'danger'}*/
+                    className="DetailModal_input"
                     name="worked_time"
                     type="string"
-                    placeholder="Ej: 5"
+                    placeholder={
+                        props.proposal?.worked_time
+                        ? props.proposal?.worked_time
+                        : "Ej: 5"}
                     onChange={handleChange}
                   />
-                  {error.worked_time && (
+                  {form.worked_time ? error.worked_time && (
                     <p className="danger">{error.worked_time}</p>
-                  )}
+                  ) : null}
                 </div>
                 <div className="DetailModal_divSelect">
                   {
@@ -219,7 +231,7 @@ const FormProposal = (props: any) => {
               <div className="DetailModal_divInputs">
                 <label className="DetailModal_label">Descripcion</label>
                 <textarea
-                  className="DetailModal_input" /*className={error.proposal_description && 'danger'}*/
+                  className="DetailModal_input"
                   name="proposal_description"
                   cols={30}
                   rows={3}
@@ -230,12 +242,10 @@ const FormProposal = (props: any) => {
                   }
                   onChange={handleChange}
                 ></textarea>
-                {error.proposal_description && (
+                {form.proposal_description ? error.proposal_description && (
                   <p className="danger">{error.proposal_description}</p>
-                )}
+                ) : null}
               </div>
-
-              {props.proposal ? (
                 <input
                   className="DetailModal_submit"
                   disabled={error.disabled}
@@ -244,15 +254,6 @@ const FormProposal = (props: any) => {
                   value="Editar"
                   onClick={(e) => handleSubmit(e)}
                 />
-              ) : (
-                <input
-                  className="DetailModal_submit"
-                  name="button"
-                  type="submit"
-                  value="Publicar"
-                  onClick={(e) => handleSubmit(e)}
-                />
-              )}
             </form>
           </div>
         </div>
@@ -274,4 +275,4 @@ const FormProposal = (props: any) => {
   );
 };
 
-export default FormProposal;
+export default FormEditProposal;

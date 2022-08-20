@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 const { SECRET_KEY } = process.env;
 
 const initialState = {
+  allUsers: [],
   allClients: [],
   infoSearched: [],
   search: "",
@@ -36,6 +37,9 @@ export const workServiceSlice = createSlice({
   name: "workService",
   initialState,
   reducers: {
+    setAllUsers: function (state: any, action: any) {
+      state.allUsers = action.payload;
+    },
     setAllClients: function (state: any, action: any) {
       state.allClients = action.payload;
     },
@@ -275,6 +279,7 @@ export const workServiceSlice = createSlice({
 });
 
 export const {
+  setAllUsers,
   setAllClients,
   setUserById,
   setFavorite,
@@ -303,6 +308,19 @@ export const {
 export default workServiceSlice.reducer;
 
 //aca van las actions
+
+export const getAllUsers = () => async (dispatch: Dispatch<any>) => {
+  try {
+    const users = await axios({
+      method: "GET",
+      url:"http://localhost:3001/admin/users"
+    });
+    console.log("action:",users.data)
+    dispatch(setAllUsers(users.data))
+  } catch(error) {
+    return error;
+  }
+}
 
 export const getClients = () => async (dispatch: Dispatch<any>) => {
   try {
@@ -785,9 +803,10 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
 
   export const acceptProposal = async (proposalState:any) => {
     try{
+      console.log("entre: ", proposalState)
       await axios({
         method:"PUT",
-        url: "https://rework.up.railway.app//proposal/state" || `http://localhost:3001/proposal/state`,
+        url: "https://rework.up.railway.app/proposal/state" || `http://localhost:3001/proposal/state`,
         data: proposalState
         })
   } catch (error) {

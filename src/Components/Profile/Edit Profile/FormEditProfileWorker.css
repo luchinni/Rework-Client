@@ -1,0 +1,13 @@
+
+.updateWorker_Form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  letter-spacing: 1.5px;
+}
+
+.updateCli_submitBtnContainer {
+  height: 50px;
+}
