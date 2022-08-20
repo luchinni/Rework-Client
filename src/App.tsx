@@ -19,6 +19,7 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import LoginGoogle from './Components/Login/LoginGoogle/LoginGoogle';
 import GoogleClient from './Components/Login/GoogleClient/GoogleClient';
 import GoogleWorker from './Components/Login/GoogleWorker/GoogleWorker';
+import Contract from './Components/Contract/Contract';
 
 function App() {
   
@@ -52,6 +53,7 @@ return (
         <Route path='pago/:id' element={<FormPago/>} />
         <Route path='detailOffer/:id' element={<DetailOffer/>} />
         <Route path='dashboard' element={<Dashboard />} />
+        <Route path='contract/:id' element={<Contract/>} />
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
         <Route path='google/client' element={<Navigate to='/home' replace/>} />
@@ -65,6 +67,7 @@ return (
         <Route path='google/worker' element={<GoogleWorker/>} />
         <Route path='google/client' element={<GoogleClient/>} />
         <Route path='login' element={<LoginComponent/>} />
+        <Route path='contract/:id' element={<Navigate to='/home' replace/>} />
         <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
         <Route path='myProfile' element={<Navigate to='/register' replace/>} />
         <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
