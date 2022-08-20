@@ -20,6 +20,7 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import LoginGoogle from './Components/Login/LoginGoogle';
 import GoogleLogin from './Components/Login/GoogleLogin/GoogleLogin';
 import Contract from './Components/Contract/Contract';
+import axios from 'axios';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -50,6 +51,8 @@ function App() {
 }, [])
 
  */
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001/";
 
 
 return (
