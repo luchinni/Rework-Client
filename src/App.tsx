@@ -19,6 +19,7 @@ import FormPago from './Components/FormPago/FormPago';
 import Dashboard from './Components/Dashboard/Dashboard';
 import LoginGoogle from './Components/Login/LoginGoogle';
 import GoogleLogin from './Components/Login/GoogleLogin/GoogleLogin';
+import { AuthContextProvider } from './Components/Login/GoogleLogin/AuthGoogle';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -78,7 +79,8 @@ return (
         <Route path='register' element={<Register/>} />
         <Route path='register/worker' element={<Worker/>} />
         <Route path='register/client' element={<Client/>} />
-        <Route path='google/success' element={<GoogleLogin/>} /> 
+        <Route path='google/success' element={<GoogleLogin/>} />
+        <Route path='google' element={<LoginGoogle/>} />
         <Route path='login' element={<LoginComponent/>} />
         <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
         <Route path='myProfile' element={<Navigate to='/register' replace/>} />

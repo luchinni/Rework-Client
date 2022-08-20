@@ -268,7 +268,7 @@ export const workServiceSlice = createSlice({
       };
     },  
     setGoogleRoute: function (state: any, action:any){
-      console.log("action payload", action.payload)
+      console.log("action.payload", action.payload)
       state.googleRoute = action.payload
     }
   },
@@ -876,29 +876,27 @@ export const isActiveFalseProposal = async (id: string) => {
   };
 };
 
-export const createGoogleWorker = () => async (dispatch: any) => {
+/* export const createGoogleWorker = () => async (dispatch: any) => {
   console.log("action worker")
   try {
     console.log("entre al try worker")
     const googleWorker = await axios({
     method: "POST",
-    url: `http://localhost:3001/auth/worker`,
+    url: `http://localhost:3001/auth/worker`, */
     /* withCredentials: true, */
-    headers: {
+    /* headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       "Access-Control-Allow-Credentials": "true"
     } 
   })
   console.log("llegue al back")
-  console.log("googleResponse", googleWorker.request)
   dispatch(setGoogleRoute(googleWorker.request.responseURL))
-  /* window.open(googleResponse.request.responseURL) */
+  window.open(googleWorker.request.responseURL)
   } catch(error) {
     return error
   }
-}
-
+} */
 
 export const createGoogleClient = () => async (dispatch: any) => {
   console.log("entre a action")
@@ -937,9 +935,9 @@ export const getGoogleWorker = () => async (dispatch: any) => {
             throw new Error("Autenticación fallida, por favor intente de nuevo.")
           }
       }).then((resObject) => {
-        console.log("el obyec",resObject)
-        localStorage.setItem("token", JSON.stringify(resObject.token));
-        console.log("el worker", resObject.worker)
+        console.log("resObject",resObject)
+        localStorage.setItem("workerToken", JSON.stringify(resObject.token));
+        console.log("resObject worker", resObject.worker)
         dispatch(setCurrentUser(resObject.worker))
       }
       ).catch((error) => {
@@ -947,24 +945,52 @@ export const getGoogleWorker = () => async (dispatch: any) => {
       })
     }
 
-    
-  /* export const getGoogleWorker = () => async (dispatch: any) => {
-    console.log("entre a googleWorker")
-    try {
-      const backResponse = await axios({
-        method: "GET",
-        url: `http://localhost:3001/auth/successWorker`,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true"
-        } 
+    export const getGoogleClient = () => async (dispatch: any) => {
+      fetch("http://localhost:3001/auth/successClient", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": "true"
+          } 
+      }).then((response) => {
+          if(response.status === 200) {
+            const respuesta = response.json()
+            console.log(respuesta)
+            return respuesta
+          } else {
+            throw new Error("Autenticación fallida, por favor intente de nuevo.")
+          }
+      }).then((resObject) => {
+        console.log("resObject",resObject)
+        localStorage.setItem("clientToken", JSON.stringify(resObject.token));
+        console.log("resObject client", resObject.client)
+        dispatch(setCurrentUser(resObject.client))
+      }
+      ).catch((error) => {
+          console.log(error)
       })
-        dispatch(setCurrentUser(backResponse))
-  
-      
-    } catch (error) {
-      return error
     }
-  }
-}*/
+ 
+
+    export const createGoogleWorker = () => async (dispatch: any) => {
+      console.log("action worker")
+      try {
+      let params = {
+          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
+      };
+        console.log("entre al try worker")
+        const googleWorker = await axios.get(`http://localhost:3001/google`,{
+          headers: {
+            mode: 'no-cors'
+        } 
+        })
+      console.log("llegue al back")
+      dispatch(setGoogleRoute(googleWorker.request.responseURL))
+      window.open(googleWorker.request.responseURL)
+      } catch(error) {
+        return error
+      }
+    }

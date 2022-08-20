@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'; */
 import HeaderRegister from '../Register/HeaderRegister/HeaderRegister';
 import imageClient from "../../images/Online report_Isometric (1).png"
 import imageWorker from "../../images/Money_motivation _Flatline.png"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createGoogleClient, createGoogleWorker } from '../../Redux/Reducer/reducer';
 
 
 const LoginGoogle = () => {
+    
     const dispatch = useDispatch()
     
     const handleSubmitClient = () => {
@@ -26,7 +27,7 @@ const LoginGoogle = () => {
             <div className='Register_divImage'>
                 <img src={imageWorker} alt='Register'/>
             </div>
-            <button  onClick={handleSubmitWorker}  className='Register_button'>Ingresa</button>        
+            <button onClick={handleSubmitWorker}  className='Register_button'>Ingresa</button>        
             </div>
             <div className='Register_Client'>
                 <p className='Register_orTitle'>Inicia sesión como <span className='Register_orTitleOrange'>Cliente</span></p>

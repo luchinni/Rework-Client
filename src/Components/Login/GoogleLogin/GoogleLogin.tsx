@@ -1,15 +1,20 @@
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { getGoogleWorker } from "../../../Redux/Reducer/reducer";
+import { getGoogleWorker, getGoogleClient } from "../../../Redux/Reducer/reducer";
 import Header from "../../Header/Header";
 
 const GoogleLogin = () => {
-
     const dispatch = useDispatch()
+    const clientType = localStorage.getItem("clientToken")
+    const workerType = localStorage.getItem("workerToken")
 
     useEffect(() => {
-        dispatch(getGoogleWorker());
+        if(clientType){
+            dispatch(getGoogleClient())
+        } else if(workerType){
+            dispatch(getGoogleWorker());
+        }
       }, [])
     
     const currentUser: any = useSelector((state: any) => state.workService.currentUser)
