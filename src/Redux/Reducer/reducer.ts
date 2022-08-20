@@ -30,7 +30,11 @@ const initialState = {
   userVerified: {
     isActive: false,
   },
-  googleRoute:''
+  googleData:{
+    email: '',
+    name: '',
+    photo: ''
+  }
 };
 
 export const workServiceSlice = createSlice({
@@ -270,6 +274,13 @@ export const workServiceSlice = createSlice({
       state.userVerified = {
         isActive: true,
       };
+    },
+    setGoogleData: function (state: any, action: any){
+      state.googleData = {
+        name: action.payload.name,
+        photo: action.payload.photo,
+        email: action.payload.email
+      }
     }
   },
 });
@@ -297,7 +308,8 @@ export const {
   setCurrentUser,
   logOutCurrentUser,
   logOutUserLogged,
-  setVerifiedUser
+  setVerifiedUser,
+  setGoogleData
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -961,12 +973,13 @@ export const getGoogleWorker = () => async (dispatch: any) => {
         })
         if (existingUser !== null){
           localStorage.setItem("token", JSON.stringify(existingUser.data))
+          // lo pasamos a json y lo guardamos en la consola en application local storage
+          const data = jwtDecode(existingUser.data);
+          return dispatch(setCurrentUser(data));
         } else {
+          dispatch(setGoogleData(cleanUser))
           window.open("https://rework-xi.vercel.app/google/" || "http://localhost:3000/google/", "_self")
         }
-        // lo pasamos a json y lo guardamos en la consola en application local storage
-        const data = jwtDecode(existingUser.data);
-        return dispatch(setCurrentUser(data));
         } catch (e){
           return e
         }
