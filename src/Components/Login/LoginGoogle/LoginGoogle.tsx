@@ -11,11 +11,11 @@ const LoginGoogle = () => {
     const dispatch = useDispatch()
     
     const handleSubmitClient = () => {
-        window.open("https://rework-xi.vercel.app/google/client" || "http://localhost:3000/google/client", "_self")
+        window.open(/* "https://rework-xi.vercel.app/google/client" || */ "http://localhost:3000/google/client", "_self")
 
     }
     const handleSubmitWorker = () => {
-        window.open("https://rework-xi.vercel.app/google/worker" || "http://localhost:3000/google/worker", "_self")
+        window.open(/* "https://rework-xi.vercel.app/google/worker" || */ "http://localhost:3000/google/worker", "_self")
 
     } 
     

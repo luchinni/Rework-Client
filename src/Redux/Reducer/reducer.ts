@@ -966,19 +966,23 @@ export const getGoogleWorker = () => async (dispatch: any) => {
           user_mail: user.email,
           photo: user.photoURL
         }
-        const existingUser: any = await axios({
-          method: "get",
-          url: "https://rework.up.railway.app/auth/" || "http://localhost:3001/auth/",
+        const response: any = await axios({
+          method: "post",
+          url: /* "https://rework.up.railway.app/auth/" || */ "http://localhost:3001/auth/",
           data: cleanUser
         })
-        if (existingUser !== null){
-          localStorage.setItem("token", JSON.stringify(existingUser.data))
-          // lo pasamos a json y lo guardamos en la consola en application local storage
-          const data = jwtDecode(existingUser.data);
-          return dispatch(setCurrentUser(data));
-        } else {
+
+        console.log("response",response)
+        if (response.data == 'usuario no encontrado'){
+          // sino guarda la data de google en el estado global y redirije a ruta para preguntar primer inicio: client o worker?
           dispatch(setGoogleData(cleanUser))
-          window.open("https://rework-xi.vercel.app/google/" || "http://localhost:3000/google/", "_self")
+          window.open(/* "https://rework-xi.vercel.app/google/" || */ "http://localhost:3000/google/", "_self")
+        } else {
+          localStorage.setItem("token", JSON.stringify(response.data))
+          // lo pasamos a json y lo guardamos en la consola en application local storage
+          //si tiene mail (client o worker) devuelve un token y se guarda, y luego se guarda el currentUser con la data del token
+          const data = jwtDecode(response.data);
+          return dispatch(setCurrentUser(data));
         }
         } catch (e){
           return e

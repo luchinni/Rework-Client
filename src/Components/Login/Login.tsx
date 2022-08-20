@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import imgGoogle from "../../images/pngwing.com.png";
-import {postLogin} from "../../Redux/Reducer/reducer";
+import {googleLog, postLogin} from "../../Redux/Reducer/reducer";
 import HeaderRegister from "../Register/HeaderRegister/HeaderRegister";
 import { Link, useNavigate } from "react-router-dom";
 import {Toaster} from "react-hot-toast";
@@ -53,8 +53,7 @@ const Login = (props:any) => {
          let user = result.user
          console.log("el user", user)
          //dispatch de la action para hacer la verificacion
-         return user
-         //si tiene mail (client o worker) inicia, sino redirije a ruta para preguntar primer inicio: client o worker?
+         dispatch(googleLog(user))
       })
   }
 
