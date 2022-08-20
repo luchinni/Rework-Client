@@ -19,6 +19,7 @@ import FormPago from './Components/FormPago/FormPago';
 import Dashboard from './Components/Dashboard/Dashboard';
 import LoginGoogle from './Components/Login/LoginGoogle';
 import GoogleLogin from './Components/Login/GoogleLogin/GoogleLogin';
+import Contract from './Components/Contract/Contract';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -70,6 +71,7 @@ return (
         <Route path='pago/:id' element={<FormPago/>} />
         <Route path='detailOffer/:id' element={<DetailOffer/>} />
         <Route path='dashboard' element={<Dashboard />} />
+        <Route path='contract/:id' element={<Contract/>} />
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/success' element={<Navigate to='/home' replace/>} />
       </>
@@ -80,6 +82,7 @@ return (
         <Route path='register/client' element={<Client/>} />
         <Route path='google/success' element={<GoogleLogin/>} /> 
         <Route path='login' element={<LoginComponent/>} />
+        <Route path='contract/:id' element={<Navigate to='/home' replace/>} />
         <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
         <Route path='myProfile' element={<Navigate to='/register' replace/>} />
         <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
