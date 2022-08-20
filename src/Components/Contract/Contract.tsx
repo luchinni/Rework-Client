@@ -4,12 +4,17 @@ import firma from "../../images/04ed6259fb04a225285c9201d3e38521.png"
 import Header from '../Header/Header'
 import { useParams } from 'react-router-dom'
 import { acceptProposal, getOfferForHistory } from '../../Redux/Reducer/reducer'
+import aprobado from "../../images/aprobado.png"
+import rechazado from "../../images/rechazado.png"
+import { useSelector } from 'react-redux'
+
 
 const Contract = () => {
     const dateNow = new Date();
     const params:any = useParams();
-    const [currentOffer, setCurrentOffer] = useState<any>({})
-
+    const [currentOffer, setCurrentOffer] = useState<any>({});
+    const [result, setResult] = useState<any>("");
+    const userLogged = useSelector((state: any) => state.workService.userLogged)
     
 
     useEffect(() => {
@@ -60,40 +65,73 @@ const Contract = () => {
     }
 
     const rejectContract = () => {
+        setResult("rejected")
         let state = "rejected";
         let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
-        let id = proposal.idProposal;
-        let proposalState: { state: string; id: string } = {
-          state,
-          id,
-        };
-        acceptProposal(proposalState);
+        if(proposal){
+            let id = proposal.idProposal;
+            let proposalState: { state: string; id: string } = {
+              state,
+              id,
+            };
+            acceptProposal(proposalState);
+        }
     }
 
     const acceptContract = () => {
+        setResult("aproved")
         let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
-        currentOffer.proposals?.forEach((e: any) => {
-        if (e.idProposal !== proposal.idProposal) {
-         let state = "rejected";
-         let id = e.idProposal;
-         let proposalState: { state: string; id: string } = {
-           state,
-           id,
-         };
-         acceptProposal(proposalState);
-       } else {
-        let state = "contract started";
-        let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
-        let id = proposal.idProposal;
-        let proposalState: { state: string; id: string } = {
-          state,
-          id,
-        };
-        acceptProposal(proposalState);
-      }
-    })
+        if(proposal){
+            currentOffer.proposals?.forEach((e: any) => {
+                if (e.idProposal !== proposal.idProposal) {
+                 let state = "rejected";
+                 let id = e.idProposal;
+                 let proposalState: { state: string; id: string } = {
+                   state,
+                   id,
+                 };
+                 acceptProposal(proposalState);
+                 
+               } else {
+                let state = "contract started";
+                let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
+                    let id = proposal.idProposal;
+                    let proposalState: { state: string; id: string } = {
+                        state,
+                        id,
+                      };
+                      acceptProposal(proposalState);
+                
+              }
+        })
+    }
 }
+
+    const workerResult = () => {
+        if(userLogged.isWorker===true){
+            if(result!==""){
+                if(result === "rejected"){
+                    return rechazado;
+                }else if(result === "aproved"){
+                    return aprobado
+                }
+            }
+        }
+    }
  
+    const clientResult = () => {
+        console.log(result)
+        if(userLogged.isWorker===false){
+            if(result!==""){
+                if(result === "rejected"){
+                    return rechazado;
+                }else if(result === "aproved"){
+                    return aprobado
+                }
+            }
+        }
+    }
+
   return (
     <div className='contenedor'>
         <Header/>
@@ -251,7 +289,7 @@ y equilibrio social.</p>
                 <p>Para constancia se firma en dos ejemplares del mismo tenor, en la ciudad de Argentina BsAs. hoy {getActualyDay(dateNow.getDay())} ({dateNow.getDate()}) del {dateNow.getMonth()} de {dateNow.getFullYear()}.</p>
             </div>
             <div className='firmas'>
-                <span>EL EMPLEADOR</span> <span>EL TRABAJADOR</span>
+                <span>EL EMPLEADOR <img src={clientResult()}></img></span> <span>EL TRABAJADOR <img src={workerResult()}></img></span>
             </div>
             <div className='firma_rework'>
                 <span>LA EMPRESA</span>

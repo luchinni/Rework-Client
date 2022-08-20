@@ -16,7 +16,7 @@
 }
 .firmas{
     position: relative;
-    top: 20px;
+    top: 40px;
     display: flex;
     justify-content: space-around;
 }
@@ -91,4 +91,10 @@
 
 .marcaRegistrada b{
     color: #f1730c;
+}
+
+.firmas span img{
+    width: 100px;
+    position: absolute;
+    bottom: -30px;
 }
