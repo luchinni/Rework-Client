@@ -522,17 +522,31 @@ export const postNewPortfolio = async (
   }
 };
 
-export async function newReviewPost(newReview: type.reviewFormType) {
+export async function newReviewPost(newReview: type.reviewFormType, type:string) {
   //está incompleto hasta tener la ruta del back
-  try {
-    return await axios({
-      method: "post",
-      url: "/",
-      data: newReview,
-    });
-  } catch (error) {
-    return error;
+  //console.log(newReview)
+  if(type==="worker"){
+    try {
+      return await axios({
+        method: "post",
+        url: "/review/client",
+        data: newReview,
+      });
+    } catch (error) {
+      return error;
+    }
+  }else{
+    try {
+      return await axios({
+        method: "post",
+        url: "/review/worker",
+        data: newReview,
+      });
+    } catch (error) {
+      return error;
+    }
   }
+ 
 }
 
 export const logOut = () => (dispatch: any) => {
@@ -1039,7 +1053,7 @@ export const modifyOfferState = async (offerState:any) => {
       
     } catch (error) {
       return error
-    }
+    }*/
 
 export const createGoogleClient = (user: any) => async (dispatch: any) => {
   try {
