@@ -136,18 +136,24 @@ const GoogleClient = () => {
         form?.reset();
 
         console.log("the client" , newClient)
-        Swal.fire("¡Cuenta creada!","Te llegará un correo con tu contraseña provisoria, puedes cambiarla cuando quieras.","success")
+        Swal.fire({
+          icon: 'success',
+          title: '¡Cuenta creada!',
+          html: 'Te llegará un correo con tu contraseña provisoria, cámbiala cuando quieras.',
+          confirmButtonText: 'Comienza'
+      })
       }
 
+    
     return (
         <div className='GoogleClient_component'>
             <HeaderRegister/>
             <div className='GoogleClient_titleContainer'>
-                <h3 className='GoogleClient_title'>¡Un último paso!</h3>
+                <h2 className='GoogleClient_title'>¡Un último paso!</h2>
                 <h4 className='GoogleClient_subtitle'>Necesitamos corroborar que eres mayor de edad para continuar,<br/> por favor indícanos tu fecha de nacimiento</h4>
             </div>
-            <div className="GoogleClient_form">
-              <form>
+            <div className="GoogleClient_divForm">
+              <form className="GoogleClient_form"> 
                 <input
                   className="GoogleClient_inputDate"
                   type="date"
@@ -161,7 +167,7 @@ const GoogleClient = () => {
                   </div>
                 )}
                 <input
-                className="CR_inputSubmit"
+                className="GoogleClient_inputSubmit"
                 disabled={user.disabled}
                 name="button"
                 type="submit"
@@ -170,6 +176,7 @@ const GoogleClient = () => {
                 />
               </form>
             </div>
+              {/* <button type="submit" onClick={(e) => alerta1(e)}>SWEET</button> */}
         </div>
     )
 }

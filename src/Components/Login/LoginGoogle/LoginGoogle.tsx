@@ -1,14 +1,12 @@
 import HeaderRegister from '../../Register/HeaderRegister/HeaderRegister';
 import imageClient from "../../../images/Online report_Isometric (1).png"
 import imageWorker from "../../../images/Money_motivation _Flatline.png"
-import { useDispatch} from 'react-redux';
 import './LoginGoogle.css'
 
 
 
 const LoginGoogle = () => {
     
-    const dispatch = useDispatch()
     
     const handleSubmitClient = () => {
         window.open(/* "https://rework-xi.vercel.app/google/client" || */ "http://localhost:3000/google/client", "_self")
@@ -19,6 +17,8 @@ const LoginGoogle = () => {
 
     } 
     
+    
+
     return (
         <div className='Google_component'>
         <HeaderRegister/>

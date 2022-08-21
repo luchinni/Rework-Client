@@ -996,8 +996,15 @@ export const getGoogleWorker = () => async (dispatch: any) => {
  
     export const createGoogleWorker = (user: any) => async (dispatch: any) => {
       try {
-
-        return user
+        const response: any = await axios({
+          method: "post",
+          url: /* "https://rework.up.railway.app/auth/worker" || */ "http://localhost:3001/auth/worker",
+          data: user
+        })
+        const token = response?.data
+        localStorage.setItem("token", JSON.stringify(token))
+        const data = jwtDecode(token);
+        return dispatch(setCurrentUser(data))
       } catch(error) {
         return error
       }
@@ -1005,10 +1012,9 @@ export const getGoogleWorker = () => async (dispatch: any) => {
 
     export const createGoogleClient = (user: any) => async (dispatch: any) => {
       try {
-        console.log(user)
         const response: any = await axios({
           method: "post",
-          url: /* "https://rework.up.railway.app/auth/" || */ "http://localhost:3001/auth/client",
+          url: /* "https://rework.up.railway.app/auth/client" || */ "http://localhost:3001/auth/client",
           data: user
         })
         const token = response?.data
