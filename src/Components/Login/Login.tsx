@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import imgGoogle from "../../images/pngwing.com.png";
-import {postLogin} from "../../Redux/Reducer/reducer";
+import {googleLog, postLogin} from "../../Redux/Reducer/reducer";
 import HeaderRegister from "../Register/HeaderRegister/HeaderRegister";
 import { Link, useNavigate } from "react-router-dom";
 import {Toaster} from "react-hot-toast";
 import login_hero from "../../images/login_hero.jpg";
 import './Login.css'
+import firebase from '../../firebase'
+
 
 const Login = (props:any) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
-  // console.log(token)
+
   const [user, setUser] = useState({user_mail: "", password: ""})
   const dispatch = useDispatch()
 
@@ -39,7 +41,20 @@ const Login = (props:any) => {
   }
 
   function handleClose() {
-    props.close(false)
+    props.close(false)}
+
+  const googleLogin = async () => {
+    //ejecutamos la auth de firebase y guardamos la respuesta
+    let provider = new firebase.auth.GoogleAuthProvider()
+    //se ejecuta la verificacion con el usuario recibido
+      firebase.auth().signInWithPopup(provider)
+      .then((result:any) =>{
+        //guardamos en user la respuesta de google
+         let user = result.user
+         console.log("el user", user)
+         //dispatch de la action para hacer la verificacion
+         dispatch(googleLog(user))
+      })
   }
 
       //Ejemplo de useSelector con Toolkit.
@@ -68,8 +83,8 @@ const Login = (props:any) => {
               <p className="Login_continuaCon">O continua con</p>
             </div>
             <div className="Login_divTercero">
-              <button className="Login_ButtonGoogle">
-                <Link to = {"/google"} ><img className="Login_googleImg" src={imgGoogle} alt="googleLink" /></Link>
+              <button className="Login_ButtonGoogle" onClick={googleLogin}>
+               <img className="Login_googleImg" src={imgGoogle} alt="googleLink" />
               </button>
             </div>
             <span className="Login_Register">No tienes una cuenta? <a href="" onClick={()=>navigate("/register")}>registrate</a></span>

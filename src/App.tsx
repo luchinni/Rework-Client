@@ -8,7 +8,6 @@ import Register from './Components/Register/Register';
 import Worker from './Components/Register/WorkerRegister/WorkerRegister';
 import Client from './Components/Register/ClientRegister/ClientRegister';
 import Footer from './Components/Footer/Footer';
-// import Login from './Components/Login/Login';
 import LoginComponent from './Components/Login/LoginComponent/LoginComponent';
 import Profile from './Components/Profile/Profile';
 import OfferPost from './Components/Offer/OfferPost/OfferPost';
@@ -17,8 +16,9 @@ import VerifyUser from './Components/Register/VerifyUser/VerifyUser';
 import { useSelector } from 'react-redux';
 import FormPago from './Components/FormPago/FormPago';
 import Dashboard from './Components/Dashboard/Dashboard';
-import LoginGoogle from './Components/Login/LoginGoogle';
-import GoogleLogin from './Components/Login/GoogleLogin/GoogleLogin';
+import LoginGoogle from './Components/Login/LoginGoogle/LoginGoogle';
+import GoogleClient from './Components/Login/GoogleClient/GoogleClient';
+import GoogleWorker from './Components/Login/GoogleWorker/GoogleWorker';
 import Contract from './Components/Contract/Contract';
 import axios from 'axios';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
@@ -35,20 +35,6 @@ function App() {
   const handleCallback = (response: any) => {
     console.log("Succesfull", response.credential)
   }
-
-  useEffect(() => {
-    //@ts-ignore
-    google.accounts.id.initialize({
-      cliend_id: "125588834339-dn5o5nsgkeb69itt29dqsqobiova6ogi.apps.googleusercontent.com",
-      callback: handleCallback
-    })
-    //@ts-ignore
-    google.accounts.id.renderButton(
-      document.getElementById("singInDiv"),
-      {theme: "outline", size: "large"}
-    )
-
-}, [])
 
  */
 
@@ -76,14 +62,17 @@ return (
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='contract/:id' element={<Contract/>} />
         <Route path='google' element={<Navigate to='/home' replace/>} />
-        <Route path='google/success' element={<Navigate to='/home' replace/>} />
+        <Route path='google/worker' element={<Navigate to='/home' replace/>} />
+        <Route path='google/client' element={<Navigate to='/home' replace/>} />
       </>
         :
       <>
         <Route path='register' element={<Register/>} />
         <Route path='register/worker' element={<Worker/>} />
         <Route path='register/client' element={<Client/>} />
-        <Route path='google/success' element={<GoogleLogin/>} /> 
+        <Route path='google' element={<LoginGoogle/>} />
+        <Route path='google/worker' element={<GoogleWorker/>} />
+        <Route path='google/client' element={<GoogleClient/>} />
         <Route path='login' element={<LoginComponent/>} />
         <Route path='contract/:id' element={<Navigate to='/home' replace/>} />
         <Route path='pago/:id' element={<Navigate to='/register' replace/>} />

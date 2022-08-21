@@ -50,6 +50,21 @@ export interface WorkerType {
   inputProfessions: String[];
 }
 
+export interface WorkerGoogle {
+  name: String;
+  lastName: String;
+  password: String;
+  user_mail: String;
+  birthdate: String;
+  image: String;
+  profession: String[];
+  skills: String[];
+  errors: any;
+  disabled: boolean;
+  inputSkills: String[];
+  inputProfessions: String[];
+}
+
 export interface newClientType {
   name: String;
   lastName: String;
