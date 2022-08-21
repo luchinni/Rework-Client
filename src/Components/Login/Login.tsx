@@ -70,24 +70,24 @@ const Login = (props:any) => {
           <div>
             <form className="Login_form">
               <input className="Login_input" type="text" name="user_mail" onChange={(e) => handleChange(e)} placeholder='e-mail'/>
-              <input className="Login_input" type="password" name="password" onChange={(e) => handleChange(e)} placeholder='constraseña'/>
+              <input className="Login_input" type="password" name="password" onChange={(e) => handleChange(e)} placeholder='contraseña'/>
               <div className="Login_divRecordarContra">
                 <input type="checkbox" />
-                <span className="Login_recordarContra">Recordar contraseña?</span>
+                <span className="Login_recordarContra">Recordar contraseña</span>
               </div>
               <input className="Login_inputSubmit" type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
             </form>
-            <p className="Login_recuperarCon">Olvidaste tu contraseña? recuperala <a href="#">Aquí</a></p>
+            <p className="Login_recuperarCon">¿Olvidaste tu contraseña? Recupérala <a href="#">aquí</a></p>
             <hr className="Login_hr" />
             <div className="Login_divContinuaCon">
-              <p className="Login_continuaCon">O continua con</p>
+              <p className="Login_continuaCon">O continúa con</p>
             </div>
             <div className="Login_divTercero">
               <button className="Login_ButtonGoogle" onClick={googleLogin}>
                <img className="Login_googleImg" src={imgGoogle} alt="googleLink" />
               </button>
             </div>
-            <span className="Login_Register">No tienes una cuenta? <a href="" onClick={()=>navigate("/register")}>registrate</a></span>
+            <span className="Login_Register">¿No tienes una cuenta? <a href="" onClick={()=>navigate("/register")}>Regístrate</a></span>
           </div>
       </div>
       <div className="Login_divCover">

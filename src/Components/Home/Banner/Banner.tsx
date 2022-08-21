@@ -15,17 +15,17 @@ function Banner() {
       <div className='Banner_Carrusel'>
         {currentUser?.id===""? 
         <div className='Banner_divBanner'>
-          <p className='Banner_imageTextUno'>MAS DE MIL FREELANCERS Y OFERTAS <b>ESPERANDOTE</b></p>
+          <p className='Banner_imageTextUno'>MÁS DE MIL FREELANCERS Y OFERTAS <b>ESPERÁNDOTE</b></p>
           <img className='Banner_image' src={bannerTresHome} alt="banner"/>
         </div>
         :userLogged?.isWorker===true?
         <div className='Banner_divBanner'>
-          <p className='Banner_imageTextTres'>LAS MEJORES OFERTAS A TU DISPOSICION</p>
+          <p className='Banner_imageTextTres'>LAS MEJORES OFERTAS A TU DISPOSICIÓN</p>
           <img className='Banner_image' src={bannerUnoHome} alt="banner" />
         </div>
         :
         <div className='Banner_divBannerDos'>
-          <p className='Banner_imageTextDos'>LOS MEJORES PROFESIONALES A TU DISPOSICION</p>
+          <p className='Banner_imageTextDos'>LOS MEJORES PROFESIONALES A TU DISPOSICIÓN</p>
           <img className='Banner_image' src={bannerDosHome} alt="banner" />
         </div>
         

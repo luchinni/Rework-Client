@@ -10,9 +10,9 @@ function TopWorker() {
         <img className='TopWorker_hero' src={hero} alt="hero" />
       </div>
       <div className='TopWorker_divDerecha'>
-        <h1 className='TopWorker_h1'>Encontrá las mejores <span className='Top_necesidad'>oportunidades</span> para <br/>tus <span className='h1_profesionales'>habilidades</span></h1>
+        <h1 className='TopWorker_h1'>Encuentra las mejores <span className='Top_necesidad'>oportunidades</span> para <br/>tus <span className='h1_profesionales'>habilidades</span></h1>
   
-        <p className='TopWorker_pageDescription'>Busca el proyecto perfecto para vos <br /> y enviale tu propuesta</p>
+        <p className='TopWorker_pageDescription'>Busca el proyecto perfecto para ti <br /> y envíale una propuesta</p>
       </div>
     </div>
   )
