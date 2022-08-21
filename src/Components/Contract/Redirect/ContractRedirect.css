@@ -1,0 +1,28 @@
+.ContractRed_message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    margin-top: 250px;
+}
+
+.ContractRed_subtitle > a {
+    text-decoration: none;
+    background-color: #2a9d90d2;
+    padding: 0px 10px;
+    border-radius: 5px;
+    color: white
+
+}
+
+.ContractRed_subtitle > a:hover {
+    background-color: #264653
+}
+
+.ContractRed_title > span {
+    color: #F4A261
+}
+
+.ContractRed_title, .ContractRed_subtitle{
+    color: #264653;
+}

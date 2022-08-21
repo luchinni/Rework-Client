@@ -142,6 +142,7 @@ const GoogleClient = () => {
           html: 'Te llegará un correo con tu contraseña provisoria, cámbiala cuando quieras.',
           confirmButtonText: 'Comienza'
       })
+      
       }
 
     
