@@ -173,8 +173,8 @@ export class ClientRegister extends Component {
       born_date: birthdate,
       photo: image,
     };
-
-    postNewClient(newClient);
+    console.log("front antes del post y lo que se envia: ", newClient)
+    await postNewClient(newClient);
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
 
