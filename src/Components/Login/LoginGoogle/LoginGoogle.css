@@ -1,0 +1,17 @@
+
+.Google_Welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.Google_divClientWorker{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.Google_Worker, .Google_Client{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
