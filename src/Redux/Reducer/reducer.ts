@@ -964,6 +964,18 @@ export const getGoogleWorker = () => async (dispatch: any) => {
       })
     }
 
+export const modifyOfferState = async (offerState:any) => {
+  try{
+    await axios({
+      method:"PUT",
+      url: `/offer/state`,
+      data: offerState
+      })
+} catch (error) {
+  return error
+}
+}
+
     
   /* export const getGoogleWorker = () => async (dispatch: any) => {
     console.log("entre a googleWorker")
