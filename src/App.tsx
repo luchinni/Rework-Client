@@ -22,6 +22,7 @@ import GoogleWorker from './Components/Login/GoogleWorker/GoogleWorker';
 import Contract from './Components/Contract/Contract';
 import axios from 'axios';
 import ContractRedirect from './Components/Contract/Redirect/ContractRedirect';
+import FormReview from './Components/Reviews/FormReview/FormReview';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -63,6 +64,7 @@ return (
         <Route path='detailOffer/:id' element={<DetailOffer/>} />
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='contract/:id' element={<Contract/>} />
+        <Route path='review/:id' element={<FormReview/>} />
         <Route path='contract/session' element={<Navigate to='/home/' replace/>}/>
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
@@ -79,6 +81,7 @@ return (
         <Route path='login' element={<LoginComponent/>} />
         <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
         <Route path='contract/session' element={<ContractRedirect/>}/>
+        <Route path='review/:id' element={<Navigate to='/home' replace/>} />
         <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
         <Route path='myProfile' element={<Navigate to='/register' replace/>} />
         <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
