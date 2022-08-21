@@ -11,7 +11,6 @@ function TopWorker() {
       </div>
       <div className='TopWorker_divDerecha'>
         <h1 className='TopWorker_h1'>Encuentra las mejores <span className='Top_necesidad'>oportunidades</span> para <br/>tus <span className='h1_profesionales'>habilidades</span></h1>
-  
         <p className='TopWorker_pageDescription'>Busca el proyecto perfecto para ti <br /> y envíale una propuesta</p>
       </div>
     </div>
