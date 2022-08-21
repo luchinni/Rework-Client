@@ -66,7 +66,7 @@ import Notification from './Notification/Notification';
                   <button onClick={handleOpen} className='button_login'>Inicia sesión</button>
                 </div>
                 <div>
-                  <Link to='/register'><button className='button_register'>Registrate</button></Link>
+                  <Link to='/register'><button className='button_register'>Regístrate</button></Link>
                 </div>
               </div>
             }
