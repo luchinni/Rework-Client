@@ -10,8 +10,8 @@ import Swal from "sweetalert2";
 import Header from "../../Header/Header";
 
 const CardProposal = ({ props, offer }: any) => {
-  console.log("la offer que llegan a card: ", offer);
-  console.log("las props que llegan a card: ", props);
+  //console.log("la offer que llegan a card: ", offer);
+  //console.log("las props que llegan a card: ", props);
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );

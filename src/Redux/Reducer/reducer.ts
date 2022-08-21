@@ -30,7 +30,11 @@ const initialState = {
   userVerified: {
     isActive: false,
   },
-  googleRoute:''
+  googleData:{
+    email: '',
+    name: '',
+    photo: ''
+  }
 };
 
 export const workServiceSlice = createSlice({
@@ -270,10 +274,15 @@ export const workServiceSlice = createSlice({
       state.userVerified = {
         isActive: true,
       };
-    },  
-    setGoogleRoute: function (state: any, action:any){
-      console.log("action payload", action.payload)
-      state.googleRoute = action.payload
+    },
+    setGoogleData: function (state: any, action: any){
+      console.log(action.payload)
+      state.googleData = {
+        name: action.payload.name,
+        photo: action.payload.photo,
+        email: action.payload.user_mail
+      }
+      console.log("data actualizada", state.googleData)
     }
   },
 });
@@ -302,7 +311,7 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
-  setGoogleRoute
+  setGoogleData
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -893,76 +902,112 @@ export const isActiveFalseProposal = async (id: string) => {
   };
 };
 
-export const createGoogleWorker = () => async (dispatch: any) => {
-  console.log("action worker")
-  try {
-    console.log("entre al try worker")
-    const googleWorker = await axios({
-    method: "POST",
-    url: `/auth/worker`,
-    /* withCredentials: true, */
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": "true"
-    } 
-  })
-  console.log("llegue al back")
-  console.log("googleResponse", googleWorker.request)
-  dispatch(setGoogleRoute(googleWorker.request.responseURL))
-  /* window.open(googleResponse.request.responseURL) */
-  } catch(error) {
-    return error
-  }
-}
-
-
-export const createGoogleClient = () => async (dispatch: any) => {
-  console.log("entre a action")
-  try {
-    console.log("entre al try")
-    const googleClient = await axios({
-    method: "POST",
-    url: '/auth/client',
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": "true"
-    } 
-  })
-  dispatch(setGoogleRoute(googleClient.request.responseURL))
-  } catch(error) {
-    return error
-  }
-}
-
 export const getGoogleWorker = () => async (dispatch: any) => {
-      fetch("/auth/successWorker", {
-          method: "GET",
-          credentials: "include",
-          headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true"
-          } 
-      }).then((response) => {
-          if(response.status === 200) {
-            const respuesta = response.json()
-            console.log(respuesta)
-            return respuesta
-          } else {
-            throw new Error("Autenticación fallida, por favor intente de nuevo.")
-          }
-      }).then((resObject) => {
-        console.log("el obyec",resObject)
-        localStorage.setItem("token", JSON.stringify(resObject.token));
-        console.log("el worker", resObject.worker)
-        dispatch(setCurrentUser(resObject.worker))
+  fetch("http://localhost:3001/auth/successWorker", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true"
+      } 
+  }).then((response) => {
+      if(response.status === 200) {
+        const respuesta = response.json()
+        console.log(respuesta)
+        return respuesta
+      } else {
+        throw new Error("Autenticación fallida, por favor intente de nuevo.")
       }
-      ).catch((error) => {
-          console.log(error)
-      })
+  }).then((resObject) => {
+    console.log("resObject",resObject)
+    localStorage.setItem("workerToken", JSON.stringify(resObject.token));
+    console.log("resObject worker", resObject.worker)
+    dispatch(setCurrentUser(resObject.worker))
+  }
+  ).catch((error) => {
+      console.log(error)
+  })
+}
+
+export const getGoogleClient = () => async (dispatch: any) => {
+  fetch("http://localhost:3001/auth/successClient", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true"
+      } 
+  }).then((response) => {
+      if(response.status === 200) {
+        const respuesta = response.json()
+        console.log(respuesta)
+        return respuesta
+      } else {
+        throw new Error("Autenticación fallida, por favor intente de nuevo.")
+      }
+  }).then((resObject) => {
+    console.log("resObject",resObject)
+    localStorage.setItem("clientToken", JSON.stringify(resObject.token));
+    console.log("resObject client", resObject.client)
+    dispatch(setCurrentUser(resObject.client))
+  }
+  ).catch((error) => {
+      console.log(error)
+  })
+}
+
+export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
+  try{ 
+    // "limpiamos" la data de google
+    const cleanUser = {
+      name: user.displayName,
+      user_mail: user.email,
+      photo: user.photoURL,
+      password: user.uid
     }
+    const response: any = await axios({
+      method: "post",
+      url: /* "https://rework.up.railway.app/auth/" || */ "http://localhost:3001/auth/",
+      data: cleanUser
+    })
+
+    console.log("response",response)
+    if (response.data === 'usuario no encontrado'){
+      console.log("entre al if", response.data)
+      console.log("clean user", cleanUser)
+      // sino guarda la data de google en el estado global y redirije a ruta para preguntar primer inicio: client o worker?
+      localStorage.setItem("googleToken", JSON.stringify(cleanUser))
+      window.open( /* "https://rework-xi.vercel.app/google/" || */ "http://localhost:3000/google/", "_self")
+    } else {
+      localStorage.setItem("token", JSON.stringify(response.data))
+      // lo pasamos a json y lo guardamos en la consola en application local storage
+      //si tiene mail (client o worker) devuelve un token y se guarda, y luego se guarda el currentUser con la data del token
+      const data = jwtDecode(response.data);
+      return dispatch(setCurrentUser(data));
+    }
+    } catch (e){
+      return e
+    }
+  }
+
+export const createGoogleWorker = (user: any) => async (dispatch: any) => {
+  try {
+    const response: any = await axios({
+      method: "post",
+      url: /* "https://rework.up.railway.app/auth/worker" || */ "http://localhost:3001/auth/worker",
+      data: user
+    })
+    const token = response?.data
+    localStorage.setItem("token", JSON.stringify(token))
+    const data = jwtDecode(token);
+    return dispatch(setCurrentUser(data))
+  } catch(error) {
+    return error
+  }
+} 
+
 
 export const modifyOfferState = async (offerState:any) => {
   try{
@@ -995,5 +1040,19 @@ export const modifyOfferState = async (offerState:any) => {
     } catch (error) {
       return error
     }
+
+export const createGoogleClient = (user: any) => async (dispatch: any) => {
+  try {
+    const response: any = await axios({
+      method: "post",
+      url: /* "https://rework.up.railway.app/auth/client" || */ "http://localhost:3001/auth/client",
+      data: user
+    })
+    const token = response?.data
+    localStorage.setItem("token", JSON.stringify(token))
+    const data = jwtDecode(token);
+    return dispatch(setCurrentUser(data))
+  } catch(error) {
+    return error
   }
-}*/
+} 

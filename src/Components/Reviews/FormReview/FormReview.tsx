@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { newReviewPost } from '../../../Redux/Reducer/reducer';
 
 
@@ -25,6 +26,12 @@ const [error, setError] =useState<errorFormValidate>({
     review_description: "campo requerido",
     disabled: true  
 })
+
+const currentUser = useSelector(
+    (state: any) => state.workService.currentUser
+  );
+  console.log("El user: ", currentUser)
+
 
 const validarForm = (errors:errorFormValidate) => {
     let valid = true;
