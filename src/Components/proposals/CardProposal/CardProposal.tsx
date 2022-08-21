@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   acceptProposal,
   isActiveFalseProposal,
+  stateCancelledProposal,
 } from "../../../Redux/Reducer/reducer";
 import FormEditProposal from "../FormProposal/FormEditProposal"
 import Swal from "sweetalert2";
@@ -61,7 +62,7 @@ const CardProposal = ({ props, offer }: any) => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        //    stateCancelledProposal(id);          no tiene un estado cancelado o eliminado
+        stateCancelledProposal(id);
         isActiveFalseProposal(id);
         Swal.fire({
           title: "¡Eliminada!",

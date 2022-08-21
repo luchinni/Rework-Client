@@ -887,6 +887,21 @@ export const isActiveFalseOfferPost = async (id: string) => {
   };
 };
 
+export const stateCancelledProposal = async (id: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/proposal/state",
+      data: {
+        id,
+        state: "cancelled",
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
 export const isActiveFalseProposal = async (id: string) => {
   try {
     await axios({
@@ -1021,8 +1036,7 @@ export const modifyOfferState = async (offerState:any) => {
 }
 }
 
-    
-  /* export const getGoogleWorker = () => async (dispatch: any) => {
+/* export const getGoogleWorker = () => async (dispatch: any) => {
     console.log("entre a googleWorker")
     try {
       const backResponse = await axios({
@@ -1039,7 +1053,7 @@ export const modifyOfferState = async (offerState:any) => {
       
     } catch (error) {
       return error
-    }
+    } */
 
 export const createGoogleClient = (user: any) => async (dispatch: any) => {
   try {
