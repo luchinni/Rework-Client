@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import "./Contract.css"
 import firma from "../../images/04ed6259fb04a225285c9201d3e38521.png"
 import Header from '../Header/Header'
-import { useParams } from 'react-router-dom'
-import { acceptProposal, getOfferForHistory } from '../../Redux/Reducer/reducer'
+import { useNavigate, useParams } from 'react-router-dom'
+import { acceptProposal, getOfferForHistory, modifyOfferState } from '../../Redux/Reducer/reducer'
 import aprobado from "../../images/aprobado.png"
 import rechazado from "../../images/rechazado.png"
 import { useSelector } from 'react-redux'
+import Swal from "sweetalert2";
+
 
 
 const Contract = () => {
@@ -14,16 +16,21 @@ const Contract = () => {
     const params:any = useParams();
     const [currentOffer, setCurrentOffer] = useState<any>({});
     const [result, setResult] = useState<any>("");
-    const userLogged = useSelector((state: any) => state.workService.userLogged)
+    const userLogged = useSelector((state: any) => state.workService.userLogged);
+    const currentUser = useSelector((state: any) => state.workService.currentUser)
+    const navigate = useNavigate();
     
-
+    
     useEffect(() => {
         getOfferForHistory(params.id)
         .then((response)=>{
           setCurrentOffer(response)
         })
     }, [])
-    console.log(currentOffer);
+
+    useEffect(() => {
+        if(currentOffer.hasOwnProperty("idOffer")&&userLogged.hasOwnProperty("id"))notAdmited()
+    }, [currentOffer])
 
     const getWorker = (array:any) => {
         const proposal = array?.find((p:any) => p.state === "accepted")
@@ -66,9 +73,10 @@ const Contract = () => {
 
     const rejectContract = () => {
         setResult("rejected")
-        let state = "rejected";
-        let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
-        if(proposal){
+        if(userLogged.isWorker){
+            let state = "cancelled";
+            let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
+            if(proposal){
             let id = proposal.idProposal;
             let proposalState: { state: string; id: string } = {
               state,
@@ -76,37 +84,87 @@ const Contract = () => {
             };
             acceptProposal(proposalState);
         }
+        }else{
+            let state = "contract_rejected";
+            let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
+            if(proposal){
+            let id = proposal.idProposal;
+            let proposalState: { state: string; id: string } = {
+              state,
+              id,
+            };
+            acceptProposal(proposalState);
+        }
+        }
+        setTimeout(()=>{
+            navigate("/home")
+        },2000)
     }
-
     const acceptContract = () => {
         setResult("aproved")
         let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
         if(proposal){
-            currentOffer.proposals?.forEach((e: any) => {
-                if (e.idProposal !== proposal.idProposal) {
-                 let state = "rejected";
-                 let id = e.idProposal;
-                 let proposalState: { state: string; id: string } = {
-                   state,
-                   id,
-                 };
-                 acceptProposal(proposalState);
-                 
-               } else {
+            if(userLogged.isWorker){
+                let state = "contract accepted";
+                let id = proposal.idProposal;
+                let proposalState: { state: string; id: string } = {
+                    state,
+                    id,
+                    };
+                acceptProposal(proposalState);
+                setTimeout(()=>{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'GENIAL!',
+                        text: 'Estamos a punto de comenzar el trabajo! Enviaremos el contrato al cliente para que lo firme, te avisaremos cuando todo esté listo para comenzar',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate("/home")
+                        }
+                    })
+                }, 2000)
+            }else{
+                console.log("entro aca")
+                let proposal = currentOffer.proposals?.find((p:any) => p.state === "contract accepted")
+                currentOffer.proposals?.forEach((e: any) => {
+                    if (e.idProposal !== proposal.idProposal) {
+                        let state = "rejected";
+                        let id = e.idProposal;
+                        let proposalState: { state: string; id: string } = {
+                                state,
+                                id,
+                            };
+                        acceptProposal(proposalState);
+                    }
+                })
+                let offerState: { oState: string; id: string } = {
+                    oState:"contract started",
+                    id:currentOffer.idOffer,
+                };
+                modifyOfferState(offerState)
                 let state = "contract started";
-                let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
-                    let id = proposal.idProposal;
-                    let proposalState: { state: string; id: string } = {
-                        state,
-                        id,
-                      };
-                      acceptProposal(proposalState);
+                let id = proposal.idProposal;
+                let proposalState: { state: string; id: string } = {
+                    state,
+                    id,
+                    };
+                acceptProposal(proposalState);
                 
-              }
-        })
+                setTimeout(()=>{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'GENIAL!',
+                        text: 'Todo esta listo para comenzar el trabajo! le avisaremos al freelancer y los pondremos en contacto',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate("/home")
+                        }
+                    })
+                }, 2000)
+            }
     }
 }
-
+console.log(currentOffer);
     const workerResult = () => {
         if(userLogged.isWorker===true){
             if(result!==""){
@@ -120,7 +178,6 @@ const Contract = () => {
     }
  
     const clientResult = () => {
-        console.log(result)
         if(userLogged.isWorker===false){
             if(result!==""){
                 if(result === "rejected"){
@@ -132,10 +189,101 @@ const Contract = () => {
         }
     }
 
+    const modalFunction = () => {
+        if(userLogged.isWorker){
+            Swal.fire({
+                icon: 'question',
+                title: '¿Estas seguro?',
+                text: 'Estas a punto de rechazar el contrato, tu propuesta sera eliminada.',
+                showDenyButton: true,
+                confirmButtonText: 'No rechazar',
+                confirmButtonColor: '#f1730c',
+                denyButtonColor: '#264653',
+                denyButtonText: `Rechazar`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setResult("")
+                }else{
+                    rejectContract();
+                }
+            })
+        }else{
+            Swal.fire({
+                icon: 'question',
+                title: '¿Estas seguro?',
+                text: 'Estas a punto de rechazar el contrato, la propuesta del freelancer será rechazada.',
+                showDenyButton: true,
+                confirmButtonText: 'No rechazar',
+                confirmButtonColor: '#f1730c',
+                denyButtonColor: '#264653',
+                denyButtonText: `Rechazar`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setResult("")
+                }else{
+                    rejectContract();
+                }
+            })
+        }
+    }
+
+    const notAdmited = () => {
+        console.log("LA RE PUTA MADRE")
+        let proposal = currentOffer.proposals?.find((p:any) => p.state === "contract accepted" || p.state === "accepted")
+        // console.log("user",userLogged)
+        // console.log("offer",currentOffer)
+        // console.log("proposal",proposal)
+
+        //if(userLogged==={}) notAdmited();
+        //if(currentOffer==={}) notAdmited();
+        //if(proposal===undefined) notAdmited();
+
+        setTimeout(()=>{
+            if(proposal){
+                if(userLogged.id===proposal?.userWorker?.id){
+                    return false
+                }
+            else if(userLogged.id===currentOffer?.userClient?.id){
+                return false
+            }
+            else if(currentUser.id===""){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops...',
+                    text: 'Parece que no tienes permiso de estar aqui, te dirigiremos a la pagina principal.',
+                }).then((result) => {
+                    navigate("/home")
+                })
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops...',
+                    text: 'Parece que no tienes permiso de estar aqui, te dirigiremos a la pagina principal.',
+                }).then((result) => {
+                    navigate("/home")
+                })
+            }
+        }else{
+            if(userLogged.id!==proposal?.userWorker?.id){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops...',
+                    text: 'Parece que no tienes permiso de estar aqui, te dirigiremos a la pagina principal.',
+                }).then((result) => {
+                    navigate("/home")
+                })
+            }
+        }
+            return false
+        },0)
+        return false
+    }
+
   return (
     <div className='contenedor'>
         <Header/>
             <h2 className='title'>CONTRATO DE TRABAJO INDIVIDUAL</h2>
+            
         <div className='contract_cont'>
             <div>
                 <p className='marcaRegistrada'><b>RE</b>work™</p>
@@ -297,9 +445,10 @@ y equilibrio social.</p>
                 </div>
         </div>
         <div className='botones'>
-            <button onClick={rejectContract} className='rechazar'>RECHAZAR</button>
+            <button onClick={modalFunction} className='rechazar'>RECHAZAR</button>
             <button onClick={acceptContract} className='aceptar'>ACEPTAR</button>
         </div>
+        
     </div>
   )
 }

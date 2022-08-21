@@ -1008,6 +1008,39 @@ export const createGoogleWorker = (user: any) => async (dispatch: any) => {
   }
 } 
 
+
+export const modifyOfferState = async (offerState:any) => {
+  try{
+    await axios({
+      method:"PUT",
+      url: `/offer/state`,
+      data: offerState
+      })
+} catch (error) {
+  return error
+}
+}
+
+    
+  /* export const getGoogleWorker = () => async (dispatch: any) => {
+    console.log("entre a googleWorker")
+    try {
+      const backResponse = await axios({
+        method: "GET",
+        url: `/auth/successWorker`,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true"
+        } 
+      })
+        dispatch(setCurrentUser(backResponse))
+  
+      
+    } catch (error) {
+      return error
+    }
+
 export const createGoogleClient = (user: any) => async (dispatch: any) => {
   try {
     const response: any = await axios({
