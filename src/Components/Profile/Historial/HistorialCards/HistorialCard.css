@@ -2,12 +2,33 @@
     margin: 5px;
     padding: 15px;
     width: 100%;
-    max-width: 90%;
+    /* max-width: 90%; */
     background-color: rgb(222, 222, 222);
+    color: #0d0d0d;
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
-    word-break: break-all;
+    overflow-wrap: normal;
+}
+.Historial-redirect{
+  outline: none;
+  text-decoration: none;
+}
+.Historial-redirect:link {
+  color: #0d0d0d;
+}
+
+.Historial-redirect:visited {
+  color: #0d0d0d;
+}
+.Historial-offer:hover{
+  cursor: pointer;
+}
+.Historial-p-title{
+  width: 50%;
+}
+.Historial-p-state{
+  float: right;
 }
