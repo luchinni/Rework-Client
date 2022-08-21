@@ -28,14 +28,20 @@ const LoginGoogle = () => {
         </div>
         <div className='Google_divClientWorker'>
             <div className='Google_Worker'>
-                <p className='Google_orTitle'>Ingresa como <span className='Google_orTitleOrange'>FreeLancer</span></p>
+                <h4 className='Google_orTitle'>Ingresa como <span className='Google_RE'>FreeLancer</span></h4>
+                <p className='Google_detail'>Aplica a los mejores trabajos para ti</p>
+                <p className='Google_detail'>Edita tu portfolio</p>
+                <br/>
                 <div className='Google_divImage'>
                     <img src={imageWorker} alt='Register'/>
                 </div>
                 <button onClick={handleSubmitWorker} className='Google_button'>Ingresa</button>        
             </div>
             <div className='Google_Client'>
-                <p className='Google_orTitle'>Ingresa como <span className='Google_orTitleOrange'>Cliente</span></p>
+                <h4 className='Google_orTitle'>Ingresa como <span className='Google_work'>Cliente</span></h4>
+                <p className='Google_detail'>Recibe las mejores propuestas</p>
+                <p className='Google_detail'>para tus proyectos</p>
+                <p className='Google_detail'>Realiza publicaciones</p>
                 <div className='Google_divImage'>
                 <img src={imageClient} alt='Register'/>
                 </div>
