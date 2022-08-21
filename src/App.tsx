@@ -21,6 +21,7 @@ import GoogleClient from './Components/Login/GoogleClient/GoogleClient';
 import GoogleWorker from './Components/Login/GoogleWorker/GoogleWorker';
 import Contract from './Components/Contract/Contract';
 import axios from 'axios';
+import ContractRedirect from './Components/Contract/Redirect/ContractRedirect';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -61,6 +62,7 @@ return (
         <Route path='detailOffer/:id' element={<DetailOffer/>} />
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='contract/:id' element={<Contract/>} />
+        <Route path='contract/session' element={<Navigate to='/home/' replace/>}/>
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
         <Route path='google/client' element={<Navigate to='/home' replace/>} />
@@ -74,7 +76,8 @@ return (
         <Route path='google/worker' element={<GoogleWorker/>} />
         <Route path='google/client' element={<GoogleClient/>} />
         <Route path='login' element={<LoginComponent/>} />
-        <Route path='contract/:id' element={<Navigate to='/home' replace/>} />
+        <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
+        <Route path='contract/session' element={<ContractRedirect/>}/>
         <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
         <Route path='myProfile' element={<Navigate to='/register' replace/>} />
         <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
