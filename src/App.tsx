@@ -20,6 +20,11 @@ import LoginGoogle from './Components/Login/LoginGoogle/LoginGoogle';
 import GoogleClient from './Components/Login/GoogleClient/GoogleClient';
 import GoogleWorker from './Components/Login/GoogleWorker/GoogleWorker';
 import Contract from './Components/Contract/Contract';
+import axios from 'axios';
+// import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
+
+
+
 
 function App() {
   
@@ -32,6 +37,8 @@ function App() {
   }
 
  */
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001/";
 
 
 return (
