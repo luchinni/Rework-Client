@@ -134,3 +134,20 @@
         max-width: 120px;
     }
 }
+
+@media screen and (max-width: 465px) {
+    .Header_divContent {
+        padding: 0 15px;
+    }
+    .logo {
+        max-height: 24px;
+    }
+    .logo_img {
+        max-width: 70px;
+    }
+
+    .Header_menu {
+        display: block;
+        max-width: 25px;
+    }
+}
