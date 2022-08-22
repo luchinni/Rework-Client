@@ -11,3 +11,15 @@
 .updateCli_submitBtnContainer {
   height: 50px;
 }
+
+#btnEditDisabled {
+  background: #e4bc9c;
+}
+
+#btnEditDisabled:hover {
+  transition: none;
+  font-size: 1em;
+  box-shadow: none;
+  cursor: default;
+  color: #fff;
+}

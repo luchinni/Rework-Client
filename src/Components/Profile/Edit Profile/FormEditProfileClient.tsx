@@ -221,7 +221,7 @@ function FormEditProfileClient({ props }: any) {
           </div>
           <div className="updateCli_submitBtnContainer">
             <input
-              className="update_inpuntSubmit"
+              className="update_inputSubmit"
               disabled={errors.disabled}
               name="button"
               type="submit"
