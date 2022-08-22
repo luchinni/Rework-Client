@@ -114,9 +114,7 @@ const GoogleClient = () => {
       }
     async function handleSubmit(e: any) {
         e.preventDefault();
-        console.log("el estado", user)
         let image = await postImageOnCloudinary(user?.image);
-        console.log("imagen ya cargada", image)
         let { name, lastName, password, user_mail, birthdate } = user;
     
         const newClient = {
@@ -178,7 +176,6 @@ const GoogleClient = () => {
                 />
               </form>
             </div>
-              {/* <button type="submit" onClick={(e) => alerta1(e)}>SWEET</button> */}
         </div>
     )
 }

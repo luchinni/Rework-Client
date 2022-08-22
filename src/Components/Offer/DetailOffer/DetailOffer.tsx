@@ -37,6 +37,16 @@ const DetailOffer = () => {
   }, [dispatch]);
 
   const [open, setOpen] = useState(false);
+  console.log(offerId)
+ /*  const propoHired = offerId?.proposals.filter((p:any) => p.state === "contract acepted")
+
+  const filtredOffer = {
+    ...offerId,
+    proposals: propoHired
+  } */
+
+  console.log("la offer", offerId)
+/*   console.log("la filtred",filtredOffer) */
 
   function handleOpen() {
     setOpen(true);
@@ -195,7 +205,15 @@ const DetailOffer = () => {
           </div>
         </div>
       </div>
-      {
+      { 
+        /* offerId.userClientId === currentUser.id && offerId.state === "contract started" ?
+
+        
+          <div>
+            <h2 className="Detail_h2Propuestas">propuestas</h2>
+            <CardsProposal offer={offerId} />
+          </div>
+        : */
         //si la offer es del client logeado actualmente, o el user actual es admin o premium
         offerId.userClientId === currentUser.id ||
         currentUser.isAdmin === true ||
