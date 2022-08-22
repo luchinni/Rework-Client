@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOfferForHistory, newReviewPost } from '../../../Redux/Reducer/reducer';
+import { acceptProposal, getOfferForHistory, modifyOfferState, newReviewPost } from '../../../Redux/Reducer/reducer';
 import Header from '../../Header/Header';
 import "./FormReview.css"
 
@@ -115,7 +115,24 @@ const handleSubmit = (e:any) => {
      newReviewPost(newReview, type)
      .then(()=>{
      let form = document.getElementById("form") as HTMLFormElement | null;
-     form?.reset()
+     form?.reset();
+        if (userLogged.isWorker){
+            let state = "finalized";
+            let proposal = currentOffer.proposals?.find((p:any) => p.state === "contract started")
+            if(proposal){
+            let id = proposal.idProposal;
+            let proposalState: { state: string; id: string } = {
+              state,
+              id,
+            };
+            acceptProposal(proposalState);
+            }
+        } else {
+            let offerState: {id: String, state: String} = {
+                id: currentOffer.idOffer, state: "finalized"};
+            modifyOfferState(offerState);
+        }
+          
    }) 
 
      setFormu({

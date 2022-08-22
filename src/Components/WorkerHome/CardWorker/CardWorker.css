@@ -62,7 +62,7 @@ position: relative
 }
 
 .Card_userProfessions {
-    font-size: 22px;
+    font-size: 18px;
     color: #2A9D8F;
     font-weight: 400;
     text-align: center;
@@ -95,10 +95,6 @@ position: relative
     align-items: center;
     gap: 15px;
     margin: 15px 0
-}
-
-.div_description{
-    padding: 0 0 20px 0;
 }
 
 .div_location{
@@ -143,7 +139,7 @@ position: relative
 
 .Card_userHabilities{
     color: #264653;
-    font-size: 20px;
+    font-size: 16px;
     margin: 5px 0 15px;
     font-weight: 400;
     text-align: center;

@@ -15,23 +15,24 @@ function FormEditProfileWorker({ props }: any) {
   const professions = useSelector(
     (state: any) => state.workService.professions
   );
+  console.log(userLogged);
   const skills = useSelector((state: any) => state.workService.skills);
   const dispatch = useDispatch();
 
   const [worker, setWorker] = React.useState<WorkerTypeUpdate>({
-    name: "",
-    lastName: "",
+    name: userLogged.name,
+    lastName: userLogged.lastName,
     born_date: "",
     photo: "",
-    profession: [],
-    skills: [],
+    profession: userLogged.profession,
+    skills: userLogged.skills,
   });
   const [errors, setErrors] = React.useState<errorsTypeEditWorker>({
     name: "",
     lastName: "",
     birthdate: "",
     image: "",
-    disabled: true,
+    disabled: false,
   });
 
   useEffect(() => {
@@ -69,11 +70,15 @@ function FormEditProfileWorker({ props }: any) {
         ...errors,
         disabled: false,
       });
+      let inputSubmit = document.getElementById("btnEditDisabled")
+      inputSubmit?.setAttribute("id","btnEditEnabled")
     } else {
       setErrors({
         ...errors,
         disabled: true,
       });
+      let inputSubmit = document.getElementById("btnEditEnabled")
+      inputSubmit?.setAttribute("id","btnEditDisabled")
     }
   };
 
@@ -221,6 +226,7 @@ function FormEditProfileWorker({ props }: any) {
                 autoComplete="off"
                 type="text"
                 name="name"
+                defaultValue={userLogged.name}
                 onChange={(e) => handleChange(e)}
               />
               <span>Nombre</span>
@@ -233,6 +239,7 @@ function FormEditProfileWorker({ props }: any) {
                 type="text"
                 name="lastName"
                 autoComplete="off"
+                defaultValue={userLogged.lastName}
                 onChange={(e) => handleChange(e)}
               />
               <span>Apellido</span>
@@ -309,9 +316,6 @@ function FormEditProfileWorker({ props }: any) {
                 );
               })}
             </div>
-
-            <span>Ingeniero, Diseñador</span>
-            <span>Phyton, Css...</span>
             <div className="update_Div_inputFile">
               <input
                 className="update_inpuntImg"
@@ -327,8 +331,9 @@ function FormEditProfileWorker({ props }: any) {
             </div>
             <div className="updateCli_submitBtnContainer">
               <input
-                className="update_inpuntSubmit"
+                className="update_inputSubmit"
                 disabled={errors.disabled}
+                id= "btnEditEnabled"
                 name="button"
                 type="submit"
                 value="Actualizar"

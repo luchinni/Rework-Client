@@ -13,8 +13,8 @@ function FormEditProfileClient({ props }: any) {
   const dispatch = useDispatch();
 
   const [client, setClient] = React.useState<ClientTypeUpdate>({
-    name: "",
-    lastName: "",
+    name: userLogged.name,
+    lastName: userLogged.lastName,
     born_date: "",
     photo: "",
   });
@@ -24,7 +24,7 @@ function FormEditProfileClient({ props }: any) {
     lastName: "",
     birthdate: "",
     image: "",
-    disabled: true,
+    disabled: false,
   });
 
   async function parseImage(e: any, cb: Function) {
@@ -51,11 +51,15 @@ function FormEditProfileClient({ props }: any) {
         ...errors,
         disabled: false,
       });
+      let inputSubmit = document.getElementById("btnEditDisabled")
+      inputSubmit?.setAttribute("id","btnEditEnabled")
     } else {
       setErrors({
         ...errors,
         disabled: true,
       });
+      let inputSubmit = document.getElementById("btnEditEnabled")
+      inputSubmit?.setAttribute("id","btnEditDisabled")
     }
   }
 
@@ -170,6 +174,7 @@ function FormEditProfileClient({ props }: any) {
               className="update_inpunt"
               type="text"
               name="name"
+              defaultValue={userLogged.name}
               autoComplete="off"
               onChange={(e) => handleChange(e)}
             />
@@ -184,6 +189,7 @@ function FormEditProfileClient({ props }: any) {
               className="update_inpunt"
               type="text"
               name="lastName"
+              defaultValue={userLogged.lastName}
               autoComplete="off"
               onChange={(e) => handleChange(e)}
             />
@@ -221,8 +227,9 @@ function FormEditProfileClient({ props }: any) {
           </div>
           <div className="updateCli_submitBtnContainer">
             <input
-              className="update_inpuntSubmit"
+              className="update_inputSubmit"
               disabled={errors.disabled}
+              id= "btnEditEnabled"
               name="button"
               type="submit"
               value="Actualizar"

@@ -71,10 +71,6 @@ const Login = (props:any) => {
             <form className="Login_form">
               <input className="Login_input" type="text" name="user_mail" onChange={(e) => handleChange(e)} placeholder='e-mail'/>
               <input className="Login_input" type="password" name="password" onChange={(e) => handleChange(e)} placeholder='contraseña'/>
-              <div className="Login_divRecordarContra">
-                <input type="checkbox" />
-                <span className="Login_recordarContra">Recordar contraseña</span>
-              </div>
               <input className="Login_inputSubmit" type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
             </form>
             <p className="Login_recuperarCon">¿Olvidaste tu contraseña? Recupérala <a href="#">aquí</a></p>
