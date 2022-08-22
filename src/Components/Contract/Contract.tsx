@@ -33,7 +33,7 @@ const Contract = () => {
     }, [currentOffer])
 
     const getWorker = (array:any) => {
-        const proposal = array?.find((p:any) => p.state === "accepted")
+        const proposal = array?.find((p:any) => p.state === "accepted"||p.state === "contract accepted")
         if(proposal){
             return `${proposal?.userWorker.name} ${proposal?.userWorker.lastName}`
         }else{
@@ -85,8 +85,9 @@ const Contract = () => {
             acceptProposal(proposalState);
         }
         }else{
+            console.log("el cliente rechazo")
             let state = "contract_rejected";
-            let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
+            let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted"||p.state === "contract accepted")
             if(proposal){
             let id = proposal.idProposal;
             let proposalState: { state: string; id: string } = {
@@ -102,7 +103,7 @@ const Contract = () => {
     }
     const acceptContract = () => {
         setResult("aproved")
-        let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
+        let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted"||p.state === "contract accepted")
         if(proposal){
             if(userLogged.isWorker){
                 let state = "contract accepted";
@@ -124,7 +125,6 @@ const Contract = () => {
                     })
                 }, 2000)
             }else{
-                console.log("entro aca")
                 let proposal = currentOffer.proposals?.find((p:any) => p.state === "contract accepted")
                 currentOffer.proposals?.forEach((e: any) => {
                     if (e.idProposal !== proposal.idProposal) {
@@ -137,34 +137,21 @@ const Contract = () => {
                         acceptProposal(proposalState);
                     }
                 })
-                let offerState: { oState: string; id: string } = {
-                    oState:"contract started",
-                    id:currentOffer.idOffer,
-                };
-                modifyOfferState(offerState)
-                let state = "contract started";
-                let id = proposal.idProposal;
-                let proposalState: { state: string; id: string } = {
-                    state,
-                    id,
-                    };
-                acceptProposal(proposalState);
                 
                 setTimeout(()=>{
                     Swal.fire({
                         icon: 'success',
                         title: 'GENIAL!',
-                        text: 'Todo esta listo para comenzar el trabajo! le avisaremos al freelancer y los pondremos en contacto',
+                        text: 'Todo esta listo para comenzar el trabajo! solo falta que realices el pago correspondiente, te guiaremos hacia allí',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            navigate("/home")
+                            navigate(`/pago/${currentOffer.idOffer}`)
                         }
                     })
                 }, 2000)
             }
     }
 }
-console.log(currentOffer);
     const workerResult = () => {
         if(userLogged.isWorker===true){
             if(result!==""){
@@ -174,6 +161,8 @@ console.log(currentOffer);
                     return aprobado
                 }
             }
+        }else{
+            return aprobado
         }
     }
  
