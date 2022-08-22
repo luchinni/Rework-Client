@@ -19,7 +19,8 @@
     box-shadow: 0px 0px 15px rgba(39, 49, 65, 0.176);
 }
 
-.Dashboard_divAdminProfile {
+/* ---- NO BORRAR ---- */
+/* .Dashboard_divAdminProfile {
     display: flex;
     gap: 20px;
 }
@@ -40,8 +41,10 @@
     font-size: 14px;
     color: #6F6F6F;
     font-weight: 400;
-}
+} */
 
+
+/* ---- Bot component ---- */
 .Dashboard_divBot {
     border-radius: 10px;
     padding: 30px;
@@ -57,22 +60,45 @@
 }
 
 .Dashboard_tag {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-    color: #6F6F6F;
-    padding-bottom: 3px;
-    border: none;
-    border-bottom: 3px solid transparent;
-    background: transparent;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  .Dashboard_tag:hover {
-    color: #273141;
-  }
-  .Dashboard_tag.open {
-    color: #273141;
-    border-bottom: 3px solid #273141;
-  }
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #6F6F6F;
+  padding-bottom: 3px;
+  border: none;
+	border-bottom: 3px solid transparent;
+  background: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.Dashboard_tag:hover {
+  color: #273141;
+}
+.Dashboard_tag.open {
+  color: #273141;
+  border-bottom: 3px solid #273141;
+}
   
+.Dashboard_divNavigation {
+ 	display: flex;
+  justify-content: space-between;
+}
+.Darshboard_search {
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+.Darshboard_search:focus {
+	outline: none;
+}
+
+.Dashboard_divOrdenamientoCont {
+  display: flex;
+  justify-content: end;
+	margin-bottom: 15px;
+}
+
+.Dashboard_divOrdenamiento {
+  display: flex;
+  gap: 10px;
+}
