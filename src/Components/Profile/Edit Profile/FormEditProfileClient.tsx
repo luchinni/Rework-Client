@@ -7,6 +7,7 @@ import {
 } from "../../../Redux/Reducer/reducer";
 import { ClientTypeUpdate, errorsTypeEditClient } from "../../../Types";
 import "./FormEditProfileClient.css";
+import Swal from 'sweetalert2';
 
 function FormEditProfileClient({ props }: any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
@@ -150,6 +151,13 @@ function FormEditProfileClient({ props }: any) {
     const id = userLogged.id;
     putEditProfileClient(newClient, id).then(() => {
       dispatch(getUserById(tokenDecode));
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Datos actualizados correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
     });
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
