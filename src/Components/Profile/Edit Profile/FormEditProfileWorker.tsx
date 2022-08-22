@@ -8,7 +8,9 @@ import {
   putEditProfileWorker,
 } from "../../../Redux/Reducer/reducer";
 import { errorsTypeEditWorker, WorkerTypeUpdate } from "../../../Types";
-import './FormEditProfileWorker.css'
+import './FormEditProfileWorker.css';
+import Swal from 'sweetalert2';
+
 
 function FormEditProfileWorker({ props }: any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
@@ -172,6 +174,13 @@ function FormEditProfileWorker({ props }: any) {
 
     putEditProfileWorker(newWorker, id).then(() => {
       dispatch(getUserById(tokenDecode));
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Datos actualizados correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
     });
 
     let form = document.getElementById("form") as HTMLFormElement | null;
