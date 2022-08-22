@@ -18,17 +18,6 @@ const CardProposal = ({ props, offer }: any) => {
   );
 
   const handleClick = () => {
-    // props.state = "accepted";
-    // offer.proposals?.forEach((e: any) => {
-    //   if (e.idProposal !== props.idProposal) {
-    //     let state = "rejected";
-    //     let id = e.idProposal;
-    //     let proposalState: { state: string; id: string } = {
-    //       state,
-    //       id,
-    //     };
-    //     acceptProposal(proposalState);
-    //   } else {
         let state = "accepted";
         let id = props.idProposal;
         let proposalState: { state: string; id: string } = {
@@ -36,7 +25,11 @@ const CardProposal = ({ props, offer }: any) => {
           id,
         };
         acceptProposal(proposalState);
-      // }
+        Swal.fire(
+          '¡Felicitaciones!',
+          '¡Aceptaste la propuesta!',
+          'success'
+        )
     };
   
 
