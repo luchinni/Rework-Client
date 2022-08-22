@@ -126,7 +126,7 @@ const CardOffer = ({props}:any) => {
             </div>
           </div>
           <div>
-            <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver mas</Link>
+            <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver más</Link>
           </div>
         </div>
       </div>

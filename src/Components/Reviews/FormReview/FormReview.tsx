@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
-import { newReviewPost } from '../../../Redux/Reducer/reducer';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getOfferForHistory, newReviewPost } from '../../../Redux/Reducer/reducer';
+import Header from '../../Header/Header';
+import "./FormReview.css"
 
 
 const FormReview = ({offer}:any) => {
 
+const userLogged = useSelector((state: any) => state.workService.userLogged);
+const params:any = useParams();
+const [currentOffer, setCurrentOffer] = useState<any>({});
+const [destinatario, setDestinatario] = useState("");
+
+useEffect(() => {
+    getOfferForHistory(params.id)
+    .then((response)=>{
+      setCurrentOffer(response)
+    })
+}, [])
+
 type formValidate = {
-    valoration: Number,
+    valoration: any,
     review_description: String
 }
 
@@ -25,6 +41,10 @@ const [error, setError] =useState<errorFormValidate>({
     review_description: "campo requerido",
     disabled: true  
 })
+
+const currentUser = useSelector(
+    (state: any) => state.workService.currentUser
+  );
 
 const validarForm = (errors:errorFormValidate) => {
     let valid = true;
@@ -47,7 +67,6 @@ const handleChange = (e:any) => {
     const name = e.target.name
     let errors:errorFormValidate
     errors = error
-
     switch(name) {
         case "valoration":
             let valorationPattern:RegExp = /^[0-9]+$/
@@ -77,27 +96,56 @@ const handleSubmit = (e:any) => {
     e.preventDefault();
 
     let {valoration, review_description} = formu
-
-    const newReview:formValidate = {
-        valoration:valoration, review_description:review_description
+    let type:string
+    const review:formValidate = {
+        valoration:parseInt(valoration), review_description:review_description
     }
 
-    newReviewPost(newReview)
-    .then(()=>{
-    let form = document.getElementById("form") as HTMLFormElement | null;
-    form?.reset()
-  }) 
+    const newReview:any = {
+        id:getDestinationId(), idOffer:currentOffer.idOffer, review:review
+    }
 
-    setFormu({
-        valoration: 0,
-        review_description: ""
-    })
+    console.log(newReview)
+    if(userLogged.isWorker){
+        type="worker"
+    }else{
+        type="client"
+    }
+
+     newReviewPost(newReview, type)
+     .then(()=>{
+     let form = document.getElementById("form") as HTMLFormElement | null;
+     form?.reset()
+   }) 
+
+     setFormu({
+         valoration: 0,
+         review_description: ""
+     })
     
 }
 
+const getDestinationId = () => {
+    if(userLogged.isWorker){
+        setDestinatario(currentOffer.userClient.id)
+        return currentOffer.userClient.id
+    }else{
+        let proposal = currentOffer?.proposals.find((p:any)=> p.state==="finalized")
+        if(proposal){
+            setDestinatario(proposal.userWorker.id)
+            return proposal.userWorker.id
+        }
+    }
+
+}
 
   return (
     <div>
+        <div>
+        <Header/>
+    </div>
+    <div className='form_review'>
+        
         <form id="form" onSubmit={(e) => e.preventDefault()}>
                 <h1>Dejar una valoración</h1>
             <div>
@@ -115,8 +163,9 @@ const handleSubmit = (e:any) => {
                                 <p className="danger">{error.review_description}</p>
                             )}
             </div>
-                <input disabled={error.disabled} name="button" type="submit" value="publicar" onSubmit={(e) => handleSubmit(e)}/>
+                <input disabled={error.disabled} name="button" type="submit" value="publicar" onClick={(e) => handleSubmit(e)}/>
         </form>
+    </div>
     </div>
   )
 }

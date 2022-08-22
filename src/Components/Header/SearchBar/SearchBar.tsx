@@ -138,7 +138,7 @@ const SearchBar = () => {
             </div>
             <div className='filter_option'>
               <select name='profession' id='profession' onChange={(e)=> handleSelect(e)}>
-              <option selected={true} hidden>Professions</option>
+              <option selected={true} hidden>Profesiones</option>
                 {profession.map((e:any) => {
                   return <option value={e} key={e}> {e} </option>
                 })}
@@ -147,13 +147,13 @@ const SearchBar = () => {
             {workerOrOffer==="offer"?(
               <div>
                   <div className='filter_option'>
-                      <label>Remuneracion</label>
+                      <label>Remuneración</label>
                       <input className='filter_remu' type="number" name='remuneration-min' id='remuneration-min' placeholder="Min" onChange={(e)=> handleSelect(e)}/>
                       <input className='filter_remu' type="number"  name='remuneration-max' id='remuneration-max' placeholder="Max" onChange={(e)=> handleSelect(e)}/>
                   </div>
                   <div className='filter_workDuration'>
                     <select name='workDuration' id='workDuration' onChange={(e)=> handleSelect(e)}>
-                     <option selected={true} hidden>Work Duration</option>
+                     <option selected={true} hidden>Duración del trabajo</option>
                        {["Menos de 1 mes","1 a 3 meses","4 a 6 meses","Más de 6 meses"].map((e:any) => {
                         return <option value={e} key={e}> {e} </option>
                         })}

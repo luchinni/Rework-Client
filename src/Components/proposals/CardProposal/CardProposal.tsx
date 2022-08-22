@@ -4,14 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   acceptProposal,
   isActiveFalseProposal,
+  stateCancelledProposal,
 } from "../../../Redux/Reducer/reducer";
 import FormEditProposal from "../FormProposal/FormEditProposal"
 import Swal from "sweetalert2";
 import Header from "../../Header/Header";
 
 const CardProposal = ({ props, offer }: any) => {
-  console.log("la offer que llegan a card: ", offer);
-  console.log("las props que llegan a card: ", props);
+  //console.log("la offer que llegan a card: ", offer);
+  //console.log("las props que llegan a card: ", props);
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
@@ -61,7 +62,7 @@ const CardProposal = ({ props, offer }: any) => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        //    stateCancelledProposal(id);          no tiene un estado cancelado o eliminado
+        stateCancelledProposal(id);
         isActiveFalseProposal(id);
         Swal.fire({
           title: "¡Eliminada!",

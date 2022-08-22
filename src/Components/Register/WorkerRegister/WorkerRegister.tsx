@@ -131,7 +131,7 @@ async handleChange(e:any) {
       let year = fechas.split("-");
       let date = new Date();
       let dateNow = (date.getFullYear() + "-"+0+ (date.getMonth()+1)+ "-" +date.getDate());
-      errors.birthdate = dateNow<fechas? 'La fecha ingresada es invalida.' :year[0]>date.getFullYear()? 'La fecha ingresada es invalida.':year[0]<1940?'La año debe ser mayor a 1940': '';
+      errors.birthdate = dateNow<fechas? 'La fecha ingresada es inválida.' :year[0]>date.getFullYear()? 'La fecha ingresada es inválida.':year[0]<1940?'El año debe ser mayor a 1940': '';
         break;
 
     default:
@@ -155,7 +155,7 @@ async handleSubmit(e:any){
   const newWorker:type.newWorkerType = {
     name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills
   }
-  postNewWorker(newWorker);
+  await postNewWorker(newWorker);
   let form = document.getElementById("form") as HTMLFormElement | null;
       form?.reset()
 

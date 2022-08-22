@@ -20,7 +20,7 @@ const CarruselCard = () => {
                             <div className="card-content">
                                 <h2 className="name">asdasd</h2>
                                 <p className="description">asdasdasdasdasdasd</p>
-                                <button className="button">Ver mas</button>
+                                <button className="button">Ver más</button>
                             </div>
                         </div>
                     </div>
