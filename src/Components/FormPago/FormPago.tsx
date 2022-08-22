@@ -107,8 +107,8 @@ const validarForm = (errors:type.errorsNewpayout) => {
 }
 
 const getCost = () => {
-    const cost = currentOffer?.proposals.filter((p:any)=> p.state === "contract started")
-    return cost[0].remuneration
+    const cost = currentOffer?.proposals.filter((p:any)=> p.state === "contract accepted")
+    return cost[0]?.remuneration
 }
 
 const handleChange = async (e:any) =>{
@@ -191,7 +191,6 @@ const handleSubmit = async (e:any) => {
     const country = firstWordUpperCase(Country)
     const cost = getCost();
 
-    console.log(cost)
 
     const newPayment:{currentOffer:any, name:string, lastname:string, cost:number, DNI:number, Email:string, Phone_Number:number, Direction:string, Postal_code:number, city:string, province:string, country:string} = {
         currentOffer ,name, lastname, DNI, Email, cost, Phone_Number, Direction, Postal_code, city, province, country

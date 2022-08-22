@@ -26,6 +26,7 @@ import FormReview from './Components/Reviews/FormReview/FormReview';
 import Success from './Components/FormPago/PagoResult/Success';
 import Pending from './Components/FormPago/PagoResult/Pending';
 import Failure from './Components/FormPago/PagoResult/Failure';
+import SeleccionPremium from './Components/FormPago/PagoPremium/SeleccionPremium';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -42,6 +43,7 @@ function App() {
   }
 
  */
+
 
 axios.defaults.baseURL = "http://localhost:3001/"/*  || process.env.REACT_APP_API; */
 
@@ -67,7 +69,7 @@ return (
         <Route path='detailOffer/:id' element={<DetailOffer/>} />
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='contract/:id' element={<Contract/>} />
-        <Route path='review/:id' element={<FormReview/>} />
+        <Route path='premium' element={<SeleccionPremium/>} />
         <Route path='success/:id' element={<Success/>} />
         <Route path='pending' element={<Pending/>} />
         <Route path='failure' element={<Failure/>} />
@@ -85,6 +87,7 @@ return (
         <Route path='google/worker' element={<GoogleWorker/>} />
         <Route path='google/client' element={<GoogleClient/>} />
         <Route path='login' element={<LoginComponent/>} />
+        <Route path='premium' element={<SeleccionPremium/>} />
         <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
         <Route path='contract/session' element={<ContractRedirect/>}/>
         <Route path='success/:id' element={<Navigate to='/home' replace/>} />

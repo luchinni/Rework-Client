@@ -22,9 +22,9 @@ const HistorialCard = ({props}:any) => {
       if (state === "released payment") return "pago liberado";
       if (state === "accepted") return "aceptada";
     };
-
+    console.log(props)
     useEffect(() => {
-      if(!props.hasOwnProperty("profession")){
+      if(!props?.hasOwnProperty("profession")){
         getOfferForHistory(props.offerIdOffer)
         .then((response)=>{
           setCurrentOffer(response)
@@ -35,7 +35,7 @@ const HistorialCard = ({props}:any) => {
       
   return (
     <div className='Historial-contenedor'>
-      {props.hasOwnProperty("idOffer") ?
+      {props?.hasOwnProperty("idOffer") ?
         <div className='Historial-offer' onClick={()=>navigate(`/detailOffer/${props.idOffer}`)}>
           <span className='Historial-p-title'><b>Postulaste la oferta: </b> {props.title}</span>
           <span className='Historial-p-state'><b>Estado: </b> {translateState(props.state)}</span>
@@ -44,7 +44,7 @@ const HistorialCard = ({props}:any) => {
           <span className='Historial-p-state'><b>Duración de: </b>{props.work_duration_time}</span>
           {props.state === "contract started"?<p>Tu oferta recibió una propuesta aceptada, <br/>revisa tu casilla de correo para firmar el contrato de trabajo</p>:<></>}
         </div>
-      : (props.hasOwnProperty("idProposal") ?
+      : (props?.hasOwnProperty("idProposal") ?
         <div className='Historial-offer' onClick={()=>navigate(`/detailOffer/${props.offerIdOffer}`)}>
           <span className='Historial-p-title'><b>Te postulaste a la oferta: </b> {currentOffer.title} <b> de </b> {currentOffer.userClient?.name} {currentOffer.userClient?.lastName}</span>
           <span className='Historial-p-state'><b>Estado: </b>{translateState(props.state)}</span>
