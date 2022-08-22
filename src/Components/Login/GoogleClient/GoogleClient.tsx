@@ -178,7 +178,6 @@ const GoogleClient = () => {
                 />
               </form>
             </div>
-              {/* <button type="submit" onClick={(e) => alerta1(e)}>SWEET</button> */}
         </div>
     )
 }
