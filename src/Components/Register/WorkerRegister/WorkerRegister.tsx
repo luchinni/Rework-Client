@@ -155,7 +155,7 @@ async handleSubmit(e:any){
   const newWorker:type.newWorkerType = {
     name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills
   }
-  postNewWorker(newWorker);
+  await postNewWorker(newWorker);
   let form = document.getElementById("form") as HTMLFormElement | null;
       form?.reset()
 

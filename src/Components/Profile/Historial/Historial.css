@@ -1,0 +1,25 @@
+.Historial_tags{
+    display: flex;
+    gap: 15px;
+    padding: 10px 80px;
+    margin-bottom: 60px;
+}
+.Historial_tag{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #6F6F6F;
+    padding-bottom: 3px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .Historial_tag:hover {
+    color: #273141;
+  }
+  .Historial_tag.open {
+    color: #273141;
+    border-bottom: 3px solid #273141;
+  }
