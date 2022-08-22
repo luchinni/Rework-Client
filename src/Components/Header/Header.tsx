@@ -9,6 +9,7 @@ import User from './User/User';
 import jwtDecode from "jwt-decode"
 import Login from '../Login/Login';
 import Notification from './Notification/Notification';
+import logo from '../../images/logo_header.png';
 
   const Header = () => {
 
@@ -50,7 +51,8 @@ import Notification from './Notification/Notification';
   return (
     <header className='Header_component' id="Header">
       <div className='Header_divContent'>
-        <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link>      
+        {/* <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link> */}
+        <Link to="/home" className='logo'><img className='logo_img' src={logo} alt="REwork" /></Link>
         <nav className='nav'>
           <SearchBar/>
           <div>
