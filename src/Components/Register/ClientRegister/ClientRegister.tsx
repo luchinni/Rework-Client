@@ -112,9 +112,9 @@ export class ClientRegister extends Component {
         let passwordPattern2: RegExp =
         /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/; 
         errors.password2 = passwordPattern2.test(value) ?
-        value === this.state.password ? "" 
-        : "Las contraseñas no coinciden"
-        : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
+        value !== this.state.password ? "Las contraseñas no coinciden" 
+        : ""
+        : "Las contraseñas no coinciden";
         break;
       case "user_mail":
         let user_mailPattern: RegExp =
@@ -219,7 +219,7 @@ export class ClientRegister extends Component {
             >
               <div className="CR_Div_inputAndError">
                 <input
-                  className="CR_inpunt"
+                  className="CR_input"
                   type="text"
                   name="name"
                   placeholder="Nombre"
@@ -231,7 +231,7 @@ export class ClientRegister extends Component {
               </div>
               <div className="CR_Div_inputAndError">
                 <input
-                  className="CR_inpunt"
+                  className="CR_input"
                   type="text"
                   name="lastName"
                   placeholder="Apellido"
@@ -245,7 +245,7 @@ export class ClientRegister extends Component {
               </div>
               <div className="CR_Div_inputAndError">
                 <input
-                  className="CR_inpunt"
+                  className="CR_input"
                   type="password"
                   name="password"
                   placeholder="Contraseña"
@@ -259,7 +259,7 @@ export class ClientRegister extends Component {
               </div>
               <div className="CR_Div_inputAndError">
                 <input
-                  className="CR_inpunt"
+                  className="CR_input"
                   type="password"
                   name="password2"
                   placeholder="Repita contraseña"
@@ -273,7 +273,7 @@ export class ClientRegister extends Component {
               </div>
               <div className="CR_Div_inputAndError">
                 <input
-                  className="CR_inpunt"
+                  className="CR_input"
                   type="email"
                   name="user_mail"
                   placeholder="E-mail"
@@ -287,7 +287,7 @@ export class ClientRegister extends Component {
               </div>
               <div className="CR_Div_inputAndError">
                 <input
-                  className="CR_inpunt"
+                  className="CR_input"
                   type="date"
                   name="birthdate"
                   placeholder="Fecha de Nacimiento"
@@ -301,7 +301,7 @@ export class ClientRegister extends Component {
               </div>
               <div className="CR_Div_inputAndError">
                 <input
-                  className="CR_inpunt"
+                  className="CR_input"
                   type="file"
                   accept="image/*"
                   name="image"

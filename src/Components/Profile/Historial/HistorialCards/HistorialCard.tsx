@@ -15,7 +15,7 @@ const HistorialCard = ({props}:any) => {
     const translateState = (state: string) => {
       if (state === "active" || state === "posted") return "activa";
       if (state === "cancelled") return "cancelada";
-      if (state === "rejected" || "contract rejected") return "rechazada";
+      if (state === "rejected" || state === "contract rejected") return "rechazada";
       if (state === "contract started") return "contrato comenzado";
       if (state === "contract accepted") return "contrato aceptado";
       if (state === "finalized") return "finalizada";

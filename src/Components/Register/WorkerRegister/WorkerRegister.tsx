@@ -120,7 +120,7 @@ async handleChange(e:any) {
         errors.password2 = passwordPattern2.test(value) ?
         value === this.state.password ? "" 
         : "Las contraseñas no coinciden"
-        : "Debe tener entre 8 y 16 caracteres y al menos 1 mayuscula, 1 minuscula y 1 número.";
+        : "Las contraseñas no coinciden";
         break;
     case "user_mail":
       let user_mailPattern:RegExp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i
@@ -237,53 +237,43 @@ console.log(del)
               <h1 className='Worker_empecemos'>Empecemos</h1>
               <div className='Worker_names'>
                 <div className='Worker_nameInput'>
-                  <label>Nombres</label>
                   <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.name ? null : <div className='Worker_error'>{this.state.errors.name}</div>}
+                  {!this.state.errors.name ? <div className='Worker_brpw'/> : <div className='Worker_error'>{this.state.errors.name}</div>}
                 </div>
                 <div className='Worker_lastnameInput'>
-                  <label>Apellidos</label>
                   <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.lastName ? null : <div className='Worker_error'>{this.state.errors.lastName}</div>}
+                  {!this.state.errors.lastName ? <div className='Worker_brpw'/> : <div className='Worker_error'>{this.state.errors.lastName}</div>}
                 </div>
               </div>
-              <div className='Worker_passwordDate'>
+              <div className='Worker_password'>
                 <div className='Worker_pass'>
-                  <label>Contraseña</label>
                   <input type="password" name="password" placeholder='Contraseña' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.password ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.password}</div>}
+                  {!this.state.errors.password ? <div className='Worker_brpw'/> : <div className='Worker_errorPw'>{this.state.errors.password}</div>}
                 </div>
-                <div className="CR_Div_inputAndError">
-                <input
-                  className="CR_inpunt"
-                  type="password"
-                  name="password2"
-                  placeholder="Repita contraseña"
-                  onChange={(e) => this.handleChange(e)}
-                />
-                {!this.state.errors.password2 ? null : (
-                  <div className="CR_inputError">
-                    {this.state.errors.password2}
-                  </div>
-                )}
+                <div className="Worker_passRep">
+                  <input
+                    className="CR_inpunt"
+                    type="password"
+                    name="password2"
+                    placeholder="Repita contraseña"
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                  {!this.state.errors.password2 ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.password2}</div>                  }
+                </div>
               </div>
+              <div className='Worker_mailDate'>
                 <div className='Worker_date'>
-                  <label>Fecha de nacimiento</label>
                     <input type="date" name="birthdate" placeholder='Fecha de Nacimiento' onChange={(e) => this.handleChange(e)}/>
-                    {!this.state.errors.birthdate ? null : <div className='Worker_error'>{this.state.errors.birthdate}</div>}
+                    {!this.state.errors.birthdate ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.birthdate}</div>}
+                </div>
+                <div className='Worker_mail'>
+                  <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.user_mail ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.user_mail}</div>}
                 </div>
               </div>
-              <div className='Worker_mailImage'>
-                <div className='Worker_mail'>
-                  <label>Email</label>
-                  <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.user_mail ? null : <div className='Worker_error'>{this.state.errors.user_mail}</div>}
-                </div>
-                <div className='Worker_image'>
-                  <label>¡Carga tu foto!</label>
-                  <input className='Worker_image' type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.image ? null : <div className='Worker_error'>{this.state.errors.image}</div>}
-                </div>
+              <div className='Worker_image'>
+                <input className='Worker_image' type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
+                {!this.state.errors.image ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.image}</div>}
               </div>
               <div className='Worker_bothInputs'>
                 <div className='Worker_profession'>
@@ -297,12 +287,12 @@ console.log(del)
                   </select>
                   <div className='profession_div'>
                     {this.state.profession?.map((e:any) => {
-                      return (<span className='profession_btn' id="profession" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
+                      return (<span className='profession_btn' id="professions" key={e} onClick = {(e) => this.handleDelete(e)}>{`${e}`}</span>)
                     })}
                   </div>
                 </div>
                 <div className='Worker_skills'>
-                  <select  name="skills" id='skills' onChange={(e) => this.handleSelect(e)}>
+                  <select  name="skills" id='skill' onChange={(e) => this.handleSelect(e)}>
                       <option selected={true} hidden>Habilidades</option>
                       {
                         this.props.skills?.map((e:any) =>{
@@ -319,7 +309,7 @@ console.log(del)
               </div>
             </form>
             <div className='Worker_submit'>
-              <input  disabled={this.state.disabled} name="button" type="submit" value="¡Registrate!" onClick={(e) => this.handleSubmit(e)} />
+              <input  disabled={this.state.disabled} name="button" type="submit" value="Registrar" onClick={(e) => this.handleSubmit(e)} />
             </div>
           </div>
         </div>
