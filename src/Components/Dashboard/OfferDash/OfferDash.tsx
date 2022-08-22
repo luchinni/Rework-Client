@@ -62,7 +62,17 @@ function OfferDash() {
 		isActiveOffer(id , isActive)
 		.then(()=> {
 			dispatch(getOffers())
-		  })
+		})
+		setModalEdit(false)
+	}
+
+	function handleDeleteOffer() {
+		let id = dataOffer.idOffer
+		isActiveFalseOfferPost(id)
+		.then(()=> {
+			dispatch(getOffers())
+		})
+		setModalDelete(false)
 	}
 
 
@@ -120,7 +130,7 @@ function OfferDash() {
 								<span className='OfferDash_MOdalTextInfo'>{dataOffer.idOffer}</span>
 							</div>
 							<div className='OfferDash_modalButtonsDiv'>
-								<button className='OfferDash_modalOk'>si</button>
+								<button className='OfferDash_modalOk' onClick={handleDeleteOffer}>si</button>
 								<button className='OfferDash_modalCancelar' onClick={() => setModalDelete(false)}>cancelar</button>
 							</div>
 						</div>
@@ -133,7 +143,6 @@ function OfferDash() {
 								<th>Id</th>
 								<th>Fecha</th>
 								<th>Estado</th>
-								<th>Mas</th>
 							</tr>
 						</thead>
 						<tbody className='OfferDash_tableBody'>

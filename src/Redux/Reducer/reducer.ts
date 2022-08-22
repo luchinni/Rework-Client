@@ -888,6 +888,7 @@ export const stateCancelledOfferPost = async (id: string) => {
 
 export const isActiveFalseOfferPost = async (id: string ) => {
   try {
+    console.log("reducer id:", id)
     await axios({
       method: "PUT",
       url: "/offer/isActive",

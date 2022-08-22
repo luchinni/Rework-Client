@@ -15,19 +15,9 @@ function UserDash() {
 
 
 
-  const [modalEdit, setModalEdit] = useState(false)
+
 	const [modalDelete, setModalDelete] = useState(false)
-
 	const [dataUser, setDataUser] = useState<any>({})
-
-	function handleModalEdit(user:any) {
-		setModalEdit(true)
-		setDataUser(user)
-	}
-
-	function handleModalEditClose() {
-		setModalEdit(false)
-	}
 
 	function handleModalDelete(user:any) {
 		setModalDelete(true)
@@ -39,46 +29,6 @@ function UserDash() {
   return (
     <div className='UserDash_Component'>
         <div className='UserDash_divContent'>
-
-        {
-						modalEdit &&
-						<div className='OfferDash_Modal'>
-							<div>
-
-								<div className='OfferDash_divInfoModal'>
-									<div>
-										<p className='OfferDash_divModalTitle'>Id del usuario: </p>
-										<span className='OfferDash_MOdalTextInfo'>{dataUser.id}</span>
-									</div>
-									
-									<div>
-										<p className='OfferDash_divModalTitle'>Usuario: </p>
-										<span className='OfferDash_MOdalTextInfo'>{dataUser.name} </span>
-										<span className='OfferDash_MOdalTextInfo'>{dataUser.lastName}</span>
-									</div>
-
-									{/* <div>
-										<p className='OfferDash_divModalTitle'>estado actual: </p>
-										<span className='OfferDash_MOdalTextInfo'>Abierta</span>
-									</div> */}
-								</div>
-
-								<hr className='OfferDash_hr' />
-
-								<div className='OfferDash_divInputEdit'>
-									<label className='OfferDash_divModalTitle'>Actualiza el estado</label>
-									<select name="" id="">
-										<option value="">Abierta</option>
-										<option value="">Cerrada</option>
-									</select>
-								</div>
-							</div>
-							<div className='OfferDash_modalButtonsDiv'>
-								<button className='OfferDash_modalOk'>guardar</button>
-								<button className='OfferDash_modalCancelar' onClick={handleModalEditClose}>cancelar</button>
-							</div>
-						</div>
-					}
 
 					{
 						modalDelete &&
@@ -104,7 +54,6 @@ function UserDash() {
                 <th>Tipo</th>
                 <th>Plan</th>
                 <th>Activo</th>
-                <th>Mas</th>
               </tr>
             </thead>
             <tbody>
@@ -143,7 +92,6 @@ function UserDash() {
                     </td>
 
                     <td className='OfferDash_tdButtons'>
-											<button className='OfferDash_editButton' onClick={() => handleModalEdit(user)}>Editar</button>
 											<button className='OfferDash_deleteButton' onClick={() => handleModalDelete(user)}>Eliminar</button>
 										</td>
 
