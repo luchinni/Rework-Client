@@ -837,6 +837,7 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
   
 export const getOfferForHistory = async (id:string) => {
   const offerId = await axios.get(`/offer/${id}`)
+  console.log("que pasoooo", offerId.data)
   return offerId.data;
 }
 

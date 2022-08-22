@@ -12,7 +12,6 @@ const HistorialCard = ({props}:any) => {
     const [currentOffer, setCurrentOffer] = useState<any>({})
     const navigate = useNavigate();
 
-    console.log("qiiii", props)
     const translateState = (state: string) => {
       if (state === "active" || state === "posted") return "activa";
       if (state === "cancelled") return "cancelada";
