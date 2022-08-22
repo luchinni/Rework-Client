@@ -10,6 +10,7 @@ import jwtDecode from "jwt-decode"
 import Login from '../Login/Login';
 import Notification from './Notification/Notification';
 import logo from '../../images/logo_header.png';
+import menu from '../../images/header_menu.svg';
 
   const Header = () => {
 
@@ -48,6 +49,12 @@ import logo from '../../images/logo_header.png';
     setOpenModal(value)
   }
 
+  const [menuGest, setMenuGest] = useState(false)
+
+  function handleMenu() {
+    setMenuGest(!menuGest)
+  }
+
   return (
     <header className='Header_component' id="Header">
       <div className='Header_divContent'>
@@ -63,13 +70,44 @@ import logo from '../../images/logo_header.png';
                 <User/>
               </div>
               :
-              <div className='div_buttons'>
-                <div>
-                  <button onClick={handleOpen} className='button_login'>Inicia sesión</button>
+              <div>
+                <div className='Header_divMenu'>
+                  <button className='Header_buttonMenu' onClick={handleMenu}>
+                    <img className='Header_menu' src={menu} alt="menu" />
+                  </button>
                 </div>
+
                 <div>
-                  <Link to='/register'><button className='button_register'>Regístrate</button></Link>
+                  <div>
+                    {
+                      menuGest &&
+
+                      <div className='Header_divContButtonsMenu'>
+                        <div className='div_buttons'>
+                          <div>
+                            <button onClick={handleOpen} className='button_login'>Inicia sesión</button>
+                          </div>
+                          <div>
+                            <Link to='/register'><button className='button_register'>Regístrate</button></Link>
+                          </div>
+                        </div>
+                      </div>
+
+                    }
+                  </div>
+
+                  <div className='div_buttonsOther'>
+                    <div>
+                      <button onClick={handleOpen} className='button_login'>Inicia sesión</button>
+                    </div>
+                    <div>
+                      <Link to='/register'><button className='button_register'>Regístrate</button></Link>
+                    </div>
+                  </div>
+
                 </div>
+
+          
               </div>
             }
           </div>

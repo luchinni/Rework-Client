@@ -21,6 +21,7 @@
 .Header_divContent {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0 auto;
     max-width: 1200px;
     padding: 0 30px;
@@ -30,7 +31,6 @@
 }
 .logo {
     text-decoration: none;
-    /* background-color: red; */
     max-height: 50px;
 }
 .logo_img {
@@ -84,4 +84,53 @@
     display: flex;
     gap: 40px;
     align-items: flex-end;
+}
+
+.Header_buttonMenu {
+    max-width: 40px;
+    height: 40px;
+}
+.Header_divMenu {
+    display: none;
+}
+
+.div_buttonsOther {
+    display: flex;
+    gap: 10px;
+}
+
+@media screen and (max-width: 880px) {
+    .div_buttonsOther {
+        display: none
+    }
+    .Header_divMenu {
+        display: block;
+    }
+    .Header_buttonMenu {
+        border: 1px solid gray;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .Header_menu {
+        display: block;
+        max-width: 35px;
+    }
+    .Header_divContButtonsMenu {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #264653;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        margin-top: 20px;
+    }
+    .logo {
+        text-decoration: none;
+        max-height: 43px;
+    }
+    .logo_img {
+        max-width: 120px;
+    }
 }
