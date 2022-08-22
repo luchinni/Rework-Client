@@ -1,0 +1,55 @@
+.GoogleWorker_titleContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px 0 40px 0;
+}
+
+.GoogleWorker_title{
+    font-weight: 500;
+    font-size: 35px;
+    color: #E76F51;
+    margin: 10px 0 20px 0;
+}
+
+.GoogleWorker_subtitle{
+    font-weight: 500;
+    font-size: 20px;
+    color: #264653
+}
+
+.GoogleWorker_age {
+    color: #2A9D8F
+}
+
+.GoogleWorker_divForm, .GoogleWorker_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.GoogleWorker_form > input {
+    font-family: "poppins";
+}
+
+.GoogleWorker_inputDate{
+    margin-bottom: 10px;
+    font-size: 20px;
+    padding: 15px 20px;
+    background-color: #EEEEEE;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.GoogleWorker_inputSubmit{
+    margin: 0 auto;
+    font-size: 17px;
+    background-color: #F4A261;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}

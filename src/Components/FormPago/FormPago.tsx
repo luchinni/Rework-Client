@@ -107,7 +107,7 @@ const validarForm = (errors:type.errorsNewpayout) => {
 }
 
 const getCost = () => {
-    const cost = currentOffer?.proposals.filter((p:any)=> p.state === "accepted")
+    const cost = currentOffer?.proposals.filter((p:any)=> p.state === "contract started")
     return cost[0].remuneration
 }
 
@@ -193,8 +193,8 @@ const handleSubmit = async (e:any) => {
 
     console.log(cost)
 
-    const newPayment:{name:string, lastname:string, cost:number, DNI:number, Email:string, Phone_Number:number, Direction:string, Postal_code:number, city:string, province:string, country:string} = {
-        name, lastname, DNI, Email, cost, Phone_Number, Direction, Postal_code, city, province, country
+    const newPayment:{currentOffer:any, name:string, lastname:string, cost:number, DNI:number, Email:string, Phone_Number:number, Direction:string, Postal_code:number, city:string, province:string, country:string} = {
+        currentOffer ,name, lastname, DNI, Email, cost, Phone_Number, Direction, Postal_code, city, province, country
     }
 
     dispatch(getPaymentLink(newPayment))

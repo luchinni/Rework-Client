@@ -5,7 +5,7 @@ import * as type from "../../../Types";
 import Axios, {AxiosResponse}  from "axios";
 import Swal from 'sweetalert2'
 import { createGoogleClient } from '../../../Redux/Reducer/reducer';
-
+import './GoogleClient.css'
 
 const GoogleClient = () => {
     //Requerimos la data de google del estado global y dividimos el nombre completo en nombre y apellido
@@ -151,7 +151,8 @@ const GoogleClient = () => {
             <HeaderRegister/>
             <div className='GoogleClient_titleContainer'>
                 <h2 className='GoogleClient_title'>¡Un último paso!</h2>
-                <h4 className='GoogleClient_subtitle'>Necesitamos corroborar que eres mayor de edad para continuar,<br/> por favor indícanos tu fecha de nacimiento</h4>
+                <h4 className='GoogleClient_subtitle'>Necesitamos confirmar que eres <span className="GoogleClient_age">mayor de edad</span>, </h4>
+                <h4 className='GoogleClient_subtitle'>por favor indícanos tu fecha de nacimiento</h4>
             </div>
             <div className="GoogleClient_divForm">
               <form className="GoogleClient_form"> 
@@ -172,7 +173,7 @@ const GoogleClient = () => {
                 disabled={user.disabled}
                 name="button"
                 type="submit"
-                value="Registrar"
+                value="Verificar"
                 onClick={(e) => handleSubmit(e)}
                 />
               </form>

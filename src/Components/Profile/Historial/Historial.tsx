@@ -7,7 +7,7 @@ import HistorialCard from './HistorialCards/HistorialCard';
 function Historial() {
 
   const userLogged = useSelector((state: any) => state.workService.userLogged)
-  const offerId = useSelector((state:any) => state.workService.offerById);
+  const userById = useSelector((state:any) => state.workService.offerById);
   const dispatch = useDispatch();
 
   console.log("userLogged", userLogged
@@ -17,7 +17,7 @@ function Historial() {
     all: Boolean;
     onContract: Boolean;
     active: Boolean;
-    canceled: Boolean;
+    cancelled: Boolean;
     finalized: Boolean;
   };
 
@@ -25,7 +25,7 @@ function Historial() {
     all: false,
     onContract: true,
     active: false,
-    canceled: false,
+    cancelled: false,
     finalized: false
   });
 
@@ -35,7 +35,7 @@ function Historial() {
       all: false,
       onContract: false,
       active: false,
-      canceled: false,
+      cancelled: false,
       finalized: false,
       [name]: true
     })
@@ -57,7 +57,7 @@ function Historial() {
             <button className={open.onContract ? 'Historial_tag open' : 'Historial_tag'} name='onContract' onClick={handleOpen}>En Contrato</button>
             <button className={open.active ? 'Historial_tag open' : 'Historial_tag'} name='active' onClick={handleOpen}>Publicadas</button>
             <button className={open.finalized ? 'Historial_tag open' : 'Historial_tag'} name='finalized' onClick={handleOpen}>Finalizadas</button>
-            <button className={open.canceled ? 'Historial_tag open' : 'Historial_tag'} name='canceled' onClick={handleOpen}>Canceladas</button>
+            <button className={open.cancelled ? 'Historial_tag open' : 'Historial_tag'} name='cancelled' onClick={handleOpen}>Canceladas</button>
           </div>
           <div className='Historial_all'>
           {
@@ -107,9 +107,9 @@ function Historial() {
               null
             }
           </div>
-          <div className='Historial_canceled'>
+          <div className='Historial_cancelled'>
           {
-              open.canceled ? (userLogged.proposals.filter((e:any) => e.isActive === false || e.state === "cancelled").length > 0 ?
+              open.cancelled ? (userLogged.proposals.filter((e:any) => e.isActive === false || e.state === "cancelled").length > 0 ?
               userLogged.proposals?.filter((e:any) => e.isActive === false || e.state === "cancelled").map((e:any) => {
                 return <HistorialCard props={e}/>
               })
@@ -130,7 +130,7 @@ function Historial() {
             <button className={open.onContract ? 'Historial_tag open' : 'Historial_tag'} name='onContract' onClick={handleOpen}>En Contrato</button>
             <button className={open.active ? 'Historial_tag open' : 'Historial_tag'} name='active' onClick={handleOpen}>Publicadas</button>
             <button className={open.finalized ? 'Historial_tag open' : 'Historial_tag'} name='finalized' onClick={handleOpen}>Finalizadas</button>
-            <button className={open.canceled ? 'Historial_tag open' : 'Historial_tag'} name='canceled' onClick={handleOpen}>Canceladas</button>
+            <button className={open.cancelled ? 'Historial_tag open' : 'Historial_tag'} name='cancelled' onClick={handleOpen}>Canceladas</button>
           </div>
           <div className='Historial_all'>
           {
@@ -180,9 +180,9 @@ function Historial() {
               null
             }
           </div>
-          <div className='Historial_canceled'>
+          <div className='Historial_cancelled'>
           {
-              open.canceled ? (userLogged.offers.filter((e:any) => e.isActive === false).length > 0 ?
+              open.cancelled ? (userLogged.offers.filter((e:any) => e.isActive === false).length > 0 ?
               userLogged.offers?.filter((e:any) => e.isActive === false).map((e:any) => {
                 return <HistorialCard props={e}/>
               })

@@ -245,7 +245,7 @@ function Profile() {
 
           {reviewsOpen ? (
             <div className="Profile_divPortfolio">
-              <Reviews />
+              <Reviews user={currentUser.id} />
             </div>
           ) : (
             false
