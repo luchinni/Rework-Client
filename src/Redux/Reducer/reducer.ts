@@ -1002,7 +1002,7 @@ export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
       data: cleanUser
     })
 
-    console.log("response",response)
+    //console.log("response",response)
     if (response.data === 'usuario no encontrado'){
       console.log("entre al if", response.data)
       console.log("clean user", cleanUser)
