@@ -8,48 +8,36 @@ import UserDash from './UserDash/UserDash'
 function Dashboard() {
 
   const [offCli, setOffCli] = useState(true)
-  const [proWor, setproWor] = useState(false)
   const [user, setUser] = useState(false)
-  const [reviews, setReviews] = useState(false)
   const [reports, setReports] = useState(false)
+  const [pagos, setPagos] = useState(false)
 
   function handleoffCli() {
     setOffCli(true);
-    setproWor(false);
     setUser(false);
-    setReviews(false);
     setReports(false);
+    setPagos(false);
   }
 
-  function handleproWor() {
-    setproWor(true);
-    setOffCli(false);
-    setUser(false);
-    setReviews(false);
-    setReports(false);
-  }
   function handleUser() {
     setUser(true);
     setOffCli(false);
-    setproWor(false);
-    setReviews(false);
     setReports(false);
-  }
-  
-  function handleReview() {
-    setReviews(true);
-    setOffCli(false);
-    setproWor(false);
-    setUser(false);
-    setReports(false);
+    setPagos(false);
   }
 
   function handleReports() {
     setReports(true);
     setOffCli(false);
-    setproWor(false);
     setUser(false);
-    setReviews(false);
+    setPagos(false);
+  }
+
+  function handlePagos() {
+    setPagos(true);
+    setReports(false);
+    setOffCli(false);
+    setUser(false);
   }
 
 
@@ -79,6 +67,7 @@ function Dashboard() {
                 <button className={offCli ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleoffCli} >Ofertas</button>
                 <button className={user ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleUser}>Usuarios</button>
                 <button className={reports ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReports}>Reportes</button>
+                <button className={pagos ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handlePagos}>Pagos</button>
               </div>
 
               <div className="Dashboard_divSearch">
@@ -106,6 +95,10 @@ function Dashboard() {
 
             {
               reports && <p>falta el componente de Reportes</p>
+            }
+
+            {
+              pagos && <p>falta el componente de Pagos</p>
             }
 
           </div>

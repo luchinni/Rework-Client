@@ -38,6 +38,7 @@ td {
     display: flex;
     gap: 10px;
     justify-content: space-between;
+    max-width: 100px;
 }
 
 .OfferDash_editButton {
@@ -152,4 +153,13 @@ td {
 }
 .OfferDash_modalOk:hover {
     background-color: #338134;
+}
+
+.OfferDash_moreButton {
+    cursor: pointer;
+}
+.OfferDash_more {
+    margin-top: 3px;
+    max-width: 20px;
+
 }

@@ -886,7 +886,7 @@ export const stateCancelledOfferPost = async (id: string) => {
   };
 };
 
-export const isActiveFalseOfferPost = async (id: string) => {
+export const isActiveFalseOfferPost = async (id: string ) => {
   try {
     await axios({
       method: "PUT",
@@ -894,6 +894,21 @@ export const isActiveFalseOfferPost = async (id: string) => {
       data: {
         id,
         isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveOffer = async (id: string, isActive: boolean ) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/offer/isActive",
+      data: {
+        id,
+        isActive,
       },
     })
   } catch (error) {
