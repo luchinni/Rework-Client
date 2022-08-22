@@ -75,7 +75,7 @@ function Historial() {
           {
               open.onContract ? (userLogged.proposals.filter((e:any) => e.state === "contract started").length > 0 ?
               userLogged.proposals?.filter((e:any) => e.state === "contract started").map((e:any) => {
-                return <HistorialCard props={e.proposals}/>
+                return <HistorialCard props={e}/>
               })
               :
               <p>No tienes contratos iniciados</p>)
@@ -87,7 +87,7 @@ function Historial() {
           {
               open.finalized ? (userLogged.proposals.filter((e:any) => e.state === "finalized").length > 0 ?
               userLogged.proposals?.filter((e:any) => e.state === "finalized").map((e:any) => {
-                return <HistorialCard props={e.proposals}/>
+                return <HistorialCard props={e}/>
               })
               :
               <p>No tienes contratos finalizados</p>)
@@ -148,7 +148,7 @@ function Historial() {
           {
               open.onContract ? (userLogged.offers.filter((e:any) => e.state === "contract started").length > 0 ?
               userLogged.offers?.filter((e:any) => e.state === "contract started").map((e:any) => {
-                return <HistorialCard props={e.offers}/>
+                return <HistorialCard props={e}/>
               })
               :
               <p>No tienes contratos finalizados</p>)
@@ -160,7 +160,7 @@ function Historial() {
           {
               open.finalized ? (userLogged.offers.filter((e:any) => e.state === "finalized").length > 0 ?
               userLogged.offers?.filter((e:any) => e.state === "finalized").map((e:any) => {
-                return <HistorialCard props={e.offers}/>
+                return <HistorialCard props={e}/>
               })
               :
               <p>No tienes contratos iniciados</p>)
