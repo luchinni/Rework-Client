@@ -13,6 +13,7 @@ import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
 import jwt from 'jsonwebtoken'
 import Carrusel from './Carrusel/Carrusel';
 import CarruselCard from './Carrusel/CarruselCard';
+import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
 
 
 const Home = () => {
@@ -158,7 +159,10 @@ const showButton = () => {
         </div>
         <div className='div_homeCards'>
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
+          <div className='div_filters_premium'>
           <Filtros />
+          {/* <SeleccionPremium/> */}
+          </div>
         </div>
         {showButton()}
           </div>

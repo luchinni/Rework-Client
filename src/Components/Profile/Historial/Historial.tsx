@@ -87,7 +87,8 @@ function Historial() {
           {
               open.finalized ? (userLogged.proposals.filter((e:any) => e.state === "finalized").length > 0 ?
               userLogged.proposals?.filter((e:any) => e.state === "finalized").map((e:any) => {
-                return <HistorialCard props={e.proposals}/>
+                console.log(e)
+                return <HistorialCard props={e}/>
               })
               :
               <p>No tienes contratos finalizados</p>)
