@@ -93,7 +93,7 @@ const CardProposal = ({ props, offer }: any) => {
       <br></br>
       <br></br>
       <p className="DetailP_timeUser">{`Tiempo estimado de entrega: ${props?.worked_time}`}</p>
-      {offer.userClientId === currentUser.id ? (
+      {offer.userClientId === currentUser.id && props.state === "posted"? (
         <button name="button" className="DetailP_button" onClick={handleClick}>
           Aceptar
         </button>
