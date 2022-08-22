@@ -5,6 +5,7 @@ import * as type from "../../../Types";
 import Axios, {AxiosResponse}  from "axios";
 import Swal from 'sweetalert2'
 import { createGoogleWorker, getAllProfession, getAllSkills, getOffers } from '../../../Redux/Reducer/reducer';
+import './GoogleWorker.css'
 
 const GoogleWorker = () => {
     const dispatch = useDispatch()
@@ -142,7 +143,8 @@ const GoogleWorker = () => {
             <HeaderRegister/>
             <div className='GoogleWorker_titleContainer'>
                 <h2 className='GoogleWorker_title'>¡Un último paso!</h2>
-                <h4 className='GoogleWorker_subtitle'>Necesitamos algunos datos extras para continuar,<br/> por favor indícanos tu fecha de nacimiento para verificar tu edad</h4>
+                <h4 className='GoogleWorker_subtitle'>Necesitamos confirmar que eres <span className="GoogleWorker_age">mayor de edad</span>, </h4>
+                <h4 className='GoogleWorker_subtitle'>por favor indícanos tu fecha de nacimiento</h4>
             </div>
             <div className="GoogleWorker_divForm">
               <form className="GoogleWorker_form">
@@ -163,7 +165,7 @@ const GoogleWorker = () => {
                 disabled={user.disabled}
                 name="button"
                 type="submit"
-                value="Registrar"
+                value="Verificar"
                 onClick={(e) => handleSubmit(e)}
                 />
               </form>
