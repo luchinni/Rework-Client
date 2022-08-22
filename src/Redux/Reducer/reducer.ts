@@ -1038,37 +1038,6 @@ export const createGoogleWorker = (user: any) => async (dispatch: any) => {
 } 
 
 
-export const modifyOfferState = async (offerState:any) => {
-  try{
-    await axios({
-      method:"PUT",
-      url: `/offer/state`,
-      data: offerState
-      })
-} catch (error) {
-  return error
-}
-}
-
-/* export const getGoogleWorker = () => async (dispatch: any) => {
-    console.log("entre a googleWorker")
-    try {
-      const backResponse = await axios({
-        method: "GET",
-        url: `/auth/successWorker`,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true"
-        } 
-      })
-        dispatch(setCurrentUser(backResponse))
-  
-      
-    } catch (error) {
-      return error
-    }*/
-
 
 export const createGoogleClient = (user: any) => async (dispatch: any) => {
   try {
@@ -1085,3 +1054,78 @@ export const createGoogleClient = (user: any) => async (dispatch: any) => {
     return error
   }
 } 
+
+export const modifyOfferState = async (offerState:any) => {
+  try{
+    await axios({
+      method:"PUT",
+      url: `/offer/state`,
+      data: offerState
+      })
+  } catch (error) {
+    return error
+  }
+}
+
+export const forgotPassword = (user:any) => async (dispatch: any) => {
+  try {
+    await axios({
+      method:"POST",
+      url: `http://localhost:3001/login/forgot-password`,
+      data: user
+    })
+  } catch(error){
+    return error
+  }
+}
+
+export const resetPassword = (user:any) => async (dispatch: any) => {
+  try {
+    await axios({
+      method:"PUT",
+      url: `http://localhost:3001/login/reset-password`,
+      data: user
+    })
+  } catch(error){
+    return error
+  }
+}
+
+/* export const resetPassword = (user:any) => async (dispatch: any) => {
+  try {
+    await axios({
+      method:"POST",
+      url: `http://localhost:3001/login/reset-password`,
+      data: user
+    })
+  } catch(error){
+    return error
+  }
+} */
+
+/* export const verifyWorker = (id: any) => async (dispatch: any) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: `/confirm/worker/${id}`,
+      data: id,
+    });
+    dispatch(setVerifiedUser());
+  } catch (error) {
+    return error;
+  }
+};
+
+export const verifyClient = (id: any) => async (dispatch: any) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: `/confirm/client/${id}`,
+      data: id,
+    });
+    dispatch(setVerifiedUser());
+  } catch (error) {
+    return error;
+  }
+};
+ */

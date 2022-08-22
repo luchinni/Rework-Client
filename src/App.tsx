@@ -26,6 +26,8 @@ import FormReview from './Components/Reviews/FormReview/FormReview';
 import Success from './Components/FormPago/PagoResult/Success';
 import Pending from './Components/FormPago/PagoResult/Pending';
 import Failure from './Components/FormPago/PagoResult/Failure';
+import ForgotPassword from './Components/Login/ResetPassword/ForgotPassword';
+import ResetPassword from './Components/Login/ResetPassword/ResetPassword';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -85,6 +87,8 @@ return (
         <Route path='google/worker' element={<GoogleWorker/>} />
         <Route path='google/client' element={<GoogleClient/>} />
         <Route path='login' element={<LoginComponent/>} />
+        <Route path='forgotPassword' element={<ForgotPassword/>}/>
+        <Route path='resetPassword' element={<ResetPassword/>}/>
         <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
         <Route path='contract/session' element={<ContractRedirect/>}/>
         <Route path='success/:id' element={<Navigate to='/home' replace/>} />
