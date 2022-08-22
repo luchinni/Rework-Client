@@ -4,12 +4,15 @@
     max-width: 1136px;
     margin: 0 auto;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
+    height: auto;
+    min-height: 1000px
 }
 .Worker_imageContainer {
     display: flex;
     flex-direction: column;
     width: 400px;
+    margin-top: 50px;
 }
 .Worker_registerDivImage1 {
     max-width: 400px;
@@ -31,6 +34,8 @@
     border-radius: 15px;
     max-width: 500px;
     width: 100%;
+    height: auto;
+    min-height: 1000px
 }
 .Worker_empecemos{
     font-weight: 700;
@@ -129,7 +134,7 @@
 .Worker_registerDivForm {
     display: flex;
     flex-direction: column;
-    height: 800px;
+    height: 100%;
     max-width: 700px;
     align-items: center;
     width: 100%;
@@ -137,11 +142,13 @@
     border-radius: 10px;
 }
 .Worker_registerForm {
-    height: 800px;
+    height: auto;
+    min-height: 600px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    gap: 10px
 }
 
 .profession_div{
@@ -189,7 +196,7 @@
 }
 
 .Worker_submit > input{
-    margin: 0 auto;
+    margin: 15px 0;
     font-size: 20px;
     background-color: #F4A261;
     border: none;

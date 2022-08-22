@@ -238,11 +238,11 @@ console.log(del)
               <div className='Worker_names'>
                 <div className='Worker_nameInput'>
                   <input type="text" name="name" placeholder='Nombre' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.name ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.name}</div>}
+                  {!this.state.errors.name ? <div className='Worker_brpw'/> : <div className='Worker_error'>{this.state.errors.name}</div>}
                 </div>
                 <div className='Worker_lastnameInput'>
                   <input type="text" name="lastName" placeholder='Apellido' onChange={(e) => this.handleChange(e)}/>
-                  {!this.state.errors.lastName ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.lastName}</div>}
+                  {!this.state.errors.lastName ? <div className='Worker_brpw'/> : <div className='Worker_error'>{this.state.errors.lastName}</div>}
                 </div>
               </div>
               <div className='Worker_password'>
