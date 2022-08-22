@@ -88,14 +88,13 @@ function Dashboard() {
 
             <div className='Dashboard_divOrdenamientoCont'>
               <div className='Dashboard_divOrdenamiento'>
-                <span>Ordernar :</span>
                 <select name="" id="">
+                  
                   <option value="">asc</option>
                   <option value="">des</option>
                 </select>
               </div>
             </div>
-
 
             {
               offCli && <OfferDash />
