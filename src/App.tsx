@@ -23,6 +23,9 @@ import Contract from './Components/Contract/Contract';
 import axios from 'axios';
 import ContractRedirect from './Components/Contract/Redirect/ContractRedirect';
 import FormReview from './Components/Reviews/FormReview/FormReview';
+import Success from './Components/FormPago/PagoResult/Success';
+import Pending from './Components/FormPago/PagoResult/Pending';
+import Failure from './Components/FormPago/PagoResult/Failure';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -65,6 +68,9 @@ return (
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='contract/:id' element={<Contract/>} />
         <Route path='review/:id' element={<FormReview/>} />
+        <Route path='success/:id' element={<Success/>} />
+        <Route path='pending' element={<Pending/>} />
+        <Route path='failure' element={<Failure/>} />
         <Route path='contract/session' element={<Navigate to='/home/' replace/>}/>
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
@@ -81,6 +87,9 @@ return (
         <Route path='login' element={<LoginComponent/>} />
         <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
         <Route path='contract/session' element={<ContractRedirect/>}/>
+        <Route path='success/:id' element={<Navigate to='/home' replace/>} />
+        <Route path='pending' element={<Navigate to='/home' replace/>}/>
+        <Route path='failure' element={<Navigate to='/home' replace/>} />
         <Route path='review/:id' element={<Navigate to='/home' replace/>} />
         <Route path='pago/:id' element={<Navigate to='/register' replace/>} />
         <Route path='myProfile' element={<Navigate to='/register' replace/>} />
