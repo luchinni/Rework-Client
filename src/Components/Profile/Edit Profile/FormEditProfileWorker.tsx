@@ -32,7 +32,7 @@ function FormEditProfileWorker({ props }: any) {
     lastName: "",
     birthdate: "",
     image: "",
-    disabled: true,
+    disabled: false,
   });
 
   useEffect(() => {
@@ -70,11 +70,15 @@ function FormEditProfileWorker({ props }: any) {
         ...errors,
         disabled: false,
       });
+      let inputSubmit = document.getElementById("btnEditDisabled")
+      inputSubmit?.setAttribute("id","btnEditEnabled")
     } else {
       setErrors({
         ...errors,
         disabled: true,
       });
+      let inputSubmit = document.getElementById("btnEditEnabled")
+      inputSubmit?.setAttribute("id","btnEditDisabled")
     }
   };
 
@@ -327,8 +331,9 @@ function FormEditProfileWorker({ props }: any) {
             </div>
             <div className="updateCli_submitBtnContainer">
               <input
-                className="update_inpuntSubmit"
+                className="update_inputSubmit"
                 disabled={errors.disabled}
+                id= "btnEditEnabled"
                 name="button"
                 type="submit"
                 value="Actualizar"
