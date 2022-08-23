@@ -95,7 +95,7 @@ const CardWorker = ({props}:any) => {
         <div className="div_description">
             <div>
                 <div>
-                    <h4 className='Card_userProfessions'>{props.profession?.join(", ")}</h4>
+                    <p className='Card_userProfessions'>{props.profession?.join(", ")}</p>
                     <div>
                         <div className='Card_userHabilities'>Habilidades: <br/>
                     {
