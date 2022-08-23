@@ -204,7 +204,6 @@ handleSelect(e:any){
 handleDelete(e:any){
     
   let del = e.target.innerText
-console.log(del)
   const name = e.target.id
   if(name === "profession"){
     let borrado = this.state.profession.filter(f => f !== del.trim())
