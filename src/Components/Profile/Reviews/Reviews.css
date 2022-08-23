@@ -1,5 +1,6 @@
 .Reviews_review{
-    border: 1px solid #6F6F6F;
+    border: 1px solid #efefef;
+    background-color: #efefef;
     border-radius: 10px;
     margin-bottom: 10px;
     max-width: 971px;
@@ -11,5 +12,20 @@
 }
 .span_rating > svg {
     color: #E9C46A;
+}
+
+.Reviews_title{
+    font-weight: 600;
+    font-size: 25px;
+    color: #264653;
+}
+
+.Reviews_review > p{
+    color: #264653;
+    font-weight: 500;
+}
+
+.Reviews_review > h3{
+    color: #e76f51
 }
 

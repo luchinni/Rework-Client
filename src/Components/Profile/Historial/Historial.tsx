@@ -39,7 +39,7 @@ function Historial() {
     <div className='Historial_Component'>
       {userLogged.isWorker===true ? (
         <div className='Historial_divContent'>
-        <h2>Historial</h2>
+          <h2 className="Historial_title">Historial</h2>
         <div className='Historial_divHistorial'>
           <div className='Historial_tags'>
             <button className={open.all ? 'Historial_tag open' : 'Historial_tag'} name='all' onClick={handleOpen}>Todas</button>
@@ -55,7 +55,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No has aplicado a ninguna oferta</p>) 
+              <p className="Historial_no">No has aplicado a ninguna oferta</p>) 
               :
               null
             }
@@ -67,7 +67,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes contratos en proceso</p>)
+              <p className="Historial_no">No tienes contratos en proceso</p>)
               :
               null
             }
@@ -79,7 +79,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes contratos finalizados</p>)
+              <p className="Historial_no">No tienes contratos finalizados</p>)
               :
               null
             }
@@ -91,7 +91,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes postulaciones activas</p>)
+              <p className="Historial_no">No tienes postulaciones activas</p>)
               :
               null
             }
@@ -103,7 +103,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes postulaciones canceladas</p>)
+              <p className="Historial_no">No tienes postulaciones canceladas</p>)
               :
               null
             }
@@ -128,7 +128,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No has publicado ninguna oferta</p>) 
+              <p className="Historial_no">No has publicado ninguna oferta</p>) 
               :
               null
             }
@@ -140,7 +140,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes contratos en proceso</p>)
+              <p className="Historial_no">No tienes contratos en proceso</p>)
               :
               null
             }
@@ -152,7 +152,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes contratos finalizados</p>)
+              <p className="Historial_no">No tienes contratos finalizados</p>)
               :
               null
             }
@@ -164,7 +164,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes ofertas activas</p>)
+              <p className="Historial_no">No tienes ofertas activas</p>)
               :
               null
             }
@@ -176,7 +176,7 @@ function Historial() {
                 return <HistorialCard props={e}/>
               })
               :
-              <p>No tienes ofertas canceladas</p>)
+              <p className="Historial_no">No tienes ofertas canceladas</p>)
               :
               null
             }

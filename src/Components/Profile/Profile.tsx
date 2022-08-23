@@ -134,7 +134,7 @@ function Profile() {
                     {userLogged?.name} {userLogged?.lastName}{" "}
                   </span>
                   <span className="Profile_UserRating">
-                    Rating: {userLogged?.rating ? ratingStars(userLogged.rating) : ratingStars(0)}
+                    <span>Rating: </span>{userLogged?.rating ? ratingStars(userLogged.rating) : ratingStars(0)}
                   </span>
                 </div>
                 {/* </div> */}
