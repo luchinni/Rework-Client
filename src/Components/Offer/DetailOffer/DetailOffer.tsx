@@ -22,22 +22,17 @@ import FormReview from "../../Reviews/FormReview/FormReview";
 
 const DetailOffer = () => {
   const offerId = useSelector((state: any) => state.workService.offerById);
-  console.log("la offer", offerId);
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
-  console.log("el user", currentUser);
-
   const dispatch = useDispatch();
   const params = useParams();
-
   useEffect(() => {
     dispatch(getOfferId(params.id));
     dispatch(checkSession());
   }, [dispatch]);
 
   const [open, setOpen] = useState(false);
-  console.log(offerId)
  /*  const propoHired = offerId?.proposals.filter((p:any) => p.state === "contract acepted")
 
   const filtredOffer = {
@@ -45,8 +40,6 @@ const DetailOffer = () => {
     proposals: propoHired
   } */
 
-  console.log("la offer", offerId)
-/*   console.log("la filtred",filtredOffer) */
 
   function handleOpen() {
     setOpen(true);
@@ -92,17 +85,15 @@ const DetailOffer = () => {
   }
 
   let alreadyApply: boolean = false;
-
+  const proposalAccepted = offerId?.proposals?.find((p:any) => p.state === 'accepted')
   const filtred: any = offerId.proposals?.filter(
     (p: any) => p.userWorker?.id === currentUser?.id && p.isActive === true
   );
 
   if (filtred?.length > 0) {
     alreadyApply = true;
-    console.log("encontre", alreadyApply);
   } else {
     alreadyApply = false;
-    console.log("no encontre", alreadyApply);
   }
 
   return (
@@ -195,7 +186,8 @@ const DetailOffer = () => {
               null
             )}
             {currentUser?.id === offerId.userClientId &&
-            offerId.isActive === true ? (
+            offerId.isActive === true &&
+            proposalAccepted === undefined ? (
               <button
                 className="Detail_buttonApply"
                 onClick={() => handleDelete(offerId.idOffer)}
@@ -234,7 +226,7 @@ const DetailOffer = () => {
         currentUser.isPremium === true ? (
           //renderiza las cards completas
           <div>
-            <h2 className="Detail_h2Propuestas">propuestas</h2>
+            <h2 className="Detail_h2Propuestas">Propuestas</h2>
             <CardsProposal offer={offerId} />
           </div>
         ) : //si el usuario es worker pero no premium, que le renderice su propuesta enviada
