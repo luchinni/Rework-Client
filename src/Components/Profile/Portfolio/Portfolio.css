@@ -3,13 +3,13 @@
     width: 100%;
 }
 .Portfolio_buttonAddPortfolio {
-    padding: 30px 20px;
+    padding: 20px 15px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     background-color: #72AD5E;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     transition: all 0.3s ease;
 }
