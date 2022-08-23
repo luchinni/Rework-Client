@@ -31,84 +31,129 @@
   margin-bottom: 10px;
 }
 .Detail_userPhoto {
-  max-width: 215px;
+  max-width: 160px;
 }
 .Detail_NameUserPost {
   font-weight: 600;
-  font-size: 16px;
-  color: #273141;
+  font-size: 20px;
+  color: #264653;
   text-decoration: none;
 }
 .Detail_UserRating {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 17px;
   line-height: 24px;
-  color: #D6550D;
+  color: #264653;
+  margin: 20px 0;
 }
+
 .Detail_offersCount{
-  font-weight: 600;
-  font-size: 14px;
-  color: #9b9b9b; 
-  margin-top: 5px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #264653; 
+  margin-bottom: 20px 
 }
+
+.Detail_offersCount > span , .Detail_UserRating > span {
+  color: #2a9d8f
+}
+
 .Detail_infoProposal {
   padding: 30px;
   width: 100%;
 }
+
+.Detail_tagImage{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.Detail_tags{
+  padding-top: 20px;
+  display: flex;
+  max-width: 520px;
+  gap: 0 25px;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-evenly;
+}
+
 .Detail_divImages {
   display: inline-block;
-  max-height: 165px;
+  max-height: 200px;
   overflow: hidden;
   border-radius: 10px;
 }
 .Detail_images {
-  max-height: 165px;
+  max-height: 200px;
 }
-.Detail_titleTime {
+.Detail_header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Detail_timeRemu{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 }
 .Detail_title {
-  font-weight: 600;
-  font-size: 24px;
+  font-weight: 700;
+  font-size: 28px;
   line-height: 36px;
-  color: #273141;
+  max-width: 450px;
+  color: #264653;
 }
 .Detail_time {
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 15px;
   line-height: 24px;
-  color: #6F6D6D;
-  max-width: 167px;
+  color: #264653;
   text-align: right;
 }
 .Detail_remuneration {
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 15px;
   line-height: 24px;
-  color: #D6550D;
+  color: #E76F51;
   margin-top: 0px;
 }
 .Detail_description {
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 20px;
   line-height: 27px;
-  color: #7f7f7f;
-  margin: 30px 0 20px;
+  color: #264653;
+  text-align: center;
+  max-width: 750px;
 }
-.Detail_tags {
-  font-weight: 400;
-  font-size: 16px;
+
+.Detail_descriptionCont{
+  margin: 50px 0 20px;
+  display: flex;
+  justify-content: center;
+}
+.Detail_tag {
+  font-weight: 500;
+  font-size: 20px;
   line-height: 27px;
-  color: #333333;
-  margin-top: 30px;
+  max-width: 310px;
+  color: #2a9d8f;
+  text-align:center;
+  background-color: #ebebeb;
+  padding: 3px 10px;
+  border-radius: 5px;
+  margin: 0
 }
 .Detail_buttonApply {
   font-weight: 600;
   font-size: 20px;
   color: #FFFFFF;
   padding: 9px 30px;
-  background: #72AD5E;
+  background: #c45050;
   border-radius: 6px;
   border: none;
   margin-top: 50px;
@@ -120,71 +165,135 @@
   font-weight: 600;
   font-size: 32px;
   line-height: 48px;
-  color: #273141;
+  color: #264653;
 }
 .Detail_divProposal {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  /* justify-content: space-between; */
+  height: auto;
   margin: 50px 0 100px 0 ;
   justify-content: center;
 }
+
 .Detail_Proposal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  min-height: 300px;
   border: 1px solid #bcbcbc;
   border-radius: 10px;
   padding: 15px 15px;
 }
-.Detail_premiumButton {
-  padding: 10px;
+
+.Detail_premiumCont{
+  display: flex;
+}
+
+.Detail_premiumBack{
+  width: 200px;
+  height: 270px;
+  margin-top: 50px;
   border-radius: 10px;
   border: none;
-  max-width: 222px;
-  max-height: 188px;
-  height: 100vh;
-  background-color: #6F6D6D;
-  color: #FFFFFF;
-  font-size: 18px;
-  cursor: pointer;
-
+  background-image: url(../../../images/bluredPropossal.jpg);
+  filter: blur(4px);
 }
+
+.Detail_premium{
+  width: 230px;
+  height: 300px;
+  margin-top: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2a9d903d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Detail_premiumButton {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  max-width: 188px;
+  max-height: 250px;
+  height: auto;
+  width: auto;
+  color: #FFFFFF;
+  font-size: 19px;
+  cursor: pointer;
+  background-color: #e9c46a;
+  
+}
+
+.Detail_premium > p {
+  margin-top: 15px;
+  max-width: 220px;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: #264653;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.Detail_premium > span{
+  max-width: 180px;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: #264653;
+  font-size: 19px;
+  
+}
+
 .Detail_premiumButton:hover {
-  background-color: #838383;
+  background-color: #f4a261;
 }
 .DetailP_UserName {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
-  color: #5c5c5c;
+  color: #2A9D8F;
 }
 .DetailP_remuneration {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 20px;
-  color: #D6550D;
+  color: #E76F51;
 }
+
 .Detail_divCardPropuestas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
 }
+
 .DetailP_propuestaUser {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 21px;
-  color: #787878;
+  color: #264653;
   max-width: 190px;
-  height: 60px;
-  margin-top: 10px;
-}
+  height: auto;
+  min-height: 50px;
+  }
+
 .DetailP_timeUser {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 21px;
-  color: #262626;
+  color: #264653;
   max-width: 190px;
+  margin-bottom: 15px;
 }
-.DetailP_button {
+
+.DetailP_timeData{
+  color: #2A9D8F;
+}
+
+.DetailP_buttonAccept {
   font-weight: 500;
   font-size: 14px;
   color: #FFFFFF;
@@ -192,8 +301,37 @@
   background: #72AD5E;
   border-radius: 6px;
   border: none;
-  margin-top: 30px;
   cursor: pointer;
+  
+}
+
+.DetailP_buttonEdit {
+  font-weight: 500;
+  font-size: 14px;
+  color: #FFFFFF;
+  padding: 9px 20px;
+  background: #f4a261;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.DetailP_buttonCancel {
+  font-weight: 500;
+  font-size: 14px;
+  color: #FFFFFF;
+  padding: 9px 20px;
+  background: #c45050;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.DetailP_divButton{
+  display: flex;
+  justify-content: center;
 }
 
 .Detail_urlCopy {
@@ -211,7 +349,6 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  /* background-color: #72AD5E; */
   padding: 0 5px;
 }
 .Detail_divUrl {
@@ -221,7 +358,7 @@
 }
 .Detail_url {
   font-size: 14px;
-  color: #616161;
+  color: #264653;
   margin-left: 5px;
 }
 

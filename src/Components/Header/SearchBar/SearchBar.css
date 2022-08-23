@@ -112,3 +112,59 @@
 .filter_workDuration > label{
   padding: 0 0 0 5px;  
 }
+
+@media screen and (max-width: 700px) {
+  .SearchBar_component {
+    transform: translateX(-35%);
+  }
+  .input_search {
+    background-color: #ebebeb;
+    width: 100px;
+    margin: 0 10px 0 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #949494;
+    padding: 6px 0 5px 0;
+    border: none;
+    border-radius: 4px;
+  }
+  /* .filter_dropDown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 10px;
+    width: 295px;
+    background-color: #E9E9E9;
+    margin-top: 5px;
+    border-radius: 10px;
+    z-index: 4;
+  } */
+}
+@media screen and (max-width: 465px) {
+  .icon_search ,
+.icon_filters {
+  width: 15px;
+  margin-top: 2px;
+}
+.button_filters ,
+.button_search {
+  border: none;
+  margin-top: 1px;
+  width: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #dedede;
+}
+
+  .input_search {
+    background-color: #ebebeb;
+    width: 70px;
+    font-size: 13px;
+    color: #949494;
+    padding: 4px 0 3px 0;
+    border: none;
+    border-radius: 2px;
+  }
+}
