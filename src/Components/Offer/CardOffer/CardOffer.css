@@ -4,10 +4,10 @@
     border-radius: 6px;
     max-width: 730px;
     min-width: 425px;
-    overflow: hidden;
     margin-bottom: 30px;
     padding-bottom: 7px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
+    max-height: 500px;
 }
 .div_userSection {
     display: flex;
@@ -89,6 +89,8 @@
     font-weight: 400;
     line-height: 15px;
     color: #F4A261;
+    text-overflow: ellipsis;
+    max-width: 400px;
 }
 .card_title {
     font-size: 24px;

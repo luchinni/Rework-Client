@@ -121,7 +121,10 @@ const CardOffer = ({props}:any) => {
               <span>$</span>
             </div>
             <div className='card_divTags'>
-              <span className='card_tags'>{props.profession?.join(', ')}</span>
+              {
+                props.profession.length > 4 ? <span>{props.profession[0]}, {props.profession[1]}, {props.profession[2]}, {props.profession[3]}</span>
+                : <span className='card_tags'>{props.profession?.join(', ')}</span>
+              }
             </div>
           </div>
           <div>
