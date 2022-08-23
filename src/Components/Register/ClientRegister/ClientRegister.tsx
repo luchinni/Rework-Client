@@ -8,6 +8,7 @@ import "./ClientRegister.css";
 import HeaderRegister from "../HeaderRegister/HeaderRegister";
 import Axios, {AxiosResponse}  from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export class ClientRegister extends Component {
   state: type.ClientType;
@@ -52,6 +53,7 @@ export class ClientRegister extends Component {
     }
   }
 
+  navigate = useNavigate()
 
   async postImageOnCloudinary(e: any) {
     const formData = new FormData();
@@ -196,8 +198,13 @@ export class ClientRegister extends Component {
       }, 
       disabled: true,
     }; 
-    Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
-    
+    Swal.fire("Registro exitoso!",
+    "Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.",
+    "success").then((respones) => {
+      if(respones.isConfirmed){
+        this.navigate('/home')
+      }
+    }) 
   }
 
   render() {
