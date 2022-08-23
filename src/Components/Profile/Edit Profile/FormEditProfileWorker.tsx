@@ -285,7 +285,8 @@ function FormEditProfileWorker({ props }: any) {
             </div>
             <div className="update_Div_inputAndError">
               <input
-              className="update_description"
+              required
+              className="update_inpunt"
               id="description_input"
               type="text"
               name="description"
