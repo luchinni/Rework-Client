@@ -16,18 +16,18 @@
   outline: none;
   text-decoration: none;
 }
-.Historial-redirect:link {
+/* .Historial-redirect:link {
   color: #0d0d0d;
 }
 
 .Historial-redirect:visited {
   color: #0d0d0d;
-}
+} */
 .Historial-offer:hover{
   cursor: pointer;
 }
 .Historial-p-title{
-  width: 50%;
+  width: 100%;
 }
 .Historial-p-state{
   float: right;
