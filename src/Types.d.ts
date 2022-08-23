@@ -173,6 +173,7 @@ export interface errorsTypeEditClient {
   lastName: String;
   birthdate: String;
   image: String;
+  description: String;
   disabled: boolean | undefined;
 }
 
@@ -181,6 +182,7 @@ export interface ClientTypeUpdate {
   lastName: String;
   born_date: String;
   photo: string;
+  description: String;
 }
 
 export interface errorsTypeEditWorker {
@@ -188,6 +190,7 @@ export interface errorsTypeEditWorker {
   lastName: String;
   birthdate: String;
   image: String;
+  description: String;
   disabled: boolean | undefined;
 }
 
@@ -198,4 +201,5 @@ export interface WorkerTypeUpdate {
   photo: string;
   profession: String[];
   skills: String[];
+  description: String;
 }

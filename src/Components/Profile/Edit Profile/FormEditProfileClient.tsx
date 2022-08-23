@@ -18,6 +18,7 @@ function FormEditProfileClient({ props }: any) {
     lastName: userLogged.lastName,
     born_date: "",
     photo: "",
+    description: "",
   });
 
   const [errors, setErrors] = React.useState<errorsTypeEditClient>({
@@ -25,6 +26,7 @@ function FormEditProfileClient({ props }: any) {
     lastName: "",
     birthdate: "",
     image: "",
+    description: "",
     disabled: false,
   });
 
@@ -121,6 +123,15 @@ function FormEditProfileClient({ props }: any) {
             ? "El año debe ser mayor a 1940"
             : "";
         break;
+      case "description":
+        error.description = value.startsWith(" ") ?
+        "La descripción no puede iniciar con un espacio."
+        : client.description.length > 500 ?
+        "La cantidad máxima de caracteres es 500."
+        : value.endsWith(" ") ?
+        "La descripción no puede terminar en espacio."
+        :"";
+        break;  
       default:
         break;
     }
@@ -138,7 +149,7 @@ function FormEditProfileClient({ props }: any) {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    let { name, lastName, born_date, photo } = client;
+    let { name, lastName, born_date, photo, description } = client;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
 
@@ -147,6 +158,7 @@ function FormEditProfileClient({ props }: any) {
       lastName: lastName,
       born_date: born_date,
       photo: photo,
+      description: description,
     };
     const id = userLogged.id;
     putEditProfileClient(newClient, id).then(() => {
@@ -220,6 +232,19 @@ function FormEditProfileClient({ props }: any) {
               <div className="update_inputError">{errors.birthdate}</div>
               )}
           </div>
+          <div className="update_Div_inputAndError">
+              <input
+              className="update_description"
+              id="description_input"
+              type="text"
+              name="description"
+              onChange={(e)=> handleChange(e)}
+              />
+              <span>Descripción</span>
+              {!errors.description ? null : (
+                <div className="update_inputError">{errors.description}</div>
+              )}
+            </div>
           <div className="update_Div_inputFile">
             <input
               className="update_inpuntImg"
