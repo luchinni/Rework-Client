@@ -32,7 +32,6 @@ const Carrusel = () => {
 
         
     }, [])
-    console.log("offers", offersRating)
     
   return (
         <>
