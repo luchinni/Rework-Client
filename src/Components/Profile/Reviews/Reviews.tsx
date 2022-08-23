@@ -28,13 +28,11 @@ function Reviews({ user }: any) {
             })
           ) : userById.isWorker === false ? (
             <p>
-              No cuentas con reviews. Recibirás la primera cuando finalice el
-              trabajo de una oferta que hayas publicado!
+              No cuentas con reviews. Recibirás la primera cuando finalice el trabajo de una oferta que hayas publicado!
             </p>
           ) : (
             <p>
-              No cuentas con reviews. Recibirás una cuando finalice el trabajo
-              de una propuesta que te hayan aceptado!
+              No cuentas con reviews. Recibirás una cuando finalice el trabajo de una propuesta que te hayan aceptado!
             </p>
           )}
         </div>
@@ -44,14 +42,3 @@ function Reviews({ user }: any) {
 }
 
 export default Reviews;
-
-{
-  /* <div className='Reviews_review'>
-            <h3>Excelente persona</h3>
-            <p>Muy responsable y comprometido con su trabajo, hizo todo tal cual acordamos.</p>
-          </div>
-          <div className='Reviews_review'>
-            <h3>Un capo</h3>
-            <p>Me hizo una página medio pelo en wix 👍</p>
-          </div> */
-}
