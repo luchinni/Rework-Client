@@ -85,7 +85,13 @@ const DetailOffer = () => {
   }
 
   let alreadyApply: boolean = false;
+
   const proposalAccepted = offerId?.proposals?.find((p:any) => p.state === 'accepted')
+  const contractAccepted = offerId?.proposals?.find((p:any) => p.state === 'contract accepted')
+  const contractStarted = offerId?.proposals?.find((p:any) => p.state === 'contract started')
+  const proposalFinalized = offerId?.proposals?.find((p:any) => p.state === 'finalized')
+
+  console.log("la ofer",proposalFinalized)
   const filtred: any = offerId.proposals?.filter(
     (p: any) => p.userWorker?.id === currentUser?.id && p.isActive === true
   );
@@ -187,7 +193,12 @@ const DetailOffer = () => {
             )}
             {currentUser?.id === offerId.userClientId &&
             offerId.isActive === true &&
-            proposalAccepted === undefined ? (
+            offerId.state === "active" &&
+            proposalAccepted === undefined &&
+            proposalFinalized === undefined &&
+            contractAccepted === undefined &&
+            contractStarted === undefined
+            ? (
               <button
                 className="Detail_buttonApply"
                 onClick={() => handleDelete(offerId.idOffer)}
@@ -202,8 +213,11 @@ const DetailOffer = () => {
               <FormReview offer={offerId} close={CloseModalReview} />
             </div>
           }
-          {offerId.isActive === true ?
-            <button onClick={OpenModalReview}>Trabajo finalizado</button>
+          { (currentUser?.isWorker === false && proposalFinalized !== undefined && offerId?.state === 'contract started' && offerId.userClient?.id === currentUser?.id)
+            ||
+            (currentUser?.isWorker === true && contractStarted !== undefined && offerId?.state === 'contract started' && contractStarted?.userWorkerId === currentUser?.id)
+           ? 
+            <button className="DetailP_buttonAccept" onClick={OpenModalReview}>Trabajo finalizado</button>
             :
             null
           }
