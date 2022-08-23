@@ -202,7 +202,7 @@ const DetailOffer = () => {
               <FormReview offer={offerId} close={CloseModalReview} />
             </div>
           }
-          {offerId.isActive !== true ?
+          {offerId.isActive === true ?
             <button onClick={OpenModalReview}>Trabajo finalizado</button>
             :
             null
