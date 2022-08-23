@@ -1,8 +1,13 @@
-import React from 'react'
-import './Information.css'
+import React from 'react';
+import './Information.css';
+import { useSelector } from "react-redux";
 
 function Information({props}:any) {
-  console.log(props)
+  const currentUser = useSelector(
+    (state: any) => state.workService.currentUser
+  );
+
+  console.log("information", props)
   return (
     <div className='Information_Component'>
       <div className='Invormation'>
@@ -16,11 +21,15 @@ function Information({props}:any) {
       : false }
         
         <div className="UserDescription">
-          <p>Diseñadora gráfica con tres años de experiencia en agencias de publicidad. 
+          {props.description ? <p>Descripción: {props.description}</p>
+          : props.id !== currentUser.id ? <p>Descripción: El usuario no ha cargado una descripción</p>
+          : currentUser.isWorker === true ? <p>Descripción: Carga una descripción para que los clientes puedan conocerte mejor</p>
+          : <p>Descripción: Carga una descripción para que los trabajadores puedan conocerte mejor</p>}
+          {/* <p>Diseñadora gráfica con tres años de experiencia en agencias de publicidad. 
           Especializada en ilustración digital en 2D para redes sociales. 
           Coordinadora de la campaña de diseño para la marca PediaFun, la cual elevó los índices de engagement en Facebook e Instagram en un 25%. 
           En busca de utilizar mis conocimientos de diseño digital y social media para alcanzar los objetivos del área de diseño de Andares Corp.
-          </p>
+          </p> */}
         </div>
         
         {/* <ul className='Information_ul'>
