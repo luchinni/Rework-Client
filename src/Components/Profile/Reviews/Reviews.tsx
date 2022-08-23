@@ -2,11 +2,14 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserByIdOther } from "../../../Redux/Reducer/reducer";
 import "./Reviews.css";
+import { ratingStars } from "../../WorkerHome/CardWorker/CardWorker";
+import { useNavigate } from 'react-router-dom';
 
 function Reviews({ user }: any) {
   const userById = useSelector((state: any) => state.workService.userById);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUserByIdOther(user));
@@ -20,8 +23,8 @@ function Reviews({ user }: any) {
           {userById.reviews?.length > 0 ? (
             userById.reviews?.map((e: any) => {
               return (
-                <div className="Reviews_review">
-                  <h3>Valoración: {e.valoration}</h3>
+                <div className="Reviews_review" onClick={()=>navigate(`/detailOffer/${e.offerIdOffer}`)}>
+                  <h3>Valoración: <span className='span_rating' >{ratingStars(e.valoration)}</span></h3>
                   <p>{e.review_description}</p>
                 </div>
               );

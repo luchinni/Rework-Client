@@ -8,6 +8,60 @@ import report from '../../../images/icon_report.svg';
 import {Link} from 'react-router-dom';
 import './CardWorker.css';
 
+export const ratingStars = (r:number) => {
+    switch (true) {
+        case r === 0:
+            return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r > 0 && r < 0.5:
+            return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r >= 0.5 && r < 1:
+            return [<ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r === 1:
+            return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r > 1 && r < 1.5:
+            return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r >= 1.5 && r < 2:
+            return [<ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r === 2:
+            return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r > 2 && r < 2.5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r >= 2.5 && r < 3:
+            return [<ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r === 3:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r > 3 && r < 3.5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r >= 3.5 && r < 4:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>]
+            
+        case r === 4:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
+            
+        case r > 4 && r < 4.5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
+            
+        case r >= 4.5 && r < 5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />]
+            
+        case r ===5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />]
+            
+        default:
+            break;
+    }
+}
 
 const CardWorker = ({props}:any) => {
     const [open, setOpen] = useState(false)
@@ -15,62 +69,6 @@ const CardWorker = ({props}:any) => {
     function handleClick() {
       setOpen(!open);
     }
-
-    const ratingStars = (r:number) => {
-        switch (true) {
-            case r === 0:
-                return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 0 && r < 0.5:
-                return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 0.5 && r < 1:
-                return [<ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r === 1:
-                return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 1 && r < 1.5:
-                return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 1.5 && r < 2:
-                return [<ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r === 2:
-                return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 2 && r < 2.5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 2.5 && r < 3:
-                return [<ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r === 3:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 3 && r < 3.5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 3.5 && r < 4:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>]
-                
-            case r === 4:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
-                
-            case r > 4 && r < 4.5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
-                
-            case r >= 4.5 && r < 5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />]
-                
-            case r ===5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />]
-                
-            default:
-                break;
-        }
-    }
-console.log(props)
 
   return (
     <div className='CardWorker_component'>

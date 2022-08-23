@@ -24,7 +24,7 @@ const HistorialCard = ({props}:any) => {
       if (state === "released payment") return "pago liberado";
       if (state === "accepted") return "aceptada";
     };
-    console.log("props", props)
+
     useEffect(() => {
       if(!props?.hasOwnProperty("profession")){
         getOfferForHistory(props.offerIdOffer)
