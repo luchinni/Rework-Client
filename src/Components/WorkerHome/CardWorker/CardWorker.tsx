@@ -10,14 +10,8 @@ import './CardWorker.css';
 
 export const ratingStars = (r:number) => {
     switch (true) {
-        case r === 0:
-            return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-            
-        case r > 0 && r < 0.5:
-            return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-            
-        case r >= 0.5 && r < 1:
-            return [<ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+        case r < 1:
+            return <span>Sin valoraciones</span>
             
         case r === 1:
             return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]

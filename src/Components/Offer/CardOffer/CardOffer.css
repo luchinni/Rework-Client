@@ -51,6 +51,9 @@
     font-size: 18px;
     color: #264653;
 }
+.Card_userRating > svg {
+    color: #E9C46A;
+}
 .div_userData {
     display: flex;
     flex-direction: column;
