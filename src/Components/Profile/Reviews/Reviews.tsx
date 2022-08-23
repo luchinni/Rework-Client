@@ -19,17 +19,19 @@ function Reviews({ user }: any) {
   return (
     <div className="Reviews_Component">
       <div className="Reviews_divContent">
-        <h2>Reviews</h2>
+        <h2 className="Reviews_title">Reviews</h2>
         <div className="Reviews_divReviews">
           {userById.reviews?.length > 0 ? (
             userById.reviews?.map((e: any) => {
               return (
                 <div className="Reviews_review">
-                  <h3>Valoración: <span className='span_rating' >{ratingStars(e.valoration)}</span></h3>
-                  <p>{e.review_description}</p>
+                  <div className="Reviews_textCont">
+                    <h3>Valoración: <span className='span_rating' >{ratingStars(e.valoration)}</span></h3>
+                    <p>{e.review_description}</p>
+                  </div>
                   {userById?.id === currentUser?.id ? 
-                  <div>
-                  <button onClick={()=>navigate(`/detailOffer/${e.offerIdOffer}`)}>ir</button>
+                  <div className="Reviews_buttonCont">
+                    <button className="Reviews_button" onClick={()=>navigate(`/detailOffer/${e.offerIdOffer}`)}>Ver trabajo</button>
                   </div> :
                   false}                  
                 </div>

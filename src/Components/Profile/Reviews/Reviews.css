@@ -1,15 +1,46 @@
 .Reviews_review{
-    border: 1px solid #6F6F6F;
+    border: 1px solid #efefef;
+    background-color: #efefef;
     border-radius: 10px;
     margin-bottom: 10px;
     max-width: 971px;
     width: 970px;
     padding: 10px;
-}
-.Reviews_review:hover{
-    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 .span_rating > svg {
     color: #E9C46A;
+}
+
+.Reviews_button{
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 6px 11px;
+  background-color: #f4a261;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.Reviews_title{
+    font-weight: 600;
+    font-size: 25px;
+    color: #264653;
+}
+
+.Reviews_textCont > p{
+    color: #264653;
+    font-weight: 500;
+    max-width: 750px;
+}
+
+.Reviews_textCont > h3{
+    color: #e76f51
 }
 
