@@ -130,13 +130,13 @@ const DetailOffer = () => {
               to={`/profile/${offerId.userClientId}`}
               className="Detail_NameUserPost"
             >
-              {offerId.userClient?.name}
+              {offerId.userClient?.name} {offerId.userClient?.lastName}
             </Link>
             <p className="Detail_UserRating">
-              Rating {offerId.userClient?.rating}
+              Rating:  <span>{offerId.userClient?.rating}</span>
             </p>
             <p className="Detail_offersCount">
-              Publicaciones: {offerId?.offersCount}
+              Publicaciones: <span>{offerId?.offersCount}</span>
             </p>
             <div>
               <div className="Detail_urlCopy">
@@ -163,27 +163,36 @@ const DetailOffer = () => {
 
         <div className="Detail_infoProposal">
           <div className="Detail_offer">
-            <div className="Detail_titleTime">
+            <div className="Detail_header">
               <h2 className="Detail_title">{offerId?.title}</h2>
-              <p className="Detail_time">{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time}`}</p>
+              <div className="Detail_timeRemu">
+                <p className="Detail_time">{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time}`}</p>
+                <p className="Detail_remuneration">{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
+              </div>
             </div>
-            <p className="Detail_remuneration">{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
-            <p className="Detail_description">{offerId?.offer_description}</p>
-            <div className="Detail_divImages">
+            <div className="Detail_tagImage">
+              <div className="Detail_tags">
+              {offerId.profession?.map((prof: any) => <p className="Detail_tag">{prof}</p> )}
+              </div>
+              <div className="Detail_divImages">
               <img
                 className="Detail_images"
                 src={offerId?.photo}
                 alt="fotito offer"
                 loading="lazy"
               />
+              </div>
             </div>
-            <p className="Detail_tags">{offerId.profession?.join(", ")}</p>
+            <div className="Detail_descriptionCont">
+              <p className="Detail_description">{offerId?.offer_description}</p>
+            </div>
+
             {alreadyApply === false && currentUser.isWorker === true ? (
               <button className="Detail_buttonApply" onClick={handleOpen}>
                 Aplicar
               </button>
             ) : (
-              <br />
+              null
             )}
             {currentUser?.id === offerId.userClientId &&
             offerId.isActive === true ? (
@@ -194,14 +203,19 @@ const DetailOffer = () => {
                 Eliminar
               </button>
             ) : (
-              <br />
+              null
             )}
-            {openReview && 
-        <div className="div_formReview">
-          <FormReview offer={offerId} close={CloseModalReview} />
-        </div>
-      }
+          {openReview && 
+            <div className="div_formReview">
+              <FormReview offer={offerId} close={CloseModalReview} />
+            </div>
+          }
+          {offerId.isActive !== true ?
             <button onClick={OpenModalReview}>Trabajo finalizado</button>
+            :
+            null
+          }
+
           </div>
         </div>
       </div>
@@ -227,11 +241,16 @@ const DetailOffer = () => {
         currentUser.isPremium === false && currentUser.isWorker === true ? (
           <div className="Detail_divCardPropuestas">
             <OwnProposal offer={offerId} idWorker={currentUser.id} />
-            <div>
-              <button className="Detail_premiumButton">
-                Quieres ver las propuestas de tus competidores? Si eres
-                freelancer, conviertete en premium!
-              </button>
+            <div className="Detail_premiumCont">
+              <div className="Detail_premiumBack">
+              </div>
+              <div className="Detail_premium">
+                <span>¿Quieres ver las propuestas de otros freelancers?</span>
+                <p>¡conviértete en Premium!</p> 
+                <button className="Detail_premiumButton">
+                  Hazte Premium
+                </button>
+              </div>
             </div>
           </div>
         ) : (

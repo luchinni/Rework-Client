@@ -78,38 +78,40 @@ const CardProposal = ({ props, offer }: any) => {
           />
         </div>
       )}
-
+      <div className="DetailP_CardHeader">
       <p className="DetailP_UserName">{props.userWorker?.name}</p>
-      <p className="DetailP_remuneration">{`Presupuesto ARS: ${props?.remuneration}`}</p>
+      <p className="DetailP_remuneration">{`Presupuesto ARS $${props?.remuneration}`}</p>
+      </div>
       <p className="DetailP_propuestaUser">{props?.proposal_description}</p>
-      <br></br>
-      <br></br>
-      <br></br>
-      <p className="DetailP_timeUser">{`Tiempo estimado de entrega: ${props?.worked_time}`}</p>
-      {offer.userClientId === currentUser.id && props.state === "posted"? (
-        <button name="button" className="DetailP_button" onClick={handleClick}>
-          Aceptar
-        </button>
-      ) : null}
-      {props.userWorker.id === currentUser.id &&
-      currentUser.isPremium === true ? (
-        <button
+      <div>
+      <p className="DetailP_timeUser">{`Tiempo estimado de entrega: `}<span className="DetailP_timeData">{props?.worked_time}</span> </p>
+      <div className="DetailP_divButton">
+        {offer.userClientId === currentUser.id && props.state === "posted"? (
+          <button name="button" className="DetailP_buttonAccept" onClick={handleClick}>
+            Aceptar
+          </button>
+        ) : null}
+        {props.userWorker.id === currentUser.id &&
+        currentUser.isPremium === true ? (
+          <button
           name="button"
-          className="DetailP_button"
+          className="DetailP_buttonEdit"
           onClick={handleEdition}
-        >
-          Editar
-        </button>
-      ) : null}
-      {props.userWorker.id === currentUser.id ? (
-        <button
+          >
+            Editar
+          </button>
+        ) : null}
+        {props.userWorker.id === currentUser.id ? (
+          <button
           name="button"
-          className="DetailP_button"
+          className="DetailP_buttonCancel"
           onClick={() => handleCancelation(props?.idProposal)}
-        >
-          Cancelar
-        </button>
-      ) : null}
+          >
+            Cancelar
+          </button>
+        ) : null}
+        </div>
+      </div>
     </div>
   );
 };
