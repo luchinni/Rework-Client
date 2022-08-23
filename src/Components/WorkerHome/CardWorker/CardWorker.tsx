@@ -104,7 +104,14 @@ console.log(props)
             <div>
                 <div>
                     <h4 className='Card_userProfessions'>{props.profession?.join(", ")}</h4>
-                    <h4 className='Card_userHabilities'>Habilidades: <br/><span>{props.skills?.join(", ")}</span></h4>
+                    <div>
+                        <div className='Card_userHabilities'>Habilidades: <br/>
+                    {
+                        props.skills.length > 4 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}, ...</span> 
+                        : <span>{props.skills?.join(", ")}</span>
+                    }
+                    </div>
+                    </div>
                 </div>
                 {/* <p className="description">Descripción</p> */}
             </div>
