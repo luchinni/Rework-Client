@@ -7,7 +7,8 @@ import report from '../../../images/icon_report.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import decode from "jwt-decode"
 import { remFavorite, getFavorites, getFavoritestoDB, remFavoritestoDB, getUserById } from '../../../Redux/Reducer/reducer';
-import {BsBookmarksFill, BsBookmarks} from "react-icons/bs"
+import {BsBookmarksFill, BsBookmarks} from "react-icons/bs";
+import { ratingStars } from "../../WorkerHome/CardWorker/CardWorker";
 
 const CardOffer = ({props}:any) => {
   
@@ -83,7 +84,7 @@ const CardOffer = ({props}:any) => {
           </div>
           <div className='div_userData'>
             <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
-            <span className='Card_userRating'>Rating: {props.userClient?.rating}</span>
+            <span className='Card_userRating'>Rating: {props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
           </div>
         </div>
         <div className='div_cardButton'>
