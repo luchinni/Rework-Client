@@ -11,11 +11,11 @@ import Swal from "sweetalert2";
 import Header from "../../Header/Header";
 
 const CardProposal = ({ props, offer }: any) => {
-  //console.log("la offer que llegan a card: ", offer);
-  //console.log("las props que llegan a card: ", props);
+  console.log("la offer que llegan a card: ", offer);
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
+  const proposalAccepted = offer.proposals.find((p:any) => p.state === 'accepted')
 
   const handleClick = () => {
         let state = "accepted";
@@ -24,12 +24,27 @@ const CardProposal = ({ props, offer }: any) => {
           state,
           id,
         };
-        acceptProposal(proposalState);
-        Swal.fire(
-          '¡Felicitaciones!',
-          '¡Aceptaste la propuesta!',
-          'success'
-        )
+        Swal.fire({
+          title: '¿Estas seguro que deseas aceptar esta propuesta?',
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "Aceptar",
+          cancelButtonText: "Cancelar",
+          icon: "question"
+        }).then((response) => {
+          console.log(response)
+          if (response.isConfirmed) {
+          acceptProposal(proposalState);
+            Swal.fire({
+              title: '¡Felicitaciones!',
+              showDenyButton: false,
+              showCancelButton: false,
+              confirmButtonText: "¡Genial!",
+              html: "Aceptaste la propuesta. <p>El trabajador sera notificado.</p> <p>Te enviaremos un mail si el confirma el trabajo.</p>",
+              icon: "success"
+            })
+          }
+        }) 
     };
   
 
@@ -68,6 +83,8 @@ const CardProposal = ({ props, offer }: any) => {
     });
   };
 
+  console.log(props)
+
   return (
     <div className="Detail_Proposal">
       {edition && (
@@ -86,13 +103,14 @@ const CardProposal = ({ props, offer }: any) => {
       <div>
       <p className="DetailP_timeUser">{`Tiempo estimado de entrega: `}<span className="DetailP_timeData">{props?.worked_time}</span> </p>
       <div className="DetailP_divButton">
-        {offer.userClientId === currentUser.id && props.state === "posted"? (
+        {offer.userClientId === currentUser.id && props.state === "posted" && proposalAccepted === undefined ? (
           <button name="button" className="DetailP_buttonAccept" onClick={handleClick}>
             Aceptar
           </button>
         ) : null}
         {props.userWorker.id === currentUser.id &&
-        currentUser.isPremium === true ? (
+        currentUser.isPremium === true &&
+        props.state === "posted" ? (
           <button
           name="button"
           className="DetailP_buttonEdit"
@@ -101,7 +119,8 @@ const CardProposal = ({ props, offer }: any) => {
             Editar
           </button>
         ) : null}
-        {props.userWorker.id === currentUser.id ? (
+        {props.userWorker.id === currentUser.id &&
+        props.state === "posted" ? (
           <button
           name="button"
           className="DetailP_buttonCancel"

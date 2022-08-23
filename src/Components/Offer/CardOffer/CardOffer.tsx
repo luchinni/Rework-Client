@@ -19,9 +19,6 @@ const CardOffer = ({props}:any) => {
   const token:any = localStorage.getItem("token")
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
-  
-
-  //console.log(userLogged)
 
   function handleClick() {
     setOpen(!open);
@@ -75,6 +72,7 @@ const CardOffer = ({props}:any) => {
         return <BsBookmarks className='guardar_icon'/>
     }
 }
+
 
   return (
     <div className='CardOffer_component'>
