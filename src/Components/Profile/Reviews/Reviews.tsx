@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Reviews({ user }: any) {
   const userById = useSelector((state: any) => state.workService.userById);
+  const currentUser = useSelector ((state:any) => state.workService.currentUser);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,9 +24,14 @@ function Reviews({ user }: any) {
           {userById.reviews?.length > 0 ? (
             userById.reviews?.map((e: any) => {
               return (
-                <div className="Reviews_review" onClick={()=>navigate(`/detailOffer/${e.offerIdOffer}`)}>
+                <div className="Reviews_review">
                   <h3>Valoración: <span className='span_rating' >{ratingStars(e.valoration)}</span></h3>
                   <p>{e.review_description}</p>
+                  {userById?.id === currentUser?.id ? 
+                  <div>
+                  <button onClick={()=>navigate(`/detailOffer/${e.offerIdOffer}`)}>ir</button>
+                  </div> :
+                  false}                  
                 </div>
               );
             })
