@@ -10,6 +10,7 @@ const { SECRET_KEY } = process.env;
 const initialState = {
   allUsers: [],
   allClients: [],
+  allOffersAdmin: [],
   infoSearched: [],
   search: "",
   userById: {},
@@ -44,8 +45,14 @@ export const workServiceSlice = createSlice({
     setAllUsers: function (state: any, action: any) {
       state.allUsers = action.payload;
     },
+    setAllUsersAdmin: function (state: any, action:any) {
+      state.allUsersAdmin = action.payload;
+    },
     setAllClients: function (state: any, action: any) {
       state.allClients = action.payload;
+    },
+    setAllOffersAdmin: function (state: any, action: any) {
+      state.allOffersAdmin = action.payload;
     },
     setPaymentInfo: function (state: any, action: any) {
       state.paymentInfo = action.payload;
@@ -103,7 +110,6 @@ export const workServiceSlice = createSlice({
       state.search = action.payload;
     },
     setCurrentUser: function (state: any, action: any) {
-      console.log("lo que llega", action.payload)
       state.currentUser = {
         id: action.payload.id,
         isWorker: action.payload.isWorker,
@@ -276,13 +282,11 @@ export const workServiceSlice = createSlice({
       };
     },
     setGoogleData: function (state: any, action: any){
-      console.log(action.payload)
       state.googleData = {
         name: action.payload.name,
         photo: action.payload.photo,
         email: action.payload.user_mail
       }
-      console.log("data actualizada", state.googleData)
     }
   },
 });
@@ -290,6 +294,7 @@ export const workServiceSlice = createSlice({
 export const {
   setAllUsers,
   setAllClients,
+  setAllOffersAdmin,
   setUserById,
   setFavorite,
   removeFavorite,
@@ -318,13 +323,13 @@ export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getAllUsers = () => async (dispatch: Dispatch<any>) => {
+export const getAllUsers = (isActive: any) => async (dispatch: Dispatch<any>) => {
   try {
+    console.log("isActive:", isActive)
     const users = await axios({
       method: "GET",
-      url:"/admin/users"
+      url:`/admin/users?isActive=${isActive}`
     });
-    console.log("action:",users.data)
     dispatch(setAllUsers(users.data))
   } catch(error) {
     return error;
@@ -342,6 +347,15 @@ export const getClients = () => async (dispatch: Dispatch<any>) => {
     Swal.fire("Error al requerir los clientes","","warning");
   };
 };
+
+export const getAllOffersAdmin = (isActive: string) => async (dispatch: Dispatch<any>) => {
+  try {
+    const offersAdmin = await axios.get(`/admin/offers?isActive=${isActive}`);
+    dispatch(setAllOffersAdmin(offersAdmin.data));
+  } catch (error) {
+    return error
+  }
+}
 
 export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
@@ -422,7 +436,6 @@ export function postLogin(user: type.userLogin) {
   return async (dispatch: any) => {
     try {
       // generamos el token conectando con el back
-      console.log(user);
       const token: any = await axios({
         method: "post",
         url: "/login/",
@@ -524,7 +537,6 @@ export const postNewPortfolio = async (
 
 export async function newReviewPost(newReview: type.reviewFormType, type:string) {
   //está incompleto hasta tener la ruta del back
-  //console.log(newReview)
   if(type==="worker"){
     try {
       return await axios({
@@ -566,7 +578,6 @@ export function checkSession() {
       let data = {};
       if (token !== "undefined")
         data = jwtDecode(token);
-      //console.log("reducer", data)
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
@@ -664,7 +675,6 @@ export function favoritesToDB(value: any, idUser: string) {
     let worker: any = await axios.get(`/worker/${idUser}`);
     let client: any = await axios.get(`/client/${idUser}`);
     if (worker.data !== null) {
-      //console.log(worker.data.favorites);
       if (worker.data.favorites === undefined) {
         worker.data.favorites = [...value];
       } else {
@@ -793,7 +803,6 @@ export const verifyToken =
         });
         return localStorage.setItem("token", JSON.stringify(renewedToken.data));
       } else if (response.data && response.data === "valid") {
-        console.log("valid");
         return "Sesion válida";
       } else {
         return "No hay sesion";
@@ -824,7 +833,6 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
 
   export const acceptProposal = async (proposalState:any) => {
     try{
-      console.log("entre: ", proposalState)
       await axios({
         method:"PUT",
         url: `/proposal/state`,
@@ -861,7 +869,6 @@ export const getworkersMoreRating = async () => {
 }
 
 export const getPaymentLink = (newPayment:any) => async (dispatch: Dispatch<any>) => {
-console.log(newPayment)
 const infoMP:any = await axios({
   method: "POST",
   url: "/payments/payment",
@@ -888,7 +895,6 @@ export const stateCancelledOfferPost = async (id: string) => {
 
 export const isActiveFalseOfferPost = async (id: string ) => {
   try {
-    console.log("reducer id:", id)
     await axios({
       method: "PUT",
       url: "/offer/isActive",
@@ -962,10 +968,7 @@ export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
       data: cleanUser
     })
 
-    //console.log("response",response)
     if (response.data === 'usuario no encontrado'){
-      console.log("entre al if", response.data)
-      console.log("clean user", cleanUser)
       // sino guarda la data de google en el estado global y redirije a ruta para preguntar primer inicio: client o worker?
       localStorage.setItem("googleToken", JSON.stringify(cleanUser))
       window.open( /* "https://rework-xi.vercel.app/google/" || */ "/google/", "_self")

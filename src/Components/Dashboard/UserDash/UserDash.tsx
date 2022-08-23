@@ -7,14 +7,9 @@ function UserDash() {
 
 	const dispatch = useDispatch()
 
-  useEffect( () => {
-    dispatch(getAllUsers())
-  }, [])
-
 	const allUsers = useSelector((state:any) => state.workService.allUsers)
 
-
-
+  console.log("users :", allUsers)
 
 	const [modalDelete, setModalDelete] = useState(false)
 	const [dataUser, setDataUser] = useState<any>({})
@@ -26,8 +21,27 @@ function UserDash() {
 
   console.log(allUsers)
 
+  const [userAdmin, setUserAdmin] = useState("") 
+
+   useEffect( () => {
+    dispatch(getAllUsers(userAdmin))
+  }, [userAdmin])
+
+  function handleOnchange(e: any) {
+    const value = e.target.value;
+    setUserAdmin(value)
+  }
+
   return (
     <div className='UserDash_Component'>
+      <div>
+        <select onChange={handleOnchange}>
+          <option selected={true} hidden>Monstrar usuarios</option>
+          <option value="true">Activos</option>
+          <option value="false">Baneados</option>
+          <option value="">Todos</option>
+        </select>
+      </div>
         <div className='UserDash_divContent'>
 
 					{
@@ -52,15 +66,14 @@ function UserDash() {
                 <th>Usuario</th>
                 <th>Id</th>
                 <th>Tipo</th>
-                <th>Plan</th>
-                <th>Activo</th>
+                <th>Estado</th>
               </tr>
             </thead>
             <tbody>
               {
                 allUsers?.map((user: any, i:any) => {
                   return (
-                  <tr>
+                  <tr key={i}>
                     <td>
                       <div>
                         <span>{`${user.name} ${user.lastName}`}</span>
@@ -76,12 +89,6 @@ function UserDash() {
                     <td>
                       <div>
                         <span>{user.isAdmin ? "Admin" : user.isWorker ? "Worker" : "Client" }</span>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div>
-                        <span>{user.premium ? "Premium" : "Regular"}</span>
                       </div>
                     </td>
 

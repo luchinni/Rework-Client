@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import './Dashboard.css'
 import Header from '../Header/Header'
 import OfferDash from './OfferDash/OfferDash'
-import ProposalDash from './ProposalDash/ProposalDash'
 import UserDash from './UserDash/UserDash'
 
 function Dashboard() {
