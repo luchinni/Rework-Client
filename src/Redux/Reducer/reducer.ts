@@ -452,7 +452,7 @@ export function postLogin(user: type.userLogin) {
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
-      return e;
+      Swal.fire("Email o contraseña incorrectos", "Recuerda activar tu cuenta si es la primera vez que inicias sesion","warning")
     }
   };
 }
