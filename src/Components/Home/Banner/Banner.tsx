@@ -9,7 +9,6 @@ function Banner() {
 
   const currentUser = useSelector((state:any) => state.workService.currentUser);
   const userLogged = useSelector((state: any) => state.workService.userLogged)
-  console.log(userLogged);
   return (
     <div className='Banner_component'>
       <div className='Banner_Carrusel'>
