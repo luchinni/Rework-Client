@@ -9,7 +9,6 @@ function Footer() {
     <footer className='Footer_component'>
       <div className='Footer_contentDiv'>
         <div className='Footer_top'>
-        <img className='logo_img' src={logo} alt="REwork" />
         </div>
 
         <div className='Footer_bottom'>
@@ -38,9 +37,7 @@ function Footer() {
             </div> */}
           </div>
           <div className='Footer_divLogoHenry'>
-            <a className='Footer_linkLogoHenry' href="https://www.soyhenry.com/" target="_blanck">
-              <img src={logoHenry} alt="henry" />
-            </a>
+        <img className='logo_img' src={logo} alt="REwork" />
           </div>
         </div>
 

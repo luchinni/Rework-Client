@@ -467,8 +467,8 @@ interface filter {
 export function searchWorker(input: string, filters: filter) {
   return async (dispatch: Dispatch<any>) => {
     try {
-      if (input === "")
-        return "";
+      /* if (input === "")
+        return ""; */
       const workers = await axios.get(
         `/worker/search?q=${input}&r=${filters.rating}&p=${filters.profession}`
       );
@@ -486,9 +486,11 @@ export function searchOffer(input: string, filters: filter) {
     try {
       let offers: any;
       if (filters.remuneration.max === 0 && filters.remuneration.min === 0) {
+        console.log("entre al 1")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&wdt=${filters.workDuration}`
         );
       } else {
+        console.log("entre al 2")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&max=${filters.remuneration.max}&min=${filters.remuneration.min}&wdt=${filters.workDuration}`
           );
       }
