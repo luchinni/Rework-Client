@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 import Header from "../../Header/Header";
 
 const CardProposal = ({ props, offer }: any) => {
-  console.log("la offer que llegan a card: ", offer);
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
@@ -32,7 +31,6 @@ const CardProposal = ({ props, offer }: any) => {
           cancelButtonText: "Cancelar",
           icon: "question"
         }).then((response) => {
-          console.log(response)
           if (response.isConfirmed) {
           acceptProposal(proposalState);
             Swal.fire({
@@ -82,8 +80,6 @@ const CardProposal = ({ props, offer }: any) => {
       }
     });
   };
-
-  console.log(props)
 
   return (
     <div className="Detail_Proposal">
