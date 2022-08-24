@@ -141,7 +141,7 @@ useOnClickOutside(userDiv, handleClickOutside);
           </div>
         </div>
         <div className='Card_more'>
-          <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver más</Link>
+          <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver oferta</Link>
         </div>
       </div>
     </div>

@@ -192,3 +192,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.Card_more{
+    margin-right: 30px;
+}
