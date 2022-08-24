@@ -13,7 +13,7 @@ import { ratingStars } from "../WorkerHome/CardWorker/CardWorker";
 const OtherProfile = () => {
 
     const user = useSelector((state:any) => state.workService.userById);
-console.log("info del user: ", user)
+    console.log("info del user: ", user)
     const dispatch = useDispatch();
     const params = useParams();
 

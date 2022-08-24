@@ -1,0 +1,33 @@
+.VerifyUser_Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px 0 40px 0;
+}
+
+.VerifyUser_title {
+    font-weight: 500;
+    font-size: 35px;
+    color: #273141;
+    margin: 10px 0 20px 0;
+}
+
+.VerifyUser_highlight {
+    font-weight: 500;
+    font-size: 35px;
+    color: #E76F51;
+    margin: 10px 0 2px 0;
+}
+
+.VerifyUser_Submit {
+    margin-bottom: 120px;
+    font-size: 17px;
+    background-color: #F4A261;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+} 
+
