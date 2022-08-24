@@ -69,6 +69,7 @@
 .Login_recuperarCon {
   font-size: 13px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .Login_divContinuaCon {
   position: relative;
@@ -97,6 +98,7 @@
   text-align: center;
   font-size: 14px;
   margin: 5px 0;
+  cursor: pointer;
 }
 .Login_divRecordarContra {
   display: flex;
