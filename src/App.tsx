@@ -50,8 +50,10 @@ function App() {
 
  */
 
+
 axios.defaults.baseURL = /*"http://localhost:3001/"  ||*/ process.env.REACT_APP_API; 
 //axios.defaults.baseURL = "http://localhost:3001/"  /*|| process.env.REACT_APP_API*/; 
+
 
 
 return (
