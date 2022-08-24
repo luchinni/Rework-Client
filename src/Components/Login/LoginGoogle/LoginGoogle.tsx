@@ -10,12 +10,12 @@ const LoginGoogle = () => {
     
     const Navigate = useNavigate()
     const handleSubmitClient = () => {
-        /* window.open("https://re-work-ten.vercel.app//google/client", "_self") */
-        Navigate("https://re-work-ten.vercel.app/google/client")
+        window.open("https://re-work-ten.vercel.app/google/client", "_self") 
+        /*Navigate("https://re-work-ten.vercel.app/google/client")*/
     }
     const handleSubmitWorker = () => {
-        /* window.open("https://re-work-ten.vercel.app//google/worker", "_self") */
-        Navigate("https://re-work-ten.vercel.app/google/worker")
+        window.open("https://re-work-ten.vercel.app/google/worker", "_self")
+        /*Navigate("https://re-work-ten.vercel.app/google/worker")*/
     } 
     
     
