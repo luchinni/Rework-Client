@@ -74,8 +74,8 @@ console.log(offerDatos)
             <div>
               <div>
                 <span className='OfferDash_divModalTitle'>Username: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.name}</span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.lastName}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Name}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.LastName}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>DNI: </span>
@@ -83,15 +83,15 @@ console.log(offerDatos)
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Email: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.email}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Email}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Teléfono: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.phone_Number}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Phone_Number}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Tarjeta: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.target_type}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Target_type}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>CVU: </span>
@@ -107,6 +107,7 @@ console.log(offerDatos)
         </div>
       </div>
       }
+      
 
       <table className='OfferDash_divMap'>
         <thead>
