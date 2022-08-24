@@ -164,13 +164,19 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
           "-" +
           date.getDate();
         errors.birthdate =
-          dateNow < fechas
-            ? "La fecha ingresada es inválida."
-            : year[0] > date.getFullYear()
-            ? "La fecha ingresada es inválida."
-            : year[0] < 1940
-            ? "El año debe ser mayor a 1940"
-            : "";
+        dateNow < fechas
+          ? "La fecha ingresada es inválida."
+          : year[0] > date.getFullYear()
+          ? "La fecha ingresada es inválida."
+          : year[0] < 1940
+          ? "El año debe ser mayor a 1940"
+          : parseInt(year[0]) + 18> date.getFullYear() 
+          ? "Debes ser mayor de edad"
+          : parseInt(year[0]) + 18 === date.getFullYear() && parseInt(year[1]) > (date.getMonth() + 1)
+          ? "Debes ser mayor de edad"
+          : parseInt(year[0]) + 18=== date.getFullYear() && parseInt(year[1]) === (date.getMonth() + 1) && parseInt(year[2]) > date.getDate()
+          ? "Debes ser mayor de edad"
+          : "";
         break;
     case "description":
       errors.description = value.startsWith(" ") ?
@@ -355,7 +361,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
                     placeholder="Fecha de Nacimiento"
                     onChange={(e) => this.handleChange(e)}
                   />
-                  {!this.state.errors.password2 ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.password2}</div>                  }
+                  {!this.state.errors.birthdate ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.birthdate}</div>                  }
                 </div>
                 <div className='Worker_Input'>
                   <input className="CR_inpunt" type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
