@@ -259,12 +259,13 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
     } else {
       this.setState({ ...this.state, skills: [...this.state.skills, select] });
     }
+    console.log(this.state.profession)
   }
 
   handleDelete(e: any) {
     let del = e.target.innerText;
     const name = e.target.id;
-    if (name === "profession") {
+    if (name === "professions") {
       let borrado = this.state.profession.filter((f) => f !== del.trim());
       this.setState({ ...this.state, profession: borrado });
     } else {
