@@ -195,7 +195,7 @@ const FormEditProposal = (props: any) => {
                 </div>
                 <div className="DetailModal_divInputs">
                   <label className="DetailModal_label">
-                    Tiempo estiamdo del trabajo
+                    Tiempo estimado del trabajo
                   </label>
                   <input
                     className="DetailModal_input"
