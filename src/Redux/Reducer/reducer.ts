@@ -193,12 +193,13 @@ export const workServiceSlice = createSlice({
       }
     },
     sortAllOffers15: function (state: any) {
+      console.log("entre al sort")
       if (state.search === "") {
         state.offers = [...state.offers].sort((prev: any, next: any) => {
-          if (prev.userClient.rating > next.userClient.rating) {
+          if (prev.userClient?.rating > next.userClient?.rating) {
             return 1;
           }
-          if (prev.userClient.rating < next.userClient.rating) {
+          if (prev.userClient?.rating < next.userClient?.rating) {
             return -1;
           }
           return 0;
@@ -218,10 +219,10 @@ export const workServiceSlice = createSlice({
       } else if (state.search === "offer") {
         state.infoSearched = [...state.infoSearched].sort(
           (prev: any, next: any) => {
-            if (prev.userClient.rating > next.userClient.rating) {
+            if (prev.userClient?.rating > next.userClient?.rating) {
               return 1;
             }
-            if (prev.userClient.rating < next.userClient.rating) {
+            if (prev.userClient?.rating < next.userClient?.rating) {
               return -1;
             }
             return 0;
@@ -232,10 +233,10 @@ export const workServiceSlice = createSlice({
     sortAllOffers51: function (state: any) {
       if (state.search === "") {
         state.offers = [...state.offers].sort((prev: any, next: any) => {
-          if (prev.userClient.rating > next.userClient.rating) {
+          if (prev.userClient?.rating > next.userClient?.rating) {
             return -1;
           }
-          if (prev.userClient.rating < next.userClient.rating) {
+          if (prev.userClient?.rating < next.userClient?.rating) {
             return 1;
           }
           return 0;
@@ -255,10 +256,10 @@ export const workServiceSlice = createSlice({
       } else if (state.search === "offer") {
         state.infoSearched = [...state.infoSearched].sort(
           (prev: any, next: any) => {
-            if (prev.userClient.rating > next.userClient.rating) {
+            if (prev.userClient?.rating > next.userClient?.rating) {
               return -1;
             }
-            if (prev.userClient.rating < next.userClient.rating) {
+            if (prev.userClient?.rating < next.userClient?.rating) {
               return 1;
             }
             return 0;

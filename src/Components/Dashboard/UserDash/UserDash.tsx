@@ -36,9 +36,9 @@ function UserDash() {
     <div className='UserDash_Component'>
       <div>
         <select onChange={handleOnchange}>
-          <option selected={true} hidden>Monstrar usuarios</option>
+          <option selected={true} hidden>Mostrar usuarios</option>
           <option value="true">Activos</option>
-          <option value="false">Baneados</option>
+          <option value="false">Suspendidos</option>
           <option value="">Todos</option>
         </select>
       </div>
@@ -48,7 +48,7 @@ function UserDash() {
 						modalDelete &&
 						<div className='OfferDash_Modal'>
 							<div className='OfferDash_modalDeleteText'>
-								<p className='OfferDash_divModalTitle'>Estas seguro que deseas borrar al usuario:</p>
+								<p className='OfferDash_divModalTitle'>¿Deseas suspender a este usuario?</p>
                 <hr />
                 <p className='OfferDash_divModalTitle'>Nombre: <span className='OfferDash_MOdalTextInfo'>{`${dataUser.name} ${dataUser.lastName}`}</span></p>
                 <p className='OfferDash_divModalTitle'>Id: <span className='OfferDash_MOdalTextInfo'>{dataUser.id}</span></p>
@@ -88,18 +88,18 @@ function UserDash() {
 
                     <td>
                       <div>
-                        <span>{user.isAdmin ? "Admin" : user.isWorker ? "Worker" : "Client" }</span>
+                        <span>{user.isAdmin ? "Admin" : user.isWorker ? "Freelancer" : "Cliente" }</span>
                       </div>
                     </td>
 
                     <td>
                       <div>
-                        <span>{user.isActive ? "True" : "False"}</span>
+                        <span>{user.isActive ? "Activo" : "No activo"}</span>
                       </div>
                     </td>
 
                     <td className='OfferDash_tdButtons'>
-											<button className='OfferDash_deleteButton' onClick={() => handleModalDelete(user)}>Eliminar</button>
+											<button className='OfferDash_deleteButton' onClick={() => handleModalDelete(user)}>Suspender</button>
 										</td>
 
                   </tr>
