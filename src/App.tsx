@@ -50,8 +50,8 @@ function App() {
 
  */
 
-axios.defaults.baseURL = process.env.REACT_APP_API /* || "http://localhost:3001/"; */
-
+axios.defaults.baseURL = /*"http://localhost:3001/"  ||*/ process.env.REACT_APP_API; 
+//axios.defaults.baseURL = "http://localhost:3001/"  /*|| process.env.REACT_APP_API*/; 
 
 
 return (
@@ -85,8 +85,7 @@ return (
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
         <Route path='google/client' element={<Navigate to='/home' replace/>} />
-        <Route path='changePassword' element={<ChangePassword/>}/>
-        
+        <Route path='changePassword' element={<ChangePassword/>}/>  
       </>
         :
       <>
@@ -114,6 +113,7 @@ return (
         <Route path='profile/:id' element={<Navigate to='/register' replace/>} />
         <Route path='post' element={<Navigate to='/register' replace/>} />
         <Route path='detailOffer/:id' element={<Navigate to='/register' replace/>} />
+        <Route path='changePassword' element={<Navigate to='/register' replace/>}/>  
       </>}
       {/* <Route path="portfolio" element={<Portfolio/>}/> */}
     </Routes>

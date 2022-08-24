@@ -166,9 +166,9 @@ const showButton = () => {
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>} 
           <div className='div_filters_premium'>
             <Filtros />
-            <div className='div_cardsFavorites'>
-              {userLogged ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <span>"Usar Local storage"</span>}
-            </div>
+            {/* <div className='div_cardsFavorites'> */}
+              {userLogged ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <CardsFavorites favoriteInfo={favoritesStorage} /> }
+            {/* </div> */}
           {/* <SeleccionPremium/> */}
           </div>
             
