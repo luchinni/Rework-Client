@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import image1 from "../../../images/Online report_Monochromatic.png";
-import image2 from "../../../images/Bank note_Monochromatic.png";
-import image3 from "../../../images/Money motivation _Monochromatic.png";
+import image1 from "../../../images/business-man-banner-concept-with-copy-space.jpg";
 import * as type from "../../../Types";
 import { postNewClient } from "../../../Redux/Reducer/reducer";
 import "./ClientRegister.css";
@@ -224,10 +222,8 @@ export class ClientRegister extends Component {
       <div>
         <HeaderRegister />
         <div className="ClientRegister_component">
-          <div className="CR_divImages">
-            <img src={image1} alt="place1" />
-            <img src={image2} alt="place1" />
-            <img src={image3} alt="place1" />
+          <div className="Worker_imageContainer">
+            <img className="Worker_registerImage" src={image1} alt="place1" />
           </div>
           <div className="CR_divForm">
             <h1 className="CR_h1">Empecemos</h1>

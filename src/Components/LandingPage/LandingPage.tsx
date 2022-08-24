@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { checkSession } from '../../Redux/Reducer/reducer';
 import { Link } from 'react-router-dom';
 import newTab from "../../images/openNewTab.png"
+import Footer from '../Footer/Footer';
 
 
 const LandingPage = () => {
@@ -17,6 +18,7 @@ const LandingPage = () => {
   }, [])
 
   return (
+    <>
     <main className='Landing_component'>
         <Header/>
         <div className='Landing_divContent'>
@@ -27,6 +29,8 @@ const LandingPage = () => {
         <Link to="/home" className='Landing_buttonAcceder'>Prueba la APP<img className='new_tabIcon' src={newTab} alt="" /></Link>
         </div>
     </main>
+        <Footer/>
+    </>
   )
 }
 

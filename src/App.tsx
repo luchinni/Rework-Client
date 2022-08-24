@@ -108,7 +108,6 @@ return (
       </>}
       {/* <Route path="portfolio" element={<Portfolio/>}/> */}
     </Routes>
-    <Footer/>
   </div>
 );
 }
