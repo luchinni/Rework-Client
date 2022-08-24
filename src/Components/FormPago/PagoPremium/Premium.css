@@ -1,0 +1,73 @@
+.PremiumPost_divcontent{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 0 0 0;
+    padding: 0 100px 0 0 ;
+}
+
+.OfferPost_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.check_icon{
+    color: rgb(0, 255, 0);
+}
+.oferta_p{
+    color: #f19244;
+    background-color: green;
+    width: max-content;
+}
+
+.premium_benefices{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background: linear-gradient(90deg, #1c353f 100%,transparent);
+    width: 55vw;
+    height: 125vh;
+
+}
+
+.premium_benefices_inputs{
+    position: relative;
+    right: 100px;
+    bottom: 15vh;
+    width: 30vw;
+    font-size: 22px;
+}
+
+.premium_benefices_inputs h3{
+    color: white;
+}
+
+.premium_benefices_inputs h3 b{
+    color: #2A9D8F;
+}
+.price_p{
+    font-size: 25px;
+    color: #fff;
+}
+.price_p b{
+    font-size: 50px;
+    color: #f19244;
+}
+.premiumPost_image{
+    width: 75px;
+    position: absolute;
+    left: -40px;
+    top: -37px;
+    transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+}
+.libre{
+    position: relative;
+    bottom: 15px;
+    font-size: smaller;
+    color: #2A9D8F;
+}

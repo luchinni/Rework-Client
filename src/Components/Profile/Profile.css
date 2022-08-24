@@ -36,6 +36,9 @@
 .Profile_divDivProfile {
   display: flex;
   margin-right: 50px;
+  width: 800px;
+  justify-content: space-between;
+  flex-direction: row;
 }
 .Profile_divFotoPerfil {
   display: flex;
@@ -156,4 +159,14 @@ color: #e76f51
 .Profile_divModalUpdate_Worker {
   height: auto;
   min-height: 700px;
+}
+
+.Profile_buttonDiv{
+  max-width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Profile_premiumButton{
+
 }

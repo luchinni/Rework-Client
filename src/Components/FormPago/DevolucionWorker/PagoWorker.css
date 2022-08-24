@@ -1,0 +1,48 @@
+.header_cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.PayPost_Form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pay_cont{
+    position: relative;
+    top: 100px;
+}
+
+.inputs_checks{
+    display: flex;
+    justify-content: space-around;
+}
+
+.each_check{
+    display: flex;
+    flex-direction: column;
+}
+
+.img1{
+    position: absolute;
+    top: 200px;
+}
+
+.img2{
+    position: absolute;
+    right: 0;
+    top: 200px;
+}
+
+.cbu_input{
+    display: flex;
+    
+}
+
+.img_label{
+    width: 70px;
+}
