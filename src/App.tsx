@@ -30,6 +30,7 @@ import SeleccionPremium from './Components/FormPago/PagoPremium/SeleccionPremium
 import ForgotPassword from './Components/Login/ResetPassword/ForgotPassword';
 import ResetPassword from './Components/Login/ResetPassword/ResetPassword';
 import ChangePassword from './Components/Header/User/ChangePassword';
+import Loading from './Components/Loading/Loading';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -47,7 +48,7 @@ function App() {
 
  */
 
-axios.defaults.baseURL = /* process.env.REACT_APP_API || */ "http://localhost:3001/";
+axios.defaults.baseURL = process.env.REACT_APP_API /* || "http://localhost:3001/"; */
 
 
 
@@ -56,6 +57,7 @@ return (
     <Routes>
       <Route path='/' element={<LandingPage />} />
       <Route path='home' element={<Home/>} />
+      <Route path="loading" element={<Loading />} />
       <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
       <Route path='confirm/client/:id' element={<VerifyUser/>}/>
       {token || currentUser.id !== '' ?
