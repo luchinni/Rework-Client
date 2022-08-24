@@ -1,9 +1,9 @@
 .ClientRegister_component {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: flex-start;
-  gap: 50px;
+  gap: 73px;
 }
 .CR_divImages {
   display: flex;
@@ -11,7 +11,7 @@
   max-width: 250px;
 }
 .CR_divForm {
-  margin: 30px;
+  margin: 0 30px 30px 30px;
   border-radius: 15px;
   max-width: 500px;
   width: 100%;
@@ -62,4 +62,20 @@
 .CR_inputSubmit:hover{
   cursor: pointer;
   background-color: #E76F51;
+}
+
+.ClientRegister_image {
+  max-width: 500px;
+  height: 825px;
+  object-fit: cover;
+  border-radius: 8px;
+
+}
+
+.ClientRegister_imageContainer {
+  height: 850px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
 }
