@@ -22,7 +22,6 @@ function User() {
   const [open, setOpen] = useState(false)
 
   const userDiv = useRef(null);
-  //const myRefElement2 = useRef(null);
 
   function handleClickOutside() {
     setOpen(false)

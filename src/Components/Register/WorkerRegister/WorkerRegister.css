@@ -61,6 +61,11 @@
     align-items: center;
     
 }
+.Worker_description {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
 .Worker_error{
     font-size: 13px;
     color: #b30505fd;
@@ -113,6 +118,14 @@
     padding: 15px 20px;
     background: #EEEEEE;
     border-radius: 8px;
+}
+.Worker_description > textarea{
+    border: none;
+    width: 595px;
+    padding: 15px 20px;
+    background: #EEEEEE;
+    border-radius: 8px;
+    resize: none;
 }
 .Worker_image > input{
     border: none;
