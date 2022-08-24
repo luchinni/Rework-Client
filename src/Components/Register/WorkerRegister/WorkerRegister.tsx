@@ -239,7 +239,9 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
     title: 'Registro exitoso',
     text: 'En los próximos minutos un enlace para validar tu cuenta será enviado a tu correo'
 }).then((result) => {
-  window.open("https://re-work-ten.vercel.app/home", "_self")
+  if (result.isConfirmed){
+    window.open("https://re-work-ten.vercel.app/home", "_self")
+  }
 })  
 }
 

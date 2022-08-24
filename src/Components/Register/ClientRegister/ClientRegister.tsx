@@ -174,6 +174,7 @@ export class ClientRegister extends Component {
   async handleSubmit(e: any) {
     e.preventDefault();
 
+    console.log(typeof this.state.image)
     let image = await this.postImageOnCloudinary(this.state.image);
 
     let { name, lastName, password, user_mail, birthdate, description } = this.state;
