@@ -1,7 +1,7 @@
 import React, {useState ,useEffect} from 'react'
 import './OfferDash.css'
 import {useSelector, useDispatch} from 'react-redux'
-import {getOffers, getUserById, isActiveFalseOfferPost, isActiveOffer, getAllOffersAdmin} from "../../../Redux/Reducer/reducer";
+import {isActiveOffer, getAllOffersAdmin} from "../../../Redux/Reducer/reducer";
 
 
 function OfferDash() {
@@ -10,13 +10,9 @@ function OfferDash() {
 
 	const [modalEdit, setModalEdit] = useState(false)
 
-	const [modalDelete, setModalDelete] = useState(false)
-
 	const [dataOffer, setDataOffer] = useState<any>({})
 
 	const offers = useSelector((state:any) => state.workService.allOffersAdmin);
-
-	console.log("offers", offers)
 
 	function handleModalEdit(offers:any) {
 		setModalEdit(true)
@@ -30,7 +26,6 @@ function OfferDash() {
 	const [offerState, setOfferState] = useState(true)
 
 	function handleSelect( e: any) {
-
 		const select = e.target.value
 
 		let isSet: boolean = true;
@@ -65,16 +60,6 @@ function OfferDash() {
 		})
 		setModalEdit(false)
 	}
-
-	// function handleDeleteOffer() {
-	// 	let id = dataOffer.idOffer
-	// 	isActiveFalseOfferPost(id)
-	// 	.then(()=> {
-	// 		dispatch(getOffers())
-	// 	})
-	// 	setModalDelete(false)
-	// }
-
 
   return (
     <div className='OfferDash_Component'>
