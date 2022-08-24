@@ -152,8 +152,9 @@ const OfferPost = () => {
         error.min_remuneration =
           min_remunerationPattern.test(value) === false
             ? "Solo números enteros son adimitidos."
-            : //  : parseInt(value) >= formulario.max_remuneration? "La remuneración mínima no puede ser mayor o igual a la remuneración máxima"
-            value[0] === "0"
+            : parseInt(value) >= formulario.max_remuneration
+            ? "La remuneración mínima no puede ser mayor o igual a la remuneración máxima"
+            : value[0] === "0"
             ? "No puede inicializar con 0"
             : parseInt(value) <= 0
             ? "La remuneración mínima tiene que ser mayor a 0"
