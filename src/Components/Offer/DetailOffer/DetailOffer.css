@@ -247,7 +247,9 @@
   background-color: #f88d22;
   
 }
-
+.Detail_premiumButton:hover {
+  background-color: #c45800;
+}
 .Detail_premium > p {
   margin-top: 15px;
   max-width: 220px;
@@ -267,9 +269,7 @@
   
 }
 
-.Detail_premiumButton:hover {
-  background-color: #c45800;
-}
+
 .DetailP_UserName {
   font-weight: 600;
   font-size: 20px;

@@ -145,7 +145,7 @@ function Profile() {
 
                 <div className="Profile_buttonDiv">
                   <button
-                      className="Detail_premiumButton"
+                      className="Profile_premiumButton"
                       onClick={() => goPremium()}
                     >
                       Hazte Premium
