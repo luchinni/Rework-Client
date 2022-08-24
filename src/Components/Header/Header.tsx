@@ -6,6 +6,7 @@ import {resetSearch} from "../../Redux/Reducer/reducer"
 import "./Header.css";
 import { useDispatch, useSelector } from 'react-redux';
 import User from './User/User';
+import premiumImage from "../../images/logo_header_premium.png"
 import jwtDecode from "jwt-decode"
 import Login from '../Login/Login';
 import Notification from './Notification/Notification';
@@ -20,8 +21,8 @@ import menu from '../../images/header_menu.svg';
     dispatch(resetSearch());
   }
   const token:any = localStorage.getItem("token")
-  
-  let tokenDecode:any 
+
+  let tokenDecode:any
   if (token) tokenDecode= jwtDecode(token)
   const currentUser = useSelector((state: any) => state.workService.currentUser)
   const userLogged = useSelector((state: any) => state.workService.userLogged)
@@ -59,12 +60,12 @@ import menu from '../../images/header_menu.svg';
     <header className='Header_component' id="Header">
       <div className='Header_divContent'>
         {/* <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link> */}
-        <Link to="/home" className='logo'><img className='logo_img' src={logo} alt="REwork" /></Link>
+        <Link to="/home" className='logo'>{currentUser.isPremium?<img className='logo_img_premium' src={premiumImage} alt="REwork" />:<img className='logo_img' src={logo} alt="REwork" />}</Link>
         <nav className='nav'>
           <SearchBar/>
           <div>
-            { 
-              currentUser?.id !== '' && userLogged?.name !== '' ? 
+            {
+              currentUser?.id !== '' && userLogged?.name !== '' ?
               <div className='Header_divButtonsUser'>
                 {/* <Notification /> */}
                 <User/>
@@ -107,16 +108,16 @@ import menu from '../../images/header_menu.svg';
 
                 </div>
 
-          
+
               </div>
             }
           </div>
         </nav>
       </div>
-      {openModal && 
+      {openModal &&
         <div className='Header_ModalAbiertoBackground'></div>
       }
-      {openModal && 
+      {openModal &&
         <div className='Header_ModalLogin'>
           <Login close={handleClose} />
         </div>

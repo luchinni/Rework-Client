@@ -196,7 +196,7 @@ const handleSubmit = async (e:any) => {
         currentOffer ,name, lastname, DNI, Email, cost, Phone_Number, Direction, Postal_code, city, province, country
     }
 
-    dispatch(getPaymentLink(newPayment))
+    dispatch(getPaymentLink(newPayment,"client"))
 }
 
   return (

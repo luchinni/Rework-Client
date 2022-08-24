@@ -85,6 +85,13 @@
     gap: 40px;
     align-items: flex-end;
 }
+.logo_img_premium{
+    position: relative;
+    right: 30px;
+    bottom: 19px;
+    max-width: 170px;
+}
+
 
 .Header_buttonMenu {
     max-width: 40px;
