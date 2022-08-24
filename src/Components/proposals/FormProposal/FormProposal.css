@@ -19,13 +19,13 @@
 .DetailModal_contentInputs {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .DetailModal_divInputs {
   display: flex;
   gap: 5px;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .DetailModal_divImage {
@@ -57,19 +57,33 @@
 .DetailModal_title {
   font-size: 18px;
   font-weight: 600;
-  color: #595959;
+  color: #264653;
 }
 .DetailModal_label {
   font-size: 16px;
-  color: rgb(85, 85, 85);
+  color: #264653
 }
+
 .DetailModal_input {
   padding: 10px 10px;
   border: none;
   border-radius: 5px;
-  background-color: #d8d8d881;
+  background-color: #EEEEEE;
 }
 .DetailModal_input:focus {
+  outline: none;
+}
+
+.DetailModal_description {
+  padding: 10px 10px;
+  resize: none;
+  border: none;
+  height: 100px;
+  border-radius: 5px;
+  background-color: #EEEEEE;
+  font-family: "poppins";
+}
+.DetailModal_description:focus {
   outline: none;
 }
 
@@ -87,4 +101,14 @@
 .danger{
   font-size: 13px;
   color: red;
+}
+
+.worked_time_select{
+  border: none;
+  font-size: 14px;
+  width: 280px;
+  padding: 10px 15px;
+  background: #EEEEEE;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
