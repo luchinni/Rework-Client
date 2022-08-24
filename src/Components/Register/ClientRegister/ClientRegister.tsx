@@ -195,9 +195,13 @@ export class ClientRegister extends Component {
       }, 
       disabled: true,
     }; 
-    Swal.fire("Registro exitoso!",
-    "Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.",
-    "success")
+    Swal.fire({
+      icon: 'success',
+      title: 'Registro exitoso',
+      text: 'En los próximos minutos un enlace para validar tu cuenta será enviado a tu correo'
+  }).then((result) => {
+    window.open("http://localhost:3000/home", "_self")
+  })  
   }
 
   render() {

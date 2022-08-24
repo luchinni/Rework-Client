@@ -139,8 +139,9 @@ const GoogleClient = () => {
           title: '¡Cuenta creada!',
           html: 'Te llegará un correo con tu contraseña provisoria, cámbiala cuando quieras.',
           confirmButtonText: 'Comienza'
+      }).then((result) => {
+          localStorage.removeItem("googleToken")
       })
-      
       }
 
     
