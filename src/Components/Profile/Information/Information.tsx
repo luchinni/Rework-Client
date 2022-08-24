@@ -21,8 +21,8 @@ function Information({props}:any) {
       : false }
         
         <div className="UserDescription">
-          {props.description ? <p><span>Descripción: </span>{props.description}</p>
-          : props.id !== currentUser.id ? <p><span>Descripción: </span>El usuario no ha cargado una descripción</p>
+          {props?.description ? <p><span>Descripción: </span>{props?.description}</p>
+          : props?.id !== currentUser.id ? <p><span>Descripción: </span>El usuario no ha cargado una descripción</p>
           : currentUser.isWorker === true ? <p><span>Descripción: </span>Redacta una descripción para que los clientes puedan conocerte mejor</p>
           : <p><span>Descripción: </span>Redacta una descripción para que los trabajadores puedan conocerte mejor</p>}
           {/* <p>Diseñadora gráfica con tres años de experiencia en agencias de publicidad. 

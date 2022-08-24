@@ -4,6 +4,7 @@ import Header from '../Header/Header'
 import OfferDash from './OfferDash/OfferDash'
 import UserDash from './UserDash/UserDash'
 import PaysDash from './PaysDash/PaysDash'
+import OptionsDash from './OptionsDash/OptionsDash'
 
 function Dashboard() {
 
@@ -11,12 +12,14 @@ function Dashboard() {
   const [user, setUser] = useState(false)
   const [reports, setReports] = useState(false)
   const [pagos, setPagos] = useState(false)
+  const [options, setOptions] = useState(false)
 
   function handleoffCli() {
     setOffCli(true);
     setUser(false);
     setReports(false);
     setPagos(false);
+    setOptions(false);
   }
 
   function handleUser() {
@@ -24,6 +27,7 @@ function Dashboard() {
     setOffCli(false);
     setReports(false);
     setPagos(false);
+    setOptions(false);
   }
 
   function handleReports() {
@@ -31,6 +35,7 @@ function Dashboard() {
     setOffCli(false);
     setUser(false);
     setPagos(false);
+    setOptions(false);
   }
 
   function handlePagos() {
@@ -38,8 +43,16 @@ function Dashboard() {
     setReports(false);
     setOffCli(false);
     setUser(false);
+    setOptions(false);
   }
 
+  function handleOptions() {
+    setOptions(true);
+    setReports(false);
+    setOffCli(false);
+    setUser(false);
+    setPagos(false);
+  }
 
   return (
     <div className='Dashboard_Component'>
@@ -66,6 +79,7 @@ function Dashboard() {
               <div className='Dashboard_divTags'>
                 <button className={offCli ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleoffCli} >Ofertas</button>
                 <button className={user ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleUser}>Usuarios</button>
+                <button className={options ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleOptions}>Opciones</button>
                 <button className={reports ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReports}>Reportes</button>
                 <button className={pagos ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handlePagos}>Pagos</button>
               </div>
@@ -99,6 +113,10 @@ function Dashboard() {
 
             {
               pagos && <PaysDash />
+            }
+
+            {
+              options && <OptionsDash />
             }
 
           </div>
