@@ -32,6 +32,7 @@ import PagoWorker from './Components/FormPago/DevolucionWorker/PagoWorker';
 import ChangePassword from './Components/Header/User/ChangePassword';
 import ForgotPassword from './Components/Login/ResetPassword/ForgotPassword';
 import ResetPassword from './Components/Login/ResetPassword/ResetPassword';
+import Loading from './Components/Loading/Loading';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -60,6 +61,7 @@ return (
     <Routes>
       <Route path='/' element={<LandingPage />} />
       <Route path='home' element={<Home/>} />
+      <Route path="loading" element={<Loading />} />
       <Route path='confirm/worker/:id' element={<VerifyUser/>}/>
       <Route path='confirm/client/:id' element={<VerifyUser/>}/>
       {token || currentUser.id !== '' ?
