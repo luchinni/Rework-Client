@@ -29,6 +29,7 @@ import Failure from './Components/FormPago/PagoResult/Failure';
 import SeleccionPremium from './Components/FormPago/PagoPremium/SeleccionPremium';
 import Premium from './Components/FormPago/PagoPremium/Premium';
 import PagoWorker from './Components/FormPago/DevolucionWorker/PagoWorker';
+import ChangePassword from './Components/Header/User/ChangePassword';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -47,8 +48,8 @@ function App() {
  */
 
 
-axios.defaults.baseURL = /*"http://localhost:3001/"  ||*/ process.env.REACT_APP_API; 
-//axios.defaults.baseURL = "http://localhost:3001/"  /*|| process.env.REACT_APP_API*/; 
+//axios.defaults.baseURL = /*"http://localhost:3001/"  ||*/ process.env.REACT_APP_API; 
+axios.defaults.baseURL = "http://localhost:3001/"  /*|| process.env.REACT_APP_API*/; 
 
 
 
@@ -82,6 +83,8 @@ return (
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
         <Route path='google/client' element={<Navigate to='/home' replace/>} />
+        <Route path='changePassword/:id' element={<ChangePassword/>}/>
+        
       </>
         :
       <>

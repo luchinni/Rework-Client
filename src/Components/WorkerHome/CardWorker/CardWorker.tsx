@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react';
 import more from '../../../images/more.svg';
 import { ImStarEmpty, ImStarHalf, ImStarFull } from "react-icons/im";
@@ -6,8 +6,57 @@ import {GoLocation} from "react-icons/go"
 import save from "../../../images/icon_guardar.png"
 import report from '../../../images/icon_report.svg';
 import {Link} from 'react-router-dom';
+import useOnClickOutside from "../../../utils/utils";
 import './CardWorker.css';
 
+export const ratingStars = (r:number) => {
+    switch (true) {
+        case r < 1:
+            return <span>Sin valoraciones</span>
+            
+        case r === 1:
+            return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r > 1 && r < 1.5:
+            return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r >= 1.5 && r < 2:
+            return [<ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r === 2:
+            return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r > 2 && r < 2.5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r >= 2.5 && r < 3:
+            return [<ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r === 3:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r > 3 && r < 3.5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
+            
+        case r >= 3.5 && r < 4:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>]
+            
+        case r === 4:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
+            
+        case r > 4 && r < 4.5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
+            
+        case r >= 4.5 && r < 5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />]
+            
+        case r ===5:
+            return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />]
+            
+        default:
+            break;
+    }
+}
 
 const CardWorker = ({props}:any) => {
     const [open, setOpen] = useState(false)
@@ -16,61 +65,13 @@ const CardWorker = ({props}:any) => {
       setOpen(!open);
     }
 
-    const ratingStars = (r:number) => {
-        switch (true) {
-            case r === 0:
-                return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 0 && r < 0.5:
-                return [<ImStarEmpty />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 0.5 && r < 1:
-                return [<ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r === 1:
-                return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 1 && r < 1.5:
-                return [<ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 1.5 && r < 2:
-                return [<ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r === 2:
-                return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 2 && r < 2.5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 2.5 && r < 3:
-                return [<ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r === 3:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r > 3 && r < 3.5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>, <ImStarEmpty/>]
-                
-            case r >= 3.5 && r < 4:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />, <ImStarEmpty/>]
-                
-            case r === 4:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
-                
-            case r > 4 && r < 4.5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarEmpty/>]
-                
-            case r >= 4.5 && r < 5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarHalf />]
-                
-            case r ===5:
-                return [<ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />, <ImStarFull />]
-                
-            default:
-                break;
-        }
-    }
-console.log(props)
+    const userDiv = useRef(null);
+
+  function handleClickOutside() {
+    setOpen(false)
+  }
+
+  useOnClickOutside(userDiv, handleClickOutside);
 
   return (
     <div className='CardWorker_component'>
@@ -81,7 +82,7 @@ console.log(props)
                         <img className='more' src={more} alt="more" />
                     </button>
                     {open &&
-                    <div className='Card_option'>
+                    <div className='Card_option' ref={userDiv}>
                     <div className='CardOption_divReport'>
                         <span className='report_cardButton'>Reportar</span>
                         <img className='report_icon' src={report} alt="report" />
@@ -103,8 +104,15 @@ console.log(props)
         <div className="div_description">
             <div>
                 <div>
-                    <h4 className='Card_userProfessions'>{props.profession?.join(", ")}</h4>
-                    <h4 className='Card_userHabilities'>Habilidades: <br/><span>{props.skills?.join(", ")}</span></h4>
+                    <p className='Card_userProfessions'>{props.profession?.join(", ")}</p>
+                    <div>
+                        <div className='Card_userHabilities'>Habilidades: <br/>
+                    {
+                        props.skills.length > 4 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}, ...</span> 
+                        : <span>{props.skills?.join(", ")}</span>
+                    }
+                    </div>
+                    </div>
                 </div>
                 {/* <p className="description">Descripción</p> */}
             </div>

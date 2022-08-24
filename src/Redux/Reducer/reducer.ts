@@ -10,6 +10,7 @@ const { SECRET_KEY } = process.env;
 const initialState = {
   allUsers: [],
   allClients: [],
+  allOffersAdmin: [],
   infoSearched: [],
   search: "",
   userById: {},
@@ -35,7 +36,8 @@ const initialState = {
     email: '',
     name: '',
     photo: ''
-  }
+  },
+  userByEmail: {}
 };
 
 export const workServiceSlice = createSlice({
@@ -45,8 +47,14 @@ export const workServiceSlice = createSlice({
     setAllUsers: function (state: any, action: any) {
       state.allUsers = action.payload;
     },
+    setAllUsersAdmin: function (state: any, action:any) {
+      state.allUsersAdmin = action.payload;
+    },
     setAllClients: function (state: any, action: any) {
       state.allClients = action.payload;
+    },
+    setAllOffersAdmin: function (state: any, action: any) {
+      state.allOffersAdmin = action.payload;
     },
     setPaymentInfo: function (state: any, action: any) {
       state.paymentInfo = action.payload;
@@ -107,7 +115,6 @@ export const workServiceSlice = createSlice({
       state.search = action.payload;
     },
     setCurrentUser: function (state: any, action: any) {
-      console.log("lo que llega", action.payload)
       state.currentUser = {
         id: action.payload.id,
         isWorker: action.payload.isWorker,
@@ -280,20 +287,23 @@ export const workServiceSlice = createSlice({
       };
     },
     setGoogleData: function (state: any, action: any){
-      console.log(action.payload)
       state.googleData = {
         name: action.payload.name,
         photo: action.payload.photo,
         email: action.payload.user_mail
       }
       console.log("data actualizada", state.googleData)
-    }
+    },
+    setUserByEmail: function (state: any, action: any) {
+      state.userByEmail = action.payload;
+    },
   },
 });
 
 export const {
   setAllUsers,
   setAllClients,
+  setAllOffersAdmin,
   setUserById,
   setFavorite,
   removeFavorite,
@@ -316,20 +326,21 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
-  setGoogleData
+  setGoogleData,
+  setUserByEmail
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getAllUsers = () => async (dispatch: Dispatch<any>) => {
+export const getAllUsers = (isActive: any) => async (dispatch: Dispatch<any>) => {
   try {
+    console.log("isActive:", isActive)
     const users = await axios({
       method: "GET",
-      url:"/admin/users"
+      url:`/admin/users?isActive=${isActive}`
     });
-    console.log("action:",users.data)
     dispatch(setAllUsers(users.data))
   } catch(error) {
     return error;
@@ -347,6 +358,15 @@ export const getClients = () => async (dispatch: Dispatch<any>) => {
     Swal.fire("Error al requerir los clientes","","warning");
   };
 };
+
+export const getAllOffersAdmin = (isActive: string) => async (dispatch: Dispatch<any>) => {
+  try {
+    const offersAdmin = await axios.get(`/admin/offers?isActive=${isActive}`);
+    dispatch(setAllOffersAdmin(offersAdmin.data));
+  } catch (error) {
+    return error
+  }
+}
 
 export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
@@ -427,7 +447,6 @@ export function postLogin(user: type.userLogin) {
   return async (dispatch: any) => {
     try {
       // generamos el token conectando con el back
-      console.log(user);
       const token: any = await axios({
         method: "post",
         url: "/login/",
@@ -444,7 +463,7 @@ export function postLogin(user: type.userLogin) {
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
-      return e;
+      Swal.fire("Email o contraseña incorrectos", "Recuerda activar tu cuenta si es la primera vez que inicias sesión","warning")
     }
   };
 }
@@ -459,8 +478,8 @@ interface filter {
 export function searchWorker(input: string, filters: filter) {
   return async (dispatch: Dispatch<any>) => {
     try {
-      if (input === "")
-        return "";
+      /* if (input === "")
+        return ""; */
       const workers = await axios.get(
         `/worker/search?q=${input}&r=${filters.rating}&p=${filters.profession}`
       );
@@ -478,9 +497,11 @@ export function searchOffer(input: string, filters: filter) {
     try {
       let offers: any;
       if (filters.remuneration.max === 0 && filters.remuneration.min === 0) {
+        console.log("entre al 1")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&wdt=${filters.workDuration}`
         );
       } else {
+        console.log("entre al 2")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&max=${filters.remuneration.max}&min=${filters.remuneration.min}&wdt=${filters.workDuration}`
           );
       }
@@ -529,7 +550,6 @@ export const postNewPortfolio = async (
 
 export async function newReviewPost(newReview: type.reviewFormType, type:string) {
   //está incompleto hasta tener la ruta del back
-  //console.log(newReview)
   if(type==="worker"){
     try {
       return await axios({
@@ -571,7 +591,6 @@ export function checkSession() {
       let data = {};
       if (token !== "undefined")
         data = jwtDecode(token);
-      //console.log("reducer", data)
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
@@ -669,7 +688,6 @@ export function favoritesToDB(value: any, idUser: string) {
     let worker: any = await axios.get(`/worker/${idUser}`);
     let client: any = await axios.get(`/client/${idUser}`);
     if (worker.data !== null) {
-      //console.log(worker.data.favorites);
       if (worker.data.favorites === undefined) {
         worker.data.favorites = [...value];
       } else {
@@ -798,7 +816,6 @@ export const verifyToken =
         });
         return localStorage.setItem("token", JSON.stringify(renewedToken.data));
       } else if (response.data && response.data === "valid") {
-        console.log("valid");
         return "Sesion válida";
       } else {
         return "No hay sesion";
@@ -829,7 +846,6 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
 
   export const acceptProposal = async (proposalState:any) => {
     try{
-      console.log("entre: ", proposalState)
       await axios({
         method:"PUT",
         url: `/proposal/state`,
@@ -899,7 +915,7 @@ export const stateCancelledOfferPost = async (id: string) => {
   };
 };
 
-export const isActiveFalseOfferPost = async (id: string) => {
+export const isActiveFalseOfferPost = async (id: string ) => {
   try {
     await axios({
       method: "PUT",
@@ -907,6 +923,21 @@ export const isActiveFalseOfferPost = async (id: string) => {
       data: {
         id,
         isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveOffer = async (id: string, isActive: boolean ) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/offer/isActive",
+      data: {
+        id,
+        isActive,
       },
     })
   } catch (error) {
@@ -959,10 +990,7 @@ export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
       data: cleanUser
     })
 
-    //console.log("response",response)
     if (response.data === 'usuario no encontrado'){
-      console.log("entre al if", response.data)
-      console.log("clean user", cleanUser)
       // sino guarda la data de google en el estado global y redirije a ruta para preguntar primer inicio: client o worker?
       localStorage.setItem("googleToken", JSON.stringify(cleanUser))
       window.open( /* "https://rework-xi.vercel.app/google/" || */ "/google/", "_self")
@@ -994,19 +1022,6 @@ export const createGoogleWorker = (user: any) => async (dispatch: any) => {
   }
 } 
 
-
-export const modifyOfferState = async (offerState:any) => {
-  try{
-    await axios({
-      method:"PUT",
-      url: `/offer/state`,
-      data: offerState
-      })
-} catch (error) {
-  return error
-}
-}
-
 export const createGoogleClient = (user: any) => async (dispatch: any) => {
   try {
     const response: any = await axios({
@@ -1022,6 +1037,56 @@ export const createGoogleClient = (user: any) => async (dispatch: any) => {
     return error
   }
 } 
+
+
+export const modifyOfferState = async (offerState:any) => {
+  try{
+    await axios({
+      method:"PUT",
+      url: `/offer/state`,
+      data: offerState
+      })
+  } catch (error) {
+    return error
+  }
+}
+
+export const forgotPassword = (user_mail: any, type: any) => async (dispatch: any) => {
+  try {
+    const response = await axios({
+      method:"POST",
+      url: `/login/forgot-password`,
+      data: {user_mail, type}
+    })
+    if (response.data === 'Usuario inválido'){
+      console.log("soy invalid reducer")
+      Swal.fire("Usuario incorrecto.","warning")
+    } else if (response.data === 'Correo enviado'){
+      console.log(response.data)
+      dispatch(setUserByEmail(response.data))
+    }
+  } catch(error){
+    return error
+  }
+}
+
+export const resetPassword = (token:any, password:any) => async (dispatch: any) =>{
+  try {
+    const response = await axios({
+      method:"POST",
+      url: `/login/reset-password`,
+      data: {token, password},
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    if(response.data === "Id inválida"){
+      Swal.fire("Usuario incorrecto.","warning")
+    } else if(response.data === "restablecer contraseña"){
+      dispatch(setUserByEmail(response.data))
+    }
+  } catch(error){
+    return error
+  }
+}
 
 export const setBankInfo = async (info:any, id:any) =>{
   try{

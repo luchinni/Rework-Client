@@ -21,8 +21,8 @@ const FormPortfolio = (props:any) => {
         portfolio_description:"",
         errors:{
             title:"Campo requerido",
-            portfolio_description:"Campo requerido",
-            photo:"Campo requerido"
+            portfolio_description:"Campo requerido"/* ,
+            photo:"Campo requerido" */
         },
     });
     const dispatch = useDispatch();

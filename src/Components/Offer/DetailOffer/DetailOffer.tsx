@@ -22,22 +22,17 @@ import FormReview from "../../Reviews/FormReview/FormReview";
 
 const DetailOffer = () => {
   const offerId = useSelector((state: any) => state.workService.offerById);
-  console.log("la offer", offerId);
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
-  console.log("el user", currentUser);
-
   const dispatch = useDispatch();
   const params = useParams();
-
   useEffect(() => {
     dispatch(getOfferId(params.id));
     dispatch(checkSession());
   }, [dispatch]);
 
   const [open, setOpen] = useState(false);
-  console.log(offerId)
  /*  const propoHired = offerId?.proposals.filter((p:any) => p.state === "contract acepted")
 
   const filtredOffer = {
@@ -45,8 +40,6 @@ const DetailOffer = () => {
     proposals: propoHired
   } */
 
-  console.log("la offer", offerId)
-/*   console.log("la filtred",filtredOffer) */
 
   function handleOpen() {
     setOpen(true);
@@ -93,16 +86,20 @@ const DetailOffer = () => {
 
   let alreadyApply: boolean = false;
 
+  const proposalAccepted = offerId?.proposals?.find((p:any) => p.state === 'accepted')
+  const contractAccepted = offerId?.proposals?.find((p:any) => p.state === 'contract accepted')
+  const contractStarted = offerId?.proposals?.find((p:any) => p.state === 'contract started')
+  const proposalFinalized = offerId?.proposals?.find((p:any) => p.state === 'finalized')
+
+  console.log("la ofer",proposalFinalized)
   const filtred: any = offerId.proposals?.filter(
     (p: any) => p.userWorker?.id === currentUser?.id && p.isActive === true
   );
 
   if (filtred?.length > 0) {
     alreadyApply = true;
-    console.log("encontre", alreadyApply);
   } else {
     alreadyApply = false;
-    console.log("no encontre", alreadyApply);
   }
 
   return (
@@ -130,13 +127,13 @@ const DetailOffer = () => {
               to={`/profile/${offerId.userClientId}`}
               className="Detail_NameUserPost"
             >
-              {offerId.userClient?.name}
+              {offerId.userClient?.name} {offerId.userClient?.lastName}
             </Link>
             <p className="Detail_UserRating">
-              Rating {offerId.userClient?.rating}
+              Rating:  <span>{offerId.userClient?.rating}</span>
             </p>
             <p className="Detail_offersCount">
-              Publicaciones: {offerId?.offersCount}
+              Publicaciones: <span>{offerId?.offersCount}</span>
             </p>
             <div>
               <div className="Detail_urlCopy">
@@ -163,30 +160,45 @@ const DetailOffer = () => {
 
         <div className="Detail_infoProposal">
           <div className="Detail_offer">
-            <div className="Detail_titleTime">
+            <div className="Detail_header">
               <h2 className="Detail_title">{offerId?.title}</h2>
-              <p className="Detail_time">{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time}`}</p>
+              <div className="Detail_timeRemu">
+                <p className="Detail_time">{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time}`}</p>
+                <p className="Detail_remuneration">{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
+              </div>
             </div>
-            <p className="Detail_remuneration">{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
-            <p className="Detail_description">{offerId?.offer_description}</p>
-            <div className="Detail_divImages">
+            <div className="Detail_tagImage">
+              <div className="Detail_tags">
+              {offerId.profession?.map((prof: any) => <p className="Detail_tag">{prof}</p> )}
+              </div>
+              <div className="Detail_divImages">
               <img
                 className="Detail_images"
                 src={offerId?.photo}
                 alt="fotito offer"
                 loading="lazy"
               />
+              </div>
             </div>
-            <p className="Detail_tags">{offerId.profession?.join(", ")}</p>
+            <div className="Detail_descriptionCont">
+              <p className="Detail_description">{offerId?.offer_description}</p>
+            </div>
+
             {alreadyApply === false && currentUser.isWorker === true ? (
               <button className="Detail_buttonApply" onClick={handleOpen}>
                 Aplicar
               </button>
             ) : (
-              <br />
+              null
             )}
             {currentUser?.id === offerId.userClientId &&
-            offerId.isActive === true ? (
+            offerId.isActive === true &&
+            offerId.state === "active" &&
+            proposalAccepted === undefined &&
+            proposalFinalized === undefined &&
+            contractAccepted === undefined &&
+            contractStarted === undefined
+            ? (
               <button
                 className="Detail_buttonApply"
                 onClick={() => handleDelete(offerId.idOffer)}
@@ -194,14 +206,22 @@ const DetailOffer = () => {
                 Eliminar
               </button>
             ) : (
-              <br />
+              null
             )}
-            {openReview && 
-        <div className="div_formReview">
-          <FormReview offer={offerId} close={CloseModalReview} />
-        </div>
-      }
-            <button onClick={OpenModalReview}>Trabajo finalizado</button>
+          {openReview && 
+            <div className="div_formReview">
+              <FormReview offer={offerId} close={CloseModalReview} />
+            </div>
+          }
+          { (currentUser?.isWorker === false && proposalFinalized !== undefined && offerId?.state === 'contract started' && offerId.userClient?.id === currentUser?.id)
+            ||
+            (currentUser?.isWorker === true && contractStarted !== undefined && offerId?.state === 'contract started' && contractStarted?.userWorkerId === currentUser?.id)
+           ? 
+            <button className="DetailP_buttonAccept" onClick={OpenModalReview}>Trabajo finalizado</button>
+            :
+            null
+          }
+
           </div>
         </div>
       </div>
@@ -220,18 +240,23 @@ const DetailOffer = () => {
         currentUser.isPremium === true ? (
           //renderiza las cards completas
           <div>
-            <h2 className="Detail_h2Propuestas">propuestas</h2>
+            <h2 className="Detail_h2Propuestas">Propuestas</h2>
             <CardsProposal offer={offerId} />
           </div>
         ) : //si el usuario es worker pero no premium, que le renderice su propuesta enviada
         currentUser.isPremium === false && currentUser.isWorker === true ? (
           <div className="Detail_divCardPropuestas">
             <OwnProposal offer={offerId} idWorker={currentUser.id} />
-            <div>
-              <button className="Detail_premiumButton">
-                Quieres ver las propuestas de tus competidores? Si eres
-                freelancer, conviertete en premium!
-              </button>
+            <div className="Detail_premiumCont">
+              <div className="Detail_premiumBack">
+              </div>
+              <div className="Detail_premium">
+                <span>¿Quieres ver las propuestas de otros freelancers?</span>
+                <p>¡conviértete en Premium!</p> 
+                <button className="Detail_premiumButton">
+                  Hazte Premium
+                </button>
+              </div>
             </div>
           </div>
         ) : (

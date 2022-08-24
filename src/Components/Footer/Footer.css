@@ -1,6 +1,6 @@
 .Footer_component {
   background: #264653;
-  margin-top: 0px;
+  margin-top: 100px;
 }
 .Footer_contentDiv {
   max-width: 1200px;
@@ -59,9 +59,8 @@
   color: #E76F51;
 }
 .footer_work{
-  color: #2A9D8F;
+  color: #2a9d8f;
 }
-
 
 .Footer_divLogoHenry {
   position: relative;
@@ -70,4 +69,31 @@
   position: absolute;
   right: 0;
   top: 32px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .Footer_bottom {
+    flex-direction: column;
+  }
+  .Footer_divLogoHenry {
+    position: static;
+    margin-top: 20px ;
+  }
+  .Footer_linkLogoHenry {
+    position: static;
+  }
+}
+
+@media screen and (max-width: 465px) {
+  .Footer_contentDiv {
+    padding: 30px 15px;
+  }
+  .Footer_buttonContainerDivs {
+    gap: 50px;
+  }
+
+  .Final_Div {
+    font-size: 13px;
+  }
 }

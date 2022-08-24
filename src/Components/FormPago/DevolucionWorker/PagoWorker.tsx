@@ -20,7 +20,7 @@ const PagoWorker = () => {
     Email: string,
     DNI: number,
     Target_type:"",
-    Card_number:"",
+    Card_number:0,
 }
 
 type errorsNewOffer = {
@@ -134,12 +134,22 @@ const handleChange = (e:any) => {
 const handleSubmit = (e:any) => {
   e.preventDefault();
   const {Name, Lastname, DNI, Email, Phone_Number, Target_type, Card_number} = formulario;
+
+  /*{
+    Name:"lucas",
+    Lastname:"Pardieux",
+    DNI:39491768,
+    Email:"lucaspardieux@gmail.com",
+    Phone_Number:1130947537,
+    Target_type:"MasterCard",
+    cvu:454354632132482
+  }*/
   
   const name = firstWordUpperCase(Name)
   const lastname = firstWordUpperCase(Lastname)
 
-  const bank_data:{name:string, lastname:string, DNI:number, Email:string, Phone_Number:number, Target_type:string, Card_number:string} = {
-    name, lastname, DNI, Email, Phone_Number, Target_type, Card_number
+  const bank_data:{name:string, lastname:string, DNI:number, Email:string, Phone_Number:number, Target_type:string, cvu:number} = {
+    name, lastname, DNI, Email, Phone_Number, Target_type, cvu:Card_number
  }
 
  dispatch(setBankInfo(bank_data, userLogged.id))

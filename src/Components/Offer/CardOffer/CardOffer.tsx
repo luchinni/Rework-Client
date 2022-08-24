@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './CardOffer.css';
 import {Link} from 'react-router-dom';
 import more from '../../../images/more.svg';
@@ -7,7 +7,9 @@ import report from '../../../images/icon_report.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import decode from "jwt-decode"
 import { remFavorite, getFavorites, getFavoritestoDB, remFavoritestoDB, getUserById } from '../../../Redux/Reducer/reducer';
-import {BsBookmarksFill, BsBookmarks} from "react-icons/bs"
+import {BsBookmarksFill, BsBookmarks} from "react-icons/bs";
+import { ratingStars } from "../../WorkerHome/CardWorker/CardWorker";
+import useOnClickOutside from "../../../utils/utils"
 
 const CardOffer = ({props}:any) => {
   
@@ -19,9 +21,6 @@ const CardOffer = ({props}:any) => {
   const token:any = localStorage.getItem("token")
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
-  
-
-  //console.log(userLogged)
 
   function handleClick() {
     setOpen(!open);
@@ -76,6 +75,16 @@ const CardOffer = ({props}:any) => {
     }
 }
 
+const userDiv = useRef(null);
+
+function handleClickOutside() {
+  setOpen(false)
+}
+
+useOnClickOutside(userDiv, handleClickOutside);
+
+
+
   return (
     <div className='CardOffer_component'>
       <div className='div_userSection'>
@@ -85,7 +94,7 @@ const CardOffer = ({props}:any) => {
           </div>
           <div className='div_userData'>
             <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
-            <span className='Card_userRating'>Rating: {props.userClient?.rating}</span>
+            <span className='Card_userRating'>Rating: {props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
           </div>
         </div>
         <div className='div_cardButton'>
@@ -93,7 +102,7 @@ const CardOffer = ({props}:any) => {
             <img className='more' src={more} alt="more" />
           </button>
           {open &&
-            <div className='Card_option'>
+            <div className='Card_option' ref={userDiv}>
               <div className='CardOption_divGuardar' onClick={(e) => {addFavorite(props)}}>
                 <span className='report_cardButton'>Guardar</span>
                 {showFavorite(props)}
@@ -122,7 +131,10 @@ const CardOffer = ({props}:any) => {
               <span>$</span>
             </div>
             <div className='card_divTags'>
-              <span className='card_tags'>{props.profession?.join(', ')}</span>
+              {
+                props.profession.length > 4 ? <span>{props.profession[0]}, {props.profession[1]}, {props.profession[2]}, {props.profession[3]}</span>
+                : <span className='card_tags'>{props.profession?.join(', ')}</span>
+              }
             </div>
           </div>
           <div>

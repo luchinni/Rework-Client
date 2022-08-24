@@ -11,6 +11,7 @@ import { resolve } from 'node:path/win32';
 import { createBrotliCompress } from 'node:zlib';
 import Axios, { AxiosResponse } from 'axios';
 import Swal from "sweetalert2";
+//import { Redirect } from "react-router-dom";
 
 
 interface HeaderState{
@@ -45,6 +46,8 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
     }
     this.setState = this.setState.bind(this);
   }
+
+// navigate = useNavigate()
 
 componentDidMount(){
   this.props.getAllProfession();
@@ -181,7 +184,11 @@ async handleSubmit(e:any){
       inputProfessions: [],
       inputSkills: []
   })
-  Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
+  Swal.fire("Registro exitoso!",
+  "Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.",
+  "success")
+  
+  
 }
 
 handleSelect(e:any){
@@ -204,7 +211,6 @@ handleSelect(e:any){
 handleDelete(e:any){
     
   let del = e.target.innerText
-console.log(del)
   const name = e.target.id
   if(name === "profession"){
     let borrado = this.state.profession.filter(f => f !== del.trim())

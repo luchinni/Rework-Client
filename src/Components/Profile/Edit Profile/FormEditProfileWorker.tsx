@@ -8,7 +8,10 @@ import {
   putEditProfileWorker,
 } from "../../../Redux/Reducer/reducer";
 import { errorsTypeEditWorker, WorkerTypeUpdate } from "../../../Types";
-import './FormEditProfileWorker.css'
+import './FormEditProfileWorker.css';
+import Swal from 'sweetalert2';
+import { isBreakOrContinueStatement } from "typescript";
+
 
 function FormEditProfileWorker({ props }: any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
@@ -26,12 +29,14 @@ function FormEditProfileWorker({ props }: any) {
     photo: "",
     profession: userLogged.profession,
     skills: userLogged.skills,
+    description: "",
   });
   const [errors, setErrors] = React.useState<errorsTypeEditWorker>({
     name: "",
     lastName: "",
     birthdate: "",
     image: "",
+    description: "",
     disabled: false,
   });
 
@@ -139,6 +144,15 @@ function FormEditProfileWorker({ props }: any) {
             ? "La año debe ser mayor a 1940"
             : "";
         break;
+      case "description":
+        error.description = value.startsWith(" ") ?
+        "La descripción no puede iniciar con un espacio."
+        : worker.description.length > 500 ?
+        "La cantidad máxima de caracteres es 500."
+        : value.endsWith(" ") ?
+        "La descripción no puede terminar en espacio."
+        :"";
+        break;        
       default:
         break;
     }
@@ -156,7 +170,7 @@ function FormEditProfileWorker({ props }: any) {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    let { name, lastName, born_date, photo, profession, skills } = worker;
+    let { name, lastName, born_date, photo, profession, skills, description } = worker;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
 
@@ -167,11 +181,19 @@ function FormEditProfileWorker({ props }: any) {
       photo,
       profession,
       skills,
+      description,
     };
     const id = userLogged.id;
 
     putEditProfileWorker(newWorker, id).then(() => {
       dispatch(getUserById(tokenDecode));
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Datos actualizados correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
     });
 
     let form = document.getElementById("form") as HTMLFormElement | null;
@@ -259,6 +281,20 @@ function FormEditProfileWorker({ props }: any) {
               <span>Fecha de Nacimiento</span>
               {!errors.birthdate ? null : (
                 <div className="update_inputError">{errors.birthdate}</div>
+              )}
+            </div>
+            <div className="update_Div_inputAndError">
+              <input
+              required
+              className="update_inpunt"
+              id="description_input"
+              type="text"
+              name="description"
+              onChange={(e)=> handleChange(e)}
+              />
+              <span>Descripción</span>
+              {!errors.description ? null : (
+                <div className="update_inputError">{errors.description}</div>
               )}
             </div>
             <select

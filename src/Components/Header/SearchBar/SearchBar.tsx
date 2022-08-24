@@ -64,6 +64,8 @@ const SearchBar = () => {
     }
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset()
+    setOpen(false)
+    setworkerOrOffer("offer")
     history("/home")
 
   }
@@ -103,11 +105,12 @@ const SearchBar = () => {
     <div className='SearchBar_component'>
       <div className='SearchBar'>
         <form id="form" action="" onSubmit={(e) => submitHandler(e)}>
-        <input className='input_search' type="text" id='inputSearch' placeholder='Busca usuario/trabajo' />
+        <input className='input_search' type="text" id='inputSearch' placeholder='Busca' />
         </form>
         <div className='SearchBar_buttons'>
           <button className='button_filters' onClick={handleClick}>
-            <img className='icon_filters' src={icon_filter} alt="filters" /></button>
+            <img className='icon_filters' src={icon_filter} alt="filters" />
+          </button>
           <button className='button_search'>
             <img className='icon_search' src={icon_search} alt="search" onClick={(e) => submitHandler(e)} />
           </button>
