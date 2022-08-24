@@ -17,14 +17,14 @@ const GoogleClient = () => {
     const splitedName: any = googleData.name.split(' ')
     //dependiendo de la cantidad de palabras suponemos cuales son nombres y cuales apellidos
     if (splitedName.length === 3) {
-        name = splitedName[0] + splitedName[1]
+        name = splitedName[0] + " " + splitedName[1]
         lastname = splitedName[2]
     } else if (splitedName.length === 2) {
         name = splitedName[0]
         lastname = splitedName[1]
     } else if (splitedName.length === 4) {
-        name = splitedName[0] + splitedName[1]
-        lastname = splitedName[2] + splitedName[3]
+        name = splitedName[0] + " " + splitedName[1]
+        lastname = splitedName[2] + " " + splitedName[3]
     }
 
     const [user, setUser] = useState({

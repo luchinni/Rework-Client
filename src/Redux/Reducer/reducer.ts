@@ -961,6 +961,23 @@ export const isActiveFalseProposal = async (id: string) => {
   };
 };
 
+export const userIsActivePut = async (id: string, isActive: string, /* isAdmin: string, */ isWorker: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/users/isActive",
+      data: {
+        id,
+        isActive,
+        // isAdmin,
+        isWorker
+      }
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
 export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
   try{ 
     // "limpiamos" la data de google
