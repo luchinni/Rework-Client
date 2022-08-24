@@ -116,7 +116,7 @@ const showButton = () => {
         <span id='tres'/>
       </div>
       <div>
-      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar más</button>
       </div>
     </div>)
     }
@@ -129,7 +129,7 @@ const showButton = () => {
         <span id='tres'/>
       </div>
       <div>
-      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar más</button>
       </div>
     </div>)
     }
@@ -142,7 +142,7 @@ const showButton = () => {
         <span id='tres'/>
       </div>
       <div>
-      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar más</button>
       </div>
     </div>)
     }
