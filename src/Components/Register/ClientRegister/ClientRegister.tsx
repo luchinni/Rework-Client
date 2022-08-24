@@ -219,7 +219,7 @@ export class ClientRegister extends Component {
       title: 'Registro exitoso',
       text: 'En los próximos minutos un enlace para validar tu cuenta será enviado a tu correo'
   }).then((result) => {
-    window.open("http://localhost:3000/home", "_self")
+    window.open("https://re-work-ten.vercel.app/home", "_self")
   })  
   }
 
