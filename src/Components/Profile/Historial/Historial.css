@@ -1,0 +1,39 @@
+.Historial_divHistorial{
+  width: 100%;
+}
+
+.Historial_divContent > h2{
+  font-weight: 600;
+  font-size: 25px;
+  color: #264653;
+}
+
+.Historial_no{
+  color: #264653;
+}
+
+.Historial_tags{
+    display: flex;
+    gap: 15px;
+    padding: 10px 80px;
+    margin-bottom: 60px;
+}
+.Historial_tag{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #e76f51;
+    padding-bottom: 3px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .Historial_tag:hover {
+    color: #f4a261;
+  }
+  .Historial_tag.open {
+    color: #f4a261;
+    border-bottom: 3px solid #f4a261;
+  }

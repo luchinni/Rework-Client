@@ -1,0 +1,67 @@
+.Portfolio_component{
+    max-width: 1200px;
+    width: 100%;
+}
+.Portfolio_buttonAddPortfolio {
+    padding: 20px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #72AD5E;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.Portfolio_buttonAddPortfolio:hover {
+    background-color: #57b836
+}
+.Portfolio_divMap{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-rows: repeat(0, 1fr); */
+    grid-gap: 10px;
+}
+.Portfolio_divTitle {
+    max-width: 210px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+.Portfolio_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.Portfolio_divItemMap {
+    margin-bottom: 24px;
+}
+.Portfolio_divItems{
+    height: 130px;
+    width: 210px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.Portfolio_Item {
+    max-width: 235px;
+    transition: all 0.3s ease;
+}
+.Portfolio_divItems , .Portfolio_Item:hover {
+    max-width: 250px;
+    backdrop-filter: blur(1)
+}
+
+.Portfolio_formModal{
+    position: absolute;
+    top: 85%;
+    right: 60.5%;
+}
+.Portfolio_CardComponent {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}

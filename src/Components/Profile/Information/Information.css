@@ -1,0 +1,30 @@
+.Information_ul {
+  margin-left: 18px;
+}
+
+.Information_title {
+  font-weight: 600;
+    font-size: 25px;
+    color: #264653;
+}
+
+.UserDescription{
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #264653;
+}
+
+.UserDescription > p > span, .UserProfessions, .UserHabilities {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 19px;
+  color: #2a9d8f;
+}
+
+.UserProfessions > span, .UserHabilities > span {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #264653
+}

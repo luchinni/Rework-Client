@@ -1,13 +1,47 @@
-.div_BannerAndCards {
-  max-width: 1136px;
+.Home_component {
+  max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  padding: 0 30px;
+
 }
+.div_BannerAndCards {
+  max-width: 1200px;
+  margin-top: 120px;
+}
+aside {
+  width: 100%;
+  padding-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.div_filters_premium{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  /* background-color: #2A9D8F; */
+}
+
+/* .div_filters{
+  position: sticky;
+  top: 150px;
+
+} */
+
+/* .div_cardsFavorites{ */
+  /* position: sticky; */
+  /* top: 350px;  */
+  /* background-color: #E76F51; */
+/* } */
+
 .div_homeCards{
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   gap: 30px;
-  /* background-color: aqua; */
+  transition: all 0.3s ease;
+
 }
 .div_btnHome{
   display: flex;
@@ -24,7 +58,7 @@
 .span_more #uno{
   width: 5px;
   height: 5px;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   margin: 3px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -33,10 +67,11 @@
   -o-border-radius: 50%;
   opacity: .6;
 }
+
 .span_more #dos{
   width: 7px;
   height: 7px;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   margin: 3px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -48,7 +83,7 @@
 .span_more #tres{
   width: 10px;
   height: 10px;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   margin: 3px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -64,7 +99,7 @@
   color: #FFFFFF;
   padding: 7px 32px;
   border: none;
-  background: rgba(148, 148, 148);
+  background: #F4A261;
   border-radius: 7px;
   margin: 10px 0;
   transition: all 0.3s ease;
@@ -72,50 +107,50 @@
   cursor: pointer;
 }
 .btn_moreCards2:hover{
-background-color: rgb(84, 84, 84);
+background-color: #E76F51;
 }
 
 .goTopCont{
-  position: fixed;
-  bottom: -1rem;
-  left: 5rem;
+  position: sticky;
+  top: 32rem;
+  /* left: 5rem; */
+  margin-left: 29px;
   width: 6.6rem;
   height: 6.6rem;
-  z-index: -1;
+  /* z-index: -1; */
   opacity: 0;
 }
-
-
 
 .goTopBut{
   width: 0rem;
   height: 0rem;
-  /* border: 2px solid rgb(236, 43, 0); */
   background: rgba(0, 0, 0, 0.463);
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  border-radius: 15%;
+  -webkit-border-radius: 15%;
+  -moz-border-radius: 15%;
+  -ms-border-radius: 15%;
+  -o-border-radius: 15%;
   cursor: pointer;
   transition: .2s;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, 83.5%);
+  -webkit-transform: translate(-50%, 83.5%);
+  -moz-transform: translate(-50%, 83.5%);
+  -ms-transform: translate(-50%, 83.5%);
+  -o-transform: translate(-50%, 83.5%);
   z-index: -1;
   -webkit-transition: .2s;
   -moz-transition: .2s;
   -ms-transition: .2s;
   -o-transition: .2s;
+  background-color: #2a9d90bb;
+
 }
 
 .goTopBut:hover{
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #000;
+  background-color: #2A9D8F;
+  /* border: 2px solid #000; */
 }
 
 .goTopBut:hover i{
@@ -125,7 +160,7 @@ background-color: rgb(84, 84, 84);
 .goTopBut i{
   position: absolute;
   font-size: 1rem;
-  top: 48%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   -webkit-transform: translate(-50%, -50%) scale(0);
@@ -164,3 +199,11 @@ background-color: rgb(84, 84, 84);
   -ms-transform: translate(-50%, -50%) scale(1);
   -o-transform: translate(-50%, -50%) scale(1);
 }
+
+.div_fitros_buttonUp{
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  padding-bottom: 30px;
+}
+

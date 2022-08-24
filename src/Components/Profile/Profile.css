@@ -1,12 +1,17 @@
+.Profile_Component {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px
+}
 .Profile {
-  border: 1px solid gray;
+  border: 1px solid #c5c5c5;
   max-width: 1136px;
-  margin: 50px auto 0;
+  margin-top: 100px;
   border-radius: 10px;
   overflow: hidden;
-  padding-bottom: 45px;
+  padding-bottom: 80px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
 }
-
 
 .Profile_divPortada {
   max-height: 260px;
@@ -31,19 +36,27 @@
 .Profile_divDivProfile {
   display: flex;
   margin-right: 50px;
+  width: 800px;
+  justify-content: space-between;
+  flex-direction: row;
 }
 .Profile_divFotoPerfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 170px;
   max-height: 170px;
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
   border-radius: 10px;
   position: absolute;
   top: -100px;
+  background-color: #efefef;
 }
 .Profile_foto {
-  position: relative;
-  /* right: 30px; */
   max-width: 170px;
+  max-height: 170px;
 }
 .Profile_divNameAndRating {
   margin-left: 190px;
@@ -54,28 +67,34 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
-  color: #273141;
+  color: #264653;
 }
 .Profile_UserRating {
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #D6550D;
+  color: #e9c46a;
+}
+.Profile_UserRating > span{
+color: #e76f51
 }
 .Profile_editProfile {
+  position: absolute;
+  right: 10%;
   font-weight: 600;
   font-size: 13px;
   line-height: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 6px 11px;
-  background-color: #273141;
+  background-color: #264653;
   border-radius: 6px;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: 10px;
 }
 .Profile_editProfile:hover {
-  background-color: #3f4f6a;
+  background-color: #2a9d8f;
 }
 
 .Profile_divTags {
@@ -88,20 +107,20 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #6F6F6F;
+  color: #264653;
   padding-bottom: 3px;
   border: none;
   border-bottom: 3px solid transparent;
-  background: #FFFFFF;
+  background: transparent;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 .Profile_tag:hover {
-  color: #273141;
+  color: #2a9d8f;
 }
-.Profile_tag:focus {
-  color: #273141;
-  border-bottom: 3px solid #273141;
+.Profile_tag.open {
+  color: #2a9d8f;
+  border-bottom: 3px solid #2a9d8f;
 }
 
 .Profile_divPortfolio {
@@ -117,4 +136,37 @@
   width: 210px;
   margin-bottom: 30px;
   border-radius: 10px;
+}
+
+.Profile_divModalUpdate {
+  padding: 10px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  z-index: 6;
+  transform: translateX(-50%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
+  border: 2px solid #edecd9;
+  background-color: #fffcfc;
+  border-radius: 5px;
+}
+
+.Profile_divModalUpdate_Cli {
+  height: auto;
+  min-height: 400px;
+}
+
+.Profile_divModalUpdate_Worker {
+  height: auto;
+  min-height: 700px;
+}
+
+.Profile_buttonDiv{
+  max-width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Profile_premiumButton{
+
 }

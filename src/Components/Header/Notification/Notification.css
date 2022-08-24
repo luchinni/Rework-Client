@@ -1,0 +1,49 @@
+.Notification_Component {
+  position: relative;
+}
+.Notificatoin_divImage {
+  max-width: 35px;
+  max-height: 35px;
+  overflow: hidden;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.Notification_image {
+  max-width: 35px;
+  max-height: 35px;
+}
+.Notification_Dropdown {
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #a3a3a3;
+  border-radius: 7px;
+  z-index: 5;
+  width: 285px;
+  margin-top: 3px;
+}
+.Notification_divMessageContent {
+  display: flex;
+  gap: 5px;
+}
+.Notification_divMessage {
+  /* background-color: aquamarine; */
+  /* max-width: 185px; */
+  /* max-height: 44px; */
+  overflow: hidden;
+  white-space: nowrap;
+
+}
+.Notification_message {
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+}
+.Notification_messageSpan {
+  text-align: end;
+  font-size: 12px;
+  /* background-color: aqua; */
+
+}

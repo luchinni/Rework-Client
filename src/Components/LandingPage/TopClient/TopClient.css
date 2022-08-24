@@ -1,0 +1,88 @@
+.Top_component {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.Top_divIzquierda {
+  margin-top: 170px
+}
+.Top_h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 60px;
+  max-width: 500px;
+  color: #264653;
+  margin-bottom: 17px;
+}
+.h1_necesidad {
+  color: #2A9D8F;
+}
+.h1_profesionales {
+  color: #E76F51;
+}
+.Top_pageDescription {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #264653;
+  margin-bottom: 40px;
+  max-width: 400px;
+}
+.new_tabIcon {
+  height: 29px;
+  width: 29px;
+}
+
+.Top_hero{
+  max-width: 420px;
+  max-height: 515px;
+}
+
+@media screen and (max-width: 1010px) {
+  .Top_hero{
+    margin-top: 50px;
+    max-width: 300px;
+  }
+  .Top_divIzquierda {
+    margin-top: 140px;
+    max-width: 340px;
+  }
+  .Top_h1 {
+    font-size: 30px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (max-width: 735px) {
+  .Top_hero{
+    margin-top: 10px;
+    max-width: 250px;
+  }
+  .Top_divIzquierda {
+    margin-top: 100px;
+    max-width: 300px;
+  }
+  .Top_h1 {
+    font-size: 23px;
+    line-height: 40px;
+    max-width: 340px;
+    margin-bottom: 10px;
+  }
+  .Top_pageDescription {
+    font-size: 16px;
+    line-height: 25px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Top_component {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+  .Top_divIzquierda {
+    margin-top: 50px
+  }
+}

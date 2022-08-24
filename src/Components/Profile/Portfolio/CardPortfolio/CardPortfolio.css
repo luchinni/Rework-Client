@@ -1,0 +1,55 @@
+.CardPortfolio_component {
+  position: relative;
+  top: -300px;
+  box-shadow: 1px 2px 150px 700px rgba(0, 0, 0, 0.47);
+  background-color: rgb(241, 241, 241);
+  padding: 20px;
+  max-width: 700px;
+  width: 100%;
+  border-radius: 15px;
+}
+.CardPortfolio_divContent {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.CardPortfolio_divContent img{
+  max-width: 660px;
+  border-radius: 15px;
+
+}
+
+.CardPortfolio_title{
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.CardPortfolio_description{
+
+  text-align: center;
+}
+
+.CardPortfolio_button{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid #264653;
+    color: #264653;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.CardPortfolio_button:hover{
+  background-color: #264653;
+  color: rgb(248, 248, 248);
+}

@@ -1,0 +1,133 @@
+.FormPortfolio_contenedor{
+    display: flex;
+    direction: column;
+
+}
+
+.FormPortfolio_component{
+    display: flex;
+    padding: 0px;
+    background-color: rgb(248, 248, 248);
+    flex-direction: row;
+    border-radius: 10px;
+    position: absolute;
+    left: -95px;
+    bottom: 90px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    box-shadow: 1px 3px 98px 600px rgba(0, 0, 0, 0.47);
+
+}
+.FormPortfolio_form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.Portfolio_input {
+    background-color: #e7e7e7;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0 10px 10px;
+  }
+
+  .Portfolio_input.textArea {
+    background-color: #e7e7e7;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0 10px 10px;
+    resize: none;
+  }
+
+  .Portfolio_input_file{
+    color: black;
+    margin: 10px 0 10px 10px;
+  }
+  .Portfolio_input_file::-webkit-file-upload-button{
+    background-color: rgb(248, 248, 248);
+    border: 1px solid #2A9D8F;
+    color: white;
+    height: 30px;
+    color: #2A9D8F;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.Portfolio_input_file::-webkit-file-upload-button:hover{
+    background-color: #2A9D8F;
+    color: rgb(248, 248, 248);
+}
+
+.Portfolio_image{
+    width: 250px;
+    margin: 0 0 0 10px;
+    border-radius: 0 15px 15px 0;
+    -webkit-border-radius: 0 15px 15px 0;
+    -moz-border-radius: 0 15px 15px 0;
+    -ms-border-radius: 0 15px 15px 0;
+    -o-border-radius: 0 15px 15px 0;
+}
+
+.FormPortfolio_button{
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid #264653;
+    color: #264653;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.FormPortfolio_button:hover{
+    background-color: #264653;
+    color: rgb(248, 248, 248);
+}
+
+.Portfolio_input_submit{
+    height: 35px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid #f1730c;
+    color: #f1730c;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.Portfolio_input_submit:hover{
+    background-color: #f1730c;
+    color: rgb(248, 248, 248);
+}
+
+.title_error{
+    color:red
+}
+
+.portfolioDescription_error{
+    color: red
+}
+
+.photo_error{
+    color: red
+}

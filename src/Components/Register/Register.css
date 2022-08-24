@@ -1,8 +1,8 @@
 .Register_divclientWorker{
     display: flex;
-    gap: 36px;
+    gap: 150px;
     max-width: 1136px;
-    margin: 80px auto 0 auto;
+    margin: 0px auto 0 auto;
 }
 
 .Register_Worker {
@@ -12,7 +12,7 @@
     max-width: 550px;
     padding: 30px 10px 30px 10px;
     width: 100%;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     border-radius: 10px;
 }
 
@@ -23,41 +23,94 @@
     max-width: 550px;
     width: 100%;
     padding: 30px 10px 30px 10px;
-    border: 1px solid gray;
+   /*  border: 1px solid gray; */
     border-radius: 10px;
 }
 .Register_orTitle {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 600;
-    color: #273141;
+    color: #264653;
+    margin: 0px 0px 5px 0px
 }
 .Register_orTitleOrange {
-    color: #D6550D;
+    color: #E76F51;
 }
+.Register_orTitleAqua {
+    color: #2A9D8F;
+}
+
 .Register_PortOrPublic {
-    font-size: 20px;
-    color: gray;
+    font-size: 22px;
+    color: #264653;
     margin-top: 20px;
 }
 .Register_OrDescript {
+    display: flex;
+    align-items: center;
     font-size: 22px;
     font-weight: 600;
-    color: gray;
+    color: #264653;
+    text-overflow: ellipsis;
 }
 .Register_divImage {
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
     border-radius: 10px;
-    margin: 20px 0 50px 0;
+    margin: 20px 0 30px 0;
 }
 .Register_divImage img{
     height: inherit;
     width: inherit;
 }
 .Register_button {
-    background-color: #757F8F;;
+    background-color: #264653;;
     padding: 10px 20px;
     color: white;
     text-decoration: none;
     border-radius: 4px;
+}
+.Register_button:hover{
+    background-color: #2A9D8F;;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.Register_welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 24px;
+    text-decoration: none;
+    color: #264653
+}
+
+.Register_welcome > h3{
+    font-weight: 500;
+}
+
+
+
+.Register_login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 30px 0;
+    font-size: 24px;
+    text-decoration: none;
+    color: #264653
+}
+
+.Register_login > a {
+    padding: 0 8px;
+    text-decoration: none;
+    font-size: 26px;
+    color: #F4A261
+}
+
+.Register_login > a:hover {
+    color: #E76F51
 }

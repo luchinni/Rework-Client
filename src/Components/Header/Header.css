@@ -1,29 +1,47 @@
 .Header_component {
+    left: 0;
+    position: fixed;
+    margin: 0 auto;
+    padding: 20px 0;
+    top: 0;
+    width: 100%;
+    background-color: #fffcfcb8;
+	backdrop-filter: blur(10px);
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.Header_ModalAbiertoBackground {
+    position: absolute;
+    background-color: #273141c3;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+.Header_divContent {
     display: flex;
     justify-content: space-between;
-    max-width: 1136px;
+    align-items: center;
     margin: 0 auto;
-    padding: 36px 0;
+    max-width: 1200px;
+    padding: 0 30px;
+}
+.Header_component.scroll {
+    box-shadow: rgba(98, 106, 114, 0.301) 0px -10px 40px 10px;
 }
 .logo {
-    font-size: 32px;
-    font-weight: 700;
     text-decoration: none;
-    color: #757F8F;
+    max-height: 50px;
 }
-.work {
-    color: #273141;
+.logo_img {
+    max-width: 150px;
 }
 .nav {
     display: flex;
     gap: 50px;
-    justify-content: space-between;
     align-items: center;
-    max-width: 64%;
-    width: 100%;
 }
 .div_buttons {
-    /* display: none; */
     display: flex;
     gap: 10px;
 }
@@ -38,11 +56,105 @@
     cursor: pointer;
 }
 .button_login {
-    color: #757F8F;
-    border: 1px solid #8D8D8D;
-    background-color: #FFF;
+    color: white;
+    border: 1px solid #2A9D8F;
+    background-color: #2A9D8F
+}
+.button_login:hover{
+    background-color: #264653;
+    border: 1px solid #264653;
 }
 .button_register {
-   background-color: #757F8F;
-   color: #FFF
+   background-color: #F4A261;
+   border: 1px solid #F4A261;
+   color: white
+
+}
+.button_register:hover{
+   background-color: #E76F51;
+   border: 1px solid #E76F51;
+}
+.Header_ModalLogin {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 140%;
+}
+.Header_divButtonsUser {
+    display: flex;
+    gap: 40px;
+    align-items: flex-end;
+}
+.logo_img_premium{
+    position: relative;
+    right: 30px;
+    bottom: 19px;
+    max-width: 170px;
+}
+
+
+.Header_buttonMenu {
+    max-width: 40px;
+    height: 40px;
+}
+.Header_divMenu {
+    display: none;
+}
+
+.div_buttonsOther {
+    display: flex;
+    gap: 10px;
+}
+
+@media screen and (max-width: 880px) {
+    .div_buttonsOther {
+        display: none
+    }
+    .Header_divMenu {
+        display: block;
+    }
+    .Header_buttonMenu {
+        border: 1px solid gray;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .Header_menu {
+        display: block;
+        max-width: 35px;
+    }
+    .Header_divContButtonsMenu {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #264653;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        margin-top: 20px;
+    }
+    .logo {
+        text-decoration: none;
+        max-height: 43px;
+    }
+    .logo_img {
+        max-width: 120px;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    .Header_divContent {
+        padding: 0 15px;
+    }
+    .logo {
+        max-height: 24px;
+    }
+    .logo_img {
+        max-width: 70px;
+    }
+
+    .Header_menu {
+        display: block;
+        max-width: 25px;
+    }
 }

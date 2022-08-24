@@ -1,0 +1,47 @@
+.form_review {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 40px auto 0 auto;
+/*   justify-content: space-between; */
+/*   align-items: center; */
+}
+.form_divInput h2 {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 38px; 
+    color: #264653;
+}
+.form_divInput span {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px; 
+    color: #264653;
+}
+.form_valoration input {
+    margin-left: 103px;
+}
+.form_description {
+    position: relative;
+} 
+.form_description span{
+    align-self: flex-start;
+} 
+.form_description textarea {
+    margin-left: 10px;
+}
+
+.form_divInput .danger {
+    padding-left: 200px;
+}
+.form_button {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 12px; 
+    color: #FFFFFF;
+    padding: 9px 20px;
+    background: #72AD5E;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}

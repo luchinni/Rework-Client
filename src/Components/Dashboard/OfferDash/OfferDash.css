@@ -1,0 +1,169 @@
+.OfferDash_top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.OfferDash_firstDivSelect {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse:collapse;
+}
+
+thead {
+    text-align: left;
+    color: #444444;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #e1e1e1;
+}
+  
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+td {
+    padding: 5px;
+    font-size: 14px;
+    color: #616161;
+}
+
+.OfferDash_divCardOffer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.OfferDash_tdButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    max-width: 100px;
+}
+
+.OfferDash_editButton {
+    cursor: pointer;
+    border: none;
+    background-color: #50a1c4;
+    padding: 5px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+}
+.OfferDash_editButton:hover {
+    background-color: #4287a5;
+}
+
+.OfferDash_deleteButton {
+    cursor: pointer;
+    border: none;
+    background-color: #c45050;
+    padding: 5px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+}
+.OfferDash_deleteButton:hover {
+    background-color: #a54242;
+}
+
+.OfferDash_Modal {
+    position: fixed;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px 1200px rgba(0, 0, 0, 0.493);
+    left: 50%;
+    transform: translateX(-50%);
+    top: 200px;
+    max-width: 440px;
+    width: 100%;
+}
+
+.OfferDash_divModalTitle {
+    font-size: 14;
+    color: rgb(41, 41, 41);
+}
+
+.OfferDash_MOdalTextInfo {
+    font-size: 14px;
+    color: rgb(90, 90, 90);
+}
+
+.OfferDash_closeEditModal {
+    cursor: pointer;
+    padding: 2px 4px;
+}
+
+.OfferDash_edittext {
+    max-width: 300px;
+}
+
+
+
+.OfferDash_divInfoModal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.OfferDash_divInputEdit {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+
+.OfferDash_modalDeleteText {
+    margin-bottom: 20px;
+}
+
+.OfferDash_hr {
+    margin-bottom: 20px;
+}
+
+
+/* ----- Botones modal de editar ----- */
+.OfferDash_modalButtonsDiv {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.OfferDash_modalCancelar {
+    cursor: pointer;
+    border: none;
+    background-color: #c45050;
+    padding: 5px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+}
+.OfferDash_modalCancelar:hover {
+    background-color: #a54242;
+}
+
+.OfferDash_modalOk {
+    cursor: pointer;
+    border: none;
+    background-color: #41a342;
+    padding: 5px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+}
+.OfferDash_modalOk:hover {
+    background-color: #338134;
+}
+
+.OfferDash_moreButton {
+    cursor: pointer;
+}
+.OfferDash_more {
+    margin-top: 3px;
+    max-width: 20px;
+
+}
