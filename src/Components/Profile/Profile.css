@@ -32,9 +32,11 @@
   padding: 0 80px;
   position: relative;
   margin: 10px 0 70px 0;
+  width: 1100px;
 }
 .Profile_divDivProfile {
   display: flex;
+  width: 1100px;
   justify-content: space-between;
 }
 .Profile_divFotoPerfil {
@@ -85,6 +87,7 @@ color: #e76f51
   font-weight: 600;
   line-height: 20px;
   margin-top: 10px;
+  margin-left: 30px;
   padding: 6px 11px;
   right: 10%;
   transition: all .3s ease;
@@ -160,7 +163,7 @@ color: #e76f51
 .Profile_buttonDiv{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 280px;
   height: 50px;
 }
