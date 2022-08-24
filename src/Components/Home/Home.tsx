@@ -14,6 +14,8 @@ import jwt from 'jsonwebtoken'
 import Carrusel from './Carrusel/Carrusel';
 import CarruselCard from './Carrusel/CarruselCard';
 import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
+import CardsFavorites from '../Favorites/CardsFavorite/CardsFavorites';
+
 
 
 const Home = () => {
@@ -22,6 +24,7 @@ const Home = () => {
   const search = useSelector((state:any) => state.workService.search);
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
   const currentUser = useSelector((state:any) => state.workService.currentUser);
+  const userLogged = useSelector((state:any) => state.workService.userLogged);
 
   let [ITEMS_PER_PAGE, setItemsPerPage] = useState(6);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
@@ -161,6 +164,7 @@ const showButton = () => {
           {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
           <div className='div_filters_premium'>
           <Filtros />
+          <CardsFavorites favoriteInfo={userLogged.favorites} />
           {/* <SeleccionPremium/> */}
           </div>
         </div>
