@@ -27,9 +27,11 @@ import Success from './Components/FormPago/PagoResult/Success';
 import Pending from './Components/FormPago/PagoResult/Pending';
 import Failure from './Components/FormPago/PagoResult/Failure';
 import SeleccionPremium from './Components/FormPago/PagoPremium/SeleccionPremium';
+import Premium from './Components/FormPago/PagoPremium/Premium';
+import PagoWorker from './Components/FormPago/DevolucionWorker/PagoWorker';
+import ChangePassword from './Components/Header/User/ChangePassword';
 import ForgotPassword from './Components/Login/ResetPassword/ForgotPassword';
 import ResetPassword from './Components/Login/ResetPassword/ResetPassword';
-import ChangePassword from './Components/Header/User/ChangePassword';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -47,7 +49,9 @@ function App() {
 
  */
 
-axios.defaults.baseURL = /* process.env.REACT_APP_API || */ "http://localhost:3001/";
+
+axios.defaults.baseURL = /*"http://localhost:3001/"  ||*/ process.env.REACT_APP_API; 
+//axios.defaults.baseURL = "http://localhost:3001/"  /*|| process.env.REACT_APP_API*/; 
 
 
 
@@ -66,8 +70,10 @@ return (
         <Route path='login' element={<Navigate to='/home' replace/>} />
         <Route path='myProfile' element={<Profile/>}/>
         <Route path='profile/:id' element={<OtherProfile/>} />
+        <Route path='payment/refund' element={<PagoWorker/>} />
         <Route path='post' element={<OfferPost/>} />
         <Route path='pago/:id' element={<FormPago/>} />
+        <Route path='premium/payment' element={<Premium/>} />
         <Route path='detailOffer/:id' element={<DetailOffer/>} />
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='contract/:id' element={<Contract/>} />
@@ -91,9 +97,12 @@ return (
         <Route path='google/client' element={<GoogleClient/>} />
         <Route path='login' element={<LoginComponent/>} />
         <Route path='premium' element={<SeleccionPremium/>} />
+        <Route path='payment/refund' element={<Navigate to='/login' replace/>} />
         <Route path='forgotPassword' element={<ForgotPassword/>}/>
         <Route path='resetPassword' element={<ResetPassword/>}/>
         <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
+        <Route path='premium/payment' element={<Premium/>} />
+        <Route path='contract/session' element={<Navigate to='/home' replace/>}/>
         <Route path='contract/session' element={<ContractRedirect/>}/>
         <Route path='success/:id' element={<Navigate to='/home' replace/>} />
         <Route path='pending' element={<Navigate to='/home' replace/>}/>
@@ -108,7 +117,6 @@ return (
       </>}
       {/* <Route path="portfolio" element={<Portfolio/>}/> */}
     </Routes>
-    <Footer/>
   </div>
 );
 }

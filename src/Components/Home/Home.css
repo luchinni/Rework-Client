@@ -18,7 +18,22 @@ aside {
 .div_filters_premium{
   display: flex;
   flex-direction: column;
+  gap: 20px;
+  position: relative;
+  /* background-color: #2A9D8F; */
 }
+
+/* .div_filters{
+  position: sticky;
+  top: 150px;
+
+} */
+
+/* .div_cardsFavorites{ */
+  /* position: sticky; */
+  /* top: 350px;  */
+  /* background-color: #E76F51; */
+/* } */
 
 .div_homeCards{
   display: flex;

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import image1 from "../../../images/Online report_Monochromatic.png";
-import image2 from "../../../images/Bank note_Monochromatic.png";
-import image3 from "../../../images/Money motivation _Monochromatic.png";
+import image1 from "../../../images/business-man-banner-concept-with-copy-space.jpg";
 import * as type from "../../../Types";
 import { postNewClient } from "../../../Redux/Reducer/reducer";
 import "./ClientRegister.css";
@@ -140,13 +138,19 @@ export class ClientRegister extends Component {
         console.log(dateNow);
         console.log(fechas);
         errors.birthdate =
-          dateNow < fechas
-            ? "La fecha ingresada es inválida."
-            : year[0] > date.getFullYear()
-            ? "La fecha ingresada es inválida."
-            : year[0] < 1940
-            ? "El año debe ser mayor a 1940"
-            : "";
+        dateNow < fechas
+          ? "La fecha ingresada es inválida."
+          : year[0] > date.getFullYear()
+          ? "La fecha ingresada es inválida."
+          : year[0] < 1940
+          ? "El año debe ser mayor a 1940"
+          : parseInt(year[0]) + 18> date.getFullYear() 
+          ? "Debes ser mayor de edad"
+          : parseInt(year[0]) + 18 === date.getFullYear() && parseInt(year[1]) > (date.getMonth() + 1)
+          ? "Debes ser mayor de edad"
+          : parseInt(year[0]) + 18=== date.getFullYear() && parseInt(year[1]) === (date.getMonth() + 1) && parseInt(year[2]) > date.getDate()
+          ? "Debes ser mayor de edad"
+          : "";
         break;
       case "description":
         errors.description = value.startsWith(" ") ?
@@ -224,10 +228,8 @@ export class ClientRegister extends Component {
       <div>
         <HeaderRegister />
         <div className="ClientRegister_component">
-          <div className="CR_divImages">
-            <img src={image1} alt="place1" />
-            <img src={image2} alt="place1" />
-            <img src={image3} alt="place1" />
+          <div className="ClientRegister_imageContainer">
+            <img className="ClientRegister_image" src={image1} alt="place1" />
           </div>
           <div className="CR_divForm">
             <h1 className="CR_h1">Empecemos</h1>

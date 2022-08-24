@@ -244,7 +244,7 @@
   color: #FFFFFF;
   font-size: 19px;
   cursor: pointer;
-  background-color: #e9c46a;
+  background-color: #f88d22;
   
 }
 
@@ -268,7 +268,7 @@
 }
 
 .Detail_premiumButton:hover {
-  background-color: #f4a261;
+  background-color: #c45800;
 }
 .DetailP_UserName {
   font-weight: 600;

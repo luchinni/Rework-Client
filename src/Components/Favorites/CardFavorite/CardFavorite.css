@@ -1,3 +1,22 @@
-.favorites_DivConteiner{
-    border: 1px solid rgb(174, 163, 163)
+.favorites_btn{
+    border: 1px solid #efefef;
+    background-color: #e0dfdf;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+    /* text-decoration: none; */
+    width: 100%;
+    color: #F4A261;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: start;
+    transition: all 0.3s ease;
+}
+
+.favorites_btn:hover{
+    background-color: #264653;
 }

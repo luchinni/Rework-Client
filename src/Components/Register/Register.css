@@ -92,17 +92,7 @@
     font-weight: 500;
 }
 
-.Register_RE{
-    color: #E76F51;
-    font-weight: 600;
-    font-size: 35px;
-}
 
-.Register_work{
-    font-weight: 600;
-    font-size: 35px;
-    color: #2A9D8F
-}
 
 .Register_login{
     display: flex;

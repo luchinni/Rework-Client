@@ -21,6 +21,7 @@ const initialState = {
   offerById: {},
   professions: [],
   skills: [],
+  premiumInfo:"",
   paymentInfo:"",
   currentUser: {
     id: "",
@@ -57,6 +58,9 @@ export const workServiceSlice = createSlice({
     },
     setPaymentInfo: function (state: any, action: any) {
       state.paymentInfo = action.payload;
+    },
+    setPremiumInfo: function (state: any, action: any) {
+      state.premiumInfo = action.payload;
     },
     setSearchedWorkers: function (state: any, action: any) {
       state.infoSearched = action.payload;
@@ -309,6 +313,7 @@ export const {
   setUserLogged,
   sortAllOffers15,
   sortAllOffers51,
+  setPremiumInfo,
   sortAllOffersZA,
   sortAllOffersAZ,
   setSearch,
@@ -883,13 +888,22 @@ export const getworkersMoreRating = async () => {
   return response
 }
 
-export const getPaymentLink = (newPayment:any) => async (dispatch: Dispatch<any>) => {
-const infoMP:any = await axios({
-  method: "POST",
-  url: "/payments/payment",
-  data: newPayment
-})
-  dispatch(setPaymentInfo(infoMP.data))
+export const getPaymentLink = (newPayment:any, type:string) => async (dispatch: Dispatch<any>) => {
+  if(type==="client"){
+    const infoMP:any = await axios({
+      method: "POST",
+      url: "/payments/payment",
+      data: newPayment
+    })
+      dispatch(setPaymentInfo(infoMP.data))
+  }else{
+    const infoMP:any = await axios({
+      method: "POST",
+      url: "/payments/subscription",
+      data: newPayment
+    })
+      dispatch(setPremiumInfo(infoMP.data))
+  }
 
 }
 
@@ -968,6 +982,23 @@ export const isActiveFalseProposal = async (id: string) => {
   };
 };
 
+export const userIsActivePut = async (id: string, isActive: string, /* isAdmin: string, */ isWorker: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/users/isActive",
+      data: {
+        id,
+        isActive,
+        // isAdmin,
+        isWorker
+      }
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
 export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
   try{ 
     // "limpiamos" la data de google
@@ -1031,6 +1062,7 @@ export const createGoogleClient = (user: any) => async (dispatch: any) => {
   }
 } 
 
+
 export const modifyOfferState = async (offerState:any) => {
   try{
     await axios({
@@ -1080,6 +1112,18 @@ export const resetPassword = (token:any, password:any) => async (dispatch: any) 
   }
 }
 
+export const setBankInfo = async (info:any, id:any) =>{
+  try{
+    await axios({
+      method:"PUT",
+      url: `/offer/state`,
+      data: info
+      })
+} catch (error) {
+  return error
+}
+}
+
 export const changePassword = (user_mail: any, oldPassword:any, newPassword:any) => async (dispatch: any) =>{
   try {
     const response = await axios({
@@ -1098,7 +1142,3 @@ export const changePassword = (user_mail: any, oldPassword:any, newPassword:any)
     return error
   }
 }
-
-
-
-

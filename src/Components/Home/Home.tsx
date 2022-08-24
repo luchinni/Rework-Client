@@ -16,6 +16,7 @@ import CarruselCard from './Carrusel/CarruselCard';
 import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
 import CardsFavorites from '../Favorites/CardsFavorite/CardsFavorites';
 
+import Footer from '../Footer/Footer';
 
 
 const Home = () => {
@@ -153,6 +154,7 @@ const showButton = () => {
     /*const global = useSelector((state: any) => state.workService.currentUser)
     console.log("AAAAAAAAAAAAAAAAAAA", global)*/
   return (
+    <>
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
@@ -161,12 +163,15 @@ const showButton = () => {
         <Carrusel/>
         </div>
         <div className='div_homeCards'>
-          {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
+          {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>} 
           <div className='div_filters_premium'>
-          <Filtros />
-          <CardsFavorites favoriteInfo={userLogged.favorites} />
+            <Filtros />
+            {/* <div className='div_cardsFavorites'> */}
+              {userLogged ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <CardsFavorites favoriteInfo={favoritesStorage} /> }
+            {/* </div> */}
           {/* <SeleccionPremium/> */}
           </div>
+            
         </div>
         {showButton()}
           </div>
@@ -176,6 +181,8 @@ const showButton = () => {
         </div>
       </div>
     </div>
+      <Footer/>
+      </>
   )
 }
 

@@ -135,7 +135,7 @@ export interface errorsType {
   user_mail: String;
   birthdate: String;
   image: String;
-  description: String;
+  description: string;
 }
 
 export interface errorsTypeWorker {
