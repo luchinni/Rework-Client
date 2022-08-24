@@ -363,7 +363,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
                 </div>
                 </div>
               <div className='Worker_description'>
-                <textarea name="description" placeholder='Descripción profesional...' cols={40} rows={5} onChange={(e) => this.handleChange(e)}/>
+                <textarea className='CR_input' name="description" placeholder='Descripción profesional...' cols={40} rows={5} onChange={(e) => this.handleChange(e)}/>
                 {!this.state.errors.description ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.description}</div>}
               </div>
               <div className="Worker_image">

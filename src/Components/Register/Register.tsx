@@ -4,6 +4,7 @@ import HeaderRegister from './HeaderRegister/HeaderRegister';
 import './Register.css'
 import imageClient from "../../images/Online report_Isometric (1).png"
 import imageWorker from "../../images/Money_motivation _Flatline.png"
+import logo from "../../images/logo_header.png"
 
 const Register = () => {
   console.log("pase por register")
@@ -11,7 +12,7 @@ const Register = () => {
     <div className='Register_container'>
         <HeaderRegister/>
         <div className='Register_welcome'>
-          <h3 className='Tegister_welcomeTitle'>¡Te damos la bienvenida a <span className='Register_RE'>RE</span><span className='Register_work'>work</span>!</h3>
+          <h3 className='Tegister_welcomeTitle'>¡ Te damos la bienvenida a <img className="logo_img" src={logo} alt="" /> !</h3>
           <p className='Register_login'>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
         </div>
         <div className='Register_divclientWorker'>

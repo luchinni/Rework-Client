@@ -1,3 +1,11 @@
+.CardFavorite_component{
+   max-height: 200px;
+   overflow: hidden;
+   overflow: scroll
+    /* height: 100vh; */
+}
+
 .favorites_DivConteiner{
     border: 1px solid rgb(174, 163, 163)
+    
 }
