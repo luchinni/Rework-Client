@@ -14,6 +14,7 @@ import jwt from 'jsonwebtoken'
 import Carrusel from './Carrusel/Carrusel';
 import CarruselCard from './Carrusel/CarruselCard';
 import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
+import Footer from '../Footer/Footer';
 
 
 const Home = () => {
@@ -150,6 +151,7 @@ const showButton = () => {
     /*const global = useSelector((state: any) => state.workService.currentUser)
     console.log("AAAAAAAAAAAAAAAAAAA", global)*/
   return (
+    <>
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
@@ -172,6 +174,8 @@ const showButton = () => {
         </div>
       </div>
     </div>
+      <Footer/>
+      </>
   )
 }
 
