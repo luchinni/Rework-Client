@@ -57,9 +57,8 @@
 .profession_div {
   display: flex;
   gap: 5px;
-  width: 250px;
-  max-width: 250px;
-  flex-direction: row;
+  width: 100%;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -68,31 +67,35 @@
   border-radius: 5px;
   padding: 4px 6px;
   margin: 4px 0;
+  text-align: center;
 }
 
 .skills_div {
+  display: flex;
   gap: 5px;
-  flex-wrap: wrap;
-  width: 250px;
-  max-width: 250px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #skill,
 #profession {
   border: none;
   font-size: 17px;
-  width: 280px;
+  width: 450px;
   padding: 15px 20px;
   background: #eeeeee;
   border-radius: 8px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .skills_btn {
   background-color: #f4a261;
   border-radius: 5px;
   padding: 4px 6px;
-  margin: 5px 0;
+  margin: 5px;
+  text-align: center;
 }
 
 .Worker_submit {

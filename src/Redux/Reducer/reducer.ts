@@ -37,7 +37,7 @@ const initialState = {
     name: '',
     photo: ''
   },
-  userByEmail: {}
+  userByEmail: {},
 };
 
 export const workServiceSlice = createSlice({
@@ -343,6 +343,7 @@ export const getAllUsers = (isActive: any) => async (dispatch: Dispatch<any>) =>
       url:`/admin/users?isActive=${isActive}`
     });
     dispatch(setAllUsers(users.data))
+    setLoading(true);
   } catch(error) {
     return error;
   }
@@ -355,6 +356,7 @@ export const getClients = () => async (dispatch: Dispatch<any>) => {
       url: "/client"
     });
     dispatch(setAllClients(clients));
+    setLoading(true);
   } catch (error) {
     Swal.fire("Error al requerir los clientes","","warning");
   };
@@ -364,6 +366,7 @@ export const getAllOffersAdmin = (isActive: string) => async (dispatch: Dispatch
   try {
     const offersAdmin = await axios.get(`/admin/offers?isActive=${isActive}`);
     dispatch(setAllOffersAdmin(offersAdmin.data));
+    setLoading(true);
   } catch (error) {
     return error
   }
@@ -376,6 +379,7 @@ export const postNewOffer = async (newOffer: type.newOfferType) => {
       url: "/offer",
       data: newOffer,
     });
+    setLoading(true);
   } catch (error) {
     return error;
   }
@@ -392,6 +396,8 @@ export const getOffers = () => async (dispatch: Dispatch<any>) => {
     //     })
     //axios.get("http://localhost:3001/offer/", {multiplier:50})
     dispatch(setAllOffers(offers.data));
+    setLoading(true);
+
   } catch (error) {
     Swal.fire("Error al requerir las ofertas","","warning");
   }
@@ -402,8 +408,10 @@ export const getOffers = () => async (dispatch: Dispatch<any>) => {
 export const getOfferId =
   (id: String | undefined) => async (dispatch: Dispatch<any>) => {
     try {
-      const offerId = await axios.get(`/offer/${id}`);
-      return dispatch(setOfferById(offerId.data));
+    const offerId = await axios.get(`/offer/${id}`);
+    setLoading(true);
+    return dispatch(setOfferById(offerId.data));
+
     } catch (e) {
       Swal.fire("Error al requerir el detalle","","warning")
     }
@@ -411,12 +419,15 @@ export const getOfferId =
 
 export const getAllProfession = () => async (dispatch: any) => {
   const profs = await axios("/profession");
+  setLoading(true);
   return dispatch(setAllProfessions(profs.data));
+
 };
 
 export const getAllSkills = () => async (dispatch: any) => {
   //http://localhost:3001/skills
   const skills = await axios("/skills");
+  setLoading(true);
   return dispatch(setAllSkills(skills.data));
 };
 
@@ -484,6 +495,7 @@ export function searchWorker(input: string, filters: filter) {
       const workers = await axios.get(
         `/worker/search?q=${input}&r=${filters.rating}&p=${filters.profession}`
       );
+      setLoading(true);
       dispatch(setSearchedWorkers(workers.data));
       dispatch(setSearch("worker"));
       return "";
@@ -501,10 +513,12 @@ export function searchOffer(input: string, filters: filter) {
         console.log("entre al 1")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&wdt=${filters.workDuration}`
         );
+        setLoading(true);
       } else {
         console.log("entre al 2")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&max=${filters.remuneration.max}&min=${filters.remuneration.min}&wdt=${filters.workDuration}`
           );
+          setLoading(true);
       }
       dispatch(setSearchedOffers(offers.data));
       dispatch(setSearch("offer"));
@@ -607,12 +621,14 @@ export function getUserById(tokenDecode: any) {
         return axios
           .get(`/worker/${tokenDecode.id}`)
           .then((response) => {
+            setLoading(true);
             return dispatch(setUserLogged(response.data));
           });
       } else if (!tokenDecode.isWorker) {
         return axios
           .get(`/client/${tokenDecode.id}`)
           .then((response) => {
+            setLoading(true);
             return dispatch(setUserLogged(response.data));
           });
       }
@@ -626,8 +642,10 @@ export function getUserByIdOther(id: any) {
       const worker: any = await axios.get(`/worker/${id}`);
       const client: any = await axios.get(`/client/${id}`);
       if (worker.data) {
+        setLoading(true);
         return dispatch(setUserById(worker.data));
       } else if (client.data) {
+        setLoading(true);
         return dispatch(setUserById(client.data));
       }
     } catch (error) { }
@@ -688,6 +706,7 @@ export function favoritesToDB(value: any, idUser: string) {
   return async (dispatch: Dispatch<any>) => {
     let worker: any = await axios.get(`/worker/${idUser}`);
     let client: any = await axios.get(`/client/${idUser}`);
+    setLoading(true);
     if (worker.data !== null) {
       if (worker.data?.favorites && worker.data?.favorites?.length === 0) {
         worker.data.favorites = [...value];
@@ -727,6 +746,7 @@ export function favoritesToDB(value: any, idUser: string) {
 export async function getFavoritestoDB(value: any, idUser: string) {
   let worker: any = await axios.get(`/worker/${idUser}`);
   let client: any = await axios.get(`/client/${idUser}`);
+  setLoading(true);
   if (worker.data !== null) {
     if (worker.data.favorites?.find((f: any) => f.idOffer === value.idOffer))
       return;
