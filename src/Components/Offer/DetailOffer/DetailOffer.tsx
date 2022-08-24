@@ -24,7 +24,7 @@ const DetailOffer = () => {
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
-  const navigate = useNavigate()
+  const Navigate = useNavigate()
   const dispatch = useDispatch();
   const params = useParams();
   useEffect(() => {
@@ -47,6 +47,10 @@ const DetailOffer = () => {
 
   function handleClose(value: any) {
     setOpen(value);
+  }
+
+  function handleClick(){
+    Navigate("/premium")
   }
 
   const [openReview, setOpenReview] = useState(false)
@@ -81,7 +85,7 @@ const DetailOffer = () => {
           confirmButtonText: "¡Listo!",
         }).then((response) =>{
           if(response.isConfirmed){
-            navigate('/home')
+            Navigate('/home')
           }
         });
       }
@@ -257,7 +261,7 @@ const DetailOffer = () => {
               <div className="Detail_premium">
                 <span>¿Quieres ver las propuestas de otros freelancers?</span>
                 <p>¡conviértete en Premium!</p> 
-                <button className="Detail_premiumButton">
+                <button className="Detail_premiumButton" onClick={() => handleClick()}>
                   Hazte Premium
                 </button>
               </div>
