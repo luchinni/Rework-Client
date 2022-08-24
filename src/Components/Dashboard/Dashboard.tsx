@@ -3,6 +3,7 @@ import './Dashboard.css'
 import Header from '../Header/Header'
 import OfferDash from './OfferDash/OfferDash'
 import UserDash from './UserDash/UserDash'
+import PaysDash from './PaysDash/PaysDash'
 
 function Dashboard() {
 
@@ -97,7 +98,7 @@ function Dashboard() {
             }
 
             {
-              pagos && <p>falta el componente de Pagos</p>
+              pagos && <PaysDash />
             }
 
           </div>

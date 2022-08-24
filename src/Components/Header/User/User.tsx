@@ -22,7 +22,6 @@ function User() {
   const [open, setOpen] = useState(false)
 
   const userDiv = useRef(null);
-  //const myRefElement2 = useRef(null);
 
   function handleClickOutside() {
     setOpen(false)
@@ -75,12 +74,12 @@ function User() {
             <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>  
               <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
-              <Link className='UserDropdownItem' to='/changePassword/:id'>Cambiar contraseña</Link>
+              <Link className='UserDropdownItem' to='/changePassword'>Cambiar contraseña</Link>
             </div>
               :
               <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>
-              <Link className='UserDropdownItem' to='/changePassword/:id'>Cambiar contraseña</Link>
+              <Link className='UserDropdownItem' to='/changePassword'>Cambiar contraseña</Link>
               </div>
             }
             <div className='User_DropdownOptions'>

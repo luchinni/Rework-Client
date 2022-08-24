@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import logo from "../../../images/logo_header.png"
 import './HeaderRegister.css'
 
 
@@ -13,8 +14,7 @@ const HeaderRegister = () => {
   return (
     <div className='header_register'>
       <Link to="/home" className='logo'>
-        RE
-        <span className='work'>work</span>
+        <img src={logo} className="logo_img" alt="" />
       </Link>
           <button className='btn_volver' onClick={handleClick}>Volver</button>
     </div>

@@ -1,9 +1,9 @@
 .ClientRegister_component {
   display: flex;
-  max-width: 1136px;
-  margin: 0 auto;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  gap: 50px;
 }
 .CR_divImages {
   display: flex;
@@ -39,6 +39,9 @@
 .CR_Div_inputAndError {
   /* background-color: aqua; */
   height: 70px;
+}
+.CR_input{
+  resize: none;
 }
 .CR_inputError {
   font-size: 12px;

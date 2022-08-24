@@ -16,6 +16,7 @@ import CarruselCard from './Carrusel/CarruselCard';
 import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
 import CardsFavorites from '../Favorites/CardsFavorite/CardsFavorites';
 
+import Footer from '../Footer/Footer';
 
 
 const Home = () => {
@@ -116,7 +117,7 @@ const showButton = () => {
         <span id='tres'/>
       </div>
       <div>
-      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar más</button>
       </div>
     </div>)
     }
@@ -129,7 +130,7 @@ const showButton = () => {
         <span id='tres'/>
       </div>
       <div>
-      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar más</button>
       </div>
     </div>)
     }
@@ -142,7 +143,7 @@ const showButton = () => {
         <span id='tres'/>
       </div>
       <div>
-      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar mas</button>
+      <button className='btn_moreCards2' onClick={() => handleMore()}>Cargar más</button>
       </div>
     </div>)
     }
@@ -153,6 +154,7 @@ const showButton = () => {
     /*const global = useSelector((state: any) => state.workService.currentUser)
     console.log("AAAAAAAAAAAAAAAAAAA", global)*/
   return (
+    <>
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
@@ -179,6 +181,8 @@ const showButton = () => {
         </div>
       </div>
     </div>
+      <Footer/>
+      </>
   )
 }
 

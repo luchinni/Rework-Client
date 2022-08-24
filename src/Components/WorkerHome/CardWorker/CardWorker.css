@@ -28,7 +28,7 @@ position: relative
     height: 165px;
     width: 220px;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 3px;
 }
 
 .card_workerImage{

@@ -79,7 +79,7 @@ return (
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
         <Route path='google/client' element={<Navigate to='/home' replace/>} />
-        <Route path='changePassword/:id' element={<ChangePassword/>}/>
+        <Route path='changePassword' element={<ChangePassword/>}/>
         
       </>
         :
@@ -108,7 +108,6 @@ return (
       </>}
       {/* <Route path="portfolio" element={<Portfolio/>}/> */}
     </Routes>
-    <Footer/>
   </div>
 );
 }
