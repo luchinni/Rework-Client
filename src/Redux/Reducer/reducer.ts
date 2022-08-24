@@ -197,12 +197,13 @@ export const workServiceSlice = createSlice({
       }
     },
     sortAllOffers15: function (state: any) {
+      console.log("entre al sort")
       if (state.search === "") {
         state.offers = [...state.offers].sort((prev: any, next: any) => {
-          if (prev.userClient.rating > next.userClient.rating) {
+          if (prev.userClient?.rating > next.userClient?.rating) {
             return 1;
           }
-          if (prev.userClient.rating < next.userClient.rating) {
+          if (prev.userClient?.rating < next.userClient?.rating) {
             return -1;
           }
           return 0;
@@ -222,10 +223,10 @@ export const workServiceSlice = createSlice({
       } else if (state.search === "offer") {
         state.infoSearched = [...state.infoSearched].sort(
           (prev: any, next: any) => {
-            if (prev.userClient.rating > next.userClient.rating) {
+            if (prev.userClient?.rating > next.userClient?.rating) {
               return 1;
             }
-            if (prev.userClient.rating < next.userClient.rating) {
+            if (prev.userClient?.rating < next.userClient?.rating) {
               return -1;
             }
             return 0;
@@ -236,10 +237,10 @@ export const workServiceSlice = createSlice({
     sortAllOffers51: function (state: any) {
       if (state.search === "") {
         state.offers = [...state.offers].sort((prev: any, next: any) => {
-          if (prev.userClient.rating > next.userClient.rating) {
+          if (prev.userClient?.rating > next.userClient?.rating) {
             return -1;
           }
-          if (prev.userClient.rating < next.userClient.rating) {
+          if (prev.userClient?.rating < next.userClient?.rating) {
             return 1;
           }
           return 0;
@@ -259,10 +260,10 @@ export const workServiceSlice = createSlice({
       } else if (state.search === "offer") {
         state.infoSearched = [...state.infoSearched].sort(
           (prev: any, next: any) => {
-            if (prev.userClient.rating > next.userClient.rating) {
+            if (prev.userClient?.rating > next.userClient?.rating) {
               return -1;
             }
-            if (prev.userClient.rating < next.userClient.rating) {
+            if (prev.userClient?.rating < next.userClient?.rating) {
               return 1;
             }
             return 0;
@@ -688,23 +689,29 @@ export function favoritesToDB(value: any, idUser: string) {
     let worker: any = await axios.get(`/worker/${idUser}`);
     let client: any = await axios.get(`/client/${idUser}`);
     if (worker.data !== null) {
-      if (worker.data.favorites === undefined) {
+      if (worker.data?.favorites && worker.data?.favorites?.length === 0) {
         worker.data.favorites = [...value];
       } else {
-        worker.data.favorites = [...worker.data.favorites, ...value];
-      }
-      await axios({
-        method: "PUT",
-        url: `/worker/${idUser}`,
-        data: worker.data,
-      });
-      localStorage.removeItem("favorites");
-      return dispatch(setUserLogged(worker.data));
+        value.forEach((fav: any) => {
+        if (!worker.data.favorites.find((e: any) => e.idOffer === fav.idOffer))
+          worker.data.favorites = [...worker.data.favorites, ...value];
+        })
+        }
+        await axios({
+          method: "PUT",
+          url: `/worker/${idUser}`,
+          data: worker.data,
+        });
+        localStorage.removeItem("favorites");
+        return dispatch(setUserLogged(worker.data));
     } else {
-      if (client.favorites === undefined) {
-        client.favorites = [value];
+      if (client.data?.favorites && client.data?.favorites?.length === 0){
+        client.data.favorites = [...value];
       } else {
-        client.favorites = [...client.favorites, ...value];
+        value.forEach((fav:any) =>{
+          if (!client.data.favorites.find((e: any) => e.idOffer === fav.idOffer))
+          client.data.favorites = [...client.data.favorites, ...value];
+        })
       }
       await axios({
         method: "PUT",
@@ -1115,4 +1122,23 @@ export const setBankInfo = async (info:any, id:any) =>{
 } catch (error) {
   return error
 }
+}
+
+export const changePassword = (user_mail: any, oldPassword:any, newPassword:any) => async (dispatch: any) =>{
+  try {
+    const response = await axios({
+      method:"POST",
+      url: `/auth/change-password`,
+      data: {user_mail, oldPassword, newPassword}
+    })
+    if(response.data === "Usuario incorrecto"){
+      Swal.fire("Usuario incorrecto. Intente nuevamente.","warning")
+    } else if(response.data === "Contraseña incorrecta"){
+      Swal.fire("Contraseña incorrecta. Intente nuevamente.","warning")
+    } else if(response.data === "Contraseña reestablecida"){
+      dispatch(setUserLogged(response.data))
+    }
+  } catch(error){
+    return error
+  }
 }

@@ -8,13 +8,12 @@
 .OfferPost_divImage {
   bottom: 200px;
   position: sticky;
-  max-width: 295px;
+  height: 100vh;
   overflow: hidden;
 }
 .OfferPost_image {
   position: relative;
-  right: 53px;
-  max-width: 400px;
+  height: inherit;
 }
 
 .OfferPost_danger{

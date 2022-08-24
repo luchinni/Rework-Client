@@ -62,7 +62,7 @@ const Login = (props:any) => {
   /* const global = useSelector((state: any) => state.workService.currentUser) */
    
   const handleResetPassword = () => {
-    window.open("http://localhost:3000/forgotPassword", "_self")
+    window.open("https://re-work-ten.vercel.app/forgotPassword", "_self")
 
 } 
 

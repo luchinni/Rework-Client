@@ -54,9 +54,9 @@ function UserDash() {
       <div>
 
         <select onChange={handleSelect}>
-          <option selected={true} hidden>Monstrar usuarios</option>
+          <option selected={true} hidden>Mostrar usuarios</option>
           <option value="true">Activos</option>
-          <option value="false">Baneados</option>
+          <option value="false">Suspendidos</option>
           <option value="">Todos</option>
         </select>
 
@@ -128,13 +128,13 @@ function UserDash() {
 
                     <td>
                       <div>
-                        <span>{user.isAdmin ? "Admin" : user.isWorker ? "Worker" : "Client" }</span>
+                        <span>{user.isAdmin ? "Admin" : user.isWorker ? "Freelancer" : "Cliente" }</span>
                       </div>
                     </td>
 
                     <td>
                       <div>
-                        <span>{user.isActive ? "True" : "False"}</span>
+                        <span>{user.isActive ? "Activo" : "No activo"}</span>
                       </div>
                     </td>
 

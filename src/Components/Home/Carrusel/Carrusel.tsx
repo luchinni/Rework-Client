@@ -56,8 +56,6 @@ const Carrusel = () => {
             className="mySwiper"
           >
             {offersRating && offersRating?.map((o:any, i:any) =>{
-              console.log("la o", o)
-              console.log("la i", i)
             return(
                 <SwiperSlide><CardOffer key={i} props={o} /></SwiperSlide>
             )

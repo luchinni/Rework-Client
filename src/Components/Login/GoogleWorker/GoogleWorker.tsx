@@ -78,12 +78,18 @@ const GoogleWorker = () => {
                 console.log(fechas);
                 errors.birthdate =
                 dateNow < fechas
-                    ? "La fecha ingresada es inválida."
-                    : year[0] > date.getFullYear()
-                    ? "La fecha ingresada es inválida."
-                    : year[0] < 1940
-                    ? "El año debe ser mayor a 1940"
-                    : "";
+                  ? "La fecha ingresada es inválida."
+                  : year[0] > date.getFullYear()
+                  ? "La fecha ingresada es inválida."
+                  : year[0] < 1940
+                  ? "El año debe ser mayor a 1940"
+                  : parseInt(year[0]) + 18> date.getFullYear() 
+                  ? "Debes ser mayor de edad"
+                  : parseInt(year[0]) + 18 === date.getFullYear() && parseInt(year[1]) > (date.getMonth() + 1)
+                  ? "Debes ser mayor de edad"
+                  : parseInt(year[0]) + 18=== date.getFullYear() && parseInt(year[1]) === (date.getMonth() + 1) && parseInt(year[2]) > date.getDate()
+                  ? "Debes ser mayor de edad"
+                  : "";
                 break
             default:
                 break;
@@ -157,8 +163,8 @@ const GoogleWorker = () => {
                   placeholder="Fecha de Nacimiento"
                   onChange={(e) => handleChange(e)}
                 />
-                {!user.errors.birthdate ? null : (
-                  <div className="CR_inputError">
+                {!user.errors.birthdate ? <br/> : (
+                  <div className="GoogleWorker_error">
                     {user.errors.birthdate}
                   </div>
                 )}
