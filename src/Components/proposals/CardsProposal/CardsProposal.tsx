@@ -6,7 +6,6 @@ const CardsProposal = ({offer}:any) => {
   return (
     <div className='Detail_divProposal'>
           {offer.proposals?.map((e:any, i:any)=>{
-
             {e.isActive === true ? <CardProposal key={i} props={e} offer={offer}/> : <></>}
           })}
         </div>
