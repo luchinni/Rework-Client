@@ -15,24 +15,25 @@ aside {
   transition: all 0.3s ease;
 }
 
-/* .div_filtersAndFavorites{
-  display:flex;
-  flex-direction: column;
-  gap: 20px
-} */
-
 .div_filters_premium{
   display: flex;
   flex-direction: column;
   gap: 20px;
   position: relative;
+  /* background-color: #2A9D8F; */
 }
 
-.div_cardsFavorites{
+/* .div_filters{
   position: sticky;
-  top: 350px;
-  background-color: #E76F51;
-}
+  top: 150px;
+
+} */
+
+/* .div_cardsFavorites{ */
+  /* position: sticky; */
+  /* top: 350px;  */
+  /* background-color: #E76F51; */
+/* } */
 
 .div_homeCards{
   display: flex;

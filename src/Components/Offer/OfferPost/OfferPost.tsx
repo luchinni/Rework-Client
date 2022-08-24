@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../Header/Header";
-import image1 from "../../../images/Team presentation _Flatline.png";
+import image1 from "../../../images/pexels-ivan-samkov-4240547.jpg";
 //import image2 from '../../images/Team success _Outline.png';
 import { useDispatch, useSelector } from "react-redux";
 import {
