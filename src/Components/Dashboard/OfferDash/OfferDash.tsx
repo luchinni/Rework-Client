@@ -16,6 +16,8 @@ function OfferDash() {
 
 	const offers = useSelector((state:any) => state.workService.allOffersAdmin);
 
+	console.log("offers", offers)
+
 	function handleModalEdit(offers:any) {
 		setModalEdit(true)
 		setDataOffer(offers)
@@ -23,11 +25,6 @@ function OfferDash() {
 
 	function handleModalEditClose() {
 		setModalEdit(false)
-	}
-
-	function handleModalDelete(offers:any) {
-		setModalDelete(true)
-		setDataOffer(offers)
 	}
 
 	const [offerState, setOfferState] = useState(true)
@@ -47,7 +44,6 @@ function OfferDash() {
 		}		
 		setOfferState(isSet)
 	}
-
 
 	const [admin, setAdmin] = useState("")
 
@@ -70,14 +66,14 @@ function OfferDash() {
 		setModalEdit(false)
 	}
 
-	function handleDeleteOffer() {
-		let id = dataOffer.idOffer
-		isActiveFalseOfferPost(id)
-		.then(()=> {
-			dispatch(getOffers())
-		})
-		setModalDelete(false)
-	}
+	// function handleDeleteOffer() {
+	// 	let id = dataOffer.idOffer
+	// 	isActiveFalseOfferPost(id)
+	// 	.then(()=> {
+	// 		dispatch(getOffers())
+	// 	})
+	// 	setModalDelete(false)
+	// }
 
 
   return (
@@ -88,7 +84,7 @@ function OfferDash() {
 				<option selected={true} hidden>Mostrar Ofertas</option>
 				<option value="true">Abiertas</option>
 				<option value="false">Cerradas</option>
-				<option value="">Todas</option>
+				<option value="all">Todas</option>
 			</select>
 		</div>
 
@@ -127,20 +123,6 @@ function OfferDash() {
 							<div className='OfferDash_modalButtonsDiv'>
 								<button className='OfferDash_modalOk' onClick={handleOnClick}>guardar</button>
 								<button className='OfferDash_modalCancelar' onClick={handleModalEditClose}>cancelar</button>
-							</div>
-						</div>
-					}
-
-					{
-						modalDelete &&
-						<div className='OfferDash_Modal'>
-							<div className='OfferDash_modalDeleteText'>
-								<p className='OfferDash_divModalTitle'>Estas seguro que deseas borrar la oferta con el id:</p>
-								<span className='OfferDash_MOdalTextInfo'>{dataOffer.idOffer}</span>
-							</div>
-							<div className='OfferDash_modalButtonsDiv'>
-								<button className='OfferDash_modalOk' onClick={handleDeleteOffer}>si</button>
-								<button className='OfferDash_modalCancelar' onClick={() => setModalDelete(false)}>cancelar</button>
 							</div>
 						</div>
 					}
