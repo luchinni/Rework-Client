@@ -88,15 +88,29 @@ useOnClickOutside(userDiv, handleClickOutside);
   return (
     <div className='CardOffer_component'>
       <div className='div_userSection'>
-        <div className='div_dataUser'>
-          <div className='Card_divContImageProfile'>
-            <img className='Card_profileImage' src={props.userClient?.photo || props.userWorker?.photo} alt="Client Photo" />
+        <div className='div_infoWorkSection'>
+          <span className='card_title'>{props.title}</span>
+          <div className='div_cardDescription'>
+            <p>{props.offer_description}</p>
           </div>
-          <div className='div_userData'>
-            <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
-            <span className='Card_userRating'>Rating: {props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
+          <div className='div_bottomData'>
+            <div>
+              <div className='div_remuneration'>
+                <span>ARS </span>
+                <span>{`${props.min_remuneration} - ${props.max_remuneration}`}</span>
+                <span>$</span>
+              </div>
+              <div className='card_divTags'>
+                {
+                  props.profession.length > 4 ? <span>{props.profession[0]}, {props.profession[1]}, {props.profession[2]}, {props.profession[3]}</span>
+                  : <span className='card_tags'>{props.profession?.join(', ')}</span>
+                }
+              </div>
+            </div>
+            
           </div>
         </div>
+        
         <div className='div_cardButton'>
           <button onClick={()=> handleClick()} className='cardButton_options'>
             <img className='more' src={more} alt="more" />
@@ -106,9 +120,7 @@ useOnClickOutside(userDiv, handleClickOutside);
               <div className='CardOption_divGuardar' onClick={(e) => {addFavorite(props)}}>
                 <span className='report_cardButton'>Guardar</span>
                 {showFavorite(props)}
-                {/*<img className='guardar_icon' src={save} alt="guardar" />*/}
               </div>
-              {/* <hr /> */}
               <div className='CardOption_divReport'>
                 <span className='report_cardButton'>Reportar</span>
                 <img className='report_icon' src={report} alt="report" />
@@ -118,28 +130,18 @@ useOnClickOutside(userDiv, handleClickOutside);
         </div>
       </div>
       <hr className='CardOffer_hr' />
-      <div className='div_infoWorkSection'>
-        <span className='card_title'>{props.title}</span>
-        <div className='div_cardDescription'>
-          <p>{props.offer_description}</p>
+      <div className="Card_footer">
+        <div className='div_dataUser'>
+          <div className='Card_divContImageProfile'>
+            <img className='Card_profileImage' src={props.userClient?.photo || props.userWorker?.photo} alt="Client Photo" />
+          </div>
+          <div className='div_userData'>
+            <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
+            <span className='Card_userRating'>Rating: {props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
+          </div>
         </div>
-        <div className='div_bottomData'>
-          <div>
-            <div className='div_remuneration'>
-              <span>ARS </span>
-              <span>{`${props.min_remuneration} - ${props.max_remuneration}`}</span>
-              <span>$</span>
-            </div>
-            <div className='card_divTags'>
-              {
-                props.profession.length > 4 ? <span>{props.profession[0]}, {props.profession[1]}, {props.profession[2]}, {props.profession[3]}</span>
-                : <span className='card_tags'>{props.profession?.join(', ')}</span>
-              }
-            </div>
-          </div>
-          <div>
-            <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver más</Link>
-          </div>
+        <div className='Card_more'>
+          <Link className='button_details' to={`/detailOffer/${props.idOffer}`}>Ver más</Link>
         </div>
       </div>
     </div>
