@@ -15,12 +15,12 @@
   margin-left: 20px;
 }
 
-.Worker_description {
-  display: flex;
-  align-items: flex-start;
+.Worker_description{
   margin-left: 20px;
-  border: 3px solid #264653;
-  border-radius: 5px;
+}
+
+.Worker_textarea {
+  resize: vertical;
 }
 .Worker_registerDivForm {
   margin: 30px;
