@@ -15,14 +15,14 @@ const GoogleWorker = () => {
     let lastname: string = ''
     const splitedName: any = googleData.name.split(' ')
     if (splitedName.length === 3) {
-        name = splitedName[0] + splitedName[1]
+        name = splitedName[0] + " " + splitedName[1]
         lastname = splitedName[2]
     } else if (splitedName.length === 2) {
         name = splitedName[0]
         lastname = splitedName[1]
     } else if (splitedName.length === 4) {
-        name = splitedName[0] + splitedName[1]
-        lastname = splitedName[2] + splitedName[3]
+        name = splitedName[0] + " " +splitedName[1]
+        lastname = splitedName[2] + " " +splitedName[3]
     }
 
     const [user, setUser] = useState({
@@ -134,7 +134,9 @@ const GoogleWorker = () => {
           title: '¡Cuenta creada!',
           html: 'Ahora puedes ir a tu perfil y personalizarlo. Tambien, te llegará un correo con tu contraseña provisoria, cámbiala cuando quieras.',
           confirmButtonText: 'Comienza',
-      })
+      }).then((result) => {
+        localStorage.removeItem("googleToken")
+    })
       }
 
 

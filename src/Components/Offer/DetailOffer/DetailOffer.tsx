@@ -138,7 +138,7 @@ const DetailOffer = () => {
             <div>
               <div className="Detail_urlCopy">
                 <div className="Detail_divUrl">
-                  <span className="Detail_url">url publicación</span>
+                  <span className="Detail_url">¡Copia el enlace!</span>
                 </div>
                 <div className="Detail_divCopy">
                   <CopyToClipboard text={window.location.href}>
@@ -163,13 +163,16 @@ const DetailOffer = () => {
             <div className="Detail_header">
               <h2 className="Detail_title">{offerId?.title}</h2>
               <div className="Detail_timeRemu">
-                <p className="Detail_time">{`Tiempo aproximado del trabajo : ${offerId?.work_duration_time}`}</p>
+                <p className="Detail_time">{`Tiempo aproximado del trabajo: ${offerId?.work_duration_time}`}</p>
                 <p className="Detail_remuneration">{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
               </div>
             </div>
+            <div className="Detail_tags">
+            {offerId.profession?.map((prof: any) => <p className="Detail_tag">{prof}</p> )}
+            </div>
             <div className="Detail_tagImage">
-              <div className="Detail_tags">
-              {offerId.profession?.map((prof: any) => <p className="Detail_tag">{prof}</p> )}
+              <div className="Detail_descriptionCont">
+                <p className="Detail_description">{offerId?.offer_description}</p>
               </div>
               <div className="Detail_divImages">
               <img
@@ -180,12 +183,9 @@ const DetailOffer = () => {
               />
               </div>
             </div>
-            <div className="Detail_descriptionCont">
-              <p className="Detail_description">{offerId?.offer_description}</p>
-            </div>
 
             {alreadyApply === false && currentUser.isWorker === true ? (
-              <button className="Detail_buttonApply" onClick={handleOpen}>
+              <button className="Detail_buttonAccept" onClick={handleOpen}>
                 Aplicar
               </button>
             ) : (
@@ -200,7 +200,7 @@ const DetailOffer = () => {
             contractStarted === undefined
             ? (
               <button
-                className="Detail_buttonApply"
+                className="Detail_buttonDelete"
                 onClick={() => handleDelete(offerId.idOffer)}
               >
                 Eliminar
@@ -217,7 +217,7 @@ const DetailOffer = () => {
             ||
             (currentUser?.isWorker === true && contractStarted !== undefined && offerId?.state === 'contract started' && contractStarted?.userWorkerId === currentUser?.id)
            ? 
-            <button className="DetailP_buttonAccept" onClick={OpenModalReview}>Trabajo finalizado</button>
+            <button className="Detail_buttonFinish" onClick={OpenModalReview}>Trabajo finalizado</button>
             :
             null
           }

@@ -67,7 +67,7 @@ import menu from '../../images/header_menu.svg';
             {
               currentUser?.id !== '' && userLogged?.name !== '' ?
               <div className='Header_divButtonsUser'>
-                <Notification />
+                {/* <Notification /> */}
                 <User/>
               </div>
               :

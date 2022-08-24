@@ -108,7 +108,7 @@ const CardWorker = ({props}:any) => {
                     <div>
                         <div className='Card_userHabilities'>Habilidades: <br/>
                     {
-                        props.skills.length > 4 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}, ...</span> 
+                        props.skills.length > 3 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}, ...</span> 
                         : <span>{props.skills?.join(", ")}</span>
                     }
                     </div>
@@ -117,13 +117,13 @@ const CardWorker = ({props}:any) => {
                 {/* <p className="description">Descripción</p> */}
             </div>
         </div>
-        <div className='div_descriptionTop'>
+        {/* <div className='div_descriptionTop'>
             <p className="valorHora">Valor hora: AR$ </p>
             <div className="div_location">
                 {<GoLocation/>}
                 <h3>Argentina</h3>
             </div>
-        </div>  
+        </div>   */}
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-/* import decode from "jwt-decode"; */
 import { resetPassword } from "../../../Redux/Reducer/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
@@ -8,15 +7,12 @@ import "./ResetPassword.css"
 import Header from '../../Register/HeaderRegister/HeaderRegister';
 
 
-// diferenciamos si la url tiene al client o al worker y se despacha la action correspondiente
-
-
 const ResetPassword = () => {
     const token = new URLSearchParams(window.location.search).get('token')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const userByEmail = useSelector((state: any) => state.workService.userByEmail);
-    const [ user, setUser] = useState({user_mail:"", password:"", id: ""})
+    const [ user, setUser] = useState({user_mail:"", password:""})
     const [ error, setError] = useState({password: "Campo requerido.", confirmPassword: "Campo requerido.", disabled: true})
     /* const location = useLocation() 
     const params = useParams() */
