@@ -161,12 +161,15 @@ const showButton = () => {
         <Carrusel/>
         </div>
         <div className='div_homeCards'>
-          {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>}
+          {search!=="worker"?<CardsOffer props={informationSend()} />:<CardsWorker props={informationSend()}/>} 
           <div className='div_filters_premium'>
-          <Filtros />
-          <CardsFavorites favoriteInfo={userLogged.favorites} />
+            <Filtros />
+            <div className='div_cardsFavorites'>
+              {userLogged ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <span>"Usar Local storage"</span>}
+            </div>
           {/* <SeleccionPremium/> */}
           </div>
+            
         </div>
         {showButton()}
           </div>
