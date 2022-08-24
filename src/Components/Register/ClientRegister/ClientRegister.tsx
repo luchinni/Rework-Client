@@ -52,7 +52,6 @@ export class ClientRegister extends Component {
     }
   }
 
-
   async postImageOnCloudinary(e: any) {
     const formData = new FormData();
     formData.append("file", e);
@@ -196,8 +195,9 @@ export class ClientRegister extends Component {
       }, 
       disabled: true,
     }; 
-    Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
-    
+    Swal.fire("Registro exitoso!",
+    "Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.",
+    "success")
   }
 
   render() {
