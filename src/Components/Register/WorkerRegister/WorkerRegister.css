@@ -12,7 +12,7 @@
   font-size: 32px;
   line-height: 54px;
   color: #264653;
-  margin-left: 20px;
+  margin-left: 35px;
 }
 
 .Worker_description{
@@ -27,6 +27,7 @@
   border-radius: 15px;
   max-width: 500px;
   width: 100%;
+  padding: 30px;
 }
 
 .Worker_registerImage {
@@ -99,7 +100,7 @@
 }
 
 .Worker_submit {
-  margin: 40px;
+  margin: 125px;
   font-size: 20px;
   background-color: #f4a261;
   border: none;
