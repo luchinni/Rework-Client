@@ -11,11 +11,10 @@ import Header from "../../Header/Header";
 import copy from "../../../images/copy.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Toaster, toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import FormProposal from "../../proposals/FormProposal/FormProposal";
 import CardsProposal from "../../proposals/CardsProposal/CardsProposal";
 import "./DetailOffer.css";
-import { useParams } from "react-router-dom";
 import OwnProposal from "../../proposals/OwnProposal/OwnProposal";
 import Swal from "sweetalert2";
 import FormReview from "../../Reviews/FormReview/FormReview";
@@ -25,6 +24,7 @@ const DetailOffer = () => {
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const params = useParams();
   useEffect(() => {
@@ -79,6 +79,10 @@ const DetailOffer = () => {
           icon: "success",
           confirmButtonColor: "#3085d6",
           confirmButtonText: "¡Listo!",
+        }).then((response) =>{
+          if(response.isConfirmed){
+            navigate('/home')
+          }
         });
       }
     });

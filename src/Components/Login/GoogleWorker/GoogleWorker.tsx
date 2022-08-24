@@ -113,7 +113,7 @@ const GoogleWorker = () => {
           const data: any = response.data;
           return data.url;
         } catch (error) {
-          console.log(error);
+          return (error);
         }
       }
     async function handleSubmit(e: any) {
@@ -142,6 +142,7 @@ const GoogleWorker = () => {
           confirmButtonText: 'Comienza',
       }).then((result) => {
         localStorage.removeItem("googleToken")
+        window.open("https://re-work-ten.vercel.app/home", "_self")
     })
       }
 
