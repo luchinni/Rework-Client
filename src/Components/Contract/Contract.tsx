@@ -74,7 +74,7 @@ const Contract = () => {
     const rejectContract = () => {
         setResult("rejected")
         if(userLogged.isWorker){
-            let state = "cancelled";
+            let state = "contract cancelled";
             let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted")
             if(proposal){
             let id = proposal.idProposal;
@@ -85,8 +85,7 @@ const Contract = () => {
             acceptProposal(proposalState);
         }
         }else{
-            console.log("el cliente rechazo")
-            let state = "contract_rejected";
+            let state = "contract rejected";
             let proposal = currentOffer.proposals?.find((p:any) => p.state === "accepted"||p.state === "contract accepted")
             if(proposal){
             let id = proposal.idProposal;
@@ -217,7 +216,6 @@ const Contract = () => {
     }
 
     const notAdmited = () => {
-        console.log("LA RE PUTA MADRE")
         let proposal = currentOffer.proposals?.find((p:any) => p.state === "contract accepted" || p.state === "accepted")
         // console.log("user",userLogged)
         // console.log("offer",currentOffer)

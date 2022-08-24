@@ -19,8 +19,8 @@ const Success = () => {
             const proposal = currentOffer.proposals?.find((p:any) => p.state === "contract accepted")
 
             if(proposal){
-                let offerState: { oState: string; id: string } = {
-                    oState:"contract started",
+                let offerState: { state: string; id: string } = {
+                    state:"contract started",
                     id:currentOffer.idOffer,
                 };
                 modifyOfferState(offerState)

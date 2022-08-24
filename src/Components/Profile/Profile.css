@@ -38,6 +38,9 @@
   margin-right: 50px;
 }
 .Profile_divFotoPerfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 170px;
   max-height: 170px;
   width: 100%;
@@ -46,10 +49,9 @@
   border-radius: 10px;
   position: absolute;
   top: -100px;
-  background-color: transparent;
+  background-color: #efefef;
 }
 .Profile_foto {
-  position: relative;
   max-width: 170px;
   max-height: 170px;
 }
@@ -62,13 +64,16 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
-  color: #273141;
+  color: #264653;
 }
 .Profile_UserRating {
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #d6550d;
+  color: #e9c46a;
+}
+.Profile_UserRating > span{
+color: #e76f51
 }
 .Profile_editProfile {
   position: absolute;
@@ -78,7 +83,7 @@
   line-height: 20px;
   color: #ffffff;
   padding: 6px 11px;
-  background-color: #273141;
+  background-color: #264653;
   border-radius: 6px;
   border: none;
   cursor: pointer;
@@ -86,7 +91,7 @@
   margin-top: 10px;
 }
 .Profile_editProfile:hover {
-  background-color: #3f4f6a;
+  background-color: #2a9d8f;
 }
 
 .Profile_divTags {
@@ -99,7 +104,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #6f6f6f;
+  color: #264653;
   padding-bottom: 3px;
   border: none;
   border-bottom: 3px solid transparent;
@@ -108,11 +113,11 @@
   cursor: pointer;
 }
 .Profile_tag:hover {
-  color: #273141;
+  color: #2a9d8f;
 }
 .Profile_tag.open {
-  color: #273141;
-  border-bottom: 3px solid #273141;
+  color: #2a9d8f;
+  border-bottom: 3px solid #2a9d8f;
 }
 
 .Profile_divPortfolio {

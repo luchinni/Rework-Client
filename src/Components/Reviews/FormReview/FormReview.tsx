@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { acceptProposal, getOfferForHistory, modifyOfferState, newReviewPost } from '../../../Redux/Reducer/reducer';
 import Header from '../../Header/Header';
-import "./FormReview.css"
+import "./FormReview.css";
+import Swal from "sweetalert2";
 
 
 const FormReview = ({offer}:any) => {
-
+const navigate = useNavigate()
 const userLogged = useSelector((state: any) => state.workService.userLogged);
 const params:any = useParams();
 const [currentOffer, setCurrentOffer] = useState<any>({});
@@ -126,11 +127,31 @@ const handleSubmit = (e:any) => {
               id,
             };
             acceptProposal(proposalState);
+            Swal.fire("¡Se registró la review!",
+            "",
+            "success").then( (response) => {
+                if(response.isConfirmed){
+                    navigate('/home')
+                }
+            }
+             
+            )
+            
+            
+
             }
         } else {
             let offerState: {id: String, state: String} = {
                 id: currentOffer.idOffer, state: "finalized"};
             modifyOfferState(offerState);
+            Swal.fire("¡Se registró la review!",
+            "",
+            "success").then( (response) => {
+                if(response.isConfirmed){
+                    navigate('/home')
+                }
+            })
+            
         }
           
    }) 

@@ -15,6 +15,7 @@ import Reviews from "./Reviews/Reviews";
 import Historial from "./Historial/Historial";
 import FormEditProfileClient from "./Edit Profile/FormEditProfileClient";
 import FormEditProfileWorker from "./Edit Profile/FormEditProfileWorker";
+import { ratingStars } from "../WorkerHome/CardWorker/CardWorker";
 import { current } from "@reduxjs/toolkit";
 
 function Profile() {
@@ -35,7 +36,7 @@ function Profile() {
   );
   // console.log('current' , currentUser)
   const userLogged = useSelector((state: any) => state.workService.userLogged);
-  // console.log('loged', userLogged)
+ console.log('loged', userLogged)
 
   const [portfolioOpen, setPortfolioOpen] = useState(false);
   const [informationOpen, setInformationOpen] = useState(true);
@@ -133,7 +134,7 @@ function Profile() {
                     {userLogged?.name} {userLogged?.lastName}{" "}
                   </span>
                   <span className="Profile_UserRating">
-                    Rating: {userLogged?.rating ? userLogged.rating : 0}
+                    <span>Rating: </span>{userLogged?.rating ? ratingStars(userLogged.rating) : ratingStars(0)}
                   </span>
                 </div>
                 {/* </div> */}

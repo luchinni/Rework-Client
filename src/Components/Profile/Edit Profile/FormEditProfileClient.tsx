@@ -7,16 +7,18 @@ import {
 } from "../../../Redux/Reducer/reducer";
 import { ClientTypeUpdate, errorsTypeEditClient } from "../../../Types";
 import "./FormEditProfileClient.css";
+import Swal from 'sweetalert2';
 
 function FormEditProfileClient({ props }: any) {
   const userLogged = useSelector((state: any) => state.workService.userLogged);
   const dispatch = useDispatch();
 
   const [client, setClient] = React.useState<ClientTypeUpdate>({
-    name: "",
-    lastName: "",
+    name: userLogged.name,
+    lastName: userLogged.lastName,
     born_date: "",
     photo: "",
+    description: "",
   });
 
   const [errors, setErrors] = React.useState<errorsTypeEditClient>({
@@ -24,7 +26,8 @@ function FormEditProfileClient({ props }: any) {
     lastName: "",
     birthdate: "",
     image: "",
-    disabled: true,
+    description: "",
+    disabled: false,
   });
 
   async function parseImage(e: any, cb: Function) {
@@ -51,11 +54,15 @@ function FormEditProfileClient({ props }: any) {
         ...errors,
         disabled: false,
       });
+      let inputSubmit = document.getElementById("btnEditDisabled")
+      inputSubmit?.setAttribute("id","btnEditEnabled")
     } else {
       setErrors({
         ...errors,
         disabled: true,
       });
+      let inputSubmit = document.getElementById("btnEditEnabled")
+      inputSubmit?.setAttribute("id","btnEditDisabled")
     }
   }
 
@@ -116,6 +123,15 @@ function FormEditProfileClient({ props }: any) {
             ? "El año debe ser mayor a 1940"
             : "";
         break;
+      case "description":
+        error.description = value.startsWith(" ") ?
+        "La descripción no puede iniciar con un espacio."
+        : client.description.length > 500 ?
+        "La cantidad máxima de caracteres es 500."
+        : value.endsWith(" ") ?
+        "La descripción no puede terminar en espacio."
+        :"";
+        break;  
       default:
         break;
     }
@@ -133,7 +149,7 @@ function FormEditProfileClient({ props }: any) {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    let { name, lastName, born_date, photo } = client;
+    let { name, lastName, born_date, photo, description } = client;
     name = name ? firstWordUpperCase(name) : name;
     lastName = lastName ? firstWordUpperCase(lastName) : lastName;
 
@@ -142,10 +158,18 @@ function FormEditProfileClient({ props }: any) {
       lastName: lastName,
       born_date: born_date,
       photo: photo,
+      description: description,
     };
     const id = userLogged.id;
     putEditProfileClient(newClient, id).then(() => {
       dispatch(getUserById(tokenDecode));
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Datos actualizados correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
     });
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
@@ -170,6 +194,7 @@ function FormEditProfileClient({ props }: any) {
               className="update_inpunt"
               type="text"
               name="name"
+              defaultValue={userLogged.name}
               autoComplete="off"
               onChange={(e) => handleChange(e)}
             />
@@ -184,6 +209,7 @@ function FormEditProfileClient({ props }: any) {
               className="update_inpunt"
               type="text"
               name="lastName"
+              defaultValue={userLogged.lastName}
               autoComplete="off"
               onChange={(e) => handleChange(e)}
             />
@@ -206,6 +232,20 @@ function FormEditProfileClient({ props }: any) {
               <div className="update_inputError">{errors.birthdate}</div>
               )}
           </div>
+          <div className="update_Div_inputAndError">
+              <input
+              required
+              className="update_inpunt"
+              id="description_input"
+              type="text"
+              name="description"
+              onChange={(e)=> handleChange(e)}
+              />
+              <span>Descripción</span>
+              {!errors.description ? null : (
+                <div className="update_inputError">{errors.description}</div>
+              )}
+            </div>
           <div className="update_Div_inputFile">
             <input
               className="update_inpuntImg"
@@ -223,6 +263,7 @@ function FormEditProfileClient({ props }: any) {
             <input
               className="update_inputSubmit"
               disabled={errors.disabled}
+              id= "btnEditEnabled"
               name="button"
               type="submit"
               value="Actualizar"

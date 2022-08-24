@@ -3,19 +3,18 @@
     width: 100%;
 }
 .Portfolio_buttonAddPortfolio {
-    height: 130px;
-    width: 210px;
+    padding: 20px 15px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    background-color: rgb(163, 163, 163);
+    background-color: #72AD5E;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 .Portfolio_buttonAddPortfolio:hover {
-    background-color: rgb(126, 126, 126);
+    background-color: #57b836
 }
 .Portfolio_divMap{
     display: grid;

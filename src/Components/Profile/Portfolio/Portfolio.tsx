@@ -55,7 +55,7 @@ const Portfolio = () => {
             <div className="Portfolio_divContent">
               <div className="Portfolio_divMap">
               <div>
-                <button className='Portfolio_buttonAddPortfolio' onClick={handleOpen}>agregar portafolio</button>
+                <button className='Portfolio_buttonAddPortfolio' onClick={handleOpen}>¡Agrega un portfolio!</button>
               </div>
               {loading===false? userLogged.portfolios?.map((e:any) => {
                 console.log(e)

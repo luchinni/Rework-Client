@@ -103,7 +103,7 @@ const SearchBar = () => {
     <div className='SearchBar_component'>
       <div className='SearchBar'>
         <form id="form" action="" onSubmit={(e) => submitHandler(e)}>
-        <input className='input_search' type="text" id='inputSearch' placeholder='Busca usuario/trabajo' />
+        <input className='input_search' type="text" id='inputSearch' placeholder='Busca' />
         </form>
         <div className='SearchBar_buttons'>
           <button className='button_filters' onClick={handleClick}>

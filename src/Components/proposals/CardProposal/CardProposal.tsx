@@ -11,32 +11,38 @@ import Swal from "sweetalert2";
 import Header from "../../Header/Header";
 
 const CardProposal = ({ props, offer }: any) => {
-  //console.log("la offer que llegan a card: ", offer);
-  //console.log("las props que llegan a card: ", props);
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
+  const proposalAccepted = offer.proposals.find((p:any) => p.state === 'accepted')
 
   const handleClick = () => {
-    // props.state = "accepted";
-    // offer.proposals?.forEach((e: any) => {
-    //   if (e.idProposal !== props.idProposal) {
-    //     let state = "rejected";
-    //     let id = e.idProposal;
-    //     let proposalState: { state: string; id: string } = {
-    //       state,
-    //       id,
-    //     };
-    //     acceptProposal(proposalState);
-    //   } else {
         let state = "accepted";
         let id = props.idProposal;
         let proposalState: { state: string; id: string } = {
           state,
           id,
         };
-        acceptProposal(proposalState);
-      // }
+        Swal.fire({
+          title: '¿Estas seguro que deseas aceptar esta propuesta?',
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "Aceptar",
+          cancelButtonText: "Cancelar",
+          icon: "question"
+        }).then((response) => {
+          if (response.isConfirmed) {
+          acceptProposal(proposalState);
+            Swal.fire({
+              title: '¡Felicitaciones!',
+              showDenyButton: false,
+              showCancelButton: false,
+              confirmButtonText: "¡Genial!",
+              html: "Aceptaste la propuesta. <p>El trabajador sera notificado.</p> <p>Te enviaremos un mail si el confirma el trabajo.</p>",
+              icon: "success"
+            })
+          }
+        }) 
     };
   
 
@@ -85,38 +91,42 @@ const CardProposal = ({ props, offer }: any) => {
           />
         </div>
       )}
-
+      <div className="DetailP_CardHeader">
       <p className="DetailP_UserName">{props.userWorker?.name}</p>
-      <p className="DetailP_remuneration">{`Presupuesto ARS: ${props?.remuneration}`}</p>
+      <p className="DetailP_remuneration">{`Presupuesto ARS $${props?.remuneration}`}</p>
+      </div>
       <p className="DetailP_propuestaUser">{props?.proposal_description}</p>
-      <br></br>
-      <br></br>
-      <br></br>
-      <p className="DetailP_timeUser">{`Tiempo estimado de entrega: ${props?.worked_time}`}</p>
-      {offer.userClientId === currentUser.id ? (
-        <button name="button" className="DetailP_button" onClick={handleClick}>
-          Aceptar
-        </button>
-      ) : null}
-      {props.userWorker.id === currentUser.id &&
-      currentUser.isPremium === true ? (
-        <button
+      <div>
+      <p className="DetailP_timeUser">{`Tiempo estimado de entrega: `}<span className="DetailP_timeData">{props?.worked_time}</span> </p>
+      <div className="DetailP_divButton">
+        {offer.userClientId === currentUser.id && props.state === "posted" && proposalAccepted === undefined ? (
+          <button name="button" className="DetailP_buttonAccept" onClick={handleClick}>
+            Aceptar
+          </button>
+        ) : null}
+        {props.userWorker.id === currentUser.id &&
+        currentUser.isPremium === true &&
+        props.state === "posted" ? (
+          <button
           name="button"
-          className="DetailP_button"
+          className="DetailP_buttonEdit"
           onClick={handleEdition}
-        >
-          Editar
-        </button>
-      ) : null}
-      {props.userWorker.id === currentUser.id ? (
-        <button
+          >
+            Editar
+          </button>
+        ) : null}
+        {props.userWorker.id === currentUser.id &&
+        props.state === "posted" ? (
+          <button
           name="button"
-          className="DetailP_button"
+          className="DetailP_buttonCancel"
           onClick={() => handleCancelation(props?.idProposal)}
-        >
-          Cancelar
-        </button>
-      ) : null}
+          >
+            Cancelar
+          </button>
+        ) : null}
+        </div>
+      </div>
     </div>
   );
 };

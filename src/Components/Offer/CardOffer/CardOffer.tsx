@@ -7,7 +7,8 @@ import report from '../../../images/icon_report.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import decode from "jwt-decode"
 import { remFavorite, getFavorites, getFavoritestoDB, remFavoritestoDB, getUserById } from '../../../Redux/Reducer/reducer';
-import {BsBookmarksFill, BsBookmarks} from "react-icons/bs"
+import {BsBookmarksFill, BsBookmarks} from "react-icons/bs";
+import { ratingStars } from "../../WorkerHome/CardWorker/CardWorker";
 
 const CardOffer = ({props}:any) => {
   
@@ -19,9 +20,6 @@ const CardOffer = ({props}:any) => {
   const token:any = localStorage.getItem("token")
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
-  
-
-  //console.log(userLogged)
 
   function handleClick() {
     setOpen(!open);
@@ -76,6 +74,7 @@ const CardOffer = ({props}:any) => {
     }
 }
 
+
   return (
     <div className='CardOffer_component'>
       <div className='div_userSection'>
@@ -85,7 +84,7 @@ const CardOffer = ({props}:any) => {
           </div>
           <div className='div_userData'>
             <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
-            <span className='Card_userRating'>Rating: {props.userClient?.rating}</span>
+            <span className='Card_userRating'>Rating: {props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
           </div>
         </div>
         <div className='div_cardButton'>
@@ -122,7 +121,10 @@ const CardOffer = ({props}:any) => {
               <span>$</span>
             </div>
             <div className='card_divTags'>
-              <span className='card_tags'>{props.profession?.join(', ')}</span>
+              {
+                props.profession.length > 4 ? <span>{props.profession[0]}, {props.profession[1]}, {props.profession[2]}, {props.profession[3]}</span>
+                : <span className='card_tags'>{props.profession?.join(', ')}</span>
+              }
             </div>
           </div>
           <div>

@@ -10,6 +10,7 @@ const { SECRET_KEY } = process.env;
 const initialState = {
   allUsers: [],
   allClients: [],
+  allOffersAdmin: [],
   infoSearched: [],
   search: "",
   userById: {},
@@ -45,8 +46,14 @@ export const workServiceSlice = createSlice({
     setAllUsers: function (state: any, action: any) {
       state.allUsers = action.payload;
     },
+    setAllUsersAdmin: function (state: any, action:any) {
+      state.allUsersAdmin = action.payload;
+    },
     setAllClients: function (state: any, action: any) {
       state.allClients = action.payload;
+    },
+    setAllOffersAdmin: function (state: any, action: any) {
+      state.allOffersAdmin = action.payload;
     },
     setPaymentInfo: function (state: any, action: any) {
       state.paymentInfo = action.payload;
@@ -104,7 +111,6 @@ export const workServiceSlice = createSlice({
       state.search = action.payload;
     },
     setCurrentUser: function (state: any, action: any) {
-      console.log("lo que llega", action.payload)
       state.currentUser = {
         id: action.payload.id,
         isWorker: action.payload.isWorker,
@@ -277,7 +283,6 @@ export const workServiceSlice = createSlice({
       };
     },
     setGoogleData: function (state: any, action: any){
-      console.log(action.payload)
       state.googleData = {
         name: action.payload.name,
         photo: action.payload.photo,
@@ -294,6 +299,7 @@ export const workServiceSlice = createSlice({
 export const {
   setAllUsers,
   setAllClients,
+  setAllOffersAdmin,
   setUserById,
   setFavorite,
   removeFavorite,
@@ -323,13 +329,13 @@ export default workServiceSlice.reducer;
 
 //aca van las actions
 
-export const getAllUsers = () => async (dispatch: Dispatch<any>) => {
+export const getAllUsers = (isActive: any) => async (dispatch: Dispatch<any>) => {
   try {
+    console.log("isActive:", isActive)
     const users = await axios({
       method: "GET",
-      url:"/admin/users"
+      url:`/admin/users?isActive=${isActive}`
     });
-    console.log("action:",users.data)
     dispatch(setAllUsers(users.data))
   } catch(error) {
     return error;
@@ -347,6 +353,15 @@ export const getClients = () => async (dispatch: Dispatch<any>) => {
     Swal.fire("Error al requerir los clientes","","warning");
   };
 };
+
+export const getAllOffersAdmin = (isActive: string) => async (dispatch: Dispatch<any>) => {
+  try {
+    const offersAdmin = await axios.get(`/admin/offers?isActive=${isActive}`);
+    dispatch(setAllOffersAdmin(offersAdmin.data));
+  } catch (error) {
+    return error
+  }
+}
 
 export const postNewOffer = async (newOffer: type.newOfferType) => {
   try {
@@ -427,7 +442,6 @@ export function postLogin(user: type.userLogin) {
   return async (dispatch: any) => {
     try {
       // generamos el token conectando con el back
-      console.log(user);
       const token: any = await axios({
         method: "post",
         url: "/login/",
@@ -444,7 +458,7 @@ export function postLogin(user: type.userLogin) {
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
-      return e;
+      Swal.fire("Email o contraseña incorrectos", "Recuerda activar tu cuenta si es la primera vez que inicias sesión","warning")
     }
   };
 }
@@ -459,8 +473,8 @@ interface filter {
 export function searchWorker(input: string, filters: filter) {
   return async (dispatch: Dispatch<any>) => {
     try {
-      if (input === "")
-        return "";
+      /* if (input === "")
+        return ""; */
       const workers = await axios.get(
         `/worker/search?q=${input}&r=${filters.rating}&p=${filters.profession}`
       );
@@ -478,9 +492,11 @@ export function searchOffer(input: string, filters: filter) {
     try {
       let offers: any;
       if (filters.remuneration.max === 0 && filters.remuneration.min === 0) {
+        console.log("entre al 1")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&wdt=${filters.workDuration}`
         );
       } else {
+        console.log("entre al 2")
         offers = await axios.get(`/offer/search?q=${input}&r=${filters.rating}&p=${filters.profession}&max=${filters.remuneration.max}&min=${filters.remuneration.min}&wdt=${filters.workDuration}`
           );
       }
@@ -529,7 +545,6 @@ export const postNewPortfolio = async (
 
 export async function newReviewPost(newReview: type.reviewFormType, type:string) {
   //está incompleto hasta tener la ruta del back
-  //console.log(newReview)
   if(type==="worker"){
     try {
       return await axios({
@@ -571,7 +586,6 @@ export function checkSession() {
       let data = {};
       if (token !== "undefined")
         data = jwtDecode(token);
-      //console.log("reducer", data)
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
@@ -669,7 +683,6 @@ export function favoritesToDB(value: any, idUser: string) {
     let worker: any = await axios.get(`/worker/${idUser}`);
     let client: any = await axios.get(`/client/${idUser}`);
     if (worker.data !== null) {
-      //console.log(worker.data.favorites);
       if (worker.data.favorites === undefined) {
         worker.data.favorites = [...value];
       } else {
@@ -798,7 +811,6 @@ export const verifyToken =
         });
         return localStorage.setItem("token", JSON.stringify(renewedToken.data));
       } else if (response.data && response.data === "valid") {
-        console.log("valid");
         return "Sesion válida";
       } else {
         return "No hay sesion";
@@ -829,7 +841,6 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
 
   export const acceptProposal = async (proposalState:any) => {
     try{
-      console.log("entre: ", proposalState)
       await axios({
         method:"PUT",
         url: `/proposal/state`,
@@ -866,7 +877,6 @@ export const getworkersMoreRating = async () => {
 }
 
 export const getPaymentLink = (newPayment:any) => async (dispatch: Dispatch<any>) => {
-console.log(newPayment)
 const infoMP:any = await axios({
   method: "POST",
   url: "/payments/payment",
@@ -891,7 +901,7 @@ export const stateCancelledOfferPost = async (id: string) => {
   };
 };
 
-export const isActiveFalseOfferPost = async (id: string) => {
+export const isActiveFalseOfferPost = async (id: string ) => {
   try {
     await axios({
       method: "PUT",
@@ -899,6 +909,21 @@ export const isActiveFalseOfferPost = async (id: string) => {
       data: {
         id,
         isActive: false,
+      },
+    })
+  } catch (error) {
+    return error;
+  };
+};
+
+export const isActiveOffer = async (id: string, isActive: boolean ) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/offer/isActive",
+      data: {
+        id,
+        isActive,
       },
     })
   } catch (error) {
@@ -936,62 +961,6 @@ export const isActiveFalseProposal = async (id: string) => {
   };
 };
 
-export const getGoogleWorker = () => async (dispatch: any) => {
-  fetch("http://localhost:3001/auth/successWorker", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true"
-      } 
-  }).then((response) => {
-      if(response.status === 200) {
-        const respuesta = response.json()
-        console.log(respuesta)
-        return respuesta
-      } else {
-        throw new Error("Autenticación fallida, por favor intente de nuevo.")
-      }
-  }).then((resObject) => {
-    console.log("resObject",resObject)
-    localStorage.setItem("workerToken", JSON.stringify(resObject.token));
-    console.log("resObject worker", resObject.worker)
-    dispatch(setCurrentUser(resObject.worker))
-  }
-  ).catch((error) => {
-      console.log(error)
-  })
-}
-
-export const getGoogleClient = () => async (dispatch: any) => {
-  fetch("http://localhost:3001/auth/successClient", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true"
-      } 
-  }).then((response) => {
-      if(response.status === 200) {
-        const respuesta = response.json()
-        console.log(respuesta)
-        return respuesta
-      } else {
-        throw new Error("Autenticación fallida, por favor intente de nuevo.")
-      }
-  }).then((resObject) => {
-    console.log("resObject",resObject)
-    localStorage.setItem("clientToken", JSON.stringify(resObject.token));
-    console.log("resObject client", resObject.client)
-    dispatch(setCurrentUser(resObject.client))
-  }
-  ).catch((error) => {
-      console.log(error)
-  })
-}
-
 export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
   try{ 
     // "limpiamos" la data de google
@@ -1003,17 +972,14 @@ export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
     }
     const response: any = await axios({
       method: "post",
-      url: /* "https://rework.up.railway.app/auth/" || */ "http://localhost:3001/auth/",
+      url: /* "https://rework.up.railway.app/auth/" || */ "/auth/",
       data: cleanUser
     })
 
-    //console.log("response",response)
     if (response.data === 'usuario no encontrado'){
-      console.log("entre al if", response.data)
-      console.log("clean user", cleanUser)
       // sino guarda la data de google en el estado global y redirije a ruta para preguntar primer inicio: client o worker?
       localStorage.setItem("googleToken", JSON.stringify(cleanUser))
-      window.open( /* "https://rework-xi.vercel.app/google/" || */ "http://localhost:3000/google/", "_self")
+      window.open( /* "https://rework-xi.vercel.app/google/" || */ "/google/", "_self")
     } else {
       localStorage.setItem("token", JSON.stringify(response.data))
       // lo pasamos a json y lo guardamos en la consola en application local storage
@@ -1030,7 +996,7 @@ export const createGoogleWorker = (user: any) => async (dispatch: any) => {
   try {
     const response: any = await axios({
       method: "post",
-      url: /* "https://rework.up.railway.app/auth/worker" || */ "http://localhost:3001/auth/worker",
+      url: "/auth/worker",
       data: user
     })
     const token = response?.data
@@ -1042,13 +1008,11 @@ export const createGoogleWorker = (user: any) => async (dispatch: any) => {
   }
 } 
 
-
-
 export const createGoogleClient = (user: any) => async (dispatch: any) => {
   try {
     const response: any = await axios({
       method: "post",
-      url: /* "https://rework.up.railway.app/auth/client" || */ "http://localhost:3001/auth/client",
+      url: "/auth/client",
       data: user
     })
     const token = response?.data
@@ -1072,25 +1036,6 @@ export const modifyOfferState = async (offerState:any) => {
   }
 }
 
-/* export const forgotPassword = (user: any) => async (dispatch: any) => {
-  try {
-    const response = await axios({
-      method:"POST",
-      url: `/login/forgot-password`,
-      data: user
-    })
-    if (response.data === 'invalid'){
-      console.log("soy invalid reducer")
-      Swal.fire("Usuario incorrecto.","warning")
-    } else if (response.data === 'envío exitoso'){
-      console.log(response.data)
-      dispatch(setUserByEmail(response.data))
-    }
-  } catch(error){
-    return error
-  }
-}
- */
 export const forgotPassword = (user_mail: any, type: any) => async (dispatch: any) => {
   try {
     const response = await axios({
@@ -1109,23 +1054,6 @@ export const forgotPassword = (user_mail: any, type: any) => async (dispatch: an
     return error
   }
 }
-
-/* export const getResetPassword = async (user:any) => {
-  try {
-    console.log("entre al getreset")
-    const id = user.id
-    console.log("id get reset", id)
-    const response = await axios({
-      method: "GET",
-      url: `/login/reset-password/${id}`,
-      data: user
-    })
-    console.log("lo que trae getresetpassword", response.data)
-  } catch(error){
-    return error
-  }
-} */
-
 
 export const resetPassword = (token:any, password:any) => async (dispatch: any) =>{
   try {
@@ -1147,41 +1075,4 @@ export const resetPassword = (token:any, password:any) => async (dispatch: any) 
 
 
 
-/* export const resetPassword = (user:any) => async (dispatch: any) => {
-  try {
-    await axios({
-      method:"POST",
-      url: `http://localhost:3001/login/reset-password`,
-      data: user
-    })
-  } catch(error){
-    return error
-  }
-} */
 
-/* export const verifyWorker = (id: any) => async (dispatch: any) => {
-  try {
-    await axios({
-      method: "PUT",
-      url: `/confirm/worker/${id}`,
-      data: id,
-    });
-    dispatch(setVerifiedUser());
-  } catch (error) {
-    return error;
-  }
-};
-
-export const verifyClient = (id: any) => async (dispatch: any) => {
-  try {
-    await axios({
-      method: "PUT",
-      url: `/confirm/client/${id}`,
-      data: id,
-    });
-    dispatch(setVerifiedUser());
-  } catch (error) {
-    return error;
-  }
-};
- */

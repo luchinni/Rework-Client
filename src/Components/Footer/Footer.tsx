@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
-import logoHenry from '../../images/logo_henry.png'
+import logoHenry from '../../images/logo_henry.png';
+import logo from '../../images/logo_footer.png';
 
 function Footer() {
   return (
     <footer className='Footer_component'>
       <div className='Footer_contentDiv'>
         <div className='Footer_top'>
-          <span className='footer_logo'>RE<span className='footer_work'>work</span></span>
         </div>
 
         <div className='Footer_bottom'>
@@ -37,9 +37,7 @@ function Footer() {
             </div> */}
           </div>
           <div className='Footer_divLogoHenry'>
-            <a className='Footer_linkLogoHenry' href="https://www.soyhenry.com/" target="_blanck">
-              <img src={logoHenry} alt="henry" />
-            </a>
+        <img className='logo_img' src={logo} alt="REwork" />
           </div>
         </div>
 

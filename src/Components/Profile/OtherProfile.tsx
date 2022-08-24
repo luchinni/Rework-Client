@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect , useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdOther } from '../../Redux/Reducer/reducer';
+import { ratingStars } from "../WorkerHome/CardWorker/CardWorker";
 
 const OtherProfile = () => {
 
@@ -60,7 +61,7 @@ const OtherProfile = () => {
                     </div>
                     <div className='Profile_divNameAndRating'>
                       <span className='Profile_UserName'>{user?.name}</span>
-                      <span className='Profile_UserRating'>Rating: {user.rating?user.rating:0}</span>
+                      <span className='Profile_UserRating'>Rating: {user.rating ? ratingStars(user.rating) : ratingStars(0)}</span>
                     </div>
                   </div>
                 </div>
