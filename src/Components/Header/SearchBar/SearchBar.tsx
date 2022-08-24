@@ -121,11 +121,11 @@ const SearchBar = () => {
           <div className="Filter_divOptionsCheckbox">
             <div className='filter_type_option'>
               <label>FreeLancers</label>
-              <input type="checkbox" id='worker' value="worker" onChange={(e) => handleCheck(e)}/>
+              <input type="checkbox" id='worker' value="worker" onChange={handleCheck}/>
             </div>
             <div className='filter_type_option'>
               <label>Ofertas</label>
-              <input type="checkbox" defaultChecked id='offer' value="offer" onChange={(e) => handleCheck(e)}/>
+              <input type="checkbox" defaultChecked id='offer' value="offer" onChange={handleCheck}/>
             </div>
           </div>
           {/*workerOrOffer===?*/}
