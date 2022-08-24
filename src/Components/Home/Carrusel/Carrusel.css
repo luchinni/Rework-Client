@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.carrusel_title{
+  color: #264653
+}
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -44,5 +48,5 @@ color: red;
   margin: 25px 0 30px 0;
   font-size: 40px;
   letter-spacing: 1px;
-  color: #273141;
+  color: #264653;
 }

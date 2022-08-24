@@ -25,7 +25,8 @@
   position: absolute;
   font-size: 42px;
   font-weight: 800;
-  color: #FFF;
+  color: #FFFFFF;
+  text-shadow: #264653 2px 2px 5px;
   right: 0;
   /* //margin: 20px 20px 0 20px; */
   margin: 20px -70px 35px 0px; 
@@ -37,7 +38,8 @@
   position: absolute;
   font-size: 42px;
   font-weight: 800;
-  color: #FFF;
+  color: #FFFFFF;
+  text-shadow: #264653 2px 2px 5px;
   bottom: 0;
   margin: 20px 20px 20px 30px;
   /* margin: 20px -80px 35px 0px; */
@@ -48,7 +50,8 @@
   position: absolute;
   font-size: 42px;
   font-weight: 800;
-  color: #FFF;
+  color: #FFFFFF;
+  text-shadow: #264653 2px 2px 5px;
   margin: 20px 20px 0 0;
   right: 0;
   max-width: 420px;
