@@ -3,12 +3,10 @@
   margin: 10px 0;
 }
 .Banner_Carrusel {
-  /* background-color: aqua; */
   margin-top: 6px;
-  display: flex;
+  position: relative;
 }
 .Banner_divBanner {
-  /* display: none; */
   border-radius: 10px;
 }
 .Banner_divBannerDos {
@@ -16,20 +14,19 @@
   text-align: end;
 }
 .Banner_image {
-  /* position: absolute; */
   overflow: hidden;
   width: 100%;
   border-radius: 10px;
 }
 .Banner_imageTextUno{
   position: absolute;
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 800;
   color: #FFFFFF;
+  text-align: end;
   text-shadow: #264653 2px 2px 5px;
-  right: 0;
-  /* //margin: 20px 20px 0 20px; */
-  margin: 20px -70px 35px 0px; 
+  right: 0px;
+  margin: 15px 20px 0px 0px; 
   max-width: 420px;
   line-height: 50px;
 }
@@ -56,4 +53,36 @@
   right: 0;
   max-width: 420px;
   line-height: 50px;
+}
+
+@media screen and (max-width: 975px) {
+  .Banner_imageTextUno{
+    font-size: 30px;
+    max-width: 350px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .Banner_imageTextUno{
+    font-size: 20px;
+    max-width: 200px;
+    line-height: 25px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Banner_imageTextUno{
+    font-size: 16px;
+    max-width: 180px;
+    line-height: 20px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .Banner_imageTextUno{
+    font-size: 14px;
+    max-width: 180px;
+    line-height: 20px;
+  }
 }
