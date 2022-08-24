@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react';
 import more from '../../../images/more.svg';
 import { ImStarEmpty, ImStarHalf, ImStarFull } from "react-icons/im";
@@ -6,6 +6,7 @@ import {GoLocation} from "react-icons/go"
 import save from "../../../images/icon_guardar.png"
 import report from '../../../images/icon_report.svg';
 import {Link} from 'react-router-dom';
+import useOnClickOutside from "../../../utils/utils";
 import './CardWorker.css';
 
 export const ratingStars = (r:number) => {
@@ -64,6 +65,14 @@ const CardWorker = ({props}:any) => {
       setOpen(!open);
     }
 
+    const userDiv = useRef(null);
+
+  function handleClickOutside() {
+    setOpen(false)
+  }
+
+  useOnClickOutside(userDiv, handleClickOutside);
+
   return (
     <div className='CardWorker_component'>
         <div className='div_infoUser' > 
@@ -73,7 +82,7 @@ const CardWorker = ({props}:any) => {
                         <img className='more' src={more} alt="more" />
                     </button>
                     {open &&
-                    <div className='Card_option'>
+                    <div className='Card_option' ref={userDiv}>
                     <div className='CardOption_divReport'>
                         <span className='report_cardButton'>Reportar</span>
                         <img className='report_icon' src={report} alt="report" />
