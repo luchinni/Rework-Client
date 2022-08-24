@@ -154,3 +154,16 @@ position: relative
 .Card_userHabilities > span {
     color: #F4A261;
 }
+
+
+@media screen and (max-width: 820px) {
+    /* .Card_profileImage{
+        border-radius: 8px;
+        max-width: 60px;
+        max-height: 60px;
+    } */
+    .Card_userName {
+        font-size: 15px;
+        font-weight: 500;
+    }
+  }
