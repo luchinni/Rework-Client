@@ -107,6 +107,7 @@ console.log(offerDatos)
         </div>
       </div>
       }
+      
 
       <table className='OfferDash_divMap'>
         <thead>
