@@ -3,7 +3,8 @@ import { changePassword } from "../../../Redux/Reducer/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
-import Header from "../../Register/HeaderRegister/HeaderRegister"
+import Header from "../../Register/HeaderRegister/HeaderRegister";
+import "./ChangePassword.css"
 
 
 const ChangePassword = () => {
@@ -11,7 +12,7 @@ const ChangePassword = () => {
     const navigate = useNavigate()
     const userLogged = useSelector((state: any) => state.workService.userLogged);
     const [ user, setUser] = useState({user_mail: "", oldPassword:"", newPassword: ""})
-    const [ error, setError] = useState({oldPassword: "Campo requerido", password: "Campo requerido.", confirmPassword: "Campo requerido.", disabled: true})
+    const [ error, setError] = useState({password: "", confirmPassword: "", disabled: true})
 
 
     const handleInputChange = (e:any) => {
@@ -43,6 +44,10 @@ const ChangePassword = () => {
         }
      }
 
+     //Debe tener entre 8 y 16 caracteres y al menos 1 mayúscula, 1 minúscula y 1 número
+     //Las contraseñas deben coincidir
+
+
 
     return (
         <div>
@@ -50,8 +55,8 @@ const ChangePassword = () => {
             <div className='ChangePassword_Container'>
                 <h2 className="ChangePassword_title">Restablecer contraseña</h2>
             <form className='ChangePassword_form'>
-                <div>
-                <h3 className='ChangePassword_subtitle'>Ingresa tu correo electrónico</h3>
+            <div className="ChangePassword_div">
+                <h3 className='ChangePassword_subtitle'>Correo electrónico</h3>
                     <input 
                         className="ChangePassword_formInput" 
                         type="text" 
@@ -59,8 +64,8 @@ const ChangePassword = () => {
                         onChange={handleInputChange} 
                         placeholder='Correo electrónico'/>
                     </div>
-                <div>
-                <h3 className='ChangePassword_subtitle'>Ingresa tu contraseña actual</h3>
+                <div className="ChangePassword_div">
+                <h3 className='ChangePassword_subtitle'>Contraseña actual</h3>
                     <input 
                         className="ChangePassword_formInput" 
                         type="password" 
@@ -68,10 +73,10 @@ const ChangePassword = () => {
                         onChange={handleInputChange} 
                         placeholder='Contraseña actual'/>
                     </div>
-                <div>
-                    <h3 className='ResetPassword_subtitle'>Ingresa una nueva contraseña</h3>
+                    <div className="ChangePassword_div">
+                    <h3 className='ChangePassword_subtitle'>Nueva contraseña</h3>
                     <input 
-                        className="ResetPassword_formInput" 
+                        className="ChangePassword_formInput" 
                         type="password" 
                         name="newPassword" 
                         onChange={handleInputChange} 
@@ -79,13 +84,13 @@ const ChangePassword = () => {
                     </div>
                     <div>
                         {error.password ? (
-                            <div className='ChangePassword_inputError'>Debe tener entre 8 y 16 caracteres y al menos 1 mayúscula, 1 minúscula y 1 número</div>
+                            <div className='ChangePassword_inputError'>{error.password}</div>
                         )
                         : null 
                     } 
                 </div>
-                <div>
-                    <h3 className='ChangePassword_subtitle'>Repite la nueva contraseña</h3>
+                <div className="ChangePassword_div">
+                    <h3 className='ChangePassword_subtitle'>Repetir contraseña</h3>
                     <input 
                         className="ChangePassword_formInput" 
                         type="password" 
@@ -95,7 +100,7 @@ const ChangePassword = () => {
                 </div>
                 <div>
                         {error.confirmPassword ? (
-                            <div className='ChangePassword_inputError'>Las contraseñas deben coincidir</div>
+                            <div className='ChangePassword_inputError'>{error.confirmPassword}</div>
                         )
                         : null 
                     } 
