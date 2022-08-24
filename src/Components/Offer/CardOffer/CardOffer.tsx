@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './CardOffer.css';
 import {Link} from 'react-router-dom';
 import more from '../../../images/more.svg';
@@ -9,6 +9,7 @@ import decode from "jwt-decode"
 import { remFavorite, getFavorites, getFavoritestoDB, remFavoritestoDB, getUserById } from '../../../Redux/Reducer/reducer';
 import {BsBookmarksFill, BsBookmarks} from "react-icons/bs";
 import { ratingStars } from "../../WorkerHome/CardWorker/CardWorker";
+import useOnClickOutside from "../../../utils/utils"
 
 const CardOffer = ({props}:any) => {
   
@@ -74,6 +75,15 @@ const CardOffer = ({props}:any) => {
     }
 }
 
+const userDiv = useRef(null);
+
+function handleClickOutside() {
+  setOpen(false)
+}
+
+useOnClickOutside(userDiv, handleClickOutside);
+
+
 
   return (
     <div className='CardOffer_component'>
@@ -92,7 +102,7 @@ const CardOffer = ({props}:any) => {
             <img className='more' src={more} alt="more" />
           </button>
           {open &&
-            <div className='Card_option'>
+            <div className='Card_option' ref={userDiv}>
               <div className='CardOption_divGuardar' onClick={(e) => {addFavorite(props)}}>
                 <span className='report_cardButton'>Guardar</span>
                 {showFavorite(props)}
