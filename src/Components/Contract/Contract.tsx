@@ -3,10 +3,10 @@ import "./Contract.css"
 import firma from "../../images/04ed6259fb04a225285c9201d3e38521.png"
 import Header from '../Header/Header'
 import { useNavigate, useParams } from 'react-router-dom'
-import { acceptProposal, getOfferForHistory, modifyOfferState } from '../../Redux/Reducer/reducer'
+import { acceptProposal, checkSession, getOfferForHistory, modifyOfferState } from '../../Redux/Reducer/reducer'
 import aprobado from "../../images/aprobado.png"
 import rechazado from "../../images/rechazado.png"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Swal from "sweetalert2";
 
 
@@ -19,9 +19,11 @@ const Contract = () => {
     const userLogged = useSelector((state: any) => state.workService.userLogged);
     const currentUser = useSelector((state: any) => state.workService.currentUser)
     const navigate = useNavigate();
+    const  dispatch = useDispatch();
     
     
     useEffect(() => {
+        dispatch(checkSession())
         getOfferForHistory(params.id)
         .then((response)=>{
           setCurrentOffer(response)

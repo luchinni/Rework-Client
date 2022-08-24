@@ -19,7 +19,8 @@ const Premium = () => {
     const tokenDecode:any = decode(token)
     const paymentPremium = useSelector((state:any) => state.workService.premiumInfo);
     const params:any = useParams();
-    const userLogged = useSelector((state: any) => state.workService.userLogged)
+    const userLogged = useSelector((state: any) => state.workService.userLogged);
+    const currentUser = useSelector((state: any) => state.workService.currentUser);
     const navigate = useNavigate();
     const [premiumInfo, setpremiumInfo] = useState<any>();
     const [currentOffer, setCurrentOffer] = useState<any>();
@@ -86,11 +87,9 @@ const Premium = () => {
 
     const dispatch = useDispatch();   
     
-// useEffect(()=> {
-//   if(paymentPremium.hasOwnProperty("init_point")){
-//     setpremiumInfo(paymentPremium)
-//     navigate(paymentPremium.init_point, { replace: true })
-//   }},[paymentPremium])
+useEffect(()=> {
+    dispatch(checkSession())
+  },[])
 
 
 const validarForm = (errors:type.errorsNewpayout) => {
@@ -297,7 +296,7 @@ const handleSubmit = async (e:any) => {
                             )}                  {/*<a href={paymentPremium.init_point}>Pagar</a>*/}
                     </div>
                     <input disabled={errors.disabled} className="CR_inputSubmit" name="button" type="submit" value="Enviar" onClick={(e) => handleSubmit(e)} />
-                     {paymentPremium.hasOwnProperty("init_point")? <a href={paymentPremium.init_point}>Pagar</a> : <span/>}
+                     {paymentPremium.hasOwnProperty("init_point")? <a className="CR_inputSubmit" href={paymentPremium.init_point}>Pagar</a> : <span/>}
                 </form>
             </div>        
 
