@@ -677,6 +677,7 @@ export async function newProposalPost(newProposal: type.FormProposalType) {
 export async function editProposalWorkerPremium(newProposal: type.FormProposalType) {
   try {
     let { remuneration, proposal_description, worked_time, idProposal } = newProposal;
+    const id = idProposal
     let editProposal: object = {
       remuneration,
       proposal_description,
@@ -684,7 +685,7 @@ export async function editProposalWorkerPremium(newProposal: type.FormProposalTy
     };
     return await axios({
       method: "PUT",
-      url: `/proposal/${idProposal}`,
+      url: `/proposal/${id}`,
       data: editProposal,
     });
   } catch (error) {

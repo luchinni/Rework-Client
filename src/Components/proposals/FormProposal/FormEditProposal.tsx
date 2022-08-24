@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../../Redux/Reducer/reducer";
 
 const FormEditProposal = (props: any) => {
+  console.log("esto es props: ", props);
+
   const dispatch = useDispatch();
 
   const token: any = localStorage.getItem("token");
@@ -41,16 +43,16 @@ const FormEditProposal = (props: any) => {
   });
 
   const [error, setError] = useState<errorFormValidate>({
-    remuneration: "",
-    proposal_description: "",
-    worked_time: "",
+    remuneration: "campo requerido",
+    proposal_description: "campo requerido",
+    worked_time: "campo requerido",
     disabled: true,
   });
 
   const validarForm = (errors: errorFormValidate) => {
     let valid = true;
     Object.values(errors).forEach(
-      (val: any) => val.length > 0 && val.length !== undefined && (valid = false)
+      (val: any) => val.length > 0 && (valid = false)
     );
     if (valid) {
       setError({
@@ -74,11 +76,12 @@ const FormEditProposal = (props: any) => {
     const name = e.target.name;
     let errors: errorFormValidate;
     errors = error;
+    console.log("name: ", name, "value: ", value);
     switch (name) {
       case "remuneration":
         let remunerationPattern: RegExp = /^[0-9]+$/;
         errors.remuneration =
-          value === "" ? "" : remunerationPattern.test(value !== "" ? value : null) === false
+          remunerationPattern.test(value) === false
             ? "Solo números enteros son adimitidos."
             : value[0] === "0"
             ? "No puede inicializar con 0."
@@ -88,7 +91,7 @@ const FormEditProposal = (props: any) => {
         break;
       case "proposal_description":
         errors.proposal_description =
-          value === "" ? "" : form.proposal_description.length > 400
+          form.proposal_description.length > 400
             ? "Solo se permiten 400 caracteres."
             : form.proposal_description.length < 50
             ? "La cantidad mínima de caracteres es 50."
@@ -97,7 +100,7 @@ const FormEditProposal = (props: any) => {
       case "worked_time":
         let worked_timePattern: RegExp = /^[0-9]+$/;
         errors.worked_time =
-          value === "" ? "" : worked_timePattern.test(value) === false
+          worked_timePattern.test(value) === false
             ? "Solo números enteros son adimitidos."
             : value[0] === "0"
             ? "No puede inicializar con 0."
@@ -107,7 +110,7 @@ const FormEditProposal = (props: any) => {
         break;
     }
 
-    /* setError(errors); */
+    setError(errors);
 
     validarForm(errors);
 
@@ -144,12 +147,13 @@ const FormEditProposal = (props: any) => {
       worked_time:
         !form.worked_time || form.worked_time === props.proposal.worked_time
           ? props.proposal.worked_time
-          : worked_time,
+          : form.worked_time,
       worked_time_select: form.worked_time_select,
-      idProposal: props.proposal.idProposal,
+      idProposal: props.proposal.id,
     };
-
+    console.log(editProposal)
     editProposalWorkerPremium(editProposal).then(() => {
+      dispatch(getUserById(tokenDecode));
       let form = document.getElementById("form") as HTMLFormElement | null;
       form?.reset();
     });

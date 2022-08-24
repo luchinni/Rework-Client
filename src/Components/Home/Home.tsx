@@ -17,6 +17,7 @@ import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
 import CardsFavorites from '../Favorites/CardsFavorite/CardsFavorites';
 
 import Footer from '../Footer/Footer';
+import { useSearchParams } from 'react-router-dom';
 
 
 const Home = () => {
@@ -36,12 +37,15 @@ const Home = () => {
   const dispatch = useDispatch();
   const favoritesStorage:any = localStorage.getItem("favorites");
   const token:any = localStorage.getItem("token")
+  const [query, setQuery] = useSearchParams();
   const [storageParsed, setStorageParsed] = useState(JSON.parse(favoritesStorage));
-
 
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
-  
+  const preapproval = query.get("preapproval_id");
+  if(preapproval){
+    localStorage.removeItem("token")
+  }
   
   if(storageParsed?.length>0 && currentUser.id !== ''){
     dispatch(favoritesToDB(storageParsed, currentUser.id));
