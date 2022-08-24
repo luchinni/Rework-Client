@@ -108,11 +108,12 @@ const GoogleWorker = () => {
         formData.append("upload_preset", "re-work");
     
         try {
+          console.log(formData)
           const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
           const data: any = response.data;
           return data.url;
         } catch (error) {
-          return(error);
+          return (error);
         }
       }
     async function handleSubmit(e: any) {

@@ -2,19 +2,20 @@ import HeaderRegister from '../../Register/HeaderRegister/HeaderRegister';
 import imageClient from "../../../images/Online report_Isometric (1).png"
 import imageWorker from "../../../images/Money_motivation _Flatline.png"
 import './LoginGoogle.css'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
 const LoginGoogle = () => {
     
-    
+    const Navigate = useNavigate()
     const handleSubmitClient = () => {
-        window.open("https://re-work-ten.vercel.app/google/client", "_self")
-
+        /* window.open("https://re-work-ten.vercel.app//google/client", "_self") */
+        Navigate("https://re-work-ten.vercel.app/google/client")
     }
     const handleSubmitWorker = () => {
-        window.open("https://re-work-ten.vercel.app/google/worker", "_self")
-
+        /* window.open("https://re-work-ten.vercel.app//google/worker", "_self") */
+        Navigate("https://re-work-ten.vercel.app/google/worker")
     } 
     
     
