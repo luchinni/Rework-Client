@@ -9,12 +9,14 @@ import {
 import FormEditProposal from "../FormProposal/FormEditProposal"
 import Swal from "sweetalert2";
 import Header from "../../Header/Header";
+import { useNavigate } from "react-router-dom";
 
 const CardProposal = ({ props, offer }: any) => {
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
   const proposalAccepted = offer.proposals.find((p:any) => p.state === 'accepted')
+  const navigate = useNavigate();
 
   const handleClick = () => {
         let state = "accepted";
@@ -76,7 +78,11 @@ const CardProposal = ({ props, offer }: any) => {
           icon: "success",
           confirmButtonColor: "#3085d6",
           confirmButtonText: "¡Listo!",
-        });
+        }).then((result)=> {
+          if (result.isConfirmed){
+            navigate('/home')
+          }
+        })
       }
     });
   };
