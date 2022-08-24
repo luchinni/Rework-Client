@@ -30,6 +30,8 @@ import SeleccionPremium from './Components/FormPago/PagoPremium/SeleccionPremium
 import Premium from './Components/FormPago/PagoPremium/Premium';
 import PagoWorker from './Components/FormPago/DevolucionWorker/PagoWorker';
 import ChangePassword from './Components/Header/User/ChangePassword';
+import ForgotPassword from './Components/Login/ResetPassword/ForgotPassword';
+import ResetPassword from './Components/Login/ResetPassword/ResetPassword';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -97,9 +99,12 @@ return (
         <Route path='login' element={<LoginComponent/>} />
         <Route path='premium' element={<SeleccionPremium/>} />
         <Route path='payment/refund' element={<Navigate to='/login' replace/>} />
+        <Route path='forgotPassword' element={<ForgotPassword/>}/>
+        <Route path='resetPassword' element={<ResetPassword/>}/>
         <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
         <Route path='premium/payment' element={<Premium/>} />
         <Route path='contract/session' element={<Navigate to='/home' replace/>}/>
+        <Route path='contract/session' element={<ContractRedirect/>}/>
         <Route path='success/:id' element={<Navigate to='/home' replace/>} />
         <Route path='pending' element={<Navigate to='/home' replace/>}/>
         <Route path='failure' element={<Navigate to='/home' replace/>} />
