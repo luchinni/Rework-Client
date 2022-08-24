@@ -24,12 +24,9 @@
 .CardFavorite_component{
     max-height: 200px;
     max-width: 350px;
-    overflow: hidden;
     overflow: scroll;
+    overflow-x: hidden;
     margin: auto;
     background-color: #fffcfc;
 
  }
- ::-webkit-scrollbar {
-    display: none;
-    }
