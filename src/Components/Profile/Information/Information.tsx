@@ -23,8 +23,8 @@ function Information({props}:any) {
         <div className="UserDescription">
           {props.description ? <p><span>Descripción: </span>{props.description}</p>
           : props.id !== currentUser.id ? <p><span>Descripción: </span>El usuario no ha cargado una descripción</p>
-          : currentUser.isWorker === true ? <p><span>Descripción: </span>Carga una descripción para que los clientes puedan conocerte mejor</p>
-          : <p><span>Descripción: </span>Carga una descripción para que los trabajadores puedan conocerte mejor</p>}
+          : currentUser.isWorker === true ? <p><span>Descripción: </span>Redacta una descripción para que los clientes puedan conocerte mejor</p>
+          : <p><span>Descripción: </span>Redacta una descripción para que los trabajadores puedan conocerte mejor</p>}
           {/* <p>Diseñadora gráfica con tres años de experiencia en agencias de publicidad. 
           Especializada en ilustración digital en 2D para redes sociales. 
           Coordinadora de la campaña de diseño para la marca PediaFun, la cual elevó los índices de engagement en Facebook e Instagram en un 25%. 

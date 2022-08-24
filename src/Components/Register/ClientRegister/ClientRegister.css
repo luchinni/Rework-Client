@@ -40,6 +40,9 @@
   /* background-color: aqua; */
   height: 70px;
 }
+.CR_input{
+  resize: none;
+}
 .CR_inputError {
   font-size: 12px;
   color: #b30505fd;

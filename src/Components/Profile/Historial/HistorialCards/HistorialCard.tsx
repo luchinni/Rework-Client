@@ -39,20 +39,28 @@ const HistorialCard = ({props}:any) => {
     <div className='Historial-contenedor'>
       {props?.hasOwnProperty("idOffer") ?
         <div className='Historial-offer' onClick={()=>navigate(`/detailOffer/${props.idOffer}`)}>
-          <span className='Historial-p-title'><b>Postulaste la oferta: </b> {props.title}</span>
-          <span className='Historial-p-state'><b>Estado: </b> {translateState(props.state)}</span>
-          <p className='Historial-p-other'><b>Descripción: </b> {props.offer_description.length > 0 ? props.offer_description.slice(0,98).concat("...") : props.offer_description}</p>
-          <span className='Historial-p-other'><b>Rango de remuneración: </b>ARS$ {props.min_remuneration} y {props.max_remuneration}</span> 
-          <span className='Historial-p-state'><b>Duración de: </b>{props.work_duration_time}</span>
+          <div className="Historial_div1">
+            <span className='Historial-p-title'><b>Postulaste la oferta: </b> {props.title}</span>
+            <span className='Historial-p-state'><b>Estado: </b> {translateState(props.state)}</span>
+          </div>
+          <div className="Historial_div2">
+            <span className='Historial-p-other'><b>Rango de remuneración: </b>ARS$ {props.min_remuneration} y {props.max_remuneration}</span> 
+            <span className='Historial-p-state'><b>Duración de: </b>{props.work_duration_time}</span>
+          </div>
+          <p className='Historial-p-desc'><b>Descripción: </b> {props.offer_description.length > 0 ? props.offer_description.slice(0,98).concat("...") : props.offer_description}</p>
           {/* props.state === "contract started" ? <p>Tu oferta recibió una propuesta aceptada, <br/>revisa tu casilla de correo para firmar el contrato de trabajo</p> : <></> */}
         </div>
       : (props?.hasOwnProperty("idProposal") ?
         <div className='Historial-offer' onClick={()=>navigate(`/detailOffer/${props.offerIdOffer}`)}>
-          <span className='Historial-p-title'><b>Te postulaste a la oferta: </b> {currentOffer.title} <b> de </b> {currentOffer.userClient?.name} {currentOffer.userClient?.lastName}</span>
-          <span className='Historial-p-state'><b>Estado: </b>{translateState(props.state)}</span>
-          <p className='Historial-p-other'><b>Descripción: </b> {props.proposal_description.length > 98 ? props.proposal_description.slice(0,98).concat("...") : props.proposal_description}</p>
-          <span className='Historial-p-other'><b>Ofreciste: </b>ARS$ {props.remuneration}</span>
-          <span className='Historial-p-state'><b>Duración de: </b> {props.worked_time}</span>
+          <div className='Historial_div1'>
+            <span className='Historial-p-title'><b>Te postulaste a la oferta: </b> {currentOffer.title} <b> de </b> {currentOffer.userClient?.name} {currentOffer.userClient?.lastName}</span>
+            <span className='Historial-p-state'><b>Estado: </b>{translateState(props.state)}</span>
+          </div>
+          <div className='Historial_div2'>
+            <span className='Historial-p-other'><b>Ofreciste: </b>ARS$ {props.remuneration}</span>
+            <span className='Historial-p-state'><b>Duración de: </b> {props.worked_time}</span>
+          </div>
+          <p className='Historial-p-desc'><b>Descripción: </b> {props.proposal_description.length > 98 ? props.proposal_description.slice(0,98).concat("...") : props.proposal_description}</p>
           {/* props.state === "accepted" ? <p>Tu propuesta fue aceptada, revisa tu casilla de correo para firmar el contrato de trabajo</p> : <></> */}
         </div>
        : <div/>)}

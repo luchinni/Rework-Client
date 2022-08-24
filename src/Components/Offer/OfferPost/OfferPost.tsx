@@ -176,8 +176,8 @@ const OfferPost = () => {
         error.offer_description =
           formulario.offer_description.length > 1000
             ? "Solo se permiten 1000 caracteres"
-            : formulario.offer_description.length < 100
-            ? "La cantidad mínima de caracteres es 100"
+            : formulario.offer_description.length < 70
+            ? "La cantidad mínima de caracteres es 70"
             : "";
         break;
     }
@@ -214,7 +214,7 @@ const OfferPost = () => {
   const handleDelete = (e: any) => {
     let del = e.target.innerText;
     const name = e.target.id;
-    if (name === "profession") {
+    if (name === "profs") {
       let borrado = formulario.profession?.filter((f) => f !== del.trim());
       setFormulario({ ...formulario, profession: borrado });
     }
@@ -294,95 +294,96 @@ const OfferPost = () => {
             id="form"
             onSubmit={(e) => e.preventDefault()}
           >
-            <div>
+            <div className="OfferPost_titleDiv">
               <input
-                className={errors.title && "danger"}
+                className="OfferPost_title"
                 type="text"
                 name="title"
                 placeholder="Título"
                 onChange={handleChange}
               />
-              {errors.title && <p className="danger">{errors.title}</p>}
+              {errors.title ? <p className="OfferPost_danger">{errors.title}</p> : <br/>}
             </div>
-            <div className="OfferPost_divInput">
-              <span>Remuneración</span>
-              <div>
+            <div className="OfferPost_remuTime">
+              <div className="OfferPost_remuDiv">
                 <input
+                  className="OfferPost_remu"
                   type="number"
                   name="min_remuneration"
-                  placeholder="Min"
+                  placeholder="Remuneracion minima"
                   onChange={handleChange}
                 />
-                {errors.min_remuneration && (
-                  <p className="danger">{errors.min_remuneration}</p>
-                )}
+                {errors.min_remuneration ? 
+                  <p className="OfferPost_dangerRemu">{errors.min_remuneration}</p>
+                  :
+                  <br/>
+                }
               </div>
-              <div>
+              <div className="OfferPost_remuDiv">
                 <input
-                  className={errors.max_remuneration && "danger"}
+                  className="OfferPost_remu"
                   type="number"
                   name="max_remuneration"
-                  placeholder="Max"
+                  placeholder="Remuneracion maxima"
                   onChange={handleChange}
                 />
-                {errors.max_remuneration && (
-                  <p className="danger">{errors.max_remuneration}</p>
-                )}
+                {errors.max_remuneration ?
+                  <p className="OfferPost_dangerRemu">{errors.max_remuneration}</p>
+                : <br/>}
               </div>
             </div>
-            {<span>Duración del trabajo</span>}
-            {/* <input type='number' name='work_duration_time' placeholder='Ej: 5' onChange={handleChange}/> */}
-            {
-              <select
-                name="work_duration_time_select"
-                id="work_duration_time_select"
-                onChange={(e) => handleSelect(e)}
-              >
-                <option selected={true} hidden>
-                  Seleccione
-                </option>
-                {[
-                  "Menos de 1 mes",
-                  "1 a 3 meses",
-                  "4 a 6 meses",
-                  "Más de 6 meses",
-                ].map((e) => {
-                  return <option>{e}</option>;
-                })}
-              </select>
-            }
-            <div>
+              {
+                <select className="OfferPost_selectTime"
+                  name="work_duration_time_select"
+                  id="work_duration_time_select"
+                  onChange={(e) => handleSelect(e)}
+                >
+                  <option className="OfferPost_optionTime" selected={true} hidden>
+                  Duración del trabajo
+                  </option>
+                  {[
+                    "Menos de 1 mes",
+                    "1 a 3 meses",
+                    "4 a 6 meses",
+                    "Más de 6 meses",
+                  ].map((e) => {
+                    return <option>{e}</option>;
+                  })}
+                </select>
+              }
+            <div className="OfferPost_descriptionDiv">
               <textarea
-                className={errors.offer_description && "danger"}
+                className="OfferPost_description"
                 name="offer_description"
                 cols={40}
                 rows={5}
                 placeholder="Descripción del trabajo"
                 onChange={handleChange}
+                
               />
               {errors.offer_description && (
-                <p className="danger">{errors.offer_description}</p>
+                <p className="OfferPost_danger">{errors.offer_description}</p>
               )}
             </div>
-            <div>
+            <div className="OfferPost_imageDiv">
               <input
-                className={errors.photo && "danger"}
+                className="OfferPost_imageInput"
                 type="file"
                 accept="image/*"
                 name="photo"
                 placeholder="Url de imagen de referencia"
                 onChange={handleChange}
               />
-              {errors.photo && <p className="danger">{errors.photo}</p>}
+              {errors.photo && <p className="OfferPost_danger">{errors.photo}</p>}
             </div>
-            <span>Profesiones</span>
             <select
+              id="profs"
+              className="OfferPost_professions"
               name="profession"
-              id="profession"
               onChange={(e) => handleSelect(e)}
             >
               <option selected={true} hidden>
-                Seleccione opción
+                Seleccione profesiones
               </option>
               {profession?.map((e: any) => {
                 return (
@@ -397,8 +398,8 @@ const OfferPost = () => {
               {formulario.profession?.map((e: any) => {
                 return (
                   <span
+                    id="profs"
                     className="profession_btns"
-                    id="profession"
                     key={e}
                     onClick={(e) => handleDelete(e)}
                   >{`${e}`}</span>
@@ -407,6 +408,7 @@ const OfferPost = () => {
             </div>
             <input
               disabled={errors.disabled}
+              className="OfferPost_submit"
               name="button"
               type="submit"
               value="Publicar"

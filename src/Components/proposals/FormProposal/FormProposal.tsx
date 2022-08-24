@@ -195,7 +195,7 @@ const FormProposal = (props: any) => {
                 </div>
                 <div className="DetailModal_divInputs">
                   <label className="DetailModal_label">
-                    Tiempo estiamdo del trabajo
+                    Tiempo estimado del trabajo
                   </label>
                   <input
                     className="DetailModal_input"
@@ -212,7 +212,7 @@ const FormProposal = (props: any) => {
                   {
                     <select
                       name="worked_time_select"
-                      id="worked_time_select"
+                      className="worked_time_select"
                       onChange={(e) => handleSelect(e)}
                     >
                       <option selected={true} hidden>
@@ -228,11 +228,11 @@ const FormProposal = (props: any) => {
               <div className="DetailModal_divInputs">
                 <label className="DetailModal_label">Descripcion</label>
                 <textarea
-                  className="DetailModal_input"
+                  className="DetailModal_description"
                   name="proposal_description"
                   cols={30}
                   rows={3}
-                  placeholder="Descripción..."
+                  placeholder="Añade una descripción de al menos 50 caracteres."
                   onChange={handleChange}
                 ></textarea>
                 {error.proposal_description && (

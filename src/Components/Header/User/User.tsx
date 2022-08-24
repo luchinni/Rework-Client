@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logOut } from '../../../Redux/Reducer/reducer'
 import './User.css'
 import { useNavigate } from 'react-router-dom'
 import decode from "jwt-decode";
+import useOnClickOutside from "../../../utils/utils"
 
 function User() {
 
@@ -19,6 +20,14 @@ function User() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
+
+  const userDiv = useRef(null);
+
+  function handleClickOutside() {
+    setOpen(false)
+  }
+
+  useOnClickOutside(userDiv, handleClickOutside);
 
   function handleClick() {
     setOpen(!open)
@@ -39,7 +48,7 @@ function User() {
       </div>
       {open &&
       
-        <div className='User_Dropdown'>
+        <div className='User_Dropdown' ref={userDiv}>
           <div className='User_DropdownOptions'>
             { 
               currentUser?.id !== '' && userLogged?.name !== '' ? 
@@ -65,12 +74,12 @@ function User() {
             <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>  
               <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
-              <Link className='UserDropdownItem' to='#'>Opciones</Link>
+              <Link className='UserDropdownItem' to='/changePassword'>Cambiar contraseña</Link>
             </div>
               :
               <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>
-              <Link className='UserDropdownItem' to='#'>Opciones</Link>
+              <Link className='UserDropdownItem' to='/changePassword'>Cambiar contraseña</Link>
               </div>
             }
             <div className='User_DropdownOptions'>

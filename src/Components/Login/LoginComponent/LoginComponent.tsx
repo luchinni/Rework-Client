@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import imgGoogle from "../../../images/pngwing.com.png";
-import {postLogin} from "../../../Redux/Reducer/reducer";
+import {postLogin, googleLog} from "../../../Redux/Reducer/reducer";
 import HeaderRegister from "../../Register/HeaderRegister/HeaderRegister";
 import { Link, useNavigate } from "react-router-dom";
 import {Toaster} from "react-hot-toast";
 import login_hero from "../../../images/login_hero.jpg";
 import './LoginComponent.css'
+import firebase from "../../../firebase"
 
 const LoginComponent = (props:any) => {
   const navigate = useNavigate()
@@ -28,7 +29,6 @@ const LoginComponent = (props:any) => {
     
     let password  = user.password
     let user_mail = user.user_mail.toLowerCase();
-    console.log (password, user_mail)
     let newLoggedUser = {
       user_mail:user_mail, password:password
     }
@@ -40,13 +40,25 @@ const LoginComponent = (props:any) => {
     // toast.success("Logueado correctamente.", {position:"top-right"})
   }
 
-  function handleClose() {
-    props.close(false)
+  const googleLogin = async () => {
+    //ejecutamos la auth de firebase y guardamos la respuesta
+    let provider = new firebase.auth.GoogleAuthProvider()
+    //se ejecuta la verificacion con el usuario recibido
+      firebase.auth().signInWithPopup(provider)
+      .then((result:any) =>{
+        //guardamos en user la respuesta de google
+         let user = result.user
+         console.log("el user", user)
+         //dispatch de la action para hacer la verificacion
+         dispatch(googleLog(user))
+      })
   }
 
-      //Ejemplo de useSelector con Toolkit.
-      // para hacer un console.log y ver si estaba andando la action.
-  /* const global = useSelector((state: any) => state.workService.currentUser) */
+ /*  const handleResetPassword = () => {
+    window.open("http://localhost:3000/forgotPassword", "_self")
+
+} */
+
    
   return (
     <div className="LoginComponent_component">
@@ -62,7 +74,7 @@ const LoginComponent = (props:any) => {
                   <input type="checkbox" />
                   <span className="Login_recordarContra">Recordar contraseña?</span>
                 </div> */}
-                <input className="Login_inputSubmit" type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
+                <input className="Login_inputSubmit" type="submit" name="" value="Iniciar sesión" onClick={(e) => handleSubmit(e)}/>
               </form>
               <p className="Login_recuperarCon">¿Olvidaste tu contraseña? Recupérala <a href="#">aquí</a></p>
               <hr className="Login_hr" />
@@ -70,11 +82,11 @@ const LoginComponent = (props:any) => {
                 <p className="Login_continuaCon">O continúa con</p>
               </div>
               <div className="Login_divTercero">
-                <button className="Login_ButtonGoogle">
+                <button className="Login_ButtonGoogle" onClick={googleLogin} >
                   <img className="Login_googleImg" src={imgGoogle} alt="googleLink" />
                 </button>
               </div>
-              <span className="Login_Register">¿No tienes una cuenta? <a href="#" onClick={()=>navigate("/register")}>Regístrate</a></span>
+              <span className="Login_Register">¿No tienes una cuenta? <a href="" onClick={()=>navigate("/register")}>Regístrate</a></span>
             </div>
         </div>
       </div>

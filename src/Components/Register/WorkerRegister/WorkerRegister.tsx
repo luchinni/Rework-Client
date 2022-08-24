@@ -11,6 +11,7 @@ import { resolve } from 'node:path/win32';
 import { createBrotliCompress } from 'node:zlib';
 import Axios, { AxiosResponse } from 'axios';
 import Swal from "sweetalert2";
+//import { Redirect } from "react-router-dom";
 
 
 interface HeaderState{
@@ -30,6 +31,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
       image: "",
       profession: [],
       skills: [],
+      description: "",
       errors: {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
@@ -38,6 +40,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
         user_mail: "Campo requerido.",
         birthdate: "Campo requerido.",
         image: "",
+        description: "",
       },
       disabled: true,
       inputProfessions: [],
@@ -45,6 +48,8 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
     }
     this.setState = this.setState.bind(this);
   }
+
+// navigate = useNavigate()
 
 componentDidMount(){
   this.props.getAllProfession();
@@ -133,7 +138,15 @@ async handleChange(e:any) {
       let dateNow = (date.getFullYear() + "-"+0+ (date.getMonth()+1)+ "-" +date.getDate());
       errors.birthdate = dateNow<fechas? 'La fecha ingresada es inválida.' :year[0]>date.getFullYear()? 'La fecha ingresada es inválida.':year[0]<1940?'El año debe ser mayor a 1940': '';
         break;
-
+    case "description":
+      errors.description = value.startsWith(" ") ?
+      "La descripción no puede iniciar con un espacio."
+      : this.state.description.length > 500 ?
+      "La cantidad máxima de caracteres es 500."
+      : value.endsWith(" ") ?
+      "La descripción no puede terminar en espacio."
+      :"";
+      break;
     default:
         break;
   }
@@ -148,12 +161,12 @@ async handleSubmit(e:any){
   e.preventDefault();
   let image = await this.postImageOnCloudinary(this.state.image);
 
-  let { name, lastName, password, user_mail, birthdate, profession, skills} = this.state;
+  let { name, lastName, password, user_mail, birthdate, profession, skills, description} = this.state;
   name = name?this.firstWordUpperCase(name):name;
   lastName = lastName? this.firstWordUpperCase(lastName):lastName; 
 
   const newWorker:type.newWorkerType = {
-    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills
+    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills, description:description
   }
   await postNewWorker(newWorker);
   let form = document.getElementById("form") as HTMLFormElement | null;
@@ -181,7 +194,13 @@ async handleSubmit(e:any){
       inputProfessions: [],
       inputSkills: []
   })
-  Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
+  Swal.fire({
+    icon: 'success',
+    title: 'Registro exitoso',
+    text: 'En los próximos minutos un enlace para validar tu cuenta será enviado a tu correo'
+}).then((result) => {
+  window.open("http://localhost:3000/home", "_self")
+})  
 }
 
 handleSelect(e:any){
@@ -269,6 +288,10 @@ handleDelete(e:any){
                   <input type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
                   {!this.state.errors.user_mail ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.user_mail}</div>}
                 </div>
+              </div>
+              <div className='Worker_description'>
+                <textarea name="description" placeholder='Descripción profesional...' cols={40} rows={5} onChange={(e) => this.handleChange(e)}/>
+                {!this.state.errors.description ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.description}</div>}
               </div>
               <div className='Worker_image'>
                 <input className='Worker_image' type="file" name="image" placeholder='carga una imagen de perfil' accept="image/*" onChange={(e) => this.handleChange(e)}/>
