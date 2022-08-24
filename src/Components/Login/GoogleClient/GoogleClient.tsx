@@ -147,6 +147,7 @@ const GoogleClient = () => {
           confirmButtonText: 'Comienza'
       }).then((result) => {
           localStorage.removeItem("googleToken")
+          window.open("https://re-work-ten.vercel.app/home", "_self")
       })
       }
 

@@ -108,12 +108,11 @@ const GoogleWorker = () => {
         formData.append("upload_preset", "re-work");
     
         try {
-          console.log(formData)
           const response: AxiosResponse = await Axios.post("https://api.cloudinary.com/v1_1/luis-tourn/image/upload", formData);
           const data: any = response.data;
           return data.url;
         } catch (error) {
-          console.log(error);
+          return(error);
         }
       }
     async function handleSubmit(e: any) {
@@ -142,6 +141,7 @@ const GoogleWorker = () => {
           confirmButtonText: 'Comienza',
       }).then((result) => {
         localStorage.removeItem("googleToken")
+        window.open("https://re-work-ten.vercel.app/home", "_self")
     })
       }
 

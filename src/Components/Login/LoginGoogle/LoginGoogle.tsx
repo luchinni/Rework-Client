@@ -9,11 +9,11 @@ const LoginGoogle = () => {
     
     
     const handleSubmitClient = () => {
-        window.open("https://re-work-ten.vercel.app//google/client", "_self")
+        window.open("https://re-work-ten.vercel.app/google/client", "_self")
 
     }
     const handleSubmitWorker = () => {
-        window.open("https://re-work-ten.vercel.app//google/worker", "_self")
+        window.open("https://re-work-ten.vercel.app/google/worker", "_self")
 
     } 
     
