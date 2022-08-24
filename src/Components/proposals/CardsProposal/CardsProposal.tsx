@@ -6,7 +6,19 @@ const CardsProposal = ({offer}:any) => {
   return (
     <div className='Detail_divProposal'>
           {offer.proposals?.map((e:any, i:any)=>{
-            {e.isActive === true ? <CardProposal key={i} props={e} offer={offer}/> : <></>}
+            { 
+              (e.state === "cancelled") 
+            ||
+              (e.state === "contract cancelled") 
+            ||
+              (e.state === "contract rejected") 
+            ||
+              (e.state === "contract started")
+            ? 
+              <></>
+            : 
+              <CardProposal key={i} props={e} offer={offer}/> 
+          }
           })}
         </div>
   )
