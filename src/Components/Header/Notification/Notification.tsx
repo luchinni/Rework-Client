@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import notification from '../../../images/notification.svg'
+import useOnClickOutside from "../../../utils/utils"
 import './Notification.css'
 
 function Notification() {
@@ -8,6 +9,14 @@ function Notification() {
   function handleOpen() {
     setOpen(!open)
   }
+
+  const userDiv = useRef(null);
+
+  function handleClickOutside() {
+    setOpen(false)
+  }
+
+  useOnClickOutside(userDiv, handleClickOutside);
 
   return (
     <div className='Notification_Component'>
@@ -18,7 +27,7 @@ function Notification() {
       </div>
       
       {open && 
-        <div className='Notification_Dropdown'>
+        <div className='Notification_Dropdown' ref={userDiv}>
           <div className='Notification_divMessageContent'>
             <div className='Notification_divMessage'>
               <p className='Notification_message'><b>Esteban longo</b> a aplicado a tu propuesta! aaaa</p>

@@ -18,6 +18,7 @@ export class ClientRegister extends Component {
       user_mail: "",
       birthdate: "",
       image: "",
+      description: "",
       errors: {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
@@ -26,6 +27,7 @@ export class ClientRegister extends Component {
         user_mail: "Campo requerido",
         birthdate: "Campo requerido",
         image: "",
+        description: "",
       },
       disabled: true,
     };
@@ -49,7 +51,6 @@ export class ClientRegister extends Component {
       });
     }
   }
-
 
   async postImageOnCloudinary(e: any) {
     const formData = new FormData();
@@ -108,11 +109,12 @@ export class ClientRegister extends Component {
         break;
       case "password2":
         let passwordPattern2: RegExp =
-        /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/; 
-        errors.password2 = passwordPattern2.test(value) ?
-        value !== this.state.password ? "Las contraseñas no coinciden" 
-        : ""
-        : "Las contraseñas no coinciden";
+          /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+        errors.password2 = passwordPattern2.test(value)
+          ? value !== this.state.password
+            ? "Las contraseñas no coinciden"
+            : ""
+          : "Las contraseñas no coinciden";
         break;
       case "user_mail":
         let user_mailPattern: RegExp =
@@ -144,6 +146,15 @@ export class ClientRegister extends Component {
             ? "El año debe ser mayor a 1940"
             : "";
         break;
+      case "description":
+        errors.description = value.startsWith(" ") ?
+        "La descripción no puede iniciar con un espacio."
+        : this.state.description.length > 500 ?
+        "La cantidad máxima de caracteres es 500."
+        : value.endsWith(" ") ?
+        "La descripción no puede terminar en espacio."
+        :"";
+        break;
       default:
         break;
     }
@@ -159,7 +170,7 @@ export class ClientRegister extends Component {
 
     let image = await this.postImageOnCloudinary(this.state.image);
 
-    let { name, lastName, password, user_mail, birthdate } = this.state;
+    let { name, lastName, password, user_mail, birthdate, description } = this.state;
     name = name ? this.firstWordUpperCase(name) : name;
     lastName = lastName ? this.firstWordUpperCase(lastName) : lastName;
 
@@ -170,6 +181,7 @@ export class ClientRegister extends Component {
       user_mail: user_mail,
       born_date: birthdate,
       photo: image,
+      description: description,
     };
     console.log("front antes del post y lo que se envia: ", newClient)
     await postNewClient(newClient);
@@ -183,6 +195,7 @@ export class ClientRegister extends Component {
       user_mail: "",
       birthdate: "",
       image: "",
+      description: "",
       errors: {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
@@ -191,11 +204,17 @@ export class ClientRegister extends Component {
         user_mail: "Campo requerido",
         birthdate: "Campo requerido",
         image: "",
+        description: ""
       }, 
       disabled: true,
     }; 
-    Swal.fire("Registro exitoso!","Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.","success")
-    
+    Swal.fire({
+      icon: 'success',
+      title: 'Registro exitoso',
+      text: 'En los próximos minutos un enlace para validar tu cuenta será enviado a tu correo'
+  }).then((result) => {
+    window.open("http://localhost:3000/home", "_self")
+  })  
   }
 
   render() {
@@ -294,6 +313,21 @@ export class ClientRegister extends Component {
                     {this.state.errors.birthdate}
                   </div>
                 )}
+              </div>
+              <div className="CR_Div_description">
+                <textarea
+                  className="CR_input"
+                  name="description"
+                  cols={40}
+                  rows={5}
+                  placeholder="Descripción personal..."
+                  onChange={(e) => this.handleChange(e)}
+              />
+                {!this.state.errors.description ? null : (
+                  <div className="CR_inputError">
+                    {this.state.errors.description}
+                  </div>
+              )}
               </div>
               <div className="CR_Div_inputAndError">
                 <input

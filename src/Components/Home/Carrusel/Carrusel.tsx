@@ -67,7 +67,7 @@ const Carrusel = () => {
         )
           :
           <div className='carrusel_container'>
-            <h2>Freelancers destacados</h2>
+            <h2 className='carrusel_title'>Freelancers destacados</h2>
             <Swiper
             slidesPerView={3}
             spaceBetween={30}

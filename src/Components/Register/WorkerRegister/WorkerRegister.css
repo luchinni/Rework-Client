@@ -8,13 +8,20 @@
 }
 
 .CR_h1 {
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 54px; 
-    color: #264653;
-    margin-left: 20px;
-  }
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 54px;
+  color: #264653;
+  margin-left: 20px;
+}
 
+.Worker_description {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 20px;
+  border: 3px solid #264653;
+  border-radius: 5px;
+}
 .Worker_registerDivForm {
   margin: 30px;
   border-radius: 15px;
@@ -99,24 +106,24 @@
   background-color: #e76f51;
 }
 
-.Worker_error{
+.Worker_error {
   font-size: 12px;
   color: #b30505fd;
 }
 
-.Worker_Input{
-    height: 70px;
-    margin: 20px;
+.Worker_Input {
+  height: 70px;
+  margin: 20px;
 }
 
-.Worker_image{
-    margin: 20px;
+.Worker_image {
+  margin: 20px;
 }
 
-.Worker_profession{
-    margin: 20px;
+.Worker_profession {
+  margin: 20px;
 }
 
-.Worker_skills{
-    margin: 20px;
+.Worker_skills {
+  margin: 20px;
 }

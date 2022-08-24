@@ -13,6 +13,7 @@ import { resolve } from "node:path/win32";
 import { createBrotliCompress } from "node:zlib";
 import Axios, { AxiosResponse } from "axios";
 import Swal from "sweetalert2";
+//import { Redirect } from "react-router-dom";
 
 interface HeaderState {}
 export class WorkerRegister extends Component<HeaderProps, HeaderState> {
@@ -29,6 +30,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
       image: "",
       profession: [],
       skills: [],
+      description: "",
       errors: {
         name: "Campo requerido.",
         lastName: "Campo requerido.",
@@ -37,6 +39,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
         user_mail: "Campo requerido.",
         birthdate: "Campo requerido.",
         image: "",
+        description: "",
       },
       disabled: true,
       inputProfessions: [],
@@ -169,8 +172,16 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
             ? "El año debe ser mayor a 1940"
             : "";
         break;
-
-      default:
+    case "description":
+      errors.description = value.startsWith(" ") ?
+      "La descripción no puede iniciar con un espacio."
+      : this.state.description.length > 500 ?
+      "La cantidad máxima de caracteres es 500."
+      : value.endsWith(" ") ?
+      "La descripción no puede terminar en espacio."
+      :"";
+      break;
+    default:
         break;
     }
     this.setState({
@@ -184,24 +195,16 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
     e.preventDefault();
     let image = await this.postImageOnCloudinary(this.state.image);
 
-    let { name, lastName, password, user_mail, birthdate, profession, skills } =
-      this.state;
-    name = name ? this.firstWordUpperCase(name) : name;
-    lastName = lastName ? this.firstWordUpperCase(lastName) : lastName;
+  let { name, lastName, password, user_mail, birthdate, profession, skills, description} = this.state;
+  name = name?this.firstWordUpperCase(name):name;
+  lastName = lastName? this.firstWordUpperCase(lastName):lastName; 
 
-    const newWorker: type.newWorkerType = {
-      name: name,
-      lastName: lastName,
-      password: password,
-      user_mail: user_mail,
-      born_date: birthdate,
-      photo: image,
-      profession: profession,
-      skills: skills,
-    };
-    await postNewWorker(newWorker);
-    let form = document.getElementById("form") as HTMLFormElement | null;
-    form?.reset();
+  const newWorker:type.newWorkerType = {
+    name:name, lastName:lastName, password:password, user_mail:user_mail, born_date:birthdate, photo:image, profession:profession, skills:skills, description:description
+  }
+  await postNewWorker(newWorker);
+  let form = document.getElementById("form") as HTMLFormElement | null;
+      form?.reset()
 
     this.setState({
       name: "",
@@ -223,14 +226,16 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
       },
       disabled: true,
       inputProfessions: [],
-      inputSkills: [],
-    });
-    Swal.fire(
-      "Registro exitoso!",
-      "Te llegará a tu correo un enlace de validación de cuenta, actívala para iniciar sesión.",
-      "success"
-    );
-  }
+      inputSkills: []
+  })
+  Swal.fire({
+    icon: 'success',
+    title: 'Registro exitoso',
+    text: 'En los próximos minutos un enlace para validar tu cuenta será enviado a tu correo'
+}).then((result) => {
+  window.open("http://localhost:3000/home", "_self")
+})  
+}
 
   handleSelect(e: any) {
     const select = e.target.value;
@@ -320,7 +325,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
                 {!this.state.errors.password ? (
                   <div className="Worker_brpw" />
                 ) : (
-                  <div className="Worker_errorPw">
+                  <div className="CR_inputError">
                     {this.state.errors.password}
                   </div>
                 )}
@@ -336,7 +341,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
                 {!this.state.errors.password2 ? (
                   <div className="Worker_br" />
                 ) : (
-                  <div className="Worker_error">
+                  <div className="CR_inputError">
                     {this.state.errors.password2}
                   </div>
                 )}
@@ -350,30 +355,16 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
                     placeholder="Fecha de Nacimiento"
                     onChange={(e) => this.handleChange(e)}
                   />
-                  {!this.state.errors.birthdate ? (
-                    <div className="Worker_br" />
-                  ) : (
-                    <div className="Worker_error">
-                      {this.state.errors.birthdate}
-                    </div>
-                  )}
+                  {!this.state.errors.password2 ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.password2}</div>                  }
                 </div>
-                <div className="Worker_Input">
-                  <input
-                    className="CR_inpunt"
-                    type="email"
-                    name="user_mail"
-                    placeholder="E-mail"
-                    onChange={(e) => this.handleChange(e)}
-                  />
-                  {!this.state.errors.user_mail ? (
-                    <div className="Worker_br" />
-                  ) : (
-                    <div className="Worker_error">
-                      {this.state.errors.user_mail}
-                    </div>
-                  )}
+                <div className='Worker_Input'>
+                  <input className="CR_inpunt" type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
+                  {!this.state.errors.user_mail ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.user_mail}</div>}
                 </div>
+                </div>
+              <div className='Worker_description'>
+                <textarea name="description" placeholder='Descripción profesional...' cols={40} rows={5} onChange={(e) => this.handleChange(e)}/>
+                {!this.state.errors.description ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.description}</div>}
               </div>
               <div className="Worker_image">
                 <input

@@ -35,7 +35,8 @@ const initialState = {
     email: '',
     name: '',
     photo: ''
-  }
+  },
+  userByEmail: {}
 };
 
 export const workServiceSlice = createSlice({
@@ -287,7 +288,11 @@ export const workServiceSlice = createSlice({
         photo: action.payload.photo,
         email: action.payload.user_mail
       }
-    }
+      console.log("data actualizada", state.googleData)
+    },
+    setUserByEmail: function (state: any, action: any) {
+      state.userByEmail = action.payload;
+    },
   },
 });
 
@@ -316,7 +321,8 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
-  setGoogleData
+  setGoogleData,
+  setUserByEmail
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -452,7 +458,7 @@ export function postLogin(user: type.userLogin) {
       // alojamos el id del usuario y los datos relevantes en el estado
       return dispatch(setCurrentUser(data));
     } catch (e) {
-      Swal.fire("Email o contraseña incorrectos", "Recuerda activar tu cuenta si es la primera vez que inicias sesion","warning")
+      Swal.fire("Email o contraseña incorrectos", "Recuerda activar tu cuenta si es la primera vez que inicias sesión","warning")
     }
   };
 }
@@ -1002,19 +1008,6 @@ export const createGoogleWorker = (user: any) => async (dispatch: any) => {
   }
 } 
 
-
-export const modifyOfferState = async (offerState:any) => {
-  try{
-    await axios({
-      method:"PUT",
-      url: `/offer/state`,
-      data: offerState
-      })
-} catch (error) {
-  return error
-}
-}
-
 export const createGoogleClient = (user: any) => async (dispatch: any) => {
   try {
     const response: any = await axios({
@@ -1030,3 +1023,56 @@ export const createGoogleClient = (user: any) => async (dispatch: any) => {
     return error
   }
 } 
+
+export const modifyOfferState = async (offerState:any) => {
+  try{
+    await axios({
+      method:"PUT",
+      url: `/offer/state`,
+      data: offerState
+      })
+  } catch (error) {
+    return error
+  }
+}
+
+export const forgotPassword = (user_mail: any, type: any) => async (dispatch: any) => {
+  try {
+    const response = await axios({
+      method:"POST",
+      url: `/login/forgot-password`,
+      data: {user_mail, type}
+    })
+    if (response.data === 'Usuario inválido'){
+      console.log("soy invalid reducer")
+      Swal.fire("Usuario incorrecto.","warning")
+    } else if (response.data === 'Correo enviado'){
+      console.log(response.data)
+      dispatch(setUserByEmail(response.data))
+    }
+  } catch(error){
+    return error
+  }
+}
+
+export const resetPassword = (token:any, password:any) => async (dispatch: any) =>{
+  try {
+    const response = await axios({
+      method:"POST",
+      url: `/login/reset-password`,
+      data: {token, password},
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    if(response.data === "Id inválida"){
+      Swal.fire("Usuario incorrecto.","warning")
+    } else if(response.data === "restablecer contraseña"){
+      dispatch(setUserByEmail(response.data))
+    }
+  } catch(error){
+    return error
+  }
+}
+
+
+
+
