@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import {verifyClient, verifyWorker, postLogin} from "../../../Redux/Reducer/reducer";
-import LoginComponent from '../../Login/LoginComponent/LoginComponent'
+/* import LoginComponent from '../../Login/LoginComponent/LoginComponent' */
 import Header from '../../Register/HeaderRegister/HeaderRegister';
 import "./VerifyUser.css"
 
@@ -37,8 +37,8 @@ const VerifyUser = () => {
         let newLoggedUser = {
           user_mail:user_mail, password:password
         }
-        dispatch(postLogin(newLoggedUser));/* 
-        navigate('/home') */
+        dispatch(postLogin(newLoggedUser));
+        navigate('/home') 
       }
     
     
@@ -49,20 +49,19 @@ const VerifyUser = () => {
             <div className='VerifyUser_Container'>
             <h2 className='VerifyUser_title'>Cuenta verificada
                 <a className='VerifyUser_highlight'> exitosamente!</a></h2>
-            <LoginComponent/>
             </div>
-            {/* <div className="Login_divOtroDiv">
+            <div className="Login_divOtroDiv">
                     <div className="LoginComponent_divContent">
                         <span className="Login_inicia">Inicia sesión</span>
                         <div>
                         <form className="Login_form">
                             <input className="Login_input" type="text" name="user_mail" onChange={(e) => handleChange(e)} placeholder='e-mail'/>
                             <input className="Login_input" type="password" name="password" onChange={(e) => handleChange(e)} placeholder='contraseña'/>
-                            <input className="Login_inputSubmit" type="submit" name="" value="Log in" onClick={(e) => handleSubmit(e)}/>
+                            <input className="Login_inputSubmit" type="submit" name="" value="Inicia sesión" onClick={(e) => handleSubmit(e)}/>
                         </form>
                         </div>
                 </div>
-            </div> */}
+            </div> 
         </div>
     )
 }

@@ -42,7 +42,7 @@ const HistorialCard = ({props}:any) => {
           <span className='Historial-p-title'><b>Postulaste la oferta: </b> {props.title}</span>
           <span className='Historial-p-state'><b>Estado: </b> {translateState(props.state)}</span>
           <p className='Historial-p-other'><b>Descripción: </b> {props.offer_description.length > 0 ? props.offer_description.slice(0,98).concat("...") : props.offer_description}</p>
-          <span className='Historial-p-other'><b>Rango de remuneración: </b>ARS$ {props.min_remuneration} y {props.max_remuneration}</span> 
+          <span className='Historial-p-other'><b>Rango de remuneración: </b>ARS$ {props.min_remuneration} - {props.max_remuneration}</span> 
           <span className='Historial-p-state'><b>Duración de: </b>{props.work_duration_time}</span>
           {/* props.state === "contract started" ? <p>Tu oferta recibió una propuesta aceptada, <br/>revisa tu casilla de correo para firmar el contrato de trabajo</p> : <></> */}
         </div>

@@ -75,12 +75,12 @@ function User() {
             <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>  
               <Link className='UserDropdownItem' to='/post'>Nueva oferta</Link>
-              <Link className='UserDropdownItem' to='/changePassword/:id'>Cambiar contraseña</Link>
+              <Link className='UserDropdownItem' to='/changePassword'>Cambiar contraseña</Link>
             </div>
               :
               <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to={'/myProfile'}>Perfil</Link>
-              <Link className='UserDropdownItem' to='/changePassword/:id'>Cambiar contraseña</Link>
+              <Link className='UserDropdownItem' to='/changePassword'>Cambiar contraseña</Link>
               </div>
             }
             <div className='User_DropdownOptions'>
