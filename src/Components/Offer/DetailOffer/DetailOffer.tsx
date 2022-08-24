@@ -239,16 +239,16 @@ const DetailOffer = () => {
           </div>
         : */
         //si la offer es del client logeado actualmente, o el user actual es admin o premium
-        offerId.userClientId === currentUser.id ||
-        currentUser.isAdmin === true ||
-        currentUser.isPremium === true ? (
+        offerId?.userClientId === currentUser?.id ||
+        currentUser?.isAdmin === true ||
+        currentUser?.isPremium === true ? (
           //renderiza las cards completas
           <div>
             <h2 className="Detail_h2Propuestas">Propuestas</h2>
             <CardsProposal offer={offerId} />
           </div>
         ) : //si el usuario es worker pero no premium, que le renderice su propuesta enviada
-        currentUser.isPremium === false && currentUser.isWorker === true ? (
+        currentUser?.isPremium === false && currentUser?.isWorker === true ? (
           <div className="Detail_divCardPropuestas">
             <OwnProposal offer={offerId} idWorker={currentUser.id} />
             <div className="Detail_premiumCont">

@@ -35,10 +35,7 @@
 }
 .Profile_divDivProfile {
   display: flex;
-  margin-right: 50px;
-  width: 800px;
   justify-content: space-between;
-  flex-direction: row;
 }
 .Profile_divFotoPerfil {
   display: flex;
@@ -79,19 +76,18 @@
 color: #e76f51
 }
 .Profile_editProfile {
-  position: absolute;
-  right: 10%;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 20px;
-  color: #ffffff;
-  padding: 6px 11px;
   background-color: #264653;
-  border-radius: 6px;
   border: none;
+  border-radius: 6px;
+  color: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
   margin-top: 10px;
+  padding: 6px 11px;
+  right: 10%;
+  transition: all .3s ease;
 }
 .Profile_editProfile:hover {
   background-color: #2a9d8f;
@@ -162,11 +158,30 @@ color: #e76f51
 }
 
 .Profile_buttonDiv{
-  max-width: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 280px;
+  height: 50px;
 }
-.Profile_premiumButton{
-
+.Profile_premiumButton {
+  background-color: #c45800;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: auto;
+  max-height: 250px;
+  max-width: 188px;
+  padding: 10px 10px;
+  width: auto;
+  font-weight: 600;
+  transition: all .3s ease;
+  line-height: 20px;
+  margin-top: 10px;
+  
+}
+.Profile_premiumButton:hover {
+  background-color: #f88d22;
 }
