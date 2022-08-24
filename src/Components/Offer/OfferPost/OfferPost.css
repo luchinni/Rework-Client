@@ -6,6 +6,8 @@
   margin: 100px auto 0 auto;
 }
 .OfferPost_divImage {
+  bottom: 200px;
+  position: sticky;
   max-width: 295px;
   overflow: hidden;
 }

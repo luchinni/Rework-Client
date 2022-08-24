@@ -6,6 +6,7 @@ import {resetSearch} from "../../Redux/Reducer/reducer"
 import "./Header.css";
 import { useDispatch, useSelector } from 'react-redux';
 import User from './User/User';
+import premiumImage from "../../images/logo_header_premium.png"
 import jwtDecode from "jwt-decode"
 import Login from '../Login/Login';
 import Notification from './Notification/Notification';
@@ -52,7 +53,7 @@ import logo from '../../images/logo_header.png';
     <header className='Header_component' id="Header">
       <div className='Header_divContent'>
         {/* <Link to="/home" className='logo'>RE<span onClick={()=>reset()} className='work'>work</span></Link> */}
-        <Link to="/home" className='logo'><img className='logo_img' src={logo} alt="REwork" /></Link>
+        <Link to="/home" className='logo'>{currentUser.isPremium?<img className='logo_img_premium' src={premiumImage} alt="REwork" />:<img className='logo_img' src={logo} alt="REwork" />}</Link>
         <nav className='nav'>
           <SearchBar/>
           <div>
