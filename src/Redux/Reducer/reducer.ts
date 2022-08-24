@@ -34,7 +34,8 @@ const initialState = {
     email: '',
     name: '',
     photo: ''
-  }
+  },
+  userByEmail: {}
 };
 
 export const workServiceSlice = createSlice({
@@ -283,7 +284,10 @@ export const workServiceSlice = createSlice({
         email: action.payload.user_mail
       }
       console.log("data actualizada", state.googleData)
-    }
+    },
+    setUserByEmail: function (state: any, action: any) {
+      state.userByEmail = action.payload;
+    },
   },
 });
 
@@ -311,7 +315,8 @@ export const {
   logOutCurrentUser,
   logOutUserLogged,
   setVerifiedUser,
-  setGoogleData
+  setGoogleData,
+  setUserByEmail
 } = workServiceSlice.actions;
 
 export default workServiceSlice.reducer;
@@ -1067,29 +1072,80 @@ export const modifyOfferState = async (offerState:any) => {
   }
 }
 
-export const forgotPassword = (user:any) => async (dispatch: any) => {
+/* export const forgotPassword = (user: any) => async (dispatch: any) => {
   try {
-    await axios({
+    const response = await axios({
       method:"POST",
-      url: `http://localhost:3001/login/forgot-password`,
+      url: `/login/forgot-password`,
       data: user
     })
+    if (response.data === 'invalid'){
+      console.log("soy invalid reducer")
+      Swal.fire("Usuario incorrecto.","warning")
+    } else if (response.data === 'envío exitoso'){
+      console.log(response.data)
+      dispatch(setUserByEmail(response.data))
+    }
+  } catch(error){
+    return error
+  }
+}
+ */
+export const forgotPassword = (user_mail: any, type: any) => async (dispatch: any) => {
+  try {
+    const response = await axios({
+      method:"POST",
+      url: `/login/forgot-password`,
+      data: {user_mail, type}
+    })
+    if (response.data === 'Usuario inválido'){
+      console.log("soy invalid reducer")
+      Swal.fire("Usuario incorrecto.","warning")
+    } else if (response.data === 'Correo enviado'){
+      console.log(response.data)
+      dispatch(setUserByEmail(response.data))
+    }
   } catch(error){
     return error
   }
 }
 
-export const resetPassword = (user:any) => async (dispatch: any) => {
+/* export const getResetPassword = async (user:any) => {
   try {
-    await axios({
-      method:"PUT",
-      url: `http://localhost:3001/login/reset-password`,
+    console.log("entre al getreset")
+    const id = user.id
+    console.log("id get reset", id)
+    const response = await axios({
+      method: "GET",
+      url: `/login/reset-password/${id}`,
       data: user
     })
+    console.log("lo que trae getresetpassword", response.data)
+  } catch(error){
+    return error
+  }
+} */
+
+
+export const resetPassword = (token:any, password:any) => async (dispatch: any) =>{
+  try {
+    const response = await axios({
+      method:"POST",
+      url: `/login/reset-password`,
+      data: {token, password},
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    if(response.data === "Id inválida"){
+      Swal.fire("Usuario incorrecto.","warning")
+    } else if(response.data === "restablecer contraseña"){
+      dispatch(setUserByEmail(response.data))
+    }
   } catch(error){
     return error
   }
 }
+
+
 
 /* export const resetPassword = (user:any) => async (dispatch: any) => {
   try {

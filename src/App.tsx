@@ -28,6 +28,7 @@ import Pending from './Components/FormPago/PagoResult/Pending';
 import Failure from './Components/FormPago/PagoResult/Failure';
 import ForgotPassword from './Components/Login/ResetPassword/ForgotPassword';
 import ResetPassword from './Components/Login/ResetPassword/ResetPassword';
+import ChangePassword from './Components/Header/User/ChangePassword';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -45,7 +46,7 @@ function App() {
 
  */
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001/";
+axios.defaults.baseURL = /* process.env.REACT_APP_API ||  */"http://localhost:3001/";
 
 
 
@@ -77,6 +78,8 @@ return (
         <Route path='google' element={<Navigate to='/home' replace/>} />
         <Route path='google/worker' element={<Navigate to='/home' replace/>} />
         <Route path='google/client' element={<Navigate to='/home' replace/>} />
+        <Route path='changePassword/:id' element={<ChangePassword/>}/>
+        
       </>
         :
       <>
