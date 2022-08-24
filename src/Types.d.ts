@@ -5,6 +5,7 @@ export interface ClientType {
   user_mail: String;
   birthdate: String;
   image: String;
+  description: String;
   errors: errorsType;
   disabled: boolean;
 }
@@ -48,6 +49,7 @@ export interface WorkerType {
   disabled: boolean;
   inputSkills: String[];
   inputProfessions: String[];
+  description: String;
 }
 
 export interface WorkerGoogle {
@@ -72,6 +74,7 @@ export interface newClientType {
   user_mail: String;
   born_date: String;
   photo: String;
+  description: String;
 }
 
 export interface newWorkerType {
@@ -83,6 +86,7 @@ export interface newWorkerType {
   photo: String;
   profession: String[];
   skills: String[];
+  description: String;
 }
 
 export interface newOfferType {
@@ -131,6 +135,7 @@ export interface errorsType {
   user_mail: String;
   birthdate: String;
   image: String;
+  description: String;
 }
 
 export interface errorsTypeWorker {
@@ -141,6 +146,7 @@ export interface errorsTypeWorker {
   user_mail: String;
   birthdate: String;
   image: String;
+  description: String;
 }
 
 export interface loginType {
