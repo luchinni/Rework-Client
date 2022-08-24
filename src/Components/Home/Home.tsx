@@ -27,14 +27,17 @@ const Home = () => {
   const currentUser = useSelector((state:any) => state.workService.currentUser);
   const userLogged = useSelector((state:any) => state.workService.userLogged);
 
+  console.log(currentUser)
+
   let [ITEMS_PER_PAGE, setItemsPerPage] = useState(6);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
 
   const dispatch = useDispatch();
   const favoritesStorage:any = localStorage.getItem("favorites");
-  const storageParsed:any = JSON.parse(favoritesStorage);
   const token:any = localStorage.getItem("token")
+  const [storageParsed, setStorageParsed] = useState(JSON.parse(favoritesStorage));
+
 
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
@@ -167,7 +170,7 @@ const showButton = () => {
           <div className='div_filters_premium'>
             <Filtros />
             {/* <div className='div_cardsFavorites'> */}
-              {userLogged ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <CardsFavorites favoriteInfo={favoritesStorage} /> }
+              {currentUser?.id !== '' ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <CardsFavorites />  /*<CardsFavorites favoriteInfo={storageParsed} /> */ }
             {/* </div> */}
           {/* <SeleccionPremium/> */}
           </div>

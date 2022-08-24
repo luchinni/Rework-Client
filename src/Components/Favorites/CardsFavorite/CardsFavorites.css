@@ -21,6 +21,12 @@
     margin-bottom: 20px;
   }
 
+.CardsFavorites_guestMessage{
+  color: #264653;
+  font-size: 18px;
+  line-height: 24px;
+}
+
 .CardFavorite_component{
     max-height: 200px;
     max-width: 350px;
