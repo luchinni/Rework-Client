@@ -307,18 +307,18 @@ function FormEditProfileWorker({ props }: any) {
               </option>
               {professions?.map((e: any) => {
                 return (
-                  <option value={e} key={e}>
+                  <option className="" value={e} key={e}>
                     {" "}
                     {e}{" "}
                   </option>
                 );
               })}
             </select>
-            <div className="profession_div">
+            <div className="profession_divWorker">
               {worker.profession?.map((e: any) => {
                 return (
                   <span
-                    className="profession_btn"
+                    className="profession_spanWorker"
                     id="profession"
                     key={e}
                     onClick={(e) => handleDelete(e)}
@@ -327,7 +327,7 @@ function FormEditProfileWorker({ props }: any) {
               })}
             </div>
 
-            <select name="skills" id="skills" onChange={(e) => handleSelect(e)}>
+            <select className="selectFormEditWorker" name="skills" id="skills" onChange={(e) => handleSelect(e)}>
               <option selected={true} hidden>
                 Habilidades
               </option>
