@@ -122,8 +122,6 @@ const DetailOffer = () => {
     alreadyApply = false;
   }
 
-
-
   return (
     <>
       {isLoading ? (
@@ -140,135 +138,136 @@ const DetailOffer = () => {
                 <FormProposal idOferta={offerId.idOffer} close={handleClose} />
               </div>
             )}
-
-            <div className={open ? "Detail_detail open" : "Detail_detail"}>
-              <div>
-                <div className="Detail_User">
-                  <div className="Detail_divUserImage">
-                    <img
-                      className="Detail_userPhoto"
-                      src={offerId.userClient?.photo}
-                      alt="fotito"
-                      loading="lazy"
-                    />
-                  </div>
-                  <Link
-                    to={
-                      offerId?.userClientId === currentUser?.id
-                        ? `/myProfile`
-                        : `/profile/${offerId.userClientId}`
-                    }
-                    className="Detail_NameUserPost"
-                  >
-                    {offerId.userClient?.name} {offerId.userClient?.lastName}
-                  </Link>
-                  <p className="Detail_UserRating">
-                    Rating: <span>{offerId.userClient?.rating}</span>
-                  </p>
-                  <p className="Detail_offersCount">
-                    Publicaciones: <span>{offerId?.offersCount}</span>
-                  </p>
-                  <div>
-                    <div className="Detail_urlCopy">
-                      <div className="Detail_divUrl">
-                        <span className="Detail_url">¡Copia el enlace!</span>
-                      </div>
-                      <div className="Detail_divCopy">
-                        <CopyToClipboard text={window.location.href}>
-                          <button
-                            onClick={() =>
-                              toast.success("Copiado", {
-                                position: "top-right",
-                              })
-                            }
-                            className="Detail_buttonCopy"
-                          >
-                            <img
-                              className="Detail_Copy"
-                              src={copy}
-                              alt="copy"
-                            />
-                          </button>
-                        </CopyToClipboard>
-                        <Toaster />
+            <div className="container_detail_offer">
+              <div className={open ? "Detail_detail open" : "Detail_detail"}>
+                <div>
+                  <div className="Detail_User">
+                    <div className="Detail_divUserImage">
+                      <img
+                        className="Detail_userPhoto"
+                        src={offerId.userClient?.photo}
+                        alt="fotito"
+                        loading="lazy"
+                      />
+                    </div>
+                    <Link
+                      to={
+                        offerId?.userClientId === currentUser?.id
+                          ? `/myProfile`
+                          : `/profile/${offerId.userClientId}`
+                      }
+                      className="Detail_NameUserPost"
+                    >
+                      {offerId.userClient?.name} {offerId.userClient?.lastName}
+                    </Link>
+                    <p className="Detail_UserRating">
+                      Rating: <span>{offerId.userClient?.rating}</span>
+                    </p>
+                    <p className="Detail_offersCount">
+                      Publicaciones: <span>{offerId?.offersCount}</span>
+                    </p>
+                    <div>
+                      <div className="Detail_urlCopy">
+                        <div className="Detail_divUrl">
+                          <span className="Detail_url">¡Copia el enlace!</span>
+                        </div>
+                        <div className="Detail_divCopy">
+                          <CopyToClipboard text={window.location.href}>
+                            <button
+                              onClick={() =>
+                                toast.success("Copiado", {
+                                  position: "top-right",
+                                })
+                              }
+                              className="Detail_buttonCopy"
+                            >
+                              <img
+                                className="Detail_Copy"
+                                src={copy}
+                                alt="copy"
+                              />
+                            </button>
+                          </CopyToClipboard>
+                          <Toaster />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="Detail_infoProposal">
-                <div className="Detail_offer">
-                  <div className="Detail_header">
-                    <h2 className="Detail_title">{offerId?.title}</h2>
-                    <div className="Detail_timeRemu">
-                      <p className="Detail_time">{`Tiempo aproximado del trabajo: ${offerId?.work_duration_time}`}</p>
-                      <p className="Detail_remuneration">{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
+                <div className="Detail_infoProposal">
+                  <div className="Detail_offer">
+                    <div className="Detail_header">
+                      <h2 className="Detail_title">{offerId?.title}</h2>
+                      <div className="Detail_timeRemu">
+                        <p className="Detail_time">{`Tiempo aproximado del trabajo: ${offerId?.work_duration_time}`}</p>
+                        <p className="Detail_remuneration">{`Paga estimada ARS: ${offerId.min_remuneration} - ${offerId.max_remuneration}`}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="Detail_tags">
-                    {offerId.profession?.map((prof: any) => (
-                      <p className="Detail_tag">{prof}</p>
-                    ))}
-                  </div>
-                  <div className="Detail_tagImage">
-                    <div className="Detail_descriptionCont">
-                      <p className="Detail_description">
-                        {offerId?.offer_description}
-                      </p>
+                    <div className="Detail_tags">
+                      {offerId.profession?.map((prof: any) => (
+                        <p className="Detail_tag">{prof}</p>
+                      ))}
                     </div>
-                    <div className="Detail_divImages">
-                      <img
-                        className="Detail_images"
-                        src={offerId?.photo}
-                        alt="fotito offer"
-                        loading="lazy"
-                      />
+                    <div className="Detail_tagImage">
+                      <div className="Detail_descriptionCont">
+                        <p className="Detail_description">
+                          {offerId?.offer_description}
+                        </p>
+                      </div>
+                      <div className="Detail_divImages">
+                        <img
+                          className="Detail_images"
+                          src={offerId?.photo}
+                          alt="fotito offer"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  {alreadyApply === false && currentUser.isWorker === true ? (
-                    <button
-                      className="Detail_buttonAccept"
-                      onClick={handleOpen}
-                    >
-                      Aplicar
-                    </button>
-                  ) : null}
-                  {currentUser?.id === offerId.userClientId &&
-                  offerId.isActive === true &&
-                  offerId.state === "active" &&
-                  proposalAccepted === undefined &&
-                  proposalFinalized === undefined &&
-                  contractAccepted === undefined &&
-                  contractStarted === undefined ? (
-                    <button
-                      className="Detail_buttonDelete"
-                      onClick={() => handleDelete(offerId.idOffer)}
-                    >
-                      Eliminar
-                    </button>
-                  ) : null}
-                  {openReview && (
-                    <div className="div_formReview">
-                      <FormReview offer={offerId} close={CloseModalReview} />
-                    </div>
-                  )}
-                  {(currentUser?.isWorker === false &&
-                    proposalFinalized !== undefined &&
-                    offerId?.state === "contract started" &&
-                    offerId.userClient?.id === currentUser?.id) ||
-                  (currentUser?.isWorker === true &&
-                    contractStarted !== undefined &&
-                    offerId?.state === "contract started" &&
-                    contractStarted?.userWorkerId === currentUser?.id) ? (
-                    <button
-                      className="DetailP_buttonFinish"
-                      onClick={OpenModalReview}
-                    >
-                      Trabajo finalizado
-                    </button>
-                  ) : null}
+                    {alreadyApply === false && currentUser.isWorker === true ? (
+                      <button
+                        className="Detail_buttonAccept"
+                        onClick={handleOpen}
+                      >
+                        Aplicar
+                      </button>
+                    ) : null}
+                    {currentUser?.id === offerId.userClientId &&
+                    offerId.isActive === true &&
+                    offerId.state === "active" &&
+                    proposalAccepted === undefined &&
+                    proposalFinalized === undefined &&
+                    contractAccepted === undefined &&
+                    contractStarted === undefined ? (
+                      <button
+                        className="Detail_buttonDelete"
+                        onClick={() => handleDelete(offerId.idOffer)}
+                      >
+                        Eliminar
+                      </button>
+                    ) : null}
+                    {openReview && (
+                      <div className="div_formReview">
+                        <FormReview offer={offerId} close={CloseModalReview} />
+                      </div>
+                    )}
+                    {(currentUser?.isWorker === false &&
+                      proposalFinalized !== undefined &&
+                      offerId?.state === "contract started" &&
+                      offerId.userClient?.id === currentUser?.id) ||
+                    (currentUser?.isWorker === true &&
+                      contractStarted !== undefined &&
+                      offerId?.state === "contract started" &&
+                      contractStarted?.userWorkerId === currentUser?.id) ? (
+                      <button
+                        className="DetailP_buttonFinish"
+                        onClick={OpenModalReview}
+                      >
+                        Trabajo finalizado
+                      </button>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>
