@@ -21,10 +21,11 @@ const CardProposal = ({ props, offer }: any) => {
   );
   const proposalAccepted = offer.proposals.find((p:any) => p.state === 'accepted')
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   console.log(props)
 
-    useEffect(() => {
-      getProposalById(props.idProposal);
+   useEffect( () => {
+      dispatch(getProposalById(props.idProposal))
     },[])
 
   const handleClick = () => {
