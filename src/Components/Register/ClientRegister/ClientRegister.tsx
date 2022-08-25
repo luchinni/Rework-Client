@@ -229,7 +229,7 @@ export class ClientRegister extends Component<HeaderProps, HeaderState> {
   }
   componentDidMount() {
     this.props.changeLoadingTrue();
-    setTimeout(() => this.props.changeLoadingFalse(), 2500)
+    setTimeout(() => this.props.changeLoadingFalse(), 1000)
   }
 
   render() {

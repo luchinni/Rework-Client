@@ -1,31 +1,41 @@
-import React, {useEffect, useState} from 'react'
-import './Dashboard.css'
-import Header from '../Header/Header'
-import OfferDash from './OfferDash/OfferDash'
-import UserDash from './UserDash/UserDash'
-import PaysDash from './PaysDash/PaysDash'
-import OptionsDash from './OptionsDash/OptionsDash'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import "./Dashboard.css";
+import Header from "../Header/Header";
+import OfferDash from "./OfferDash/OfferDash";
+import UserDash from "./UserDash/UserDash";
+import PaysDash from "./PaysDash/PaysDash";
+import OptionsDash from "./OptionsDash/OptionsDash";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLoading } from "../../Redux/Reducer/reducer";
+import Loading from "../Loading/Loading";
 import { checkSession } from '../../Redux/Reducer/reducer'
 
 function Dashboard() {
-
-  const [offCli, setOffCli] = useState(true);
-  const [user, setUser] = useState(false);
-/*   const [reports, setReports] = useState(false) */
-  const [pagos, setPagos] = useState(false);
+  const [offCli, setOffCli] = useState(true);;
+  const [user, setUser] = useState(false);;
+  /*   const [reports, setReports] = useState(false) */
+  const [pagos, setPagos] = useState(false);;
   const [options, setOptions] = useState(false);
+  const isLoading = useSelector((state: any) => state.workService.isLoading);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(changeLoading(true));
+    setTimeout(() => dispatch(changeLoading(false)), 1000);
+  }, []);
   const [search, setSearch] = useState({
     offer: "",
     user: "",
     option: "",
     pay: ""
   });
-  const dispatch = useDispatch()
+
   const currentUser = useSelector((state:any) => state.workService.currentUser);
   useEffect(() => {
     dispatch(checkSession())
   }, [])
+
   function handleoffCli() {
     setOffCli(true);
     setUser(false);
@@ -37,12 +47,12 @@ function Dashboard() {
   function handleUser() {
     setUser(true);
     setOffCli(false);
- //   setReports(false);
+    //   setReports(false);
     setPagos(false);
     setOptions(false);
   };
 
- /*  function handleReports() {
+  /*  function handleReports() {
     setReports(true);
     setOffCli(false);
     setUser(false);
@@ -52,7 +62,7 @@ function Dashboard() {
 
   function handlePagos() {
     setPagos(true);
- //   setReports(false);
+    //   setReports(false);
     setOffCli(false);
     setUser(false);
     setOptions(false);
@@ -60,7 +70,7 @@ function Dashboard() {
 
   function handleOptions() {
     setOptions(true);
- //   setReports(false);
+    //   setReports(false);
     setOffCli(false);
     setUser(false);
     setPagos(false);
@@ -105,10 +115,15 @@ function Dashboard() {
   console.log("search.offer", search)
 
   return (
-    <div className='Dashboard_Component'>
-        <Header />
-        <div className='Dashboard_divContent'>
-          {/* <div className='Dashboard_divTop'>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="Dashboard_Component">
+            <Header />
+            <div className="Dashboard_divContent">
+              {/* <div className='Dashboard_divTop'>
             <div className='Dashboard_divAdminProfile'>
               <div className='Dashboard_divAdminPhoto'>
                 <img className='Dashboard_AdminPhoto' src="https://pbs.twimg.com/media/E1JoNK6WQAsPu5x.jpg:large" alt="Admin photo" />
@@ -169,10 +184,14 @@ function Dashboard() {
               options && <OptionsDash props={search.option} />
             }
 
+                {options && <OptionsDash />}
+              </div>
+            </div>
           </div>
-        </div>
-    </div>
-  )
+        </>
+      )}
+    </>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
