@@ -3,7 +3,8 @@
     width: 100%;
 }
 .Portfolio_buttonAddPortfolio {
-    padding: 20px 15px;
+    width: 210px;
+    height: 130px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -18,8 +19,7 @@
 }
 .Portfolio_divMap{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* grid-template-rows: repeat(0, 1fr); */
+    grid-template-columns: repeat(auto-fill, minmax( 210px, 1fr));
     grid-gap: 10px;
 }
 .Portfolio_divTitle {
@@ -64,4 +64,69 @@
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
+}
+
+@media screen and (max-width: 548px) {
+    .Portfolio_divMap{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax( 150px, 1fr));
+        grid-gap: 10px;
+    }
+
+    .Portfolio_divItems{
+        height: 95px;
+        width: 150px;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .Portfolio_buttonAddPortfolio {
+        width: 150px;
+        height: 95px;
+        font-size: 13px;
+    }
+
+    .Portfolio_Item {
+        max-width: 190px;
+        transition: all 0.3s ease;
+    }
+    .Profile_tag {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width :411px) {
+    .Portfolio_buttonAddPortfolio {
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: #72AD5E;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-bottom: 17px;
+    }
+
+    .Portfolio_divMap{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
+    }
+
+    .Portfolio_divItems{
+        height: 95px;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 0 auto;
+    }
+    .Portfolio_Item {
+        max-width: 500px;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
 }

@@ -22,7 +22,7 @@
 .Profile_portada {
   max-width: 1135px;
   position: relative;
-  bottom: 250px;
+  bottom: 50px;
 }
 
 .Profile_DivCont {
@@ -35,8 +35,7 @@
 }
 .Profile_divDivProfile {
   display: flex;
-  margin-right: 50px;
-  width: 800px;
+  width: 100%;
   justify-content: space-between;
   flex-direction: row;
 }
@@ -79,7 +78,7 @@
 color: #e76f51
 }
 .Profile_editProfile {
-  position: absolute;
+  /* position: absolute; */
   right: 10%;
   font-weight: 600;
   font-size: 13px;
@@ -163,10 +162,102 @@ color: #e76f51
 
 .Profile_buttonDiv{
   max-width: 200px;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: space-between; */
 }
-.Profile_premiumButton{
 
+@media screen and (max-width: 850px) {
+  .Profile {
+    padding-bottom: 40px;
+  }
+  .Profile_DivCont {
+    padding: 0 40px;
+    position: relative;
+    margin: 10px 0 70px 0;
+  }
+  .Profile_divTags {
+    padding: 0 40px;
+    margin-bottom: 40px;
+}
+  .Profile_divPortfolio {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .Profile {
+    padding-bottom: 20px;
+  }
+  .Profile_DivCont {
+    padding: 0 20px;
+    position: relative;
+    margin: 10px 0 70px 0;
+  }
+  .Profile_divTags {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+  .Profile_divPortfolio {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 673px) {
+  .Profile_divFotoPerfil {
+    max-width: 120px;
+    max-height: 120px;
+    top: -70px;
+  }
+  .Profile_foto {
+    max-width: 120px;
+    max-height: 120px;
+  }
+  .Profile_divTags {
+    padding: 0 40px;
+    margin-bottom: 40px;
+}
+
+.Profile_divNameAndRating {
+  margin-left: 135px;
+}
+}
+
+@media screen and (max-width: 590px) {
+  .Profile_Component {
+    padding: 0 15px
+  }
+  .Profile_divDivProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    text-align: center;
+    gap: 20px;
+}
+.Profile_divNameAndRating {
+  margin-left: 0;
+}
+.Profile_divFotoPerfil {
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* .Profile_DivCont {
+  padding: 0 20px;
+  position: relative;
+  margin: 10px 0 100px 0;
+} */
+.Profile_divTags {
+  gap: 10px;
+  padding: 0 20px;
+  /* margin-left: 40%; */
+  /* transform: translateX(-35%); */
+}
+}
+
+@media screen and (max-width: 497px) {
+  .Profile_tag {
+    font-size: 12px;
+  }
 }
