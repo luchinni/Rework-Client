@@ -31,19 +31,20 @@ function PaysDash({props}:any) {
     setPayModal(false)
   }
 
-  function handleChangeState(idProposal:string, idOffer:string){
-
+  async function handleChangeState(idProposal:string, idOffer:string){
+console.log("la idProposal: ", idProposal)
+console.log("la idOffer: ", idOffer)
     const proposalState: {id: String, state: String} = {
       id: idProposal,
       state: 'payment released'
     }
-    acceptProposal(proposalState)
+   await acceptProposal(proposalState)
 
     const offerState: {id: String, state: String} = {
       id: idOffer,
       state: 'payment released'
     }
-    modifyOfferState(offerState)
+   await modifyOfferState(offerState)
     Swal.fire({
       icon: 'success',
       title: "Pago realizado con éxito",
