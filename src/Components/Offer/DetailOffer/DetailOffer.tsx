@@ -109,6 +109,9 @@ const DetailOffer = () => {
     alreadyApply = false;
   }
 
+  console.log(offerId?.idOffer, "que pasaaaaa")
+  console.log(currentUser?.id, "currentUser?.id")
+
   return (
     <div className={open ? "Detail_component modalOpen" : "Detail_component"}>
       <Header />
@@ -131,7 +134,7 @@ const DetailOffer = () => {
               />
             </div>
             <Link
-              to={`/profile/${offerId.userClientId}`}
+              to={offerId?.userClientId === currentUser?.id ? `/myProfile` : `/profile/${offerId.userClientId}`}
               className="Detail_NameUserPost"
             >
               {offerId.userClient?.name} {offerId.userClient?.lastName}
