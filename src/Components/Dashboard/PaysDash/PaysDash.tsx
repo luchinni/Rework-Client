@@ -52,6 +52,7 @@ console.log("la idOffer: ", idOffer)
     }).then((response) =>{
       if (response.isConfirmed){
         setPayModal(false)
+        dispatch(getAllOffersAdmin(''));
       }
     }
       
