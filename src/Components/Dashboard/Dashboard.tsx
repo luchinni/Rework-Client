@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Dashboard.css'
 import Header from '../Header/Header'
 import OfferDash from './OfferDash/OfferDash'
 import UserDash from './UserDash/UserDash'
 import PaysDash from './PaysDash/PaysDash'
 import OptionsDash from './OptionsDash/OptionsDash'
+import { useDispatch, useSelector } from 'react-redux'
+import { checkSession } from '../../Redux/Reducer/reducer'
 
 function Dashboard() {
 
@@ -19,7 +21,11 @@ function Dashboard() {
     option: "",
     pay: ""
   });
-
+  const dispatch = useDispatch()
+  const currentUser = useSelector((state:any) => state.workService.currentUser);
+  useEffect(() => {
+    dispatch(checkSession())
+  }, [])
   function handleoffCli() {
     setOffCli(true);
     setUser(false);
