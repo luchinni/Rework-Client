@@ -871,6 +871,7 @@ export async function putEditProfileWorker(value: type.WorkerTypeUpdate, id: str
 
   export const acceptProposal = async (proposalState:any) => {
     try{
+      console.log("proposalState: ", proposalState)
       await axios({
         method:"PUT",
         url: `/proposal/state`,
@@ -1099,6 +1100,7 @@ export const createGoogleClient = (user: any) => async (dispatch: any) => {
 
 export const modifyOfferState = async (offerState:any) => {
   try{
+    console.log("modifyOfferState: ",offerState )
     await axios({
       method:"PUT",
       url: `/offer/state`,

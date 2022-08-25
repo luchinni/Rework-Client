@@ -36,13 +36,13 @@ console.log("la idProposal: ", idProposal)
 console.log("la idOffer: ", idOffer)
     const proposalState: {id: String, state: String} = {
       id: idProposal,
-      state: 'payment released'
+      state: 'released payment'
     }
    await acceptProposal(proposalState)
 
     const offerState: {id: String, state: String} = {
       id: idOffer,
-      state: 'payment released'
+      state: 'released payment'
     }
    await modifyOfferState(offerState)
     Swal.fire({
