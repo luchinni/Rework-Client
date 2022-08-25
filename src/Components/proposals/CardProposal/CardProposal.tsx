@@ -24,7 +24,7 @@ const CardProposal = ({ props, offer }: any) => {
   console.log(props)
 
     useEffect(() => {
-      getProposalById(props.id);
+      getProposalById(props.idProposal);
     },[])
 
   const handleClick = () => {
