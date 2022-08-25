@@ -120,7 +120,7 @@ const SearchBar = () => {
         <div className='filter_dropDown'>
           <div className="Filter_divOptionsCheckbox">
             <div className='filter_type_option'>
-              <label className="user_search_label">FREELANCER</label>
+              <label className="user_search_label"  >FREELANCER</label>
               <input className="user_search_checkbox" type="checkbox" id='worker' value="worker" onChange={handleCheck}/>
             </div>
             <div className='filter_type_option'>
