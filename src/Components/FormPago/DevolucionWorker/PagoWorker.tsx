@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import * as type from "../../../Types";
-import {setBankInfo} from "../../../Redux/Reducer/reducer"
+import {checkSession, setBankInfo} from "../../../Redux/Reducer/reducer"
 import "./PagoWorker.css"
 import img1 from "../../../images/Card Payment_Outline.png"
 import img2 from "../../../images/Currency_Two Color.png"
@@ -11,7 +11,12 @@ import Header from '../../Header/Header';
 const PagoWorker = () => {
 
   const userLogged = useSelector((state: any) => state.workService.userLogged)
-  const dispatch = useDispatch();   
+  const currentUser = useSelector((state: any) => state.workService.currentUser)
+  const dispatch = useDispatch(); 
+  
+  useEffect(()=> {
+    dispatch(checkSession())
+  },[])
 
   type post = {
     Name:string,
