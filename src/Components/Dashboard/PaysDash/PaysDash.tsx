@@ -106,28 +106,28 @@ console.log("la idOffer: ", idOffer)
             <div>
               <div>
                 <span className='OfferDash_divModalTitle'>Usuario: </span>
-                <span className='OfferDash_MOdalTextInfo'>{`${offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.name} ${offerDatos.proposals[0].userWorker.bank_data?.lastname}`}</span>
+                <span className='OfferDash_MOdalTextInfo'>{`${offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker?.bank_data?.name} ${offerDatos.proposals[0].userWorker.bank_data?.lastname}`}</span>
             
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>DNI: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.DNI}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker?.bank_data?.DNI}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Email: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.Email}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker?.bank_data?.Email}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Teléfono: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.Phone_Number}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker?.bank_data?.Phone_Number}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Tarjeta: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.Target_type}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker?.bank_data?.Target_type}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>CVU: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.cvu}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker?.bank_data?.cvu}</span>
               </div>
             </div>
 
