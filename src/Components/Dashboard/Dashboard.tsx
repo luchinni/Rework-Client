@@ -1,26 +1,38 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Dashboard.css'
 import Header from '../Header/Header'
 import OfferDash from './OfferDash/OfferDash'
 import UserDash from './UserDash/UserDash'
 import PaysDash from './PaysDash/PaysDash'
 import OptionsDash from './OptionsDash/OptionsDash'
+import { useDispatch, useSelector } from 'react-redux'
+import { checkSession } from '../../Redux/Reducer/reducer'
 
 function Dashboard() {
 
-  const [offCli, setOffCli] = useState(true)
-  const [user, setUser] = useState(false)
+  const [offCli, setOffCli] = useState(true);
+  const [user, setUser] = useState(false);
 /*   const [reports, setReports] = useState(false) */
-  const [pagos, setPagos] = useState(false)
-  const [options, setOptions] = useState(false)
-
+  const [pagos, setPagos] = useState(false);
+  const [options, setOptions] = useState(false);
+  const [search, setSearch] = useState({
+    offer: "",
+    user: "",
+    option: "",
+    pay: ""
+  });
+  const dispatch = useDispatch()
+  const currentUser = useSelector((state:any) => state.workService.currentUser);
+  useEffect(() => {
+    dispatch(checkSession())
+  }, [])
   function handleoffCli() {
     setOffCli(true);
     setUser(false);
     // setReports(false);
     setPagos(false);
     setOptions(false);
-  }
+  };
 
   function handleUser() {
     setUser(true);
@@ -28,7 +40,7 @@ function Dashboard() {
  //   setReports(false);
     setPagos(false);
     setOptions(false);
-  }
+  };
 
  /*  function handleReports() {
     setReports(true);
@@ -44,7 +56,7 @@ function Dashboard() {
     setOffCli(false);
     setUser(false);
     setOptions(false);
-  }
+  };
 
   function handleOptions() {
     setOptions(true);
@@ -52,7 +64,45 @@ function Dashboard() {
     setOffCli(false);
     setUser(false);
     setPagos(false);
-  }
+  };
+
+  function handleSearch(e: any) {
+    const value: string = e.target.value;
+    if (offCli) {
+      setSearch({
+        offer: value,
+        user: "",
+        option: "",
+        pay: ""
+      });
+    };
+    if (user) {
+      setSearch({
+        offer: "",
+        user: value,
+        option: "",
+        pay: ""
+      });
+    };
+    if (pagos) {
+      setSearch({
+        offer: "",
+        user: "",
+        pay: value,
+        option: ""
+      });
+    };
+    if (options) {
+      setSearch({
+        offer: "",
+        user: "",
+        pay: "",
+        option: value
+      });
+    };
+  };
+
+  console.log("search.offer", search)
 
   return (
     <div className='Dashboard_Component'>
@@ -85,26 +135,26 @@ function Dashboard() {
               </div>
 
               <div className="Dashboard_divSearch">
-                <input className='Darshboard_search' type="text"  placeholder='Search...'/>
+                <input className='Darshboard_search' type="text" placeholder='Buscar...' onChange={handleSearch}/>
               </div>
             </div>
 
             <div className='Dashboard_divOrdenamientoCont'>
-              <div className='Dashboard_divOrdenamiento'>
+              {/* <div className='Dashboard_divOrdenamiento'>
                 <select name="" id="">
                   
                   <option value="">asc</option>
                   <option value="">des</option>
                 </select>
-              </div>
+              </div> */}
             </div>
 
             {
-              offCli && <OfferDash />
+              offCli && <OfferDash props={search.offer} />
             }
 
             {
-              user && <UserDash />
+              user && <UserDash props={search.user} />
             }
 
       {/*       {
@@ -112,11 +162,11 @@ function Dashboard() {
             } */}
 
             {
-              pagos && <PaysDash />
+              pagos && <PaysDash  props={search.pay} />
             }
 
             {
-              options && <OptionsDash />
+              options && <OptionsDash props={search.option} />
             }
 
           </div>

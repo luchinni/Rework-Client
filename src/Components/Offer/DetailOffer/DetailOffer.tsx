@@ -100,7 +100,7 @@ const DetailOffer = () => {
   const proposalFinalized = offerId?.proposals?.find((p:any) => p.state === 'finalized')
 
   const filtred: any = offerId.proposals?.filter(
-    (p: any) => p.userWorker?.id === currentUser?.id
+    (p: any) => p.userWorker?.id === currentUser?.id 
   );
 
   if (filtred?.length > 0) {
@@ -224,7 +224,7 @@ const DetailOffer = () => {
             ||
             (currentUser?.isWorker === true && contractStarted !== undefined && offerId?.state === 'contract started' && contractStarted?.userWorkerId === currentUser?.id)
            ? 
-            <button className="Detail_buttonFinish" onClick={OpenModalReview}>Trabajo finalizado</button>
+            <button className="DetailP_buttonFinish" onClick={OpenModalReview}>Trabajo finalizado</button>
             :
             null
           }

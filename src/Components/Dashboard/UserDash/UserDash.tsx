@@ -3,11 +3,11 @@ import './UserDash.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, userIsActivePut, userIsAdminChange} from '../../../Redux/Reducer/reducer';
 
-function UserDash() {
+function UserDash({props}: any) {
 
 	const dispatch = useDispatch()
 
-	const allUsers = useSelector((state:any) => state.workService.allUsers)
+	let allUsers = useSelector((state:any) => state.workService.allUsers)
   const currentUser = useSelector((state:any) => state.workService.currentUser)
 
 	const [modalEdit, setModalEdit] = useState(false) 
@@ -22,7 +22,7 @@ function UserDash() {
 
    useEffect( () => {
     dispatch(getAllUsers(userFiltro))
-  }, [dispatch, userFiltro, user, userAdmin])
+  }, [userFiltro, props])
 
   function handleOnchange(e: any) {
     const value = e.target.value;
@@ -36,9 +36,9 @@ function UserDash() {
     console.log("handleModalEdit", value)
 	}
 
-  function handleOnClick() {
-
-    userIsActivePut(userData.id, user.toString() , userData.isWorker, /* userData.isAdmin */)
+  async function handleOnClick() {
+    await userIsActivePut(userData.id, user.toString() , userData.isWorker, /* userData.isAdmin */)
+    dispatch(getAllUsers(userFiltro))
     setModalEdit(false)
   }
 
@@ -50,12 +50,10 @@ function UserDash() {
     setModalAdmin(true)
     const value = e
 		setUserData(value)
-    console.log("handleModalAdmin", value)
   }
 
   function handleSelect(e: any) {
     let value = e.target.value
-    console.log("handleSelect:", value)
     setUserFiltro(value)
   }
 
@@ -64,28 +62,33 @@ function UserDash() {
     setUserAdmin(value)
   }
 
-  function handleOnClickAdmin() {
-    userIsAdminChange(userData.id, userAdmin.toString() , userData.isWorker, /* userData.isAdmin */)
-    setModalEdit(false)
+  async function handleOnClickAdmin() {
+    await userIsAdminChange(userData.id, userAdmin.toString() , userData.isWorker, /* userData.isAdmin */)
+    dispatch(getAllUsers(userFiltro))
+    setModalAdmin(false)
   }
 
   function handleModalAdminClose(e: any) {
     setModalAdmin(false)
   }
 
+  if(props && props !== "") {
+		allUsers = allUsers.filter((e: any) => `${e.name} ${e.lastName}`.toLowerCase().includes(props.toLowerCase()))
+	}
+
   return (
-    <div className='UserDash_Component'>
+    <div className='OfferDash_Component'>
       <div className='OfferDash_firstDivSelect'>
 
         <select onChange={handleSelect}>
           <option selected={true} hidden>Mostrar usuarios</option>
           <option value="true">Activos</option>
-          <option value="false">Suspendidos</option>
+          <option value="false">Inactivos</option>
           <option value="">Todos</option>
         </select>
 
       </div>
-        <div className='UserDash_divContent'>
+        <div className='OfferDash_divContent'>
 
         {
 						modalEdit &&
@@ -94,13 +97,13 @@ function UserDash() {
 
 								<div className='OfferDash_divInfoModal'>
 									<div>
-										<p className='OfferDash_divModalTitle'>Id de la publicacion: </p>
-										<span className='OfferDash_MOdalTextInfo'>{/* {dataOffer.idOffer} */}</span>
+										<p className='OfferDash_divModalTitle'>ID del usuario: </p>
+										<span className='OfferDash_MOdalTextInfo'>{userData.id}</span>
 									</div>
 
 									<div>
-										<p className='OfferDash_divModalTitle'>estado actual: </p>
-										<span className='OfferDash_MOdalTextInfo'>{userData.isActive === false ? "Cerrada" : "Abierta"}</span>
+										<p className='OfferDash_divModalTitle'>Estado actual: </p>
+										<span className='OfferDash_MOdalTextInfo'>{userData.isActive === false ? "Inactivo" : "Activo"}</span>
 									</div>
 								</div>
 
@@ -111,14 +114,14 @@ function UserDash() {
 
 									<select onChange={handleOnchange}>
 										<option selected={true} hidden>selecciona uno</option>
-										<option value="true">Abierta</option>
-										<option value="false">Cerrada</option>
+										<option value="true">Activo</option>
+										<option value="false">Inactivo</option>
 									</select>
                 </div>
 
                 <div className='OfferDash_modalButtonsDiv'>
-								<button className='OfferDash_modalOk' onClick={()=>handleOnClick()}>guardar</button>
-								<button className='OfferDash_modalCancelar' onClick={handleModalEditClose}>cancelar</button>
+								<button className='OfferDash_modalOk' onClick={()=>handleOnClick()}>Guardar</button>
+								<button className='OfferDash_modalCancelar' onClick={handleModalEditClose}>Cancelar</button>
 							  </div>
 
               </div>
@@ -130,20 +133,20 @@ function UserDash() {
 
 								<div className='OfferDash_divInfoModal'>
 									<div>
-										<p className='OfferDash_divModalTitle'>Id de la publicacion: </p>
-										<span className='OfferDash_MOdalTextInfo'>{/* {dataOffer.idOffer} */}</span>
+										<p className='OfferDash_divModalTitle'>ID del usuario: </p>
+										<span className='OfferDash_MOdalTextInfo'>{userData.id}</span>
 									</div>
 
 									<div>
-										<p className='OfferDash_divModalTitle'>estado actual: </p>
-										<span className='OfferDash_MOdalTextInfo'>{userData.isAdmin === false ? "No es Administrador" : "Administrador"}</span>
+										<p className='OfferDash_divModalTitle'>Estado actual: </p>
+										<span className='OfferDash_MOdalTextInfo'>{userData.isAdmin === false ? "No Admin" : "Admin"}</span>
 									</div>
 								</div>
 
 								<hr className='OfferDash_hr' />
 
                 <div className='OfferDash_divInputEdit'>
-									<label className='OfferDash_divModalTitle'>Convertir en Administrador</label>
+									<label className='OfferDash_divModalTitle'>Convertir a Administrador</label>
 
 									<select onChange={handleOnchangeAdmin}>
 										<option selected={true} hidden>selecciona uno</option>
@@ -153,8 +156,8 @@ function UserDash() {
 								</div>
               
 							  <div className='OfferDash_modalButtonsDiv'>
-								<button className='OfferDash_modalOk' onClick={()=>handleOnClickAdmin()}>guardar</button>
-								<button className='OfferDash_modalCancelar' onClick={handleModalAdminClose}>cancelar</button>
+								<button className='OfferDash_modalOk' onClick={()=>handleOnClickAdmin()}>Guardar</button>
+								<button className='OfferDash_modalCancelar' onClick={handleModalAdminClose}>Cancelar</button>
 							  </div>
 						  </div>
             </div>
@@ -194,7 +197,7 @@ function UserDash() {
 
                     <td>
                       <div>
-                        <span>{user.isActive ? "Activo" : "No activo"}</span>
+                        <span>{user.isActive ? "Activo" : "Inactivo"}</span>
                       </div>
                     </td>
 

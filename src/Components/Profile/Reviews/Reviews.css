@@ -4,7 +4,7 @@
     border-radius: 10px;
     margin-bottom: 10px;
     max-width: 971px;
-    width: 970px;
+    width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -44,3 +44,11 @@
     color: #e76f51
 }
 
+.Reviews_divValoracion {
+    max-width: 800px;
+
+}
+.p_valoriacionReview {
+    font-size: 14px;
+    /* max-width: 300px; */
+}

@@ -2,8 +2,8 @@ import React, {useRef, useState} from 'react';
 import './CardOffer.css';
 import {Link} from 'react-router-dom';
 import more from '../../../images/more.svg';
-import save from "../../../images/icon_guardar.png";
-import report from '../../../images/icon_report.svg';
+// import save from "../../../images/icon_guardar.png";
+// import report from '../../../images/icon_report.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import decode from "jwt-decode"
 import { remFavorite, getFavorites, getFavoritestoDB, remFavoritestoDB, getUserById } from '../../../Redux/Reducer/reducer';
@@ -121,10 +121,10 @@ useOnClickOutside(userDiv, handleClickOutside);
                 <span className='report_cardButton'>Guardar</span>
                 {showFavorite(props)}
               </div>
-              <div className='CardOption_divReport'>
+              {/* <div className='CardOption_divReport'>
                 <span className='report_cardButton'>Reportar</span>
                 <img className='report_icon' src={report} alt="report" />
-              </div>
+              </div> */}
             </div>
           }
         </div>

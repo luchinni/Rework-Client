@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import './OptionsDash.css';
+import './OptionsDash.css'
 import { getAllProfession, getAllSkills, deleteProfession, deleteSkill, addNewProfession, addNewSkill } from "../../../Redux/Reducer/reducer";
 import Swal from 'sweetalert2';
 
-function OptionsDash() {
+function OptionsDash({props}: any) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProfession());
     dispatch(getAllSkills());
-  }, [dispatch]);
+  }, [props]);
 
-  const professionsArray: string[] = useSelector(
+  let professionsArray: string[] = useSelector(
     (state: any) => state.workService.professions
   );
-  const skillsArray: string[] = useSelector(
+  let skillsArray: string[] = useSelector(
     (state: any) => state.workService.skills
   );
 
@@ -45,7 +45,7 @@ function OptionsDash() {
       dispatch(getAllProfession());
       return Swal.fire({
         icon: 'success',
-        text: 'Se cargo la profesión!',
+        text: 'Se cargó la profesión!',
       });
     };
   };
@@ -75,20 +75,20 @@ function OptionsDash() {
     if (text === "") {
       return Swal.fire({
         icon: 'warning',
-        text: 'Debes ingresar una aptitud',
+        text: 'Debes ingresar una habilidad',
     })};
     text = text.slice(0, 1).toUpperCase() + text.slice(1);
-    if (professionsArray.includes(text)) {
+    if (skillsArray.includes(text)) {
       return Swal.fire({
         icon: 'error',
-        text: 'La aptitud ya existe!',
+        text: 'La habilidad ya existe!',
       })
     } else {
       await addNewSkill(text);
       dispatch(getAllSkills());
       return Swal.fire({
         icon: 'success',
-        text: 'Se cargo la aptitud!',
+        text: 'Se cargó la habilidad!',
       });
     };
   };
@@ -114,24 +114,33 @@ function OptionsDash() {
     });
   };
 
+  if(props && props !== "") {
+    if (open === "professions") {
+      professionsArray = professionsArray.filter((e: string) => e.toLowerCase().includes(props.toLowerCase()));
+    };
+		if (open === "skills") {
+      skillsArray = skillsArray.filter((e: string) => e.toLowerCase().includes(props.toLowerCase()));
+    };
+	};
+
   return (
-    <div className='UserDash_Component'>
+    <div className='OfferDash_Component'>
       <div className='OfferDash_firstDivSelect'>
         <select onChange={handleSelect}>
           <option selected={true} hidden>
             Seleccionar
           </option>
-          <option value="skills">Aptitudes</option>
+          <option value="skills">Habilidades</option>
           <option value="professions">Profesiones</option>
         </select>
       </div>
-      <div>
+      <div >
       {open === "professions" 
-      ? <div>
-          <label>Nueva Profession: </label>
-          <input className="" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
+      ? <div className='OptionsDash_secondDiv'>
+          <label>Nueva Profesión: </label>
+          <input className="Darshboard_search" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
           <button
-            className="OfferDash_editButton"
+            className="OfferDash_modalOk"
             value="deleteProfession"
             onClick={() => handleCreationProfession(profession)}
           >
@@ -139,11 +148,11 @@ function OptionsDash() {
           </button>
         </div>
         : open === "skills" ? 
-        <div>
-          <label>Nueva Aptitud: </label>
-          <input className="" type="text" onChange={(e) => setNewSkill(e.target.value)}/>
+        <div className='OptionsDash_secondDiv'>
+          <label>Nueva Habilidad: </label>
+          <input className="Darshboard_search" type="text" onChange={(e) => setNewSkill(e.target.value)}/>
           <button
-            className="OfferDash_editButton"
+            className="OfferDash_modalOk"
             value="deleteProfession"
             onClick={() => handleCreationSkill(skill)}
           >
@@ -152,16 +161,24 @@ function OptionsDash() {
         </div> : null}
       </div>
    
-      <table>
+ {/*      <table>
         <thead>
           <tr>
             <th>Profession</th>
             <th>Estado</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody> */}
           {open === "skills"
-            ? skillsArray?.map((e: any, i: any) => {
+            ? 
+            <table>
+              <thead>
+                <tr>
+                  <th>Habilidades</th>
+                </tr>
+              </thead>
+            <tbody>
+            {skillsArray?.map((e: any, i: any) => {
               return (
                 <tr key={i}>
                   <td>
@@ -171,7 +188,7 @@ function OptionsDash() {
                   </td>
                   <td className="OfferDash_tdButtons">
                     <button
-                      className="OfferDash_editButton"
+                      className="OfferDash_modalCancelar"
                       value="deleteSkill"
                       onClick={() => handleDeleteSkill(skillsArray[i])}
                     >
@@ -180,8 +197,18 @@ function OptionsDash() {
                   </td>
                 </tr>
               );
-            })
-            : professionsArray?.map((e: string, i: number) => {
+            })}
+            </tbody>
+          </table>
+            : 
+            <table>
+              <thead>
+                <tr>
+                  <th>Profesiones</th>
+                </tr>
+              </thead>
+            <tbody>
+              {professionsArray?.map((e: string, i: number) => {
               return (
                 <tr key={i}>
                   <td>
@@ -191,7 +218,7 @@ function OptionsDash() {
                   </td>
                   <td className="OfferDash_tdButtons">
                     <button
-                      className="OfferDash_editButton"
+                      className="OfferDash_modalCancelar"
                       value="deleteProfession"
                       onClick={() => handleDeleteProfession(professionsArray[i])}
                     >
@@ -202,7 +229,7 @@ function OptionsDash() {
               );
             })}
         </tbody>
-      </table>
+      </table>}
     </div>
   );
 }

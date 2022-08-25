@@ -27,7 +27,9 @@ function Reviews({ user }: any) {
                 <div className="Reviews_review">
                   <div className="Reviews_textCont">
                     <h3>Valoración: <span className='span_rating' >{ratingStars(e.valoration)}</span></h3>
-                    <p>{e.review_description}</p>
+                    <div className="Reviews_divValoracion">
+                      <p className='p_valoriacionReview'>{e.review_description}</p>
+                    </div>
                   </div>
                   {userById?.id === currentUser?.id ? 
                   <div className="Reviews_buttonCont">

@@ -1,0 +1,11 @@
+.OptionsDash_secondDiv {
+    margin-bottom: 20px;
+}
+.OptionsDash_secondDiv label {
+font-size: 14px;
+color: #616161;
+}
+.OptionsDash_secondDiv input {
+    padding: 2px 5px;
+    margin: 0 5px;
+}

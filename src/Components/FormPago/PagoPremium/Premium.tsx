@@ -295,8 +295,8 @@ const handleSubmit = async (e:any) => {
                                 <p className="danger">{errors.Country}</p>
                             )}                  {/*<a href={paymentPremium.init_point}>Pagar</a>*/}
                     </div>
-                    <input disabled={errors.disabled} className="CR_inputSubmit" name="button" type="submit" value="Enviar" onClick={(e) => handleSubmit(e)} />
-                     {paymentPremium.hasOwnProperty("init_point")? <a className="CR_inputSubmit" href={paymentPremium.init_point}>Pagar</a> : <span/>}
+                    <input disabled={errors.disabled} className="Premium_send" name="button" type="submit" value="Enviar" onClick={(e) => handleSubmit(e)} />
+                     {paymentPremium.hasOwnProperty("init_point")? <a className="Premium_payment" href={paymentPremium.init_point}>Pagar</a> : <span/>}
                 </form>
             </div>        
 

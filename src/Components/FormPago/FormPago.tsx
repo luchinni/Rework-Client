@@ -284,7 +284,7 @@ const handleSubmit = async (e:any) => {
                                 <p className="danger">{errors.Country}</p>
                             )}
                     </div>
-                    <input className="CR_inputSubmit" disabled={errors.disabled} name="button" type="submit" value="Enviar" onClick={(e) => handleSubmit(e)} />
+                    <input className="Worker_submit" disabled={errors.disabled} name="button" type="submit" value="Enviar" onClick={(e) => handleSubmit(e)} />
                     {payment!==""? <PasarelaPago props={formulario}/> : <span/>}
                 </form>
             </div>        
