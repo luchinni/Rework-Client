@@ -149,12 +149,12 @@ const FormEditProposal = (props: any) => {
           ? props.proposal.worked_time
           : form.worked_time,
       worked_time_select: form.worked_time_select,
-      idProposal: props.proposal.id,
+      idProposal: props.proposal.idProposal,
     };
     console.log(editProposal)
     editProposalWorkerPremium(editProposal).then(() => {
       dispatch(getUserById(tokenDecode));
-      dispatch(getOfferId(props.proposalById.id));
+      dispatch(getOfferId(props.proposal.offerIdOffer));
       let form = document.getElementById("form") as HTMLFormElement | null;
       form?.reset();
     });
