@@ -91,9 +91,6 @@
         max-width: 190px;
         transition: all 0.3s ease;
     }
-    .Profile_tag {
-        font-size: 10px;
-    }
 }
 
 @media screen and (max-width :411px) {

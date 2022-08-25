@@ -152,7 +152,9 @@ function Profile() {
                     >
                       Hazte Premium
                     </button>
-                  </div>
+                    : null
+                  }
+                  </div> 
                   <div>
                     <button className="Profile_editProfile" onClick={() => handleUpdate()}>
                       Editar perfil
