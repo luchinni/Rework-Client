@@ -17,7 +17,7 @@ const CardsProposal = ({offer}:any) => {
             ||
               e.state === "contract rejected")
             ? 
-              <></>
+              <h1>ENTRE AL CANCEL</h1>
             : 
               <CardProposal key={i} props={e} offer={offer}/> 
           }

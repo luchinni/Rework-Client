@@ -34,11 +34,13 @@ const SeleccionPremium = () => {
         </div>
         <div className='Premium_each_cont'>
             <h2>Cuenta Premium</h2>
-            <img src={logo_premium} alt="" />
+            <div className='Premium_topBox'>
+                <img src={logo_premium} alt="" />
+            </div>
             <ul className='Premium_ul'>
                 <li><p> Recibe el pago en un plazo de 72hs máximo al finalizar tus trabajos.</p></li>
                 <li><p> Revisa las propuestas de tus competidores y compite con ventaja.</p></li>
-                <li><p> Edita tus propuestas para mejorar tus posibilidades</p></li>
+                <li><p> Edita tus propuestas y mejora tus posibilidades</p></li>
             </ul>
             <button className="CR_inputSubmit" onClick={premiumAcount}>Actualizar a premium</button>
         </div>
