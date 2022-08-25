@@ -135,8 +135,6 @@ export class ClientRegister extends Component {
           "-" +
           0 +
           date.getDate();
-        console.log(dateNow);
-        console.log(fechas);
         errors.birthdate =
         dateNow < fechas
           ? "La fecha ingresada es inválida."
@@ -190,7 +188,6 @@ export class ClientRegister extends Component {
       photo: image,
       description: description,
     };
-    console.log("front antes del post y lo que se envia: ", newClient)
     await postNewClient(newClient);
     let form = document.getElementById("form") as HTMLFormElement | null;
     form?.reset();
@@ -220,7 +217,9 @@ export class ClientRegister extends Component {
       title: 'Registro exitoso',
       text: 'En los próximos minutos un enlace para validar tu cuenta será enviado a tu correo'
   }).then((result) => {
-    window.open("https://re-work-ten.vercel.app/home", "_self")
+    if (result.isConfirmed){
+      window.open("https://re-work-ten.vercel.app/home", "_self")
+    }
   })  
   }
 

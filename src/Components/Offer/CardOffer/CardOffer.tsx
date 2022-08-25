@@ -137,7 +137,7 @@ useOnClickOutside(userDiv, handleClickOutside);
           </div>
           <div className='div_userData'>
             <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
-            <span className='Card_userRating'>Rating: {props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
+            <span className='Card_userRating'>{props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
           </div>
         </div>
         <div className='Card_more'>

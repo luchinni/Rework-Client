@@ -10,6 +10,7 @@ const CardsFavorites = ({favoriteInfo}:any) => {
       <div className='Favorites_title'>
         <span>Ofertas guardadas</span>
       </div>
+      {!favoriteInfo ? <span className='CardsFavorites_guestMessage'>Tus ofertas guardadas aparecerán al iniciar sesión</span> : ""}
       <div className='CardFavorite_component'>
             {
               favoriteInfo && favoriteInfo?.map((o:any, i:any) =>{

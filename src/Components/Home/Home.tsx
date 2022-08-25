@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 import decode from "jwt-decode"
 import './Home.css';
 import Banner from './Banner/Banner';
+import Swal from "sweetalert2";
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
 import jwt from 'jsonwebtoken'
@@ -17,6 +18,7 @@ import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
 import CardsFavorites from '../Favorites/CardsFavorite/CardsFavorites';
 
 import Footer from '../Footer/Footer';
+import { useSearchParams } from 'react-router-dom';
 
 
 const Home = () => {
@@ -27,18 +29,30 @@ const Home = () => {
   const currentUser = useSelector((state:any) => state.workService.currentUser);
   const userLogged = useSelector((state:any) => state.workService.userLogged);
 
+  console.log(currentUser)
+
   let [ITEMS_PER_PAGE, setItemsPerPage] = useState(6);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
   let [itemSearched, setItemSearched] = useState([...infoSearched]?.splice(0, ITEMS_PER_PAGE));
 
   const dispatch = useDispatch();
   const favoritesStorage:any = localStorage.getItem("favorites");
-  const storageParsed:any = JSON.parse(favoritesStorage);
   const token:any = localStorage.getItem("token")
+  const [query, setQuery] = useSearchParams();
+  const [storageParsed, setStorageParsed] = useState(JSON.parse(favoritesStorage));
 
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
-  
+  let preapproval: any = query.get("preapproval_id");
+  if(preapproval){
+    localStorage.removeItem("token")
+    preapproval = null
+    Swal.fire({
+      icon: 'success',
+      title: 'YA ERES PREMIUM!',
+      text: 'Felicitaciones! ya eres un miembro premium de REwork! porfavor vuelve a iniciar sesion para actualizar tu cuenta.',
+  })
+  }
   
   if(storageParsed?.length>0 && currentUser.id !== ''){
     dispatch(favoritesToDB(storageParsed, currentUser.id));
@@ -167,7 +181,7 @@ const showButton = () => {
           <div className='div_filters_premium'>
             <Filtros />
             {/* <div className='div_cardsFavorites'> */}
-              {userLogged ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <CardsFavorites favoriteInfo={favoritesStorage} /> }
+              {currentUser?.id !== '' ? <CardsFavorites favoriteInfo={userLogged?.favorites} /> : <CardsFavorites />  /*<CardsFavorites favoriteInfo={storageParsed} /> */ }
             {/* </div> */}
           {/* <SeleccionPremium/> */}
           </div>
