@@ -68,10 +68,12 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
       (val: any) => val.length > 0 && (valid = false)
     );
     if (valid) {
+      console.log("valid")
       this.setState({
         disabled: false,
       });
     } else {
+      console.log("invalid")
       this.setState({
         disabled: true,
       });
