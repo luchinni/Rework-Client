@@ -19,7 +19,7 @@ import CardsFavorites from '../Favorites/CardsFavorite/CardsFavorites';
 
 import Footer from '../Footer/Footer';
 import Loading from '../Loading/Loading';
-import { useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 
 
 const Home = () => {
@@ -40,7 +40,7 @@ const Home = () => {
   const token:any = localStorage.getItem("token")
   const [query, setQuery] = useSearchParams();
   const [storageParsed, setStorageParsed] = useState(JSON.parse(favoritesStorage));
-
+  const navigate = useNavigate();
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
   let preapproval: any = query.get("preapproval_id");
@@ -51,6 +51,10 @@ const Home = () => {
       icon: 'success',
       title: 'YA ERES PREMIUM!',
       text: 'Felicitaciones! ya eres un miembro premium de REwork! porfavor vuelve a iniciar sesion para actualizar tu cuenta.',
+  }).then((response)=>{
+    if(response.isConfirmed){
+      navigate("/home")
+    }
   })
   }
   
