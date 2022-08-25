@@ -54,7 +54,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
     this.props.getAllProfession();
     this.props.getAllSkills();
     this.props.changeLoadingTrue();
-    setTimeout(() => this.props.changeLoadingFalse(), 2500)
+    setTimeout(() => this.props.changeLoadingFalse(), 1000)
   }
 
   firstWordUpperCase(word: String) {

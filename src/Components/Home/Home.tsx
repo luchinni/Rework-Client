@@ -63,7 +63,7 @@ const Home = () => {
     dispatch(getOffers());
     dispatch(checkSession())
     dispatch(changeLoading(true))
-    setTimeout(() => dispatch(changeLoading(false)), 2500);
+    setTimeout(() => dispatch(changeLoading(false)), 1000);
   }, [])
 
   useEffect(() => {
