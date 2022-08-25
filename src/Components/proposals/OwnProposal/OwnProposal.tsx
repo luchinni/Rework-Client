@@ -4,7 +4,7 @@ import CardProposal from '../CardProposal/CardProposal';
 const OwnProposal = ({offer, idWorker}:any) => {
 
     
-    const filtred:any = offer.proposals?.filter((p: any) => p.userWorker.id === idWorker)
+    const filtred:any = offer.proposals?.filter((p: any) => p.userWorker?.id === idWorker)
     console.log(filtred)
     {return (
     filtred?.length > 0 ?
