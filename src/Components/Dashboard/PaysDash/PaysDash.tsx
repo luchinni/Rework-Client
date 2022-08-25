@@ -49,7 +49,13 @@ console.log("la idOffer: ", idOffer)
       icon: 'success',
       title: "Pago realizado con éxito",
       text: "El pago al freelancer se ha despachado con éxito"
-    })
+    }).then((response) =>{
+      if (response.isConfirmed){
+        setPayModal(false)
+      }
+    }
+      
+    )
   }
 
 
