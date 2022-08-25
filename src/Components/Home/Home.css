@@ -211,6 +211,15 @@ background-color: #E76F51;
 
 
 @media screen and (max-width: 650px){
+  .div_filters_premium{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    position: relative;
+    max-width: 650px;
+    width: 100%;
+  }
   .Home_component {
     padding: 0 15px;
   }
