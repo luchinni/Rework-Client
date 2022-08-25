@@ -23,9 +23,10 @@ const CardProposal = ({ props, offer }: any) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getProposalById(props.id);
+    getProposalById(props.idProposal);
   console.log("toy en la card", props)
   }, [])
+
 
   const handleClick = () => {
     let state = "accepted";

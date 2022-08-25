@@ -101,7 +101,7 @@ console.log(offerDatos)
           </div>
         </div>
         <div className='OfferDash_modalButtonsDiv'>
-          <button className='OfferDash_modalOk' onClick={handlePay}>Pagar</button>
+          <a className='OfferDash_modalOk' href='https://www.mercadopago.com.ar/home#from-section=menu' target='_blank'>Pagar</a>
           <button className='OfferDash_modalCancelar' onClick={handleModalPayClose}>cancelar</button>
         </div>
       </div>
@@ -118,7 +118,7 @@ console.log(offerDatos)
         </thead>
         <tbody className='OfferDash_tableBody'>
           {offers?.map((e:any, i:any) => {
-            if(e.state === "finalized" && e.proposals[0].state === "finalized") {
+            if(e.state === "finalized"  && e.proposals[0].state === "finalized") {
               return (
   
                 <tr key={i}>

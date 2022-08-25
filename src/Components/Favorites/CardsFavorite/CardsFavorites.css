@@ -2,12 +2,14 @@
     position: sticky;
     top: 21em;
     max-width: 380px;
+    min-height: 180px;
     border: 1px solid #edecd9;
     background-color: #fffcfc;
     border-radius: 10px;
     width: 100%;
     padding: 20px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 2px 7px rgba(0, 0, 0, 0.24);
+    
 }
 
 .Favorites_title {
@@ -21,6 +23,7 @@
   color: #264653;
   font-size: 18px;
   line-height: 24px;
+
 }
 
 .CardFavorite_component{
