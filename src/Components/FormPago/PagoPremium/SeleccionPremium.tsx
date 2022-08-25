@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import logo from "../../../images/logo_header.png"
 import logo_premium from "../../../images/logo_header_premium.png"
+import { changeLoading } from '../../../Redux/Reducer/reducer'
 import Header from '../../Header/Header'
+import Loading from '../../Loading/Loading'
 import "./SeleccionPremium.css"
 
 const SeleccionPremium = () => {
+
+    const isLoading = useSelector((state:any) => state.workService.isLoading);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(changeLoading(true))
+        setTimeout(() => dispatch(changeLoading(false)), 1700);
+    },[]);
 
     const navigate = useNavigate();
 
@@ -17,6 +28,9 @@ const SeleccionPremium = () => {
         navigate("/premium/payment")
     }
   return (
+    <>
+    {isLoading ? <Loading/>:
+    <>
     <div>
         <Header></Header>
         <div className='Premium_all_cont'>
@@ -48,6 +62,9 @@ const SeleccionPremium = () => {
         
     </div>
     </div>
+    </>
+    }
+    </>
   )
 }
 

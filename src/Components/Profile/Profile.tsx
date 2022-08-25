@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  changeLoading,
   checkSession,
   getOffers,
   getUserById,
@@ -18,16 +19,21 @@ import FormEditProfileWorker from "./Edit Profile/FormEditProfileWorker";
 import { ratingStars } from "../WorkerHome/CardWorker/CardWorker";
 import { current } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 function Profile() {
   const dispatch = useDispatch();
   const token: any = localStorage.getItem("token");
   const tokenDecode: any = decode(token);
+  const isLoading = useSelector((state:any) => state.workService.isLoading);
+
 
   useEffect(() => {
     dispatch(getUserById(tokenDecode));
     dispatch(getOffers());
     dispatch(checkSession());
+    dispatch(changeLoading(true))
+    setTimeout(() => dispatch(changeLoading(false)), 1700);
   }, []);
 
   //const users = useSelector((state: any) => state.workService.offers)
@@ -89,6 +95,10 @@ function Profile() {
   // })
 
   return (
+    <>
+    {isLoading ? <Loading/>: 
+    <>
+    
     <div className="Profile_Component">
       <Header />
       <div className="Profile">
@@ -278,6 +288,9 @@ function Profile() {
         <CardsReview />
       </div>
     </div>
+    </>
+    }
+    </>
   );
 }
 

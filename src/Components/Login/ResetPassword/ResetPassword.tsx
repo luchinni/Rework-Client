@@ -1,17 +1,25 @@
 import { useState, useEffect } from "react";
-import { resetPassword } from "../../../Redux/Reducer/reducer";
+import { changeLoading, resetPassword } from "../../../Redux/Reducer/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./ResetPassword.css"
 import Header from '../../Register/HeaderRegister/HeaderRegister';
 import * as type from "../../../Types";
+import Loading from "../../Loading/Loading";
 
 
 const ResetPassword = () => {
     const token = new URLSearchParams(window.location.search).get('token')
+    const isLoading = useSelector((state:any) => state.workService.isLoading);
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        dispatch(changeLoading(true))
+        setTimeout(() => dispatch(changeLoading(false)), 1700);
+    },[]);
 
     type errorResetPassword = {
         newPassword:string,
@@ -104,6 +112,9 @@ const ResetPassword = () => {
 
 
     return(
+        <>
+    {isLoading ? <Loading/>:
+    <>
         <div>
                 <Header/>
             <div className='ResetPassword_Container'>
@@ -147,6 +158,9 @@ const ResetPassword = () => {
             </div>
         </div>
         </div>
+        </>
+}
+</>
     )
 }
 
