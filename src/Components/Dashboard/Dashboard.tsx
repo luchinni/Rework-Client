@@ -156,7 +156,7 @@ function Dashboard() {
             } */}
 
             {
-              pagos && <PaysDash /* props={search.pay} */ />
+              pagos && <PaysDash  props={search.pay} />
             }
 
             {
