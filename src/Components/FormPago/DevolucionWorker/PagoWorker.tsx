@@ -7,6 +7,7 @@ import img1 from "../../../images/Card Payment_Outline.png"
 import img2 from "../../../images/Currency_Two Color.png"
 import imgCard from "../../../images/Credit Card_Flat.png"
 import Header from '../../Header/Header';
+import Swal from 'sweetalert2';
 
 const PagoWorker = () => {
 
@@ -139,16 +140,6 @@ const handleChange = (e:any) => {
 const handleSubmit = (e:any) => {
   e.preventDefault();
   const {Name, Lastname, DNI, Email, Phone_Number, Target_type, Card_number} = formulario;
-
-  /*{
-    Name:"lucas",
-    Lastname:"Pardieux",
-    DNI:39491768,
-    Email:"lucaspardieux@gmail.com",
-    Phone_Number:1130947537,
-    Target_type:"MasterCard",
-    cvu:454354632132482
-  }*/
   
   const name = firstWordUpperCase(Name)
   const lastname = firstWordUpperCase(Lastname)
@@ -158,6 +149,18 @@ const handleSubmit = (e:any) => {
  }
 
  setBankInfo(bank_data, userLogged.id)
+ .then(()=> {
+
+  /*Swal.fire({
+                        icon: 'success',
+                        title: 'GENIAL!',
+                        text: 'Estamos a punto de comenzar el trabajo! Enviaremos el contrato al cliente para que lo firme, te avisaremos cuando todo esté listo para comenzar',*/
+  Swal.fire({
+    icon: 'success',
+    title: '¡Gracias!',
+    text: 'En un plazo de 5 a 10 dias estarás recibiendo el pago por tu trabajo en la cuenta ingresada. Recuerda que si eres premium el tiempo de entrega se reduce a 72 horas.'
+  })
+ })
 };
 
 
