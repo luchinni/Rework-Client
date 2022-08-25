@@ -6,21 +6,21 @@ const CardsProposal = ({offer}:any) => {
   return (
     <div className='Detail_divProposal'>
           {offer.proposals?.map((e:any, i:any)=>{
-            console.log("proposal", e)
-            return (
-              <CardProposal key={i} props={e} offer={offer}/>
-            )
-            /* (e.state === "cancelled") 
+            console.log("el state", e.state)
+            console.log("el active", e.isActive)
+            { 
+              (e.state === "cancelled"
             ||
-            (e.state === "contract cancelled") 
+              e.state === "rejected"
             ||
-            (e.state === "contract rejected") 
+              e.state === "contract cancelled" 
             ||
-            (e.state === "contract started") 
-            ?
-            null
+              e.state === "contract rejected")
+            ? 
+              <></>
             : 
-            <CardProposal key={i} props={e} offer={offer}/> */
+              <CardProposal key={i} props={e} offer={offer}/> 
+          }
           })}
         </div>
   )

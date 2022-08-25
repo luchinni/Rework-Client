@@ -42,9 +42,10 @@ const Home = () => {
 
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
-  const preapproval = query.get("preapproval_id");
+  let preapproval: any = query.get("preapproval_id");
   if(preapproval){
     localStorage.removeItem("token")
+    preapproval = null
   }
   
   if(storageParsed?.length>0 && currentUser.id !== ''){

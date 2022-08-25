@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { editProposalWorkerPremium } from "../../../Redux/Reducer/reducer";
+import { editProposalWorkerPremium, getOfferId, getProposalById } from "../../../Redux/Reducer/reducer";
 import "./FormProposal.css";
 import image from "../../../images/modal_image_proposal.jpg";
 import decode from "jwt-decode";
@@ -154,6 +154,7 @@ const FormEditProposal = (props: any) => {
     console.log(editProposal)
     editProposalWorkerPremium(editProposal).then(() => {
       dispatch(getUserById(tokenDecode));
+      dispatch(getOfferId(props.proposalById.id));
       let form = document.getElementById("form") as HTMLFormElement | null;
       form?.reset();
     });

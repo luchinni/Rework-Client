@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../Offer/DetailOffer/DetailOffer.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   acceptProposal,
   isActiveFalseProposal,
   stateCancelledProposal,
+  getProposalById
 } from "../../../Redux/Reducer/reducer";
 import FormEditProposal from "../FormProposal/FormEditProposal"
 import Swal from "sweetalert2";
@@ -15,8 +16,16 @@ const CardProposal = ({ props, offer }: any) => {
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
+  const proposalById = useSelector(
+    (state: any) => state.workService.proposalById
+  );
   const proposalAccepted = offer.proposals.find((p:any) => p.state === 'accepted')
   const navigate = useNavigate();
+  console.log(props)
+
+    useEffect(() => {
+      getProposalById(props.id);
+    },[])
 
   const handleClick = () => {
         let state = "accepted";
@@ -93,7 +102,7 @@ const CardProposal = ({ props, offer }: any) => {
         <div className="Detail_divModal">
           <FormEditProposal
             close={handleCloseEdition}
-            proposal={props}
+            proposal={proposalById}
           />
         </div>
       )}
