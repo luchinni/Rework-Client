@@ -7,7 +7,7 @@ const CardFavorite = ({props}:any) => {
   const navigate = useNavigate()
 
   return (
-    <div className='CardFavorite_component'>   
+    <div className='CardFavorit'>   
       <button className='favorites_btn' onClick={() => navigate(`/detailOffer/${props.idOffer}`)}>
         <span className='CardFavorite_span'>
           {props.title}
