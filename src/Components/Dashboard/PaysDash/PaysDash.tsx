@@ -9,20 +9,7 @@ function PaysDash({props}:any) {
 
   const dispatch = useDispatch();
 
-  const userLogged = useSelector((state: any) => state.workService.userLogged);
-  const currentUser = useSelector((state: any) => state.workService.currentUser)
-  const token:any = localStorage.getItem("token")
- let tokenDecode:any
-  if(token){tokenDecode = decode(token)}
-
   let offers = useSelector((state:any) => state.workService.allOffersAdmin)
-
-  console.log("PaysDash ",offers)
-
-  useEffect(()=> {
-    dispatch(checkSession())
-    dispatch(getUserById(tokenDecode))
-  },[])
 
   useEffect(() => {
 		dispatch(getAllOffersAdmin(''));
@@ -67,15 +54,14 @@ function PaysDash({props}:any) {
 
   // ---- pagar ----
 
-  function handlePay() {
+  // function handlePay() {
 
-  }
+  // }
 
   if(props && props !== "") {
 		offers = offers.filter((e: any) => e.title.toLowerCase().includes(props.toLowerCase()))
 	}
 
-console.log("esto es offerDatos: ", offerDatos)
   return (
     <div>
 
