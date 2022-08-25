@@ -21,9 +21,12 @@ const CardProposal = ({ props, offer }: any) => {
   );
   const proposalAccepted = offer.proposals.find((p: any) => p.state === 'accepted')
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  console.log("LAS PROOOOPS", props)
+
 
   useEffect(() => {
-    getProposalById(props.id);
+    dispatch(getProposalById(props.idProposal));
   console.log("toy en la card", props)
   }, [])
 
@@ -103,7 +106,7 @@ const CardProposal = ({ props, offer }: any) => {
         <div className="Detail_divModal">
           <FormEditProposal
             close={handleCloseEdition}
-            proposal={proposalById}
+            proposal={props}
           />
         </div>
       )}
@@ -115,7 +118,10 @@ const CardProposal = ({ props, offer }: any) => {
       <div>
         <p className="DetailP_timeUser">{`Tiempo estimado de entrega: `}<span className="DetailP_timeData">{props?.worked_time}</span> </p>
         <div className="DetailP_divButton">
-          {offer.userClientId === currentUser.id && props.state === "posted" && proposalAccepted === undefined ? (
+          {props?.isActive === false ?
+            <p className="Detail_cancelled">CANCELADA</p>
+          :
+          offer.userClientId === currentUser.id && props.state === "posted" && proposalAccepted === undefined ? (
             <button name="button" className="Detail_buttonAccept" onClick={handleClick}>
               Aceptar
             </button>

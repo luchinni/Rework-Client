@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import './OptionsDash.css';
+import './OptionsDash.css';
 import { getAllProfession, getAllSkills, deleteProfession, deleteSkill, addNewProfession, addNewSkill } from "../../../Redux/Reducer/reducer";
 import Swal from 'sweetalert2';
 
-function OptionsDash() {
+function OptionsDash({props}: any) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProfession());
     dispatch(getAllSkills());
-  }, [dispatch]);
+  }, [dispatch, props]);
 
-  const professionsArray: string[] = useSelector(
+  let professionsArray: string[] = useSelector(
     (state: any) => state.workService.professions
   );
-  const skillsArray: string[] = useSelector(
+  let skillsArray: string[] = useSelector(
     (state: any) => state.workService.skills
   );
 
@@ -45,7 +45,7 @@ function OptionsDash() {
       dispatch(getAllProfession());
       return Swal.fire({
         icon: 'success',
-        text: 'Se cargo la profesión!',
+        text: 'Se cargó la profesión!',
       });
     };
   };
@@ -78,7 +78,7 @@ function OptionsDash() {
         text: 'Debes ingresar una aptitud',
     })};
     text = text.slice(0, 1).toUpperCase() + text.slice(1);
-    if (professionsArray.includes(text)) {
+    if (skillsArray.includes(text)) {
       return Swal.fire({
         icon: 'error',
         text: 'La aptitud ya existe!',
@@ -88,7 +88,7 @@ function OptionsDash() {
       dispatch(getAllSkills());
       return Swal.fire({
         icon: 'success',
-        text: 'Se cargo la aptitud!',
+        text: 'Se cargó la aptitud!',
       });
     };
   };
@@ -114,8 +114,17 @@ function OptionsDash() {
     });
   };
 
+  if(props && props !== "") {
+    if (open === "professions") {
+      professionsArray = professionsArray.filter((e: string) => e.toLowerCase().includes(props.toLowerCase()));
+    };
+		if (open === "skills") {
+      skillsArray = skillsArray.filter((e: string) => e.toLowerCase().includes(props.toLowerCase()));
+    };
+	};
+
   return (
-    <div className='UserDash_Component'>
+    <div className='OfferDash_Component'>
       <div className='OfferDash_firstDivSelect'>
         <select onChange={handleSelect}>
           <option selected={true} hidden>
@@ -125,13 +134,13 @@ function OptionsDash() {
           <option value="professions">Profesiones</option>
         </select>
       </div>
-      <div>
+      <div >
       {open === "professions" 
-      ? <div>
+      ? <div className='OptionsDash_secondDiv'>
           <label>Nueva Profession: </label>
-          <input className="" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
+          <input className="Darshboard_search" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
           <button
-            className="OfferDash_editButton"
+            className="OfferDash_modalOk"
             value="deleteProfession"
             onClick={() => handleCreationProfession(profession)}
           >
@@ -139,11 +148,11 @@ function OptionsDash() {
           </button>
         </div>
         : open === "skills" ? 
-        <div>
+        <div className='OptionsDash_secondDiv'>
           <label>Nueva Aptitud: </label>
-          <input className="" type="text" onChange={(e) => setNewSkill(e.target.value)}/>
+          <input className="Darshboard_search" type="text" onChange={(e) => setNewSkill(e.target.value)}/>
           <button
-            className="OfferDash_editButton"
+            className="OfferDash_modalOk"
             value="deleteProfession"
             onClick={() => handleCreationSkill(skill)}
           >
@@ -171,7 +180,7 @@ function OptionsDash() {
                   </td>
                   <td className="OfferDash_tdButtons">
                     <button
-                      className="OfferDash_editButton"
+                      className="OfferDash_modalCancelar"
                       value="deleteSkill"
                       onClick={() => handleDeleteSkill(skillsArray[i])}
                     >
@@ -191,7 +200,7 @@ function OptionsDash() {
                   </td>
                   <td className="OfferDash_tdButtons">
                     <button
-                      className="OfferDash_editButton"
+                      className="OfferDash_modalCancelar"
                       value="deleteProfession"
                       onClick={() => handleDeleteProfession(professionsArray[i])}
                     >

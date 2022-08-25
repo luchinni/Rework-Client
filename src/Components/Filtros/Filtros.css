@@ -64,3 +64,11 @@
     font-size: 14px;
   } 
 }
+
+@media screen and (max-width: 650px) {
+  .Filtros_component {
+    position: static;
+    max-width: 160px;
+    min-width: 159px;
+  }
+}
