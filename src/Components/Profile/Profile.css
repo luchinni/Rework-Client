@@ -95,7 +95,27 @@ color: #e76f51
 .Profile_editProfile:hover {
   background-color: #2a9d8f;
 }
-
+.Profile_premiumButton {
+  background-color: #c45800;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: auto;
+  max-height: 250px;
+  max-width: 188px;
+  padding: 10px 10px;
+  width: auto;
+  font-weight: 600;
+  transition: all .3s ease;
+  line-height: 20px;
+  margin-top: 10px;
+  
+}
+.Profile_premiumButton:hover {
+  background-color: #f88d22;
+}
 .Profile_divTags {
   display: flex;
   gap: 15px;
