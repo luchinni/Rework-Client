@@ -9,13 +9,13 @@ const CardsProposal = ({offer}:any) => {
             console.log("el state", e.state)
             console.log("el active", e.isActive)
             { 
-              (e.state === "cancelled") 
+              (e.state === "cancelled"
             ||
-              (e.state === "contract cancelled") 
+              e.state === "rejected"
             ||
-              (e.state === "contract rejected") 
+              e.state === "contract cancelled" 
             ||
-              (e.state === "contract started")
+              e.state === "contract rejected")
             ? 
               <></>
             : 
