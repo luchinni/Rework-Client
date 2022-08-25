@@ -115,7 +115,7 @@ const handleChange = (e:any) => {
       case "Target_type":
           error.Target_type = "";
           break;
-      case "Acount":
+      case "Card_number":
           error.Card_number = "";
           break;
    
