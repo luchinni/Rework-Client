@@ -1158,10 +1158,11 @@ export const resetPassword = (token:any, password:any) => async (dispatch: any) 
 
 export const setBankInfo = async (info:any, id:any) =>{
   try{
+    const objeto = {id, bank_data:info}
     await axios({
       method:"PUT",
-      url: `/offer/state`,
-      data: info
+      url: `/worker/bank`,
+      data: objeto
       })
 } catch (error) {
   return error
@@ -1226,3 +1227,4 @@ export const getProposalById = (id: String | undefined) => async (dispatch: Disp
     Swal.fire("Error al requerir el detalle","","warning")
   }
 }
+
