@@ -100,7 +100,7 @@ function OfferDash({props}: any) {
 									<label className='OfferDash_divModalTitle'>Actualiza el estado</label>
 
 									<select onChange={handleSelect}>
-										<option selected={true} hidden>selecciona uno</option>
+										<option selected={true} hidden>Selecciona uno</option>
 										<option value="true">Activa</option>
 										<option value="false">Inactiva</option>
 									</select>
@@ -108,8 +108,8 @@ function OfferDash({props}: any) {
 								</div>
 							</div>
 							<div className='OfferDash_modalButtonsDiv'>
-								<button className='OfferDash_modalOk' onClick={handleOnClick}>guardar</button>
-								<button className='OfferDash_modalCancelar' onClick={handleModalEditClose}>cancelar</button>
+								<button className='OfferDash_modalOk' onClick={handleOnClick}>Guardar</button>
+								<button className='OfferDash_modalCancelar' onClick={handleModalEditClose}>Cancelar</button>
 							</div>
 						</div>
 					}
@@ -118,7 +118,7 @@ function OfferDash({props}: any) {
 						<thead >
 							<tr>
 								<th>Título</th>
-								<th>Id</th>
+								<th>ID</th>
 								<th>Fecha</th>
 								<th>Estado</th>
 							</tr>
