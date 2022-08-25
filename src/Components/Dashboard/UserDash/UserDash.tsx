@@ -22,7 +22,7 @@ function UserDash() {
 
    useEffect( () => {
     dispatch(getAllUsers(userFiltro))
-  }, [userFiltro])
+  }, [dispatch, userFiltro, user, userAdmin])
 
   function handleOnchange(e: any) {
     const value = e.target.value;
@@ -75,7 +75,7 @@ function UserDash() {
 
   return (
     <div className='UserDash_Component'>
-      <div>
+      <div className='OfferDash_firstDivSelect'>
 
         <select onChange={handleSelect}>
           <option selected={true} hidden>Mostrar usuarios</option>

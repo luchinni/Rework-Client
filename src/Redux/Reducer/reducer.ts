@@ -1206,6 +1206,18 @@ export const deleteProfession = async (array: string[], profession: string) => {
   }
 }
 
+export const addNewProfession = async (profession: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/profession",
+      data: profession
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
 export const deleteSkill = async (array: string[], skill: string) => {
   try {
     await axios({
@@ -1220,6 +1232,19 @@ export const deleteSkill = async (array: string[], skill: string) => {
     return error;
   }
 }
+
+export const addNewSkill = async (skill: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/skills",
+      data: skill
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
 export const getProposalById = (id: String | undefined) => async (dispatch: Dispatch<any>) => {
   try {
   const offerId = await axios.get(`/proposal/${id}`);
