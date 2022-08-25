@@ -106,7 +106,7 @@ const CardProposal = ({ props, offer }: any) => {
         <div className="Detail_divModal">
           <FormEditProposal
             close={handleCloseEdition}
-            proposal={proposalById}
+            proposal={props}
           />
         </div>
       )}
