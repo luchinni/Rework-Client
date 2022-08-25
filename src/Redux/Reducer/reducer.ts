@@ -1158,12 +1158,15 @@ export const resetPassword = (token:any, password:any) => async (dispatch: any) 
 
 export const setBankInfo = async (info:any, id:any) =>{
   try{
+    console.log(info)
+    console.log(id)
     const objeto = {id, bank_data:info}
-    await axios({
+    const response = await axios({
       method:"PUT",
       url: `/worker/bank`,
       data: objeto
       })
+      console.log(response)
 } catch (error) {
   return error
 }
