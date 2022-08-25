@@ -71,3 +71,35 @@
     font-size: smaller;
     color: #2A9D8F;
 }
+
+.Premium_send{
+    margin: 0 auto;
+  font-size: 20px;
+  background-color: #72AD5E;
+  border: none;
+  padding: 10px 50px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+}
+
+.Premium_payment{
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: #F4A261;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.Premium_send:hover{
+    cursor: pointer;
+    background-color: #2b7c37df
+}
+
+.Premium_payment:hover{
+    cursor: pointer;
+    background-color: #E76F51;
+}
