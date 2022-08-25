@@ -364,7 +364,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
                     placeholder="Fecha de Nacimiento"
                     onChange={(e) => this.handleChange(e)}
                   />
-                  {!this.state.errors.birthdate ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.birthdate}</div>                  }
+                  {!this.state.errors.birthdate ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.birthdate}</div>                  }
                 </div>
                 <div className='Worker_Input'>
                   <input className="CR_inpunt" type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
