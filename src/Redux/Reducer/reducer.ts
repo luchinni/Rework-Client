@@ -125,7 +125,7 @@ export const workServiceSlice = createSlice({
         isWorker: action.payload.isWorker,
         isAdmin: action.payload.isAdmin,
         isPremium: action.payload.premium,
-        isSuper: action.payload.superAdmin
+        isSuper: action.payload.isSuper
       };
     },
     sortAllOffersAZ: function (state: any) {
