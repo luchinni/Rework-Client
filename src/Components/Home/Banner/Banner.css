@@ -31,7 +31,33 @@
   line-height: 50px;
 }
 
-.Banner_imageTextTres {
+.Banner_imageTextDos{
+  position: absolute;
+  font-size: 38px;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: start;
+  text-shadow: #264653 2px 2px 5px;
+  left: 0px;
+  margin: 15px 0px 0px 20px; 
+  max-width: 420px;
+  line-height: 50px;
+}
+
+.Banner_imageTextTres{
+  position: absolute;
+  font-size: 38px;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: start;
+  text-shadow: #264653 2px 2px 5px;
+  left: 0px;
+  margin: 15px 0px 0px 20px; 
+  max-width: 420px;
+  line-height: 50px;
+}
+
+/* .Banner_imageTextTres {
   position: absolute;
   font-size: 42px;
   font-weight: 800;
@@ -39,7 +65,6 @@
   text-shadow: #264653 2px 2px 5px;
   bottom: 0;
   margin: 20px 20px 20px 30px;
-  /* margin: 20px -80px 35px 0px; */
   max-width: 420px;
   line-height: 50px;
 }
@@ -53,10 +78,15 @@
   right: 0;
   max-width: 420px;
   line-height: 50px;
-}
+} */
 
 @media screen and (max-width: 975px) {
   .Banner_imageTextUno{
+    font-size: 30px;
+    max-width: 350px;
+    line-height: 40px;
+  }
+  .Banner_imageTextTres{
     font-size: 30px;
     max-width: 350px;
     line-height: 40px;
@@ -69,6 +99,16 @@
     max-width: 200px;
     line-height: 25px;
   }
+  .Banner_imageTextDos{
+    font-size: 20px;
+    max-width: 200px;
+    line-height: 25px;
+  }
+  .Banner_imageTextTres{
+    font-size: 20px;
+    max-width: 200px;
+    line-height: 25px;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -77,9 +117,30 @@
     max-width: 180px;
     line-height: 20px;
   }
+  .Banner_imageTextDos{
+    font-size: 16px;
+    max-width: 180px;
+    line-height: 20px;
+  }
+  .Banner_imageTextTres{
+    font-size: 16px;
+    max-width: 180px;
+    line-height: 20px;
+    margin: 10px 0px 0px 20px; 
+  }
 }
 
 @media screen and (max-width: 580px) {
+  .Banner_imageTextUno{
+    font-size: 14px;
+    max-width: 180px;
+    line-height: 20px;
+  }
+  .Banner_imageTextDos{
+    font-size: 14px;
+    max-width: 180px;
+    line-height: 20px;
+  }
   .Banner_imageTextUno{
     font-size: 14px;
     max-width: 180px;
