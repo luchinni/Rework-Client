@@ -290,6 +290,13 @@
   line-height: 20px;
   color: #c45050;
 }
+.Detail_accepted{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #72AD5E;
+}
+
 .Detail_divCardPropuestas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
