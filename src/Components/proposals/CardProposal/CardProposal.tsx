@@ -24,6 +24,7 @@ const CardProposal = ({ props, offer }: any) => {
 
   useEffect(() => {
     getProposalById(props.id);
+  console.log("toy en la card", props)
   }, [])
 
   const handleClick = () => {
@@ -95,7 +96,6 @@ const CardProposal = ({ props, offer }: any) => {
     });
   };
 
-  console.log("toy en la card", props)
   
   return (
     <div className="Detail_Proposal">
