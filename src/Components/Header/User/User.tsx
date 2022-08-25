@@ -82,9 +82,11 @@ function User() {
               <Link className='UserDropdownItem' to='/changePassword'>Cambiar contraseña</Link>
               </div>
             }
-            <div className='User_DropdownOptions'>
+            {
+              currentUser?.isAdmin === true || currentUser?.isSuper === true ? <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to='/dashboard'>Dashboard</Link>
-            </div>
+            </div>:<></>
+            }
             <hr className='User_hr' />
             <div>
               <button className='User_buttonLogout' onClick={handleLogOut} >Logout</button>
