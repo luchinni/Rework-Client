@@ -49,7 +49,7 @@ const OtherProfile = () => {
           <div className='Profile'>
             <div className='Profile_topPerfil'>
               <div className='Profile_divPortada'>
-                <img className='Profile_portada' src="https://th.bing.com/th/id/R.99068920ab82a672b048b73e1b1d5374?rik=pvNRgNW6hzVcKw&pid=ImgRaw&r=0" alt="Portada" />
+                <img className='Profile_portada' src="https://raw.githubusercontent.com/The-final-pg/.github/main/profile/REwork.jpg" alt="Portada" />
               </div>
               
               <div>

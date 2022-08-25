@@ -77,7 +77,7 @@ const CardWorker = ({props}:any) => {
     <div className='CardWorker_component'>
         <div className='div_infoUser' > 
             <div className="div_info_imgDatos">
-                <div className='div_workerButton'>
+                {/* <div className='div_workerButton'>
                     <button onClick={handleClick} className='workerButton_options'>
                         <img className='more' src={more} alt="more" />
                     </button>
@@ -89,7 +89,7 @@ const CardWorker = ({props}:any) => {
                     </div>
                     </div>
                     }
-                </div>
+                </div> */}
                 <div className='div_userDatos'>
                 <div className='div_imageWorker'>
                     <img className='card_workerImage' src={props.photo} alt="profile img"/>

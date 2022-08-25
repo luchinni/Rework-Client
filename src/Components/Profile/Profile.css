@@ -148,6 +148,8 @@ color: #e76f51
   border: 2px solid #edecd9;
   background-color: #fffcfc;
   border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
 }
 
 .Profile_divModalUpdate_Cli {
