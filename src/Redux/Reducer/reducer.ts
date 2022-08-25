@@ -15,7 +15,7 @@ const initialState = {
   search: "",
   userById: {},
   offers: [],
-  isLoading: false,
+  isLoading: true,
   favorites: [],
   userLogged: {},
   offerById: {},
