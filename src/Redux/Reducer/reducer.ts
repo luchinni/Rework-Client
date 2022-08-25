@@ -19,6 +19,7 @@ const initialState = {
   favorites: [],
   userLogged: {},
   offerById: {},
+  proposalById: {},
   professions: [],
   skills: [],
   premiumInfo:"",
@@ -27,7 +28,8 @@ const initialState = {
     id: "",
     isWorker: false,
     isAdmin: false,
-    isPremium: false
+    isPremium: false,
+    isSuper: false
   },
   userVerified: {
     isActive: false,
@@ -46,6 +48,9 @@ export const workServiceSlice = createSlice({
   reducers: {
     setAllUsers: function (state: any, action: any) {
       state.allUsers = action.payload;
+    },
+    setProposalById: function (state: any, action: any) {
+      state.proposalById = action.payload;
     },
     setAllUsersAdmin: function (state: any, action:any) {
       state.allUsersAdmin = action.payload;
@@ -119,7 +124,8 @@ export const workServiceSlice = createSlice({
         id: action.payload.id,
         isWorker: action.payload.isWorker,
         isAdmin: action.payload.isAdmin,
-        isPremium: action.payload.premium
+        isPremium: action.payload.premium,
+        isSuper: action.payload.superAdmin
       };
     },
     sortAllOffersAZ: function (state: any) {
@@ -308,6 +314,7 @@ export const {
   setUserById,
   setFavorite,
   removeFavorite,
+  setProposalById,
   setLoading,
   setAllOffers,
   setUserLogged,
@@ -675,6 +682,7 @@ export async function newProposalPost(newProposal: type.FormProposalType) {
 export async function editProposalWorkerPremium(newProposal: type.FormProposalType) {
   try {
     let { remuneration, proposal_description, worked_time, idProposal } = newProposal;
+    const id = idProposal
     let editProposal: object = {
       remuneration,
       proposal_description,
@@ -682,7 +690,7 @@ export async function editProposalWorkerPremium(newProposal: type.FormProposalTy
     };
     return await axios({
       method: "PUT",
-      url: `/proposal/${idProposal}`,
+      url: `/proposal/${id}`,
       data: editProposal,
     });
   } catch (error) {
@@ -1019,6 +1027,22 @@ export const userIsActivePut = async (id: string, isActive: string, /* isAdmin: 
   }
 }
 
+export const userIsAdminChange = async (id: string, isAdmin: string, /* isAdmin: string, */ isWorker: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/users/isAdmin",
+      data: {
+        id,
+        isAdmin,
+        isWorker
+      }
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
 export const googleLog = (user: any) => async (dispatch: Dispatch<any>) => {
   try{ 
     // "limpiamos" la data de google
@@ -1134,11 +1158,15 @@ export const resetPassword = (token:any, password:any) => async (dispatch: any) 
 
 export const setBankInfo = async (info:any, id:any) =>{
   try{
-    await axios({
+    console.log(info)
+    console.log(id)
+    const objeto = {id, bank_data:info}
+    const response = await axios({
       method:"PUT",
-      url: `/offer/state`,
-      data: info
+      url: `/worker/bank`,
+      data: objeto
       })
+      console.log(response)
 } catch (error) {
   return error
 }
@@ -1162,3 +1190,69 @@ export const changePassword = (user_mail: any, oldPassword:any, newPassword:any)
     return error
   }
 }
+
+export const deleteProfession = async (array: string[], profession: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/profession/delete",
+      data: {
+        array,
+        profession
+      }
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
+export const addNewProfession = async (profession: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/profession",
+      data: profession
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
+export const deleteSkill = async (array: string[], skill: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/skills/delete",
+      data: {
+        array,
+        skill
+      }
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
+export const addNewSkill = async (skill: string) => {
+  try {
+    await axios({
+      method: "PUT",
+      url: "/admin/skills",
+      data: skill
+    })
+  } catch(error) {
+    return error;
+  }
+}
+
+export const getProposalById = (id: String | undefined) => async (dispatch: Dispatch<any>) => {
+  try {
+  const offerId = await axios.get(`/proposal/${id}`);
+  setLoading(true);
+  return dispatch(setProposalById(offerId.data));
+
+  } catch (e) {
+    Swal.fire("Error al requerir el detalle","","warning")
+  }
+}
+

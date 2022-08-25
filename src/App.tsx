@@ -91,6 +91,7 @@ return (
       </>
         :
       <>
+        <Route path='dashboard' element={<Navigate to='/register' replace/>} />
         <Route path='register' element={<Register/>} />
         <Route path='register/worker' element={<Worker/>} />
         <Route path='register/client' element={<Client/>} />
@@ -103,7 +104,7 @@ return (
         <Route path='forgotPassword' element={<ForgotPassword/>}/>
         <Route path='resetPassword' element={<ResetPassword/>}/>
         <Route path='contract/:id' element={<Navigate to='/contract/session' replace/>} />
-        <Route path='premium/payment' element={<Premium/>} />
+        <Route path='premium/payment' element={<Navigate to='/register' replace/>} />
         <Route path='contract/session' element={<Navigate to='/home' replace/>}/>
         <Route path='contract/session' element={<ContractRedirect/>}/>
         <Route path='success/:id' element={<Navigate to='/home' replace/>} />
