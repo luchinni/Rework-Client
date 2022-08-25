@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {checkSession, getOffers, favoritesToDB, getUserById, verifyToken} from "../../Redux/Reducer/reducer";
+import {checkSession, getOffers, favoritesToDB, getUserById, verifyToken, changeLoading} from "../../Redux/Reducer/reducer";
 import CardsOffer from '../Offer/CardsOffer/CardsOffer';
 import Filtros from '../Filtros/Filtros';
 import Header from '../Header/Header';
@@ -17,6 +17,7 @@ import SeleccionPremium from '../FormPago/PagoPremium/SeleccionPremium';
 import CardsFavorites from '../Favorites/CardsFavorite/CardsFavorites';
 
 import Footer from '../Footer/Footer';
+import Loading from '../Loading/Loading';
 
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
   const infoSearched = useSelector((state:any) => state.workService.infoSearched);
   const currentUser = useSelector((state:any) => state.workService.currentUser);
   const userLogged = useSelector((state:any) => state.workService.userLogged);
+  const isLoading = useSelector((state:any) => state.workService.isLoading);
 
   let [ITEMS_PER_PAGE, setItemsPerPage] = useState(6);
   let [items, setItems] = useState([...offers]?.splice(0, ITEMS_PER_PAGE));
@@ -48,6 +50,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(getOffers());
     dispatch(checkSession())
+    dispatch(changeLoading(true))
+    setTimeout(() => dispatch(changeLoading(false)), 2500);
   }, [])
 
   useEffect(() => {
@@ -155,6 +159,8 @@ const showButton = () => {
     console.log("AAAAAAAAAAAAAAAAAAA", global)*/
   return (
     <>
+    {isLoading ? <Loading/>: 
+      <>
     <div className='Home_component'>
       <Header/>
       <div className='div_BannerAndCards'>
@@ -182,6 +188,8 @@ const showButton = () => {
       </div>
     </div>
       <Footer/>
+      </>
+    }
       </>
   )
 }
