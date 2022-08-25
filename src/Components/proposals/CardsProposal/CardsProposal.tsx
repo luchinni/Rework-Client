@@ -5,7 +5,7 @@ const CardsProposal = ({offer}:any) => {
   console.log("que me llega???", offer)
   return (
     <div className='Detail_divProposal'>
-      {offer.proposals?.map((e:any, i:any)=>{
+      {offer?.proposals?.map((e:any, i:any)=>{
         <CardProposal key={i} props={e} offer={offer}/>
         })
       }
