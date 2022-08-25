@@ -1,4 +1,4 @@
-import React, { useEffect, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import Header from "../Header/Header";
 import OfferDash from "./OfferDash/OfferDash";
