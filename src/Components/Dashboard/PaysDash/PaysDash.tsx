@@ -136,7 +136,7 @@ console.log("la idOffer: ", idOffer)
         <div className='OfferDash_modalButtonsDiv'>
           <a className='OfferDash_btnModalOk' href='https://www.mercadopago.com.ar/home#from-section=menu' target='_blank'>Pagar</a>
           <button className='OfferDash_modalCancelar' onClick={() => handleChangeState(offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.idProposal, offerDatos.idOffer)}>Liberar pago</button>
-          <button className='OfferDash_modalCancelar' onClick={handleModalPayClose}>cancelar</button>
+          <button className='OfferDash_modalCancelar' onClick={handleModalPayClose}>Cancelar</button>
         </div>
       </div>
       }

@@ -12,6 +12,29 @@
   height: 50px;
 }
 
+.selectFormEditWorker {
+  max-width: 450px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgb(237, 237, 237);
+  border: none;
+  text-align: center;
+}
+
+.profession_divWorker {
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+}
+.profession_spanWorker {
+  font-size: 13px;
+  width: 100%;
+  color: rgb(57, 57, 57);
+  background-color: #f4a261 !important;
+  padding: 5px 10px !important;
+  border-radius: 5px !important;
+}
 #btnEditDisabled {
   background: #e4bc9c;
 }
