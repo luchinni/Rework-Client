@@ -83,7 +83,7 @@ function User() {
               </div>
             }
             {
-              currentUser?.isAdmin === true || currentUser?.isSuper === true ? <div className='User_DropdownOptions'>
+              currentUser?.isAdmin === true ? <div className='User_DropdownOptions'>
               <Link className='UserDropdownItem' to='/dashboard'>Dashboard</Link>
             </div>:<></>
             }
