@@ -6,6 +6,8 @@ const CardsProposal = ({offer}:any) => {
   return (
     <div className='Detail_divProposal'>
           {offer.proposals?.map((e:any, i:any)=>{
+            console.log("el state", e.state)
+            console.log("el active", e.isActive)
             { 
               (e.state === "cancelled") 
             ||
