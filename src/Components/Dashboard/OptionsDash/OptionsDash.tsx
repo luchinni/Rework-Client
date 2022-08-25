@@ -10,7 +10,7 @@ function OptionsDash({props}: any) {
   useEffect(() => {
     dispatch(getAllProfession());
     dispatch(getAllSkills());
-  }, [dispatch, props]);
+  }, [props]);
 
   let professionsArray: string[] = useSelector(
     (state: any) => state.workService.professions
@@ -75,20 +75,20 @@ function OptionsDash({props}: any) {
     if (text === "") {
       return Swal.fire({
         icon: 'warning',
-        text: 'Debes ingresar una aptitud',
+        text: 'Debes ingresar una habilidad',
     })};
     text = text.slice(0, 1).toUpperCase() + text.slice(1);
     if (skillsArray.includes(text)) {
       return Swal.fire({
         icon: 'error',
-        text: 'La aptitud ya existe!',
+        text: 'La habilidad ya existe!',
       })
     } else {
       await addNewSkill(text);
       dispatch(getAllSkills());
       return Swal.fire({
         icon: 'success',
-        text: 'Se cargó la aptitud!',
+        text: 'Se cargó la habilidad!',
       });
     };
   };
@@ -130,14 +130,14 @@ function OptionsDash({props}: any) {
           <option selected={true} hidden>
             Seleccionar
           </option>
-          <option value="skills">Aptitudes</option>
+          <option value="skills">Habilidades</option>
           <option value="professions">Profesiones</option>
         </select>
       </div>
       <div >
       {open === "professions" 
       ? <div className='OptionsDash_secondDiv'>
-          <label>Nueva Profession: </label>
+          <label>Nueva Profesión: </label>
           <input className="Darshboard_search" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
           <button
             className="OfferDash_modalOk"
@@ -149,7 +149,7 @@ function OptionsDash({props}: any) {
         </div>
         : open === "skills" ? 
         <div className='OptionsDash_secondDiv'>
-          <label>Nueva Aptitud: </label>
+          <label>Nueva Habilidad: </label>
           <input className="Darshboard_search" type="text" onChange={(e) => setNewSkill(e.target.value)}/>
           <button
             className="OfferDash_modalOk"
@@ -161,16 +161,24 @@ function OptionsDash({props}: any) {
         </div> : null}
       </div>
    
-      <table>
+ {/*      <table>
         <thead>
           <tr>
             <th>Profession</th>
             <th>Estado</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody> */}
           {open === "skills"
-            ? skillsArray?.map((e: any, i: any) => {
+            ? 
+            <table>
+              <thead>
+                <tr>
+                  <th>Habilidades</th>
+                </tr>
+              </thead>
+            <tbody>
+            {skillsArray?.map((e: any, i: any) => {
               return (
                 <tr key={i}>
                   <td>
@@ -189,8 +197,18 @@ function OptionsDash({props}: any) {
                   </td>
                 </tr>
               );
-            })
-            : professionsArray?.map((e: string, i: number) => {
+            })}
+            </tbody>
+          </table>
+            : 
+            <table>
+              <thead>
+                <tr>
+                  <th>Profesiones</th>
+                </tr>
+              </thead>
+            <tbody>
+              {professionsArray?.map((e: string, i: number) => {
               return (
                 <tr key={i}>
                   <td>
@@ -211,7 +229,7 @@ function OptionsDash({props}: any) {
               );
             })}
         </tbody>
-      </table>
+      </table>}
     </div>
   );
 }

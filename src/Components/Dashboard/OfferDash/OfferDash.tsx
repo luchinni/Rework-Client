@@ -84,12 +84,12 @@ function OfferDash({props}: any) {
 
 								<div className='OfferDash_divInfoModal'>
 									<div>
-										<p className='OfferDash_divModalTitle'>Id de la publicacion: </p>
+										<p className='OfferDash_divModalTitle'>ID de la publicación: </p>
 										<span className='OfferDash_MOdalTextInfo'>{dataOffer.idOffer}</span>
 									</div>
 
 									<div>
-										<p className='OfferDash_divModalTitle'>estado actual: </p>
+										<p className='OfferDash_divModalTitle'>Estado actual: </p>
 										<span className='OfferDash_MOdalTextInfo'>{dataOffer.isActive === false ? "Inactiva" : "Activa"}</span>
 									</div>
 								</div>
