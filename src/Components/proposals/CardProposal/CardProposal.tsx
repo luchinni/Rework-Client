@@ -21,12 +21,14 @@ const CardProposal = ({ props, offer }: any) => {
   );
   const proposalAccepted = offer.proposals.find((p: any) => p.state === 'accepted')
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  console.log("LAS PROOOOPS", props)
+
 
   useEffect(() => {
-    getProposalById(props.idProposal);
+    dispatch(getProposalById(props.idProposal));
   console.log("toy en la card", props)
   }, [])
-
 
   const handleClick = () => {
     let state = "accepted";
