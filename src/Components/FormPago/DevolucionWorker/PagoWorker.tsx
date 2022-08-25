@@ -19,8 +19,8 @@ const PagoWorker = () => {
     Phone_Number: number,
     Email: string,
     DNI: number,
-    Target_type:"",
-    Card_number:0,
+    Target_type:string,
+    Card_number:number,
 }
 
 type errorsNewOffer = {
@@ -39,7 +39,7 @@ const [formulario, setFormulario] = useState<any>({
     Phone_Number: 0,
     Email: "",
     Target_type:"",
-    Card_number:"",
+    Card_number:0,
     DNI: 0
 });
 
@@ -82,7 +82,7 @@ const handleChange = (e:any) => {
   let error:errorsNewOffer;
   error = errors;
   console.log(value)
-  if(value === "Visa" &&masterCheck?.checked === true){
+  if(value === "Visa" && masterCheck?.checked === true){
     masterCheck.checked = false;
   }
   else if(value === "MasterCard" && visaCheck?.checked === true){
@@ -116,7 +116,7 @@ const handleChange = (e:any) => {
           error.Target_type = "";
           break;
       case "Acount":
-            error.Card_number = "";
+          error.Card_number = "";
           break;
    
   }
@@ -147,7 +147,7 @@ const handleSubmit = (e:any) => {
   
   const name = firstWordUpperCase(Name)
   const lastname = firstWordUpperCase(Lastname)
-
+  console.log(Card_number)
   const bank_data:{name:string, lastname:string, DNI:number, Email:string, Phone_Number:number, Target_type:string, cvu:number} = {
     name, lastname, DNI, Email, Phone_Number, Target_type, cvu:Card_number
  }
@@ -222,7 +222,7 @@ const handleSubmit = (e:any) => {
                       <div className="cbu_input">
                       <img className="img_label" src={imgCard} alt="" />
                       <input className="CR_input"
-                        type='text' name='Acount' placeholder='CBU/CVU' onChange={handleChange}/>
+                        type='number' name='Acount' placeholder='CBU/CVU' onChange={handleChange}/>
                       </div>
                         {errors.Card_number && (
                                 <p className="danger">{errors.Card_number}</p>
