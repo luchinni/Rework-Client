@@ -5,8 +5,28 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: rgb(240, 240, 240);
+    height: 100vh;
 }
 
+.Premium_all_cont:before{
+    content:"";
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    width: 50vw;
+    background-color: #E9C46A;
+    
+}
+
+.Premium_all_cont h1{
+    color: #fff;
+    z-index: 1;
+}
+
+.Premium_all_cont h1 b{
+    color: #1c353f;
+}
 
 .Premium_cont{
     display: flex;
@@ -14,6 +34,7 @@
     row-gap: 70px;
     justify-content: center;
     align-items: center;
+    height: 80vh;
     margin: 50px;
 }
 .Premium_topBox {
@@ -23,8 +44,9 @@
 }
 .Premium_each_cont{
     margin: 0 30px 0 30px;
-    height: 430px;
+    height: inherit;
     display: flex;
+    width: 45.5vw;
     row-gap: 20px;
     align-items: center;
     justify-content: space-between;
@@ -37,12 +59,47 @@
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
+    z-index: 5;
+}
+.Premium_each_cont h2{
+    font-size: 40px;
 }
 .Premium_ul{
     margin: 0 10px 0 10px;
-    width: 400px;
+    width: 700px;
+    list-style: none;
 }
 
-.Premium_each_cont img{
-    width: 200px;
+.free_image{
+    width: 400px;
+
+}
+
+.Premium_image{
+    position: relative;
+    right: 11vw;
+    bottom: 5vh;
+    width: 500px;
+}
+
+.Premium_ul li p{
+    font-size: 20px;
+    font-weight: 700;
+}
+.Submit_button_premium{
+    z-index: 5;
+    background-color: #E76F51;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    cursor: pointer;
+}
+
+.Submit_button_premium:hover{
+    background-color: #F4A261;
 }
