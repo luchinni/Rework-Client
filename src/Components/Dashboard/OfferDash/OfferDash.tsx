@@ -3,62 +3,64 @@ import './OfferDash.css'
 import {useSelector, useDispatch} from 'react-redux'
 import {isActiveOffer, getAllOffersAdmin} from "../../../Redux/Reducer/reducer";
 
-
-function OfferDash() {
+function OfferDash({props}: any) {
 
 	const dispatch = useDispatch();
 
-	const [modalEdit, setModalEdit] = useState(false)
+	const [modalEdit, setModalEdit] = useState(false);
+	const [dataOffer, setDataOffer] = useState<any>({});
 
-	const [dataOffer, setDataOffer] = useState<any>({})
-
-	const offers = useSelector((state:any) => state.workService.allOffersAdmin);
+	let offers = useSelector((state:any) => state.workService.allOffersAdmin);
 
 	function handleModalEdit(offers:any) {
 		setModalEdit(true)
 		setDataOffer(offers)
-	}
+	};
 
 	function handleModalEditClose() {
 		setModalEdit(false)
-	}
+	};
 
-	const [offerState, setOfferState] = useState(true)
+	const [offerState, setOfferState] = useState(true);
 
 	function handleSelect( e: any) {
-		const select = e.target.value
+		const select = e.target.value;
 
 		let isSet: boolean = true;
 		 
 		if (select.toLowerCase() === 'true') {
 			isSet = true;
-		}
+		};
 		 
 		if (select.toLowerCase() === 'false') {
 			isSet = false;
-		}		
-		setOfferState(isSet)
-	}
+		};		
+		setOfferState(isSet);
+	};
 
-	const [admin, setAdmin] = useState("")
+	const [admin, setAdmin] = useState("");
 
 	useEffect(() => {
 		dispatch(getAllOffersAdmin(admin));
-	}, [admin])
+	}, [admin, props])
 
 	function handleSelectAdmin(e: any) {
-		const selectAdmin = e.target.value
-		setAdmin(selectAdmin)
-	}
+		const selectAdmin = e.target.value;
+		setAdmin(selectAdmin);
+	};
 
 	function handleOnClick() {
-		let id = dataOffer.idOffer
-		let isActive = offerState
+		let id = dataOffer.idOffer;
+		let isActive = offerState;
 		isActiveOffer(id , isActive)
 		.then(()=> {
-			dispatch(getAllOffersAdmin(admin))
-		})
-		setModalEdit(false)
+			dispatch(getAllOffersAdmin(admin));
+		});
+		setModalEdit(false);
+	};
+
+	if(props && props !== "") {
+		offers = offers.filter((e: any) => e.title.toLowerCase().includes(props.toLowerCase()))
 	}
 
   return (
@@ -88,7 +90,7 @@ function OfferDash() {
 
 									<div>
 										<p className='OfferDash_divModalTitle'>estado actual: </p>
-										<span className='OfferDash_MOdalTextInfo'>{dataOffer.isActive === false ? "Cerrada" : "Abierta"}</span>
+										<span className='OfferDash_MOdalTextInfo'>{dataOffer.isActive === false ? "Inactiva" : "Activa"}</span>
 									</div>
 								</div>
 
