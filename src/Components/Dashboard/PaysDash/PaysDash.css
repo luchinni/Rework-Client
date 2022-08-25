@@ -1,0 +1,14 @@
+.OfferDash_btnModalOk{
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background-color: #50a1c4;
+    padding: 5px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+}
+
+.OfferDash_btnModalOk:hover{
+    background-color: #4287a5;
+}

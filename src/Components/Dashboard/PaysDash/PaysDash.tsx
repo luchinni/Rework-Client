@@ -52,6 +52,7 @@ console.log("la idOffer: ", idOffer)
     }).then((response) =>{
       if (response.isConfirmed){
         setPayModal(false)
+        dispatch(getAllOffersAdmin(''));
       }
     }
       
@@ -78,12 +79,12 @@ console.log("la idOffer: ", idOffer)
           <h3>Offer</h3>
           <div>
             <div>
-              <span className='OfferDash_divModalTitle'>Id: </span>
+              <span className='OfferDash_divModalTitle'>ID: </span>
               <span className='OfferDash_MOdalTextInfo'>{offerDatos?.idOffer}</span>
             </div>
 
             <div>
-              <span className='OfferDash_divModalTitle'>State: </span>
+              <span className='OfferDash_divModalTitle'>Estado: </span>
               <span className='OfferDash_MOdalTextInfo'>{offerDatos?.state}</span>
             </div>
           </div>
@@ -92,11 +93,11 @@ console.log("la idOffer: ", idOffer)
           <h3>Proposal</h3>
           <div>
             <div >
-              <span className='OfferDash_divModalTitle'>Id: </span>
+              <span className='OfferDash_divModalTitle'>ID: </span>
               <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.idProposal}</span>
             </div>
             <div>
-              <span className='OfferDash_divModalTitle'>State: </span>
+              <span className='OfferDash_divModalTitle'>Estado: </span>
               <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.state}</span>
             </div>
 
@@ -104,7 +105,7 @@ console.log("la idOffer: ", idOffer)
             <h3>Free lancer</h3>
             <div>
               <div>
-                <span className='OfferDash_divModalTitle'>Username: </span>
+                <span className='OfferDash_divModalTitle'>Usuario: </span>
                 <span className='OfferDash_MOdalTextInfo'>{`${offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.name} ${offerDatos.proposals[0].userWorker.bank_data?.lastname}`}</span>
             
               </div>
@@ -133,8 +134,8 @@ console.log("la idOffer: ", idOffer)
           </div>
         </div>
         <div className='OfferDash_modalButtonsDiv'>
-          <a className='OfferDash_modalOk' href='https://www.mercadopago.com.ar/home#from-section=menu' target='_blank'>Pagar</a>
-          <button className='OfferDash_modalCancelar' onClick={() => handleChangeState(offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.idProposal, offerDatos.idOffer)}>liberar</button>
+          <a className='OfferDash_btnModalOk' href='https://www.mercadopago.com.ar/home#from-section=menu' target='_blank'>Pagar</a>
+          <button className='OfferDash_modalCancelar' onClick={() => handleChangeState(offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.idProposal, offerDatos.idOffer)}>Liberar pago</button>
           <button className='OfferDash_modalCancelar' onClick={handleModalPayClose}>cancelar</button>
         </div>
       </div>

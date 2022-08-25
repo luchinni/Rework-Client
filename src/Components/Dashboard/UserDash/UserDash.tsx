@@ -113,7 +113,7 @@ function UserDash({props}: any) {
 									<label className='OfferDash_divModalTitle'>Actualiza el estado</label>
 
 									<select onChange={handleOnchange}>
-										<option selected={true} hidden>selecciona uno</option>
+										<option selected={true} hidden>Selecciona uno</option>
 										<option value="true">Activo</option>
 										<option value="false">Inactivo</option>
 									</select>
@@ -149,7 +149,7 @@ function UserDash({props}: any) {
 									<label className='OfferDash_divModalTitle'>Convertir a Administrador</label>
 
 									<select onChange={handleOnchangeAdmin}>
-										<option selected={true} hidden>selecciona uno</option>
+										<option selected={true} hidden>Selecciona uno</option>
 										<option value="true">Si</option>
 										<option value="false">No</option>
 									</select>
@@ -167,7 +167,7 @@ function UserDash({props}: any) {
             <thead>
               <tr>
                 <th>Usuario</th>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Tipo</th>
                 <th>Estado</th>
               </tr>
