@@ -764,7 +764,6 @@ export async function getFavoritestoDB(value: any, idUser: string) {
       data: client.data,
     });
   }
-  localStorage.removeItem("favorites")
 }
 
 export async function remFavoritestoDB(value: any, idUser: string) {

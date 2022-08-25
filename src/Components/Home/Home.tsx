@@ -39,7 +39,7 @@ const Home = () => {
   const favoritesStorage:any = localStorage.getItem("favorites");
   const token:any = localStorage.getItem("token")
   const [query, setQuery] = useSearchParams();
-  const [storageParsed, setStorageParsed] = useState(JSON.parse(favoritesStorage));
+  //const [storageParsed, setStorageParsed] = useState(JSON.parse(favoritesStorage));
   const navigate = useNavigate();
   let tokenDecode:any
   if(token){tokenDecode = decode(token)}
@@ -57,7 +57,7 @@ const Home = () => {
     }
   })
   }
-  
+  const storageParsed = JSON.parse(favoritesStorage);
   if(storageParsed?.length>0 && currentUser.id !== ''){
     dispatch(favoritesToDB(storageParsed, currentUser.id));
 
