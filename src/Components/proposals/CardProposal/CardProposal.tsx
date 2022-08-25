@@ -115,7 +115,7 @@ const CardProposal = ({ props, offer }: any) => {
       <p className="DetailP_timeUser">{`Tiempo estimado de entrega: `}<span className="DetailP_timeData">{props?.worked_time}</span> </p>
       <div className="DetailP_divButton">
         {offer.userClientId === currentUser.id && props.state === "posted" && proposalAccepted === undefined ? (
-          <button name="button" className="DetailP_buttonAccept" onClick={handleClick}>
+          <button name="button" className="Detail_buttonAccept" onClick={handleClick}>
             Aceptar
           </button>
         ) : null}

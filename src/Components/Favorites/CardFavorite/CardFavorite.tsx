@@ -4,8 +4,8 @@ import './CardFavorite.css'
 
 const CardFavorite = ({props}:any) => {
    
-    const navigate = useNavigate()
-console.log("Card: ", props)
+  const navigate = useNavigate()
+
   return (
     <div >   
       <button className='favorites_btn' onClick={() => navigate(`/detailOffer/${props.idOffer}`)}>{props.title}</button>         

@@ -2,24 +2,26 @@
     position: sticky;
     top: 21em;
     max-width: 380px;
-    min-width: 379px;
     border: 1px solid #edecd9;
     background-color: #fffcfc;
     border-radius: 10px;
     width: 100%;
     padding: 20px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 2px 7px rgba(0, 0, 0, 0.24);
-
 }
 
 .Favorites_title {
-    min-width: 360px;
     font-size: 22px;
-    text-align: center;
     font-weight: 500;
     color: #264653;
     margin-bottom: 20px;
   }
+
+.CardsFavorites_guestMessage{
+  color: #264653;
+  font-size: 18px;
+  line-height: 24px;
+}
 
 .CardFavorite_component{
     max-height: 200px;
@@ -30,3 +32,16 @@
     background-color: #fffcfc;
 
  }
+
+
+@media screen and (max-width: 745px) {
+  .Favorites_title {
+    font-size: 18px;
+  } 
+}
+
+@media screen and (max-width: 685px) {
+  .Favorites_title {
+    font-size: 14px;
+  } 
+}
