@@ -1,5 +1,3 @@
-
-
 .updateCli_mainContainer{
   margin: 0;
   padding: 0;
@@ -17,7 +15,8 @@
 
 .update_Div_inputAndError {
   position: relative;
-  width: 450px;
+  max-width: 450px;
+  width: 100%;
 }
 
 .update_inpunt{
@@ -170,4 +169,8 @@
   color: #dfdfdf;
   transition: 0.25s;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  
 }

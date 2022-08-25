@@ -48,3 +48,10 @@
     font-size: 14px;
   } 
 }
+
+@media screen and (max-width: 650px) {
+  .CardsFavorites_component{
+    position: static;
+    /* max-width: 180px; */
+}
+}
