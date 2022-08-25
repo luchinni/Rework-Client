@@ -1248,7 +1248,7 @@ export const addNewSkill = async (skill: string) => {
 export const getProposalById = (id: String | undefined) => async (dispatch: Dispatch<any>) => {
   try {
   const offerId = await axios.get(`/proposal/${id}`);
-  setLoading(true);
+  console.log(offerId)
   return dispatch(setProposalById(offerId.data));
 
   } catch (e) {
