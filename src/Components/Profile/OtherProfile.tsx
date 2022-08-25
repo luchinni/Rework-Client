@@ -7,9 +7,8 @@ import CardsReview from '../Reviews/CardsReview/CardsReview';
 import { useParams } from 'react-router-dom';
 import { useEffect , useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { changeLoading, getUserByIdOther } from '../../Redux/Reducer/reducer';
+import { getUserByIdOther } from '../../Redux/Reducer/reducer';
 import { ratingStars } from "../WorkerHome/CardWorker/CardWorker";
-import Loading from '../Loading/Loading';
 
 const OtherProfile = () => {
 
@@ -17,13 +16,9 @@ const OtherProfile = () => {
     console.log("info del user: ", user)
     const dispatch = useDispatch();
     const params = useParams();
-  const isLoading = useSelector((state:any) => state.workService.isLoading);
-
 
     useEffect(() => {
          dispatch(getUserByIdOther(params.id));
-         dispatch(changeLoading(true))
-    setTimeout(() => dispatch(changeLoading(false)), 1700);
       }, [dispatch])
 
       const [portfolioOpen, setPortfolioOpen] = useState(false);
@@ -49,9 +44,6 @@ const OtherProfile = () => {
       }
 
     return (
-        <>
-        {isLoading ? <Loading/>: 
-        <>
         <div className='Profile_Component'>
           <Header/>
           <div className='Profile'>
@@ -113,9 +105,6 @@ const OtherProfile = () => {
           </div>
           <CardsReview/>
         </div>
-        </>
-        }         
-     </>
       )
     }
 
