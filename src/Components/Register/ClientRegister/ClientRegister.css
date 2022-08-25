@@ -50,9 +50,9 @@
   /* margin-top: 5px; */
 }
 .CR_inputSubmit {
-  margin: 0 auto;
+  margin: 125px;
   font-size: 20px;
-  background-color: #F4A261;
+  background-color: #f4a261;
   border: none;
   padding: 10px 50px;
   border-radius: 5px;
@@ -60,9 +60,31 @@
   font-weight: 600;
 }
 
-.CR_inputSubmit:hover{
+.CR_inputSubmit:disabled {
+  margin: 125px;
+  font-size: 20px;
+  background-color: #CCCCCC;
+  border: none;
+  padding: 10px 50px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+}
+.CR_inputSubmit:disabled:hover {
+  margin: 125px;
+  font-size: 20px;
+  background-color: #CCCCCC;
+  border: none;
+  cursor: default;
+  padding: 10px 50px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+}
+
+.CR_inputSubmit:hover {
   cursor: pointer;
-  background-color: #E76F51;
+  background-color: #e76f51;
 }
 
 .ClientRegister_image {

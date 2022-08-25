@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import './OptionsDash.css';
+import './OptionsDash.css'
 import { getAllProfession, getAllSkills, deleteProfession, deleteSkill, addNewProfession, addNewSkill } from "../../../Redux/Reducer/reducer";
 import Swal from 'sweetalert2';
 

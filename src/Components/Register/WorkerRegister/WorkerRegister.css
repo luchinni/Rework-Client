@@ -102,7 +102,7 @@
 .Worker_submit {
   margin: 125px;
   font-size: 20px;
-  background-color: #ececec;
+  background-color: #f4a261;
   border: none;
   padding: 10px 50px;
   border-radius: 5px;
@@ -110,11 +110,22 @@
   font-weight: 600;
 }
 
-.Worker_submit :disabled {
+.Worker_submit:disabled {
   margin: 125px;
   font-size: 20px;
   background-color: #CCCCCC;
   border: none;
+  padding: 10px 50px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+}
+.Worker_submit:disabled:hover {
+  margin: 125px;
+  font-size: 20px;
+  background-color: #CCCCCC;
+  border: none;
+  cursor: default;
   padding: 10px 50px;
   border-radius: 5px;
   color: white;

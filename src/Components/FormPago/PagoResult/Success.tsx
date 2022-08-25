@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import "./Success.css"
-import { acceptProposal, getOfferForHistory, modifyOfferState } from '../../../Redux/Reducer/reducer';
+import { acceptProposal, checkSession, getOfferForHistory, modifyOfferState } from '../../../Redux/Reducer/reducer';
+import HeaderRegister from '../../Register/HeaderRegister/HeaderRegister';
+import Header from '../../Header/Header';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Success = () => {
     const params:any = useParams();
     const [currentOffer, setCurrentOffer] = useState<any>({});
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const currentUser = useSelector((state:any) => state.workService.currentUser);
+    useEffect(() => {
+      dispatch(checkSession())
+    }, [])
 
     useEffect(() => {
         getOfferForHistory(params.id)
@@ -43,11 +51,14 @@ const Success = () => {
     
   return (
     <div>
-        <div className='success_display'>
-            <h1>¡Tu pago fue recibido!</h1>
-            <h2>Ahora podemos comenzar el trabajo</h2>
-            <h3>Le enviaremos al trabajador tu informacion para ponerlos en contacto.</h3>
-            <button className='Detail_premiumButton' onClick={goHome}>Volver al sitio</button>
+        <Header/>
+        <div className='success_background'>
+            <div className='success_display'>
+                <h1>¡Tu pago fue recibido!</h1>
+                <h2>Ahora podemos comenzar el trabajo</h2>
+                <h3>Le enviaremos al trabajador tu informacion para ponerlos en contacto.</h3>
+                <button className='succes_back' onClick={goHome}>Volver al sitio</button>
+            </div>
         </div>
     </div>
   )
