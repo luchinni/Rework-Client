@@ -1201,7 +1201,9 @@ export const addNewProfession = async (profession: string) => {
     await axios({
       method: "PUT",
       url: "/admin/profession",
-      data: profession
+      data: {
+        profession
+      }
     })
   } catch(error) {
     return error;
@@ -1228,7 +1230,9 @@ export const addNewSkill = async (skill: string) => {
     await axios({
       method: "PUT",
       url: "/admin/skills",
-      data: skill
+      data: {
+        skill
+      }
     })
   } catch(error) {
     return error;
