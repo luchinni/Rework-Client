@@ -1164,7 +1164,7 @@ export const setBankInfo = async (info:any, id:any) =>{
     const response = await axios({
       method:"PUT",
       url: `/worker/bank/${id}`,
-      data: bank_data
+      data: {bank_data}
       })
       console.log(response)
 } catch (error) {
