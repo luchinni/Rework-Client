@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import './OptionsDash.css';
-import { getAllProfession, getAllSkills, deleteProfession, deleteSkill } from "../../../Redux/Reducer/reducer";
-import Swal from 'sweetalert2'
+import { getAllProfession, getAllSkills, deleteProfession, deleteSkill, addNewProfession, addNewSkill } from "../../../Redux/Reducer/reducer";
+import Swal from 'sweetalert2';
 
 function OptionsDash() {
   const dispatch = useDispatch();
@@ -20,12 +20,34 @@ function OptionsDash() {
   );
 
   const [open, setOpen] = useState("professions");
-
-  console.log('professionsArray', open)
+  const [profession, setNewProfession] = useState("");
+  const [skill, setNewSkill] = useState("");
 
   function handleSelect(e: any) {
     let value = e.target.value;
     setOpen(value);
+  };
+
+  async function handleCreationProfession(text: string) {
+    if (text === "") {
+      return Swal.fire({
+        icon: 'warning',
+        text: 'Debes ingresar una profesión',
+    })};
+    text = text.slice(0, 1).toUpperCase() + text.slice(1);
+    if (professionsArray.includes(text)) {
+      return Swal.fire({
+        icon: 'error',
+        text: 'La profesión ya existe!',
+      })
+    } else {
+      await addNewProfession(text);
+      dispatch(getAllProfession());
+      return Swal.fire({
+        icon: 'success',
+        text: 'Se cargo la profesión!',
+      });
+    };
   };
 
   async function handleDeleteProfession(profession: string) {
@@ -41,13 +63,35 @@ function OptionsDash() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await deleteProfession(professionsArray, profession);
-        professionsArray.filter((e: string) => e !== profession)
+        dispatch(getAllProfession());
         Swal.fire(
           'Eliminada'
-        )
-      }
-    })
-  }
+        );
+      };
+    });
+  };
+
+  async function handleCreationSkill(text: string) {
+    if (text === "") {
+      return Swal.fire({
+        icon: 'warning',
+        text: 'Debes ingresar una aptitud',
+    })};
+    text = text.slice(0, 1).toUpperCase() + text.slice(1);
+    if (professionsArray.includes(text)) {
+      return Swal.fire({
+        icon: 'error',
+        text: 'La aptitud ya existe!',
+      })
+    } else {
+      await addNewSkill(text);
+      dispatch(getAllSkills());
+      return Swal.fire({
+        icon: 'success',
+        text: 'Se cargo la aptitud!',
+      });
+    };
+  };
 
   function handleDeleteSkill(skill: string) {
     Swal.fire({
@@ -62,34 +106,50 @@ function OptionsDash() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await deleteSkill(skillsArray, skill);
-        skillsArray.filter((e: string) => e !== skill)
+        dispatch(getAllSkills());
         Swal.fire(
           'Eliminada',
-        )
-      }
-    })
+        );
+      };
+    });
   };
 
   return (
-    <div>
-      <div /* className="Filter_divOptionsCheckbox" */>
+    <div className='UserDash_Component'>
+      <div className='OfferDash_firstDivSelect'>
         <select onChange={handleSelect}>
           <option selected={true} hidden>
             Seleccionar
           </option>
-          <option value="professions">Profesiones</option>
           <option value="skills">Aptitudes</option>
+          <option value="professions">Profesiones</option>
         </select>
       </div>
       <div>
       {open === "professions" 
       ? <div>
-        <label>Nueva Profession: </label>
-          <input></input> 
-          </div>
-          : open === "skills" ? 
-          <div><label>Nueva Aptitud</label>
-          <input></input></div> : null}
+          <label>Nueva Profession: </label>
+          <input className="" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
+          <button
+            className="OfferDash_editButton"
+            value="deleteProfession"
+            onClick={() => handleCreationProfession(profession)}
+          >
+            Agregar
+          </button>
+        </div>
+        : open === "skills" ? 
+        <div>
+          <label>Nueva Aptitud: </label>
+          <input className="" type="text" onChange={(e) => setNewSkill(e.target.value)}/>
+          <button
+            className="OfferDash_editButton"
+            value="deleteProfession"
+            onClick={() => handleCreationSkill(skill)}
+          >
+            Agregar
+          </button>
+        </div> : null}
       </div>
    
       <table>
@@ -100,7 +160,7 @@ function OptionsDash() {
           </tr>
         </thead>
         <tbody>
-          {open === "professions"
+          {open === "skills"
             ? skillsArray?.map((e: any, i: any) => {
               return (
                 <tr key={i}>

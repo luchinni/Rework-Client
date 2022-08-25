@@ -26,19 +26,21 @@ const SeleccionPremium = () => {
             <h2>Cuenta gratuita</h2>
             <img src={logo} alt="" />
             <ul className='Premium_ul'>
-                <li><p>• Publica hasta 15 propuestas por semana.</p></li>
-                <li><p>• Recibe el pago en un plazo de 15 a 30 dias al finalizar tus trabajos.</p></li>
-                <li><p>• Compite a ciegas contra otros trabajadores por el puesto.</p></li>
+                <li><p> Recibe el pago en un plazo de 5 a 10 dias al finalizar tus trabajos.</p></li>
+                <li><p> Compite a ciegas contra otros trabajadores por el puesto.</p></li>
+                <li><p> Envia propuestas una unica vez por oferta.</p></li>
             </ul>
             <button className="CR_inputSubmit" onClick={freeAcount}>Continuar gratis</button>
         </div>
         <div className='Premium_each_cont'>
             <h2>Cuenta Premium</h2>
-            <img src={logo_premium} alt="" />
+            <div className='Premium_topBox'>
+                <img src={logo_premium} alt="" />
+            </div>
             <ul className='Premium_ul'>
-                <li><p>• Publica hasta 30 propuestas por semana.</p></li>
-                <li><p>• Recibe el pago en un plazo de 5 a 10 dias al finalizar tus trabajos.</p></li>
-                <li><p>• Revisa las propuestas de tus competidores y compite con ventaja.</p></li>
+                <li><p> Recibe el pago en un plazo de 72hs máximo al finalizar tus trabajos.</p></li>
+                <li><p> Revisa las propuestas de tus competidores y compite con ventaja.</p></li>
+                <li><p> Edita tus propuestas y mejora tus posibilidades</p></li>
             </ul>
             <button className="CR_inputSubmit" onClick={premiumAcount}>Actualizar a premium</button>
         </div>

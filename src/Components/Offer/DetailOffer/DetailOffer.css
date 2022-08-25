@@ -294,7 +294,8 @@
   font-size: 15px;
   line-height: 21px;
   color: #264653;
-  max-width: 190px;
+  word-wrap: break-word;
+  max-width: 185px;
   height: auto;
   min-height: 50px;
   }

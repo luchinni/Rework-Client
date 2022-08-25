@@ -10,14 +10,14 @@ function Dashboard() {
 
   const [offCli, setOffCli] = useState(true)
   const [user, setUser] = useState(false)
-  const [reports, setReports] = useState(false)
+/*   const [reports, setReports] = useState(false) */
   const [pagos, setPagos] = useState(false)
   const [options, setOptions] = useState(false)
 
   function handleoffCli() {
     setOffCli(true);
     setUser(false);
-    setReports(false);
+    // setReports(false);
     setPagos(false);
     setOptions(false);
   }
@@ -25,22 +25,22 @@ function Dashboard() {
   function handleUser() {
     setUser(true);
     setOffCli(false);
-    setReports(false);
+ //   setReports(false);
     setPagos(false);
     setOptions(false);
   }
 
-  function handleReports() {
+ /*  function handleReports() {
     setReports(true);
     setOffCli(false);
     setUser(false);
     setPagos(false);
     setOptions(false);
-  }
+  } */
 
   function handlePagos() {
     setPagos(true);
-    setReports(false);
+ //   setReports(false);
     setOffCli(false);
     setUser(false);
     setOptions(false);
@@ -48,7 +48,7 @@ function Dashboard() {
 
   function handleOptions() {
     setOptions(true);
-    setReports(false);
+ //   setReports(false);
     setOffCli(false);
     setUser(false);
     setPagos(false);
@@ -80,7 +80,7 @@ function Dashboard() {
                 <button className={offCli ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleoffCli} >Ofertas</button>
                 <button className={user ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleUser}>Usuarios</button>
                 <button className={options ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleOptions}>Opciones</button>
-                <button className={reports ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReports}>Reportes</button>
+                {/* <button className={reports ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handleReports}>Reportes</button> */}
                 <button className={pagos ? 'Dashboard_tag open' : 'Dashboard_tag'} onClick={handlePagos}>Pagos</button>
               </div>
 
@@ -107,9 +107,9 @@ function Dashboard() {
               user && <UserDash />
             }
 
-            {
+      {/*       {
               reports && <p>falta el componente de Reportes</p>
-            }
+            } */}
 
             {
               pagos && <PaysDash />
