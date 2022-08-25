@@ -152,7 +152,7 @@ const handleSubmit = (e:any) => {
     name, lastname, DNI, Email, Phone_Number, Target_type, cvu:Card_number
  }
 
- dispatch(setBankInfo(bank_data, userLogged.id))
+ setBankInfo(bank_data, userLogged.id)
 };
 
 
@@ -222,7 +222,7 @@ const handleSubmit = (e:any) => {
                       <div className="cbu_input">
                       <img className="img_label" src={imgCard} alt="" />
                       <input className="CR_input"
-                        type='number' name='Acount' placeholder='CBU/CVU' onChange={handleChange}/>
+                        type='number' name='Card_number' placeholder='CBU/CVU' onChange={handleChange}/>
                       </div>
                         {errors.Card_number && (
                                 <p className="danger">{errors.Card_number}</p>
