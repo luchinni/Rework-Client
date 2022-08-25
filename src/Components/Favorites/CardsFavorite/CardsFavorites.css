@@ -44,9 +44,13 @@
 }
 
 @media screen and (max-width: 685px) {
+  .CardsFavorites_component{
+    padding: 20px 8px 8px;
+}
   .Favorites_title {
     font-size: 14px;
   } 
+
 }
 
 @media screen and (max-width: 650px) {

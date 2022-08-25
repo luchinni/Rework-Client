@@ -36,10 +36,10 @@
   font-size: 38px;
   font-weight: 800;
   color: #ffffff;
-  text-align: start;
+  text-align: end;
   text-shadow: #264653 2px 2px 5px;
-  left: 0px;
-  margin: 15px 0px 0px 20px; 
+  right: 0px;
+  margin: 15px 20px 0px 0px; 
   max-width: 420px;
   line-height: 50px;
 }
