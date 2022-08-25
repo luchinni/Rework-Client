@@ -260,7 +260,7 @@ const FormProposal = (props: any) => {
                 x
               </button>
             </div>
-            <img className="DetailModal_image" src={image} alt="example" />
+            <img className="DetailModal_image" src="https://images.pexels.com/photos/7620570/pexels-photo-7620570.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="example" />
           </div>
         </div>
       </div>

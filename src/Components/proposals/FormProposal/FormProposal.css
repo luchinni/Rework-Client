@@ -7,11 +7,13 @@
 .DetailModal_divPadre {
   display: flex;
   max-height: 575px;
+  overflow: hidden;
 }
 .DetailModal_divContent {
   padding: 30px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
+  overflow: hidden;
 }
 .DetailModal_title {
   margin-bottom: 10px;
@@ -38,11 +40,14 @@
   border: none;
 }
 .DetailModal_image {
-  max-width: 400px;
-  right: 5px;
+  max-width: 570px;
+  /* position: relative; */
+  /* transform: translateX(-150px); */
+  /* right: 200px; */
 }
 .DetailModal_divButtonClose {
   position: relative;
+  /* z-index: 15px; */
 }
 .DetailModal_buttonClose {
   position: absolute;
