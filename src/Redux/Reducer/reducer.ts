@@ -1160,11 +1160,11 @@ export const setBankInfo = async (info:any, id:any) =>{
   try{
     console.log(info)
     console.log(id)
-    const objeto = {id, bank_data:info}
+    const bank_data:any = info
     const response = await axios({
       method:"PUT",
-      url: `/worker/bank`,
-      data: objeto
+      url: `/worker/bank/${id}`,
+      data: bank_data
       })
       console.log(response)
 } catch (error) {
