@@ -50,11 +50,13 @@
   gap: 10px;
   justify-content: space-between;
   padding: 10px;
-  width: 295px;
+  width: 350px;
   background-color: #E9E9E9;
   margin-top: 5px;
   border-radius: 10px;
   z-index: 4;
+  font-weight: 700;
+  color: rgb(26, 91, 89);
 }
 .Filter_divOptionsCheckbox {
   display: flex;
@@ -176,4 +178,83 @@
   }
 }
 
+.select_search{
+  max-width: 250px;
+  width: max-content;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 4px;
+  margin: 4px;
+  margin-bottom: 0;
+  border: none;
+  font-size: 12px;
+  background: #fffcfc;
+  border-radius: 8px;
+  text-align: center;
+  appearance: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: rgb(26, 91, 89);
+}
+
+.remun_search{
+  width: max-content;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 4px;
+  margin: 4px;
+  margin-bottom: 0;
+  border: none;
+  font-size: 12px;
+  background: #fffcfc;
+  border-radius: 8px;
+  text-align: center;
+  appearance: none;
+}
+
+.filter_remu{
+  border: none;
+  border-left: 1px solid #000;
+  font-size: 14px;
+  background: #fffcfc;
+  border-radius: 1px;
+  text-align: center;
+  appearance: none;
+  margin-left: 6px;
+  height: 25px;
+  width: 90px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  background-color: CanvasText;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
 

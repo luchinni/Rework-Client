@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import image1 from "../../../images/business-man-banner-concept-with-copy-space.jpg";
 import * as type from "../../../Types";
-import { postNewClient } from "../../../Redux/Reducer/reducer";
+import { changeLoading, postNewClient } from "../../../Redux/Reducer/reducer";
 import "./ClientRegister.css";
 import HeaderRegister from "../HeaderRegister/HeaderRegister";
 import Axios, {AxiosResponse}  from "axios";
 import Swal from "sweetalert2";
+import { connect, ConnectedProps } from "react-redux";
+import Loading from "../../Loading/Loading";
 
-export class ClientRegister extends Component {
+interface HeaderState {
+
+}
+export class ClientRegister extends Component<HeaderProps, HeaderState> {
   state: type.ClientType;
-  constructor(props: type.ClientType) {
+  constructor(props: HeaderProps) {
     super(props);
     this.state = {
       name: "",
@@ -222,9 +227,18 @@ export class ClientRegister extends Component {
     }
   })  
   }
+  componentDidMount() {
+    this.props.changeLoadingTrue();
+    setTimeout(() => this.props.changeLoadingFalse(), 1000)
+  }
 
   render() {
     return (
+      <>
+      {
+        this.props.isLoading ? <Loading /> :
+
+      <>
       <div>
         <HeaderRegister />
         <div className="ClientRegister_component">
@@ -361,8 +375,27 @@ export class ClientRegister extends Component {
           </div>
         </div>
       </div>
+      </>
+  }
+      </>
     );
   }
 }
 
-export default ClientRegister;
+export const mapStateToProps = (state: any) => {
+  return {
+    isLoading: state.workService.isLoading,
+  };
+};
+export const mapDispatchToProps = (dispatch: any) => {
+  return {
+    changeLoadingTrue: () => dispatch(changeLoading(true)),
+    changeLoadingFalse: () => dispatch(changeLoading(false)),
+  };
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type HeaderProps = ConnectedProps<typeof connector>;
+
+export default connector(ClientRegister);

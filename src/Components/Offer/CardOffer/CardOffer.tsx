@@ -2,8 +2,8 @@ import React, {useRef, useState} from 'react';
 import './CardOffer.css';
 import {Link} from 'react-router-dom';
 import more from '../../../images/more.svg';
-import save from "../../../images/icon_guardar.png";
-import report from '../../../images/icon_report.svg';
+// import save from "../../../images/icon_guardar.png";
+// import report from '../../../images/icon_report.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import decode from "jwt-decode"
 import { remFavorite, getFavorites, getFavoritestoDB, remFavoritestoDB, getUserById } from '../../../Redux/Reducer/reducer';
@@ -29,7 +29,7 @@ const CardOffer = ({props}:any) => {
   const addFavorite = async (props:any) => {
     //console.log(userLogged)
     if(currentUser.id !== ''){
-      console.log(props.idOffer);
+      console.log(props);
       if(userLogged.favorites?.find((f:any) => f.idOffer === props.idOffer)){
         await remFavoritestoDB(props, currentUser.id);
         return dispatch(getUserById(tokenDecode))
@@ -111,20 +111,20 @@ useOnClickOutside(userDiv, handleClickOutside);
           </div>
         </div>
         
-        <div className='div_cardButton'>
+        <div className='div_cardButton' ref={userDiv}>
           <button onClick={()=> handleClick()} className='cardButton_options'>
             <img className='more' src={more} alt="more" />
           </button>
           {open &&
-            <div className='Card_option' ref={userDiv}>
+            <div className='Card_option' >
               <div className='CardOption_divGuardar' onClick={(e) => {addFavorite(props)}}>
                 <span className='report_cardButton'>Guardar</span>
                 {showFavorite(props)}
               </div>
-              <div className='CardOption_divReport'>
+              {/* <div className='CardOption_divReport'>
                 <span className='report_cardButton'>Reportar</span>
                 <img className='report_icon' src={report} alt="report" />
-              </div>
+              </div> */}
             </div>
           }
         </div>
@@ -136,7 +136,7 @@ useOnClickOutside(userDiv, handleClickOutside);
             <img className='Card_profileImage' src={props.userClient?.photo || props.userWorker?.photo} alt="Client Photo" />
           </div>
           <div className='div_userData'>
-            <Link to={`/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
+            <Link to={currentUser.id === props.userClientId ? '/myProfile' : `/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
             <span className='Card_userRating'>{props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
           </div>
         </div>

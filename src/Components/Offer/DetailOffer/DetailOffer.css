@@ -72,7 +72,9 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 50px 0 30px 0 ;
-  width: 850px;
+  max-width: 850px;
+  width: 100%;
+  /* background-color: #2A9D8F; */
 }
 
 .Detail_tags{
@@ -98,8 +100,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 850px;
   max-width: 851px;
+  width: 100%;
 }
 
 .Detail_timeRemu{
@@ -288,6 +290,13 @@
   line-height: 20px;
   color: #c45050;
 }
+.Detail_accepted{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #72AD5E;
+}
+
 .Detail_divCardPropuestas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -425,3 +434,22 @@
   z-index: 8;
 }
 
+@media screen and (max-width: 880px) {
+  .Detail_header {
+    flex-direction: column;
+  }
+  .Detail_timeRemu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.Detail_tagImage {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    margin: 50px 0 30px 0;
+    max-width: 850px;
+    width: 100%;
+    /* background-color: #2A9D8F; */
+}
+}

@@ -172,13 +172,13 @@ function Profile() {
                 className={informationOpen ? "Profile_tag open" : "Profile_tag"}
                 onClick={handleInfo}
               >
-                Informacion
+                Información
               </button>
               <button
                 className={portfolioOpen ? "Profile_tag open" : "Profile_tag"}
                 onClick={handlePort}
               >
-                Porfolio
+                Portfolio
               </button>
               <button
                 className={reviewsOpen ? "Profile_tag open" : "Profile_tag"}
@@ -199,7 +199,7 @@ function Profile() {
                 className={informationOpen ? "Profile_tag open" : "Profile_tag"}
                 onClick={handleInfo}
               >
-                Informacion
+                Información
               </button>
               <button
                 className={reviewsOpen ? "Profile_tag open" : "Profile_tag"}

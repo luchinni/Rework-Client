@@ -6,6 +6,7 @@ import {
   postNewWorker,
   getAllProfession,
   getAllSkills,
+  changeLoading,
 } from "../../../Redux/Reducer/reducer";
 import HeaderRegister from "../HeaderRegister/HeaderRegister";
 import "./WorkerRegister.css";
@@ -13,6 +14,7 @@ import { resolve } from "node:path/win32";
 import { createBrotliCompress } from "node:zlib";
 import Axios, { AxiosResponse } from "axios";
 import Swal from "sweetalert2";
+import Loading from "../../Loading/Loading";
 //import { Redirect } from "react-router-dom";
 
 interface HeaderState {}
@@ -51,6 +53,8 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
   componentDidMount() {
     this.props.getAllProfession();
     this.props.getAllSkills();
+    this.props.changeLoadingTrue();
+    setTimeout(() => this.props.changeLoadingFalse(), 1000)
   }
 
   firstWordUpperCase(word: String) {
@@ -64,10 +68,12 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
       (val: any) => val.length > 0 && (valid = false)
     );
     if (valid) {
+      console.log("valid")
       this.setState({
         disabled: false,
       });
     } else {
+      console.log("invalid")
       this.setState({
         disabled: true,
       });
@@ -278,6 +284,10 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
 
   render() {
     return (
+      <>
+      {
+        this.props.isLoading ? <Loading /> :
+      <>
       <div className="WorkerRegister_component">
         <HeaderRegister />
         <div className="Worker_registerContent">
@@ -364,7 +374,7 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
                     placeholder="Fecha de Nacimiento"
                     onChange={(e) => this.handleChange(e)}
                   />
-                  {!this.state.errors.birthdate ? <div className='Worker_br'/> : <div className='Worker_errorPw'>{this.state.errors.birthdate}</div>                  }
+                  {!this.state.errors.birthdate ? <div className='Worker_br'/> : <div className='Worker_error'>{this.state.errors.birthdate}</div>                  }
                 </div>
                 <div className='Worker_Input'>
                   <input className="CR_inpunt" type="email" name="user_mail" placeholder='E-mail' onChange={(e) => this.handleChange(e)}/>
@@ -466,6 +476,9 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
           </div>
         </div>
       </div>
+      </>
+      }
+      </>
     );
   }
 }
@@ -473,8 +486,8 @@ export class WorkerRegister extends Component<HeaderProps, HeaderState> {
 export const mapStateToProps = (state: any) => {
   return {
     professions: state.workService.professions,
-
     skills: state.workService.skills,
+    isLoading: state.workService.isLoading,
   };
 };
 export const mapDispatchToProps = (dispatch: any) => {
@@ -483,6 +496,8 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch(postNewWorker(newWorker)),
     getAllProfession: () => dispatch(getAllProfession()),
     getAllSkills: () => dispatch(getAllSkills()),
+    changeLoadingTrue: () => dispatch(changeLoading(true)),
+    changeLoadingFalse: () => dispatch(changeLoading(false)),
   };
 };
 

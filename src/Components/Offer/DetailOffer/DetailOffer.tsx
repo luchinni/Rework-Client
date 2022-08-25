@@ -100,7 +100,7 @@ const DetailOffer = () => {
   const proposalFinalized = offerId?.proposals?.find((p:any) => p.state === 'finalized')
 
   const filtred: any = offerId.proposals?.filter(
-    (p: any) => p.userWorker?.id === currentUser?.id
+    (p: any) => p.userWorker?.id === currentUser?.id 
   );
 
   if (filtred?.length > 0) {
@@ -108,6 +108,9 @@ const DetailOffer = () => {
   } else {
     alreadyApply = false;
   }
+
+  console.log(offerId?.idOffer, "que pasaaaaa")
+  console.log(currentUser?.id, "currentUser?.id")
 
   return (
     <div className={open ? "Detail_component modalOpen" : "Detail_component"}>
@@ -131,7 +134,7 @@ const DetailOffer = () => {
               />
             </div>
             <Link
-              to={`/profile/${offerId.userClientId}`}
+              to={offerId?.userClientId === currentUser?.id ? `/myProfile` : `/profile/${offerId.userClientId}`}
               className="Detail_NameUserPost"
             >
               {offerId.userClient?.name} {offerId.userClient?.lastName}
@@ -224,7 +227,7 @@ const DetailOffer = () => {
             ||
             (currentUser?.isWorker === true && contractStarted !== undefined && offerId?.state === 'contract started' && contractStarted?.userWorkerId === currentUser?.id)
            ? 
-            <button className="Detail_buttonFinish" onClick={OpenModalReview}>Trabajo finalizado</button>
+            <button className="DetailP_buttonFinish" onClick={OpenModalReview}>Trabajo finalizado</button>
             :
             null
           }
