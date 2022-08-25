@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 import './PaysDash.css'
-import getAllOffersAdmin from '../../../Redux/Reducer/reducer'
 
 function PaysDash() {
 

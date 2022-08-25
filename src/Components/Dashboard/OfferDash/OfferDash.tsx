@@ -67,8 +67,8 @@ function OfferDash() {
 		<div className='OfferDash_firstDivSelect'>
 			<select  onChange={handleSelectAdmin}>
 				<option selected={true} hidden>Mostrar Ofertas</option>
-				<option value="true">Abiertas</option>
-				<option value="false">Cerradas</option>
+				<option value="true">Activas</option>
+				<option value="false">Inactivas</option>
 				<option value="all">Todas</option>
 			</select>
 		</div>
@@ -99,8 +99,8 @@ function OfferDash() {
 
 									<select onChange={handleSelect}>
 										<option selected={true} hidden>selecciona uno</option>
-										<option value="true">Abierta</option>
-										<option value="false">Cerrada</option>
+										<option value="true">Activa</option>
+										<option value="false">Inactiva</option>
 									</select>
 
 								</div>
@@ -115,6 +115,7 @@ function OfferDash() {
 					<table className='OfferDash_divMap'>
 						<thead >
 							<tr>
+								<th>Título</th>
 								<th>Id</th>
 								<th>Fecha</th>
 								<th>Estado</th>
@@ -126,6 +127,10 @@ function OfferDash() {
 									<tr className='OfferDash_divOffer' key={i}>
 
 										<td className='OfferDash_divUserMail'>
+											{offer.title}
+										</td>
+
+										<td className='OfferDash_divUserMail'>
 											{offer.idOffer}
 										</td>
 										
@@ -134,7 +139,7 @@ function OfferDash() {
 										</td>
 
 										<td>
-											{offer.isActive === false ? "Cerrada" : "Abierta"}
+											{offer.isActive === false ? "Inactiva" : "Activa"}
 										</td>
 										
 										<td className='OfferDash_tdButtons'>
