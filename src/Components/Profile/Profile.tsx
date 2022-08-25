@@ -144,7 +144,7 @@ function Profile() {
                 {/* </div> */}
 
                 <div className="Profile_buttonDiv">
-                  {currentUser?.isPremium === false  ?
+                  {currentUser?.isPremium === false  && currentUser?.isWorker === true ?
                   <button
                       className="Profile_premiumButton"
                       onClick={() => goPremium()}
