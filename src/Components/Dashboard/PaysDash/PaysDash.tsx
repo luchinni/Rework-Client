@@ -1,17 +1,29 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 import Swal from 'sweetalert2';
-import { acceptProposal, getAllOffersAdmin, modifyOfferState } from '../../../Redux/Reducer/reducer';
+import { acceptProposal, checkSession, getAllOffersAdmin, getUserById, modifyOfferState } from '../../../Redux/Reducer/reducer';
+import decode from 'jwt-decode';
 import './PaysDash.css'
 
 function PaysDash({props}:any) {
 
   const dispatch = useDispatch();
 
+  const userLogged = useSelector((state: any) => state.workService.userLogged);
+  const currentUser = useSelector((state: any) => state.workService.currentUser)
+  const token:any = localStorage.getItem("token")
+ let tokenDecode:any
+  if(token){tokenDecode = decode(token)}
+
   let offers = useSelector((state:any) => state.workService.allOffersAdmin)
 
   console.log("PaysDash ",offers)
-  
+
+  useEffect(()=> {
+    dispatch(checkSession())
+    dispatch(getUserById(tokenDecode))
+  },[])
+
   useEffect(() => {
 		dispatch(getAllOffersAdmin(''));
 	}, [props])
