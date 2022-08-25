@@ -14,7 +14,7 @@ function Banner() {
       <div className='Banner_Carrusel'>
         {currentUser?.id===""? 
         <div className='Banner_divBanner'>
-          <p className='Banner_imageTextUno'>MÁS DE MIL FREELANCERS Y OFERTAS <b>ESPERÁNDOTE</b></p>
+          <p className='Banner_imageTextUno'>MÁS DE MIL FREELANCERS Y OFERTAS ESPERÁNDOTE</p>
           <img className='Banner_image' src={bannerTresHome} alt="banner"/>
         </div>
         :userLogged?.isWorker===true?

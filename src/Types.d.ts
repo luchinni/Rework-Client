@@ -209,3 +209,16 @@ export interface WorkerTypeUpdate {
   skills: String[];
   description: String;
 }
+
+export interface errorsPassword {
+  user_mail: string,
+  newPassword:string,
+  confirmPassword: string,
+  disabled:Boolean
+}
+
+export interface errorResetPassword {
+  newPassword:string,
+  confirmPassword: string,
+  disabled:Boolean
+}

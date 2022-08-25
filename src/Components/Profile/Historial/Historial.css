@@ -15,7 +15,6 @@
 .Historial_tags{
     display: flex;
     gap: 15px;
-    padding: 10px 80px;
     margin-bottom: 60px;
 }
 .Historial_tag{
@@ -36,4 +35,14 @@
   .Historial_tag.open {
     color: #f4a261;
     border-bottom: 3px solid #f4a261;
+  }
+
+  @media screen and (max-width: 497px) {
+    .Historial_tags{
+      gap: 10px;
+      margin-bottom: 30px;
+  }
+    .Historial_tag{
+      font-size: 12px;
+    }
   }

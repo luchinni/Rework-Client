@@ -3,12 +3,13 @@
   margin: 0 auto;
   position: relative;
   padding: 0 30px;
-
 }
+
 .div_BannerAndCards {
   max-width: 1200px;
   margin-top: 120px;
 }
+
 aside {
   width: 100%;
   padding-bottom: 30px;
@@ -20,7 +21,8 @@ aside {
   flex-direction: column;
   gap: 20px;
   position: relative;
-  /* background-color: #2A9D8F; */
+  max-width: 380px;
+  width: 100%;
 }
 
 /* .div_filters{
@@ -205,5 +207,24 @@ background-color: #E76F51;
   max-width: 380px;
   width: 100%;
   padding-bottom: 30px;
+}
+
+
+@media screen and (max-width: 650px){
+  .div_filters_premium{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    position: relative;
+    max-width: 650px;
+    width: 100%;
+  }
+  .Home_component {
+    padding: 0 15px;
+  }
+  .div_homeCards {
+    flex-direction: column-reverse;
+  }
 }
 

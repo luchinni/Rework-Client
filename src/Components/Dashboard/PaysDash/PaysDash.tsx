@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 import './PaysDash.css'
-import getAllOffersAdmin from '../../../Redux/Reducer/reducer'
 
 function PaysDash() {
 
@@ -37,7 +36,7 @@ function PaysDash() {
 
 
 
-
+console.log(offerDatos)
   return (
     <div>
 
@@ -70,22 +69,44 @@ function PaysDash() {
             </div>
 
             <hr className='OfferDash_hr' />
-            <h3>UserWorker</h3>
+            <h3>Free lancer</h3>
             <div>
               <div>
                 <span className='OfferDash_divModalTitle'>Username: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.name}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Name}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.LastName}</span>
+              </div>
+              <div>
+                <span className='OfferDash_divModalTitle'>DNI: </span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.DNI}</span>
+              </div>
+              <div>
+                <span className='OfferDash_divModalTitle'>Email: </span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Email}</span>
+              </div>
+              <div>
+                <span className='OfferDash_divModalTitle'>Teléfono: </span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Phone_Number}</span>
+              </div>
+              <div>
+                <span className='OfferDash_divModalTitle'>Tarjeta: </span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Target_type}</span>
+              </div>
+              <div>
+                <span className='OfferDash_divModalTitle'>CVU: </span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.cvu}</span>
               </div>
             </div>
 
           </div>
         </div>
         <div className='OfferDash_modalButtonsDiv'>
-          <button className='OfferDash_modalOk' onClick={handlePay}>Pagar</button>
+          <a className='OfferDash_modalOk' href='https://www.mercadopago.com.ar/home#from-section=menu' target='_blank'>Pagar</a>
           <button className='OfferDash_modalCancelar' onClick={handleModalPayClose}>cancelar</button>
         </div>
       </div>
       }
+      
 
       <table className='OfferDash_divMap'>
         <thead>
@@ -97,7 +118,7 @@ function PaysDash() {
         </thead>
         <tbody className='OfferDash_tableBody'>
           {offers?.map((e:any, i:any) => {
-            if(e.state === "finalized" && e.proposals[0].state === "finalized") {
+            if(e.state === "finalized"  && e.proposals[0].state === "finalized") {
               return (
   
                 <tr key={i}>

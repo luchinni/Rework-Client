@@ -24,7 +24,7 @@ const DetailOffer = () => {
   const currentUser = useSelector(
     (state: any) => state.workService.currentUser
   );
-  const navigate = useNavigate()
+  const Navigate = useNavigate()
   const dispatch = useDispatch();
   const params = useParams();
   useEffect(() => {
@@ -47,6 +47,10 @@ const DetailOffer = () => {
 
   function handleClose(value: any) {
     setOpen(value);
+  }
+
+  function handleClick(){
+    Navigate("/premium")
   }
 
   const [openReview, setOpenReview] = useState(false)
@@ -81,7 +85,7 @@ const DetailOffer = () => {
           confirmButtonText: "¡Listo!",
         }).then((response) =>{
           if(response.isConfirmed){
-            navigate('/home')
+            Navigate('/home')
           }
         });
       }
@@ -95,9 +99,8 @@ const DetailOffer = () => {
   const contractStarted = offerId?.proposals?.find((p:any) => p.state === 'contract started')
   const proposalFinalized = offerId?.proposals?.find((p:any) => p.state === 'finalized')
 
-  console.log("la ofer",proposalFinalized)
   const filtred: any = offerId.proposals?.filter(
-    (p: any) => p.userWorker?.id === currentUser?.id && p.isActive === true
+    (p: any) => p.userWorker?.id === currentUser?.id 
   );
 
   if (filtred?.length > 0) {
@@ -239,16 +242,16 @@ const DetailOffer = () => {
           </div>
         : */
         //si la offer es del client logeado actualmente, o el user actual es admin o premium
-        offerId.userClientId === currentUser.id ||
-        currentUser.isAdmin === true ||
-        currentUser.isPremium === true ? (
+        offerId?.userClientId === currentUser?.id ||
+        currentUser?.isAdmin === true ||
+        currentUser?.isPremium === true ? (
           //renderiza las cards completas
           <div>
             <h2 className="Detail_h2Propuestas">Propuestas</h2>
             <CardsProposal offer={offerId} />
           </div>
         ) : //si el usuario es worker pero no premium, que le renderice su propuesta enviada
-        currentUser.isPremium === false && currentUser.isWorker === true ? (
+        currentUser?.isPremium === false && currentUser?.isWorker === true ? (
           <div className="Detail_divCardPropuestas">
             <OwnProposal offer={offerId} idWorker={currentUser.id} />
             <div className="Detail_premiumCont">
@@ -257,7 +260,7 @@ const DetailOffer = () => {
               <div className="Detail_premium">
                 <span>¿Quieres ver las propuestas de otros freelancers?</span>
                 <p>¡conviértete en Premium!</p> 
-                <button className="Detail_premiumButton">
+                <button className="Detail_premiumButton" onClick={() => handleClick()}>
                   Hazte Premium
                 </button>
               </div>

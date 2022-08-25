@@ -247,7 +247,9 @@
   background-color: #f88d22;
   
 }
-
+.Detail_premiumButton:hover {
+  background-color: #c45800;
+}
 .Detail_premium > p {
   margin-top: 15px;
   max-width: 220px;
@@ -267,9 +269,7 @@
   
 }
 
-.Detail_premiumButton:hover {
-  background-color: #c45800;
-}
+
 .DetailP_UserName {
   font-weight: 600;
   font-size: 20px;
@@ -282,7 +282,12 @@
   line-height: 20px;
   color: #E76F51;
 }
-
+.Detail_cancelled{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #c45050;
+}
 .Detail_divCardPropuestas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -294,7 +299,8 @@
   font-size: 15px;
   line-height: 21px;
   color: #264653;
-  max-width: 190px;
+  word-wrap: break-word;
+  max-width: 185px;
   height: auto;
   min-height: 50px;
   }
@@ -334,7 +340,7 @@
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  
+  margin: 0px 5px
 }
 
 .DetailP_buttonCancel {
@@ -346,7 +352,7 @@
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  
+  margin: 0px 5px
 }
 
 .DetailP_buttonFinish {

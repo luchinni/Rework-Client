@@ -168,3 +168,12 @@
     border-radius: 2px;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .filter_dropDown {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
