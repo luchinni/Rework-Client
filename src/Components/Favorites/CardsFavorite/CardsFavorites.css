@@ -2,6 +2,7 @@
     position: sticky;
     top: 21em;
     max-width: 380px;
+    min-height: 180px;
     border: 1px solid #edecd9;
     background-color: #fffcfc;
     border-radius: 10px;
@@ -21,6 +22,7 @@
   color: #264653;
   font-size: 18px;
   line-height: 24px;
+
 }
 
 .CardFavorite_component{
