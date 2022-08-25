@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 import decode from "jwt-decode"
 import './Home.css';
 import Banner from './Banner/Banner';
+import Swal from "sweetalert2";
 import goUpIcon from "../../images/arrow_upward_FILL0_wght400_GRAD0_opsz48.png"
 import CardsWorker from '../WorkerHome/CardsWorker/CardsWorker';
 import jwt from 'jsonwebtoken'
@@ -44,8 +45,16 @@ const Home = () => {
   if(token){tokenDecode = decode(token)}
   let preapproval: any = query.get("preapproval_id");
   if(preapproval){
-    localStorage.removeItem("token")
-    preapproval = null
+    Swal.fire({
+      icon: 'success',
+      title: 'YA ERES PREMIUM!',
+      text: 'Felicitaciones! ya eres un miembro premium de REwork! porfavor vuelve a iniciar sesion para actualizar tu cuenta.',
+  }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token")
+        preapproval = null
+      }
+  })
   }
   
   if(storageParsed?.length>0 && currentUser.id !== ''){
