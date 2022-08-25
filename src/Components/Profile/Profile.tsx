@@ -96,7 +96,7 @@ function Profile() {
           <div className="Profile_divPortada">
             <img
               className="Profile_portada"
-              src="https://th.bing.com/th/id/R.99068920ab82a672b048b73e1b1d5374?rik=pvNRgNW6hzVcKw&pid=ImgRaw&r=0"
+              src="https://github.com/The-final-pg/.github/blob/main/profile/REwork.jpg?raw=true"
               alt="Portada"
             />
           </div>
@@ -144,7 +144,8 @@ function Profile() {
                 {/* </div> */}
 
                 <div className="Profile_buttonDiv">
-                  {currentUser?.isPremium === false  ?
+                  <div>
+                  {currentUser?.isPremium === false  && currentUser?.isWorker === true ?
                   <button
                       className="Profile_premiumButton"
                       onClick={() => goPremium()}
@@ -153,13 +154,14 @@ function Profile() {
                     </button>
                     : null
                   }
-                    <button
-                      className="Profile_editProfile"
-                      onClick={() => handleUpdate()}
-                    >
+                  </div> 
+                  <div>
+                    <button className="Profile_editProfile" onClick={() => handleUpdate()}>
                       Editar perfil
                     </button>
+                  </div>
                 </div>
+
               </div>
             </div>
           </div>

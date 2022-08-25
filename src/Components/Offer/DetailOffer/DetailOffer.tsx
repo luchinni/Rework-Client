@@ -99,9 +99,8 @@ const DetailOffer = () => {
   const contractStarted = offerId?.proposals?.find((p:any) => p.state === 'contract started')
   const proposalFinalized = offerId?.proposals?.find((p:any) => p.state === 'finalized')
 
-  console.log("la ofer",proposalFinalized)
   const filtred: any = offerId.proposals?.filter(
-    (p: any) => p.userWorker?.id === currentUser?.id && p.isActive === true
+    (p: any) => p.userWorker?.id === currentUser?.id
   );
 
   if (filtred?.length > 0) {

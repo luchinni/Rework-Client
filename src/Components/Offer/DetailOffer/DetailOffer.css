@@ -282,7 +282,12 @@
   line-height: 20px;
   color: #E76F51;
 }
-
+.Detail_cancelled{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #c45050;
+}
 .Detail_divCardPropuestas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -16,13 +16,18 @@
     align-items: center;
     margin: 50px;
 }
-
+.Premium_topBox {
+    display: flex;
+    justify-content: flex-start;
+    width: 220px;
+}
 .Premium_each_cont{
     margin: 0 30px 0 30px;
-    height: 400px;
+    height: 430px;
     display: flex;
     row-gap: 20px;
     align-items: center;
+    justify-content: space-between;
     flex-direction: column;
     box-shadow: -20px 10px 40px -20px rgba(0, 0, 0, 0.8);
     border-radius: 15px;
