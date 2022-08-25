@@ -19,6 +19,7 @@ const initialState = {
   favorites: [],
   userLogged: {},
   offerById: {},
+  proposalById: {},
   professions: [],
   skills: [],
   premiumInfo:"",
@@ -46,6 +47,9 @@ export const workServiceSlice = createSlice({
   reducers: {
     setAllUsers: function (state: any, action: any) {
       state.allUsers = action.payload;
+    },
+    setProposalById: function (state: any, action: any) {
+      state.proposalById = action.payload;
     },
     setAllUsersAdmin: function (state: any, action:any) {
       state.allUsersAdmin = action.payload;
@@ -308,6 +312,7 @@ export const {
   setUserById,
   setFavorite,
   removeFavorite,
+  setProposalById,
   setLoading,
   setAllOffers,
   setUserLogged,
@@ -1162,4 +1167,15 @@ export const changePassword = (user_mail: any, oldPassword:any, newPassword:any)
   } catch(error){
     return error
   }
+}
+
+export const getProposalById = (id: String | undefined) => async (dispatch: Dispatch<any>) => {
+    try {
+    const offerId = await axios.get(`/proposal/${id}`);
+    setLoading(true);
+    return dispatch(setProposalById(offerId.data));
+
+    } catch (e) {
+      Swal.fire("Error al requerir el detalle","","warning")
+    }
 }
