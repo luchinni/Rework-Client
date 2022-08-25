@@ -21,7 +21,6 @@ const CardProposal = ({ props, offer }: any) => {
   );
   const proposalAccepted = offer.proposals.find((p: any) => p.state === 'accepted')
   const navigate = useNavigate();
-  console.log(props)
 
   useEffect(() => {
     getProposalById(props.id);
@@ -96,6 +95,8 @@ const CardProposal = ({ props, offer }: any) => {
     });
   };
 
+  console.log("toy en la card", props)
+  
   return (
     <div className="Detail_Proposal">
       {edition && (
