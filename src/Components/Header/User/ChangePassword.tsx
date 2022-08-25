@@ -2,6 +2,7 @@ import { useState } from "react";
 import { changePassword } from "../../../Redux/Reducer/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import * as type from "../../../Types";
 import Swal from 'sweetalert2'
 import Header from "../../Register/HeaderRegister/HeaderRegister";
 import "./ChangePassword.css"
@@ -10,31 +11,37 @@ import "./ChangePassword.css"
 const ChangePassword = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const userLogged = useSelector((state: any) => state.workService.userLogged);
-    const [ user, setUser] = useState({user_mail: "", oldPassword:"", newPassword: ""})
-    const [ error, setError] = useState({password: "", confirmPassword: "", disabled: true})
 
-
-    const handleInputChange = (e:any) => {
-        e.preventDefault()
-        const value = e.target.value;
-        const name = e.target.name;
-        console.log("etargetvalue", e.target.value)
-        console.log("e.target.name", e.target.name)
-        setUser({ ...user, [name]: value });
+    type errorsPassword = {
+        user_mail: string,
+        newPassword:string,
+        confirmPassword: string,
+        disabled:Boolean
     }
+
+    const [ user, setUser] = useState({user_mail: "", oldPassword:"", newPassword:"", confirmPassword: ""})
+    const [error, setError] = useState <type.errorsPassword>({
+        user_mail: "",
+        newPassword:"",
+        confirmPassword: "",
+        disabled: true
+    });
+
+
     const sendChange = () => {
         dispatch(changePassword(user.user_mail, user.oldPassword, user.newPassword))
         Swal.fire({
-          icon: 'success',
-          title: 'Contraseña restablecida exitosamente',
+            icon: 'success',
+            title: 'Contraseña restablecida exitosamente',
       }).then((result) => {
-        navigate("/home")
+          navigate("/home")
     })
     }
 
       const handleChange = () => {
-        if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,60}$/.test(user.oldPassword)){
+        //si set error tiene algo
+        if(error.user_mail !== "" || error.newPassword !== "" || error.confirmPassword !== ""){
+        /* setError({...error}) */
           Swal.fire({
               icon: 'error',
               title: 'Se ha producido un error',
@@ -42,11 +49,65 @@ const ChangePassword = () => {
           })}else{
            sendChange()
         }
-     }
+    }
+    
 
-     //Debe tener entre 8 y 16 caracteres y al menos 1 mayúscula, 1 minúscula y 1 número
-     //Las contraseñas deben coincidir
+    const validarForm = (errors:type.errorsPassword) => {
+        let valid = true;
+        Object.values(errors).forEach((val:any) => val.length > 0 && (valid = false));
+        if (valid) {
+            setError({
+                ...error,
+                disabled: false
+            })
+        } else {
+            setError({
+                ...error,
+                disabled: true
+            })
+        }
+    }
+    
+    const handleInputChange = (e:any) => {
+        e.preventDefault()
+        const value = e.target.value;
+        const name = e.target.name;
+        let errors:type.errorsPassword;
+        errors = error;
+        
+        
+        switch (name) {
+            case "newPassword":
+            let newPasswordPattern: RegExp =
+              /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+            error.newPassword = newPasswordPattern.test(value)
+              ? ""
+              : "Debe tener entre 8 y 16 caracteres y al menos 1 mayúscula, 1 minúscula y 1 número.";
+            break;
+          case "confirmPassword":
+              let confirmPasswordPattern: RegExp =
+              /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+              error.confirmPassword = confirmPasswordPattern.test(value)
+              ? value !== user.newPassword
+              ? "Las contraseñas no coinciden"
+              : ""
+              : "Las contraseñas no coinciden";
+            break;
+            case "user_mail":
+                let user_mailPattern: RegExp =
+                /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+                error.user_mail = user_mailPattern.test(value)
+                ? ""
+                : "El campo ingresado debe ser un email válido.";
+                break;
+        }
+    
+        setError(error)
+    
+        validarForm(errors)  
 
+        setUser({ ...user, [name]: value });
+    }
 
 
     return (
@@ -64,6 +125,12 @@ const ChangePassword = () => {
                         onChange={handleInputChange} 
                         placeholder='Correo electrónico'/>
                     </div>
+                    <div>
+                        {error.user_mail ? (
+                            <div className='ChangePassword_inputError'>{error.user_mail}</div>
+                        ) : <br className="ChangePassword_br"/>
+                        } 
+                </div>
                 <div className="ChangePassword_div">
                 <h3 className='ChangePassword_subtitle'>Contraseña actual</h3>
                     <input 
@@ -83,10 +150,9 @@ const ChangePassword = () => {
                         placeholder='Nueva contraseña'/>
                     </div>
                     <div>
-                        {error.password ? (
-                            <div className='ChangePassword_inputError'>{error.password}</div>
-                        )
-                        : null 
+                        {error.newPassword ? (
+                            <div className='ChangePassword_inputError'>{error.newPassword}</div>
+                        ) : <br className="ChangePassword_br"/>
                     } 
                 </div>
                 <div className="ChangePassword_div">
@@ -101,8 +167,7 @@ const ChangePassword = () => {
                 <div>
                         {error.confirmPassword ? (
                             <div className='ChangePassword_inputError'>{error.confirmPassword}</div>
-                        )
-                        : null 
+                        ) : <br className="ChangePassword_br"/>
                     } 
                 </div>
             </form>
