@@ -8,10 +8,9 @@
     flex-direction: row;
     justify-content: space-between;
     cursor: pointer;
-    /* text-decoration: none; */
     width: 100%;
     color: #F4A261;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     text-align: start;
     transition: all 0.3s ease;
@@ -19,4 +18,18 @@
 
 .favorites_btn:hover{
     background-color: #264653;
+}
+
+
+@media screen and (max-width: 710px) {
+    .favorites_btn{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .favorites_btn{
+        padding: 7px;
+        border-radius: 4px;
+    }
 }

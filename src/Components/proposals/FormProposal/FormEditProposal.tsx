@@ -146,7 +146,7 @@ const FormEditProposal = (props: any) => {
           : form.proposal_description,
       worked_time:
         !form.worked_time || form.worked_time === props.proposal.worked_time
-          ? props.proposal.worked_time
+          ? `${props.proposal.worked_time} ${props.proposal.worked_time_select}`
           : form.worked_time,
       worked_time_select: form.worked_time_select,
       idProposal: props.proposal.idProposal,

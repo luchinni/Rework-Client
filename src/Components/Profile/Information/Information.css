@@ -28,3 +28,9 @@
   font-size: 18px;
   color: #264653
 }
+
+@media screen and (max-width: 590px) {
+  .UserDescription{
+    font-size: 16px;
+  }
+}

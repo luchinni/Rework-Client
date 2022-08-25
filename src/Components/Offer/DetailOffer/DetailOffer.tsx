@@ -224,7 +224,7 @@ const DetailOffer = () => {
             ||
             (currentUser?.isWorker === true && contractStarted !== undefined && offerId?.state === 'contract started' && contractStarted?.userWorkerId === currentUser?.id)
            ? 
-            <button className="Detail_buttonFinish" onClick={OpenModalReview}>Trabajo finalizado</button>
+            <button className="DetailP_buttonFinish" onClick={OpenModalReview}>Trabajo finalizado</button>
             :
             null
           }

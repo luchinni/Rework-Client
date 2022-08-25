@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header';
-//import image2 from '../../images/Team success _Outline.png';
+import image2 from '../../images/pexels-thirdman-5318967.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import {checkSession, getPaymentLink, getOfferForHistory} from "../../Redux/Reducer/reducer";
 import * as type from "../../Types";
@@ -197,90 +197,94 @@ const handleSubmit = async (e:any) => {
     }
 
     dispatch(getPaymentLink(newPayment,"client"))
+    setErrors({
+        ...errors,
+        disabled: true
+    });
 }
 
   return (
     <div>
         <Header/>
         <div className='OfferPost_divcontent'>
-            <div className='OfferPost_divImage'>
-                {/* <img className='OfferPost_image' src={image1} alt="place1" /> */}
-                {/* <img src={image2} alt="place2" /> */}
-            </div>
-            <div className='OfferPost_divForm'>
+        <div className="OfferPost_divImage">
+          <img className="OfferPost_image" src={image2} alt="place1" />
+          {/* <img src={image2} alt="place2" /> */}
+        </div>
+            <div className="CR_divForm">
                 <h1>Empecemos</h1>
-                <form className='OfferPost_Form' id='form' onSubmit={(e) => e.preventDefault()}>
+                <form className="CR_Form" id='form' onSubmit={(e) => e.preventDefault()}>
                     <div>
-                        <input className={errors.Name && 'danger'}
+                        <input className="CR_input"
                         type='text' name='Name' placeholder='Nombre' onChange={handleChange}/>
                         {errors.Name && (
                                 <p className="danger">{errors.Name}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.Lastname && 'danger'}
+                        <input className="CR_input"
                         type='text' name='Lastname' placeholder='Apellido' onChange={handleChange}/>
                         {errors.Lastname && (
                                 <p className="danger">{errors.Lastname}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.DNI && 'danger'}
+                        <input className="CR_input"
                         type='number' name='DNI' placeholder='DNI' onChange={handleChange}/>
                         {errors.DNI && (
                                 <p className="danger">{errors.DNI}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.Phone_Number && 'danger'}
+                        <input className="CR_input"
                         type='number' name='Phone_Number' placeholder='Telefono' onChange={handleChange}/>
                         {errors.Phone_Number && (
                                 <p className="danger">{errors.Phone_Number}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.Email && 'danger'}
+                        <input className="CR_input"
                         type='text' name='Email' placeholder='Email' onChange={handleChange}/>
                         {errors.Email && (
                                 <p className="danger">{errors.Email}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.Direction && 'danger'}
+                        <input className="CR_input"
                         type='text' name='Direction' placeholder='Dirección' onChange={handleChange}/>
                         {errors.Direction && (
                                 <p className="danger">{errors.Direction}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.Postal_code && 'danger'}
+                        <input className="CR_input"
                         type='number' name='Postal_code' placeholder='Codigo postal' onChange={handleChange}/>
                         {errors.Postal_code && (
                                 <p className="danger">{errors.Postal_code}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.City && 'danger'}
+                        <input className="CR_input"
                         type='text' name='City' placeholder='Ciudad' onChange={handleChange}/>
                         {errors.City && (
                                 <p className="danger">{errors.City}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.Province && 'danger'}
+                        <input className="CR_input"
                         type='text' name='Province' placeholder='Provincia' onChange={handleChange}/>
                         {errors.Province && (
                                 <p className="danger">{errors.Province}</p>
                             )}
                     </div>
                     <div>
-                        <input className={errors.Country && 'danger'}
+                        <input className="CR_input"
                         type='text' name='Country' placeholder='Pais' onChange={handleChange}/>
                         {errors.Country && (
                                 <p className="danger">{errors.Country}</p>
                             )}
                     </div>
-                    <input disabled={errors.disabled} name="button" type="submit" value="Enviar" onClick={(e) => handleSubmit(e)} />
+                    <input className="Worker_submit" disabled={errors.disabled} name="button" type="submit" value="Enviar" onClick={(e) => handleSubmit(e)} />
                     {payment!==""? <PasarelaPago props={formulario}/> : <span/>}
                 </form>
             </div>        

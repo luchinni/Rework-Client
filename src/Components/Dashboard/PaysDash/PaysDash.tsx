@@ -1,16 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux'
+import Swal from 'sweetalert2';
+import { acceptProposal, checkSession, getAllOffersAdmin, getUserById, modifyOfferState } from '../../../Redux/Reducer/reducer';
+import decode from 'jwt-decode';
 import './PaysDash.css'
 
-function PaysDash() {
+function PaysDash({props}:any) {
 
   const dispatch = useDispatch();
 
-  const offers = useSelector((state:any) => state.workService.allOffersAdmin)
+  let offers = useSelector((state:any) => state.workService.allOffersAdmin)
 
-  console.log("PaysDash ",offers)
-  
-  
+  useEffect(() => {
+		dispatch(getAllOffersAdmin(''));
+	}, [props])
+
 
   // ---- HANDLE OPEN Y CLOSE MODAL ----
 
@@ -27,16 +31,37 @@ function PaysDash() {
     setPayModal(false)
   }
 
+  function handleChangeState(idProposal:string, idOffer:string){
 
-  // ---- pagar ----
+    const proposalState: {id: String, state: String} = {
+      id: idProposal,
+      state: 'payment released'
+    }
+    acceptProposal(proposalState)
 
-  function handlePay() {
-
+    const offerState: {id: String, state: String} = {
+      id: idOffer,
+      state: 'payment released'
+    }
+    modifyOfferState(offerState)
+    Swal.fire({
+      icon: 'success',
+      title: "Pago realizado con éxito",
+      text: "El pago al freelancer se ha despachado con éxito"
+    })
   }
 
 
+  // ---- pagar ----
 
-console.log(offerDatos)
+  // function handlePay() {
+
+  // }
+
+  if(props && props !== "") {
+		offers = offers.filter((e: any) => e.title.toLowerCase().includes(props.toLowerCase()))
+	}
+
   return (
     <div>
 
@@ -47,12 +72,12 @@ console.log(offerDatos)
           <div>
             <div>
               <span className='OfferDash_divModalTitle'>Id: </span>
-              <span className='OfferDash_MOdalTextInfo'>{offerDatos.idOffer}</span>
+              <span className='OfferDash_MOdalTextInfo'>{offerDatos?.idOffer}</span>
             </div>
 
             <div>
               <span className='OfferDash_divModalTitle'>State: </span>
-              <span className='OfferDash_MOdalTextInfo'>{offerDatos.state}</span>
+              <span className='OfferDash_MOdalTextInfo'>{offerDatos?.state}</span>
             </div>
           </div>
 
@@ -61,11 +86,11 @@ console.log(offerDatos)
           <div>
             <div >
               <span className='OfferDash_divModalTitle'>Id: </span>
-              <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].idProposal}</span>
+              <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.idProposal}</span>
             </div>
             <div>
               <span className='OfferDash_divModalTitle'>State: </span>
-              <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].state}</span>
+              <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.state}</span>
             </div>
 
             <hr className='OfferDash_hr' />
@@ -73,28 +98,28 @@ console.log(offerDatos)
             <div>
               <div>
                 <span className='OfferDash_divModalTitle'>Username: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Name}</span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.LastName}</span>
+                <span className='OfferDash_MOdalTextInfo'>{`${offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.name} ${offerDatos.proposals[0].userWorker.bank_data?.lastname}`}</span>
+            
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>DNI: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.DNI}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.DNI}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Email: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Email}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.Email}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Teléfono: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Phone_Number}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.Phone_Number}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>Tarjeta: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.Target_type}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.Target_type}</span>
               </div>
               <div>
                 <span className='OfferDash_divModalTitle'>CVU: </span>
-                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals[0].userWorker.bank_data.cvu}</span>
+                <span className='OfferDash_MOdalTextInfo'>{offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.userWorker.bank_data?.cvu}</span>
               </div>
             </div>
 
@@ -102,6 +127,7 @@ console.log(offerDatos)
         </div>
         <div className='OfferDash_modalButtonsDiv'>
           <a className='OfferDash_modalOk' href='https://www.mercadopago.com.ar/home#from-section=menu' target='_blank'>Pagar</a>
+          <button className='OfferDash_modalCancelar' onClick={() => handleChangeState(offerDatos.proposals.find((e:any)=> e.state === 'finalized')?.idProposal, offerDatos.idOffer)}>liberar</button>
           <button className='OfferDash_modalCancelar' onClick={handleModalPayClose}>cancelar</button>
         </div>
       </div>
@@ -111,8 +137,9 @@ console.log(offerDatos)
       <table className='OfferDash_divMap'>
         <thead>
           <tr>
-            <th>Id offer</th>
-            <th>State</th>
+            <th>título de oferta</th>
+            <th>ID oferta</th>
+            <th>Estado</th>
             <th>Mas</th>
           </tr>
         </thead>
@@ -122,13 +149,15 @@ console.log(offerDatos)
               return (
   
                 <tr key={i}>
+                  <td>{e.title}</td>
+
                   <td>{e.idOffer}</td>
   
                   <td>{e.state}</td>
   
                   <td>
                     <div>
-                      <button onClick={() => handleOpenPayModal(offers[i])}>hola</button>
+                      <button onClick={() => handleOpenPayModal(offers[i])}>Procesar</button>
                     </div>
                   </td>
                 </tr>
