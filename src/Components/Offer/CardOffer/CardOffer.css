@@ -37,8 +37,8 @@
     align-items: center;
     padding: 5px 22px;
 }
-.Card_userName {
-    font-size: 25px;
+.CardOffer_userName {
+    font-size: 22px;
     font-weight: 500;
     text-decoration: none;
     color: #264653;
@@ -83,6 +83,9 @@
 }
 .card_divTags {
     display: flex;
+    margin: 5px 0 5px 0;
+    max-width: 550px;
+
 }
 .card_tags {
     font-size: 15px;
@@ -90,11 +93,11 @@
     line-height: 15px;
     color: #F4A261;
     text-overflow: ellipsis;
-    max-width: 400px;
+    max-width: 550px;
 }
 .card_title {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 25px;
+    font-weight: 600;
     color: #2A9D8F;
     max-width: 475px;
 }
@@ -105,11 +108,9 @@
     color: #E76F51;
     margin: 5px 0 10px 0;
 }
-.card_divTags {
-    margin: 5px 0 5px 0;
-}
+
 .button_details {
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 600;
     line-height: 27px;
     color: #FFFFFF;

@@ -53,7 +53,7 @@ function User() {
             { 
               currentUser?.id !== '' && userLogged?.name !== '' ? 
               <div className='User_dropUserName'>
-                <span>Hola, <b>{userLogged?.name}</b>!</span>
+                <span>¡Hola <span className ="User_dropName">{userLogged?.name}</span>!</span>
               </div>
               : ""
             }
