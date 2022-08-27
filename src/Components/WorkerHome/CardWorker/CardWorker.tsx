@@ -108,7 +108,7 @@ const CardWorker = ({props}:any) => {
                     <div>
                         <div className='Card_userHabilities'>Habilidades: <br/>
                     {
-                        props.skills.length > 3 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}, ...</span> 
+                        props.skills.length > 3 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}...</span> 
                         : <span>{props.skills?.join(", ")}</span>
                     }
                     </div>

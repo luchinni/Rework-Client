@@ -45,15 +45,21 @@
   color: #494949;
 }
 .UserDropdownItem:hover {
-  background-color: #ff01011a;
+  background-color: #2a9d90c3;
 }
 .User_dropUserName {
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
   margin-top: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #3e3e3e;
+  color: #264653;
+}
+.User_dropName{
+  font-size: 15px;
+  font-weight: 600;
+  color: #e76f51
 }
 .User_hr {
   margin: 10px 0;
@@ -61,19 +67,25 @@
 .User_typeOfUser {
   padding: 5px 8px;
   font-size: 14px;
-  border: 1px solid gray;
+  border: 1px solid #264653;
   border-radius: 5px;
+  background-color: #264653;
   margin: 5px 0;
-  color: #3e3e3e;
+  color: white;
   font-weight: 500;
+  text-shadow: black 2px 2px 5px;
 }
 .User_buttonLogout {
   width: 100%;
   padding: 8px 0;
   margin: 5px 0;
-  background-color: #ce512b;
+  background-color: #e76f51;
   border-radius: 5px;
   border: none;
   color: #fff;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+.User_buttonLogout:hover {
+  background-color: #f4a261;
 }

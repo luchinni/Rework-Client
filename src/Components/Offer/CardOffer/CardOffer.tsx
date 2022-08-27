@@ -96,9 +96,8 @@ useOnClickOutside(userDiv, handleClickOutside);
           <div className='div_bottomData'>
             <div>
               <div className='div_remuneration'>
-                <span>ARS </span>
-                <span>{`${props.min_remuneration} - ${props.max_remuneration}`}</span>
-                <span>$</span>
+                <span>ARS $</span>
+                <span>{`${props.min_remuneration} - $ ${props.max_remuneration}`}</span>
               </div>
               <div className='card_divTags'>
                 {
@@ -129,14 +128,14 @@ useOnClickOutside(userDiv, handleClickOutside);
           }
         </div>
       </div>
-      <hr className='CardOffer_hr' />
+      {/* <hr className='CardOffer_hr' /> */}
       <div className="Card_footer">
         <div className='div_dataUser'>
           <div className='Card_divContImageProfile'>
             <img className='Card_profileImage' src={props.userClient?.photo || props.userWorker?.photo} alt="Client Photo" />
           </div>
           <div className='div_userData'>
-            <Link to={currentUser.id === props.userClientId ? '/myProfile' : `/profile/${props.userClientId || props.userWorkerId}`} className='Card_userName'>{props.userClient?.name}</Link>
+            <Link to={currentUser.id === props.userClientId ? '/myProfile' : `/profile/${props.userClientId || props.userWorkerId}`} className='CardOffer_userName'>{props.userClient?.name}</Link>
             <span className='Card_userRating'>{props.userClient?.rating ? ratingStars(props.userClient.rating) : ratingStars(0)}</span>
           </div>
         </div>

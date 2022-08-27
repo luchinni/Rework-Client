@@ -4,8 +4,8 @@ background-color: #FFFFFF;
 border-radius: 6px;
 max-width: 320px;
 min-width: 319px;
-min-height: 480px;
-max-height: 480px;
+min-height: 510px;
+max-height: 511px;
 overflow: hidden;
 margin: 0 0 30px 40px;
 padding-bottom: 7px;
@@ -28,7 +28,9 @@ position: relative
     height: 165px;
     width: 220px;
     overflow: hidden;
-    border-radius: 3px;
+    margin-bottom: 15px;
+    border-radius: 7px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
 }
 
 .card_workerImage{
@@ -39,8 +41,8 @@ position: relative
 .div_userDatos {
     display: flex;
     flex-direction: column;
-    gap: 4px;
     text-decoration: none;
+    gap: 5px;
 }
 
 .div_userDatos > a{
@@ -95,8 +97,7 @@ position: relative
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    margin: 15px 0
+    margin: 25px 0 15px
 }
 
 .div_location{

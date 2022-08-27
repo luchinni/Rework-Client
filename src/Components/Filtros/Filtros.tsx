@@ -44,8 +44,8 @@ function Filtros() {
           <label>ORDENAR POR:</label> 
           <select className='Filtro_sortButton' name='rating' id='rating' onChange={(e)=> handleSelect(e)}>
             <option selected={true} hidden>Rating</option>
-            <option value="15">1..5</option>
-            <option value="51">5..1</option>
+            <option value="15">1-5</option>
+            <option value="51">5-1</option>
           </select>
         </div>
       </div>
