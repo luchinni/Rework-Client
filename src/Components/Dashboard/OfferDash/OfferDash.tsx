@@ -67,11 +67,11 @@ function OfferDash({props}: any) {
     <div className='OfferDash_Component'>
 
 		<div className='OfferDash_firstDivSelect'>
-			<select  onChange={handleSelectAdmin}>
-				<option selected={true} hidden>Mostrar Ofertas</option>
-				<option value="true">Activas</option>
-				<option value="false">Inactivas</option>
-				<option value="all">Todas</option>
+			<select className='OfferDash_select' onChange={handleSelectAdmin}>
+				<option className="Offer_Dash_option" selected={true} hidden>Mostrar Ofertas</option>
+				<option className="Offer_Dash_option" value="true">Activas</option>
+				<option className="Offer_Dash_option" value="false">Inactivas</option>
+				<option className="Offer_Dash_option" value="all">Todas</option>
 			</select>
 		</div>
 
@@ -83,19 +83,20 @@ function OfferDash({props}: any) {
 							<div>
 
 								<div className='OfferDash_divInfoModal'>
-									<div>
+									<div className='OfferDash_infoID'>
 										<p className='OfferDash_divModalTitle'>ID de la publicación: </p>
-										<span className='OfferDash_MOdalTextInfo'>{dataOffer.idOffer}</span>
+										<span className='OfferDash_ModalIdInfo'>{dataOffer.idOffer}</span>
 									</div>
 
-									<div>
+									<div className='OfferDash_infoState'>
 										<p className='OfferDash_divModalTitle'>Estado actual: </p>
-										<span className='OfferDash_MOdalTextInfo'>{dataOffer.isActive === false ? "Inactiva" : "Activa"}</span>
+										{dataOffer.isActive === false 
+										? 
+										<span className='OfferDash_ModalTextInactiva'> Inactiva </span>
+										: 
+										<span className='OfferDash_ModalTextActiva'> Activa </span>}
 									</div>
 								</div>
-
-								<hr className='OfferDash_hr' />
-
 								<div className='OfferDash_divInputEdit'>
 									<label className='OfferDash_divModalTitle'>Actualiza el estado</label>
 
