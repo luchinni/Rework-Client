@@ -145,7 +145,7 @@ console.log("la idOffer: ", idOffer)
       <table className='OfferDash_divMap'>
         <thead>
           <tr>
-            <th>título de oferta</th>
+            <th>Título de oferta</th>
             <th>ID oferta</th>
             <th>Estado</th>
             <th>Mas</th>

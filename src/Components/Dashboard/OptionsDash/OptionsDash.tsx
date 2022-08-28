@@ -126,7 +126,7 @@ function OptionsDash({props}: any) {
   return (
     <div className='OfferDash_Component'>
       <div className='OfferDash_firstDivSelect'>
-        <select onChange={handleSelect}>
+        <select className="OfferDash_select" onChange={handleSelect}>
           <option selected={true} hidden>
             Seleccionar
           </option>
@@ -138,14 +138,16 @@ function OptionsDash({props}: any) {
       {open === "professions" 
       ? <div className='OptionsDash_secondDiv'>
           <label>Nueva Profesión: </label>
-          <input className="Darshboard_search" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
-          <button
-            className="OfferDash_modalOk"
-            value="deleteProfession"
-            onClick={() => handleCreationProfession(profession)}
-          >
-            Agregar
-          </button>
+          <div className="OptionsDash_inputDiv">
+            <input className="Darshboard_search" type="text" onChange={(e) => setNewProfession(e.target.value)}/> 
+            <button
+              className="OfferDash_modalOk"
+              value="deleteProfession"
+              onClick={() => handleCreationProfession(profession)}
+            >
+              Agregar
+            </button>
+          </div>
         </div>
         : open === "skills" ? 
         <div className='OptionsDash_secondDiv'>

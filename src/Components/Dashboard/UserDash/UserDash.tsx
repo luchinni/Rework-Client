@@ -80,11 +80,11 @@ function UserDash({props}: any) {
     <div className='OfferDash_Component'>
       <div className='OfferDash_firstDivSelect'>
 
-        <select onChange={handleSelect}>
-          <option selected={true} hidden>Mostrar usuarios</option>
-          <option value="true">Activos</option>
-          <option value="false">Inactivos</option>
-          <option value="">Todos</option>
+        <select className='UserDash_select' onChange={handleSelect}>
+          <option className='UserDash_option' selected={true} hidden>Mostrar usuarios</option>
+          <option className='UserDash_option' value="true">Activos</option>
+          <option className='UserDash_option' value="false">Inactivos</option>
+          <option className='UserDash_option' value="">Todos</option>
         </select>
 
       </div>
@@ -98,12 +98,16 @@ function UserDash({props}: any) {
 								<div className='OfferDash_divInfoModal'>
 									<div>
 										<p className='OfferDash_divModalTitle'>ID del usuario: </p>
-										<span className='OfferDash_MOdalTextInfo'>{userData.id}</span>
+										<span className='OfferDash_ModalIdInfo'>{userData.id}</span>
 									</div>
 
 									<div>
 										<p className='OfferDash_divModalTitle'>Estado actual: </p>
-										<span className='OfferDash_MOdalTextInfo'>{userData.isActive === false ? "Inactivo" : "Activo"}</span>
+										{userData.isActive === false 
+                    ? 
+                    <span className='OfferDash_ModalTextInactiva'>Inactivo</span>
+                    : 
+                    <span className='OfferDash_ModalTextActiva'>Activo</span>}
 									</div>
 								</div>
 
@@ -134,12 +138,16 @@ function UserDash({props}: any) {
 								<div className='OfferDash_divInfoModal'>
 									<div>
 										<p className='OfferDash_divModalTitle'>ID del usuario: </p>
-										<span className='OfferDash_MOdalTextInfo'>{userData.id}</span>
+										<span className='OfferDash_ModalIdInfo'>{userData.id}</span>
 									</div>
 
 									<div>
 										<p className='OfferDash_divModalTitle'>Estado actual: </p>
-										<span className='OfferDash_MOdalTextInfo'>{userData.isAdmin === false ? "No Admin" : "Admin"}</span>
+										{userData.isAdmin === false 
+                    ? 
+                    <span className='OfferDash_ModalTextNoAdmin'>No Admin</span>
+                    : 
+                    <span className='OfferDash_ModalTextAdmin'>Admin</span>}
 									</div>
 								</div>
 
@@ -205,7 +213,7 @@ function UserDash({props}: any) {
 											<button className='OfferDash_editButton' onClick={() => handleModalEdit(allUsers[i])}>Editar</button>
 
                     {currentUser.isSuper === true ? 
-											<button className='OfferDash_editButton' onClick={() => handleModalAdmin(allUsers[i])}>Administrador</button>
+											<button className='OfferDash_adminButton' onClick={() => handleModalAdmin(allUsers[i])}>Administrador</button>
                       : null
                     }
 										</td>
