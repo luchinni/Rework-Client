@@ -157,6 +157,8 @@
 .Dev_imageGabi{
     max-width: 200px;
     max-height: 200px;
+    min-width: 199px;
+    min-height: 199px;
     border-radius: 90%;
     border: solid 5px #010101;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
@@ -165,6 +167,8 @@
 .Dev_imageLucia{
     max-width: 200px;
     max-height: 200px;
+    min-width: 199px;
+    min-height: 199px;
     border-radius: 90%;
     border: solid 5px #ddc58a;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
@@ -173,6 +177,8 @@
 .Dev_imageAngel{
     max-width: 200px;
     max-height: 200px;
+    min-width: 199px;
+    min-height: 199px;
     border-radius: 90%;
     border: solid 5px #010101;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
@@ -181,6 +187,8 @@
 .Dev_imageJuan{
     max-width: 200px;
     max-height: 200px;
+    min-width: 199px;
+    min-height: 199px;
     border-radius: 90%;
     border: solid 5px #010101;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
@@ -189,6 +197,8 @@
 .Dev_imageLucas{
     max-width: 200px;
     max-height: 200px;
+    min-width: 199px;
+    min-height: 199px;
     border-radius: 90%;
     border: solid 5px #010101;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
@@ -197,6 +207,8 @@
 .Dev_imageLuis{
     max-width: 200px;
     max-height: 200px;
+    min-width: 199px;
+    min-height: 199px;
     border-radius: 90%;
     border: solid 5px #010101;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 9px rgba(0, 0, 0, 0.24);
