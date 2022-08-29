@@ -15,7 +15,7 @@ const CardFavorite = ({props, onClose}:any) => {
           {props.title}
         </span>
       {/* </button> */}
-      <button className='CardFavorite_btnClose' onClick={() => onClose(props)}>x</button>
+      <button className='CardFavorite_btnClose' onClick={() => onClose(props)}><span className='CardFavorite_spanClose'>X</span></button>
     </div>        
     </div>
   )
