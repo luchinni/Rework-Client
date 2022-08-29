@@ -33,6 +33,7 @@ import ChangePassword from './Components/Header/User/ChangePassword';
 import ForgotPassword from './Components/Login/ResetPassword/ForgotPassword';
 import ResetPassword from './Components/Login/ResetPassword/ResetPassword';
 import Loading from './Components/Loading/Loading';
+import Developers from './Components/Developers/Developers';
 // import Portfolio from './Components/Profile/Portfolio/FormPortfolio/FormPortfolio';
 
 
@@ -67,6 +68,7 @@ return (
       {token || currentUser.id !== '' ?
       <>
         <Route path='register' element={<Navigate to='/home' replace/>} />
+        <Route path='developers' element={<Developers/>} />
         <Route path='register/worker' element={<Navigate to='/home' replace/>}/>
         <Route path='register/client' element={<Navigate to='/home' replace/>}/>
         <Route path='login' element={<Navigate to='/home' replace/>} />
@@ -91,6 +93,7 @@ return (
       </>
         :
       <>
+        <Route path='developers' element={<Developers/>} />
         <Route path='dashboard' element={<Navigate to='/register' replace/>} />
         <Route path='register' element={<Register/>} />
         <Route path='register/worker' element={<Worker/>} />

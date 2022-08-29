@@ -63,7 +63,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #6F6F6F;
+  color: #264653;
   padding-bottom: 3px;
   border: none;
 	border-bottom: 3px solid transparent;
@@ -72,11 +72,11 @@
   cursor: pointer;
 }
 .Dashboard_tag:hover {
-  color: #264653;
+  color: #2A9D8F;
 }
 .Dashboard_tag.open {
-  color: #264653;
-  border-bottom: 3px solid #264653;
+  color: #2A9D8F;
+  border-bottom: 3px solid #2A9D8F;
 }
   
 .Dashboard_divNavigation {
@@ -84,12 +84,21 @@
   justify-content: space-between;
 }
 .Darshboard_search {
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px solid gray;
+  border: none;
+  width: 100%;
+  padding: 15px 20px;
+  background: #ececec;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #949494;
+  font-size: 14px;
+  font-weight: 600;
 }
 .Darshboard_search:focus {
 	outline: none;
+  color: #264653;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .Dashboard_divOrdenamientoCont {

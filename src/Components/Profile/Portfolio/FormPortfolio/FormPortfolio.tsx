@@ -134,7 +134,6 @@ const FormPortfolio = (props:any) => {
   return (
         <div className='FormPortfolio_contenedor'>
             <div className='FormPortfolio_component'>
-                <button className='FormPortfolio_button' onClick={handleClose}>x</button>
                 <form className='FormPortfolio_form' onSubmit={(e)=> uploadForm(e)}>
                     <label>Publica un nuevo portfolio</label>
                     <input className='Portfolio_input' type="text" name='title' placeholder='Título...' onChange={(e) => handleChange(e)}/>
@@ -143,7 +142,10 @@ const FormPortfolio = (props:any) => {
                     {!state.errors.portfolio_description ? null : <p className='portfolioDescription_error'>{state.errors.portfolio_description}</p>}
                     <input className='Portfolio_input_file' type="file" name='photo' onChange={(e) => handleChange(e)} accept="image/*"/> 
                     {!state.errors.photo ? null : <p className='photo_error'>{state.errors.photo}</p>}
-                    <input className='Portfolio_input_submit' type="submit" disabled={disabled} />
+                    <div className='Portfolio_buttons'>
+                        <input className='Portfolio_input_submit' type="submit" disabled={disabled} />
+                        <button className='FormPortfolio_buttonCancel' onClick={handleClose}>Cancelar</button>
+                    </div>
                 </form> 
                 <img className='Portfolio_image' src={image} alt="show art" />
             </div>

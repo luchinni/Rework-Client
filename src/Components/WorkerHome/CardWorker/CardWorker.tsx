@@ -101,20 +101,18 @@ const CardWorker = ({props}:any) => {
                 </div>
             </div>
         </div>
-        <div className="div_description">
-            <div>
+        <div className="div_descriptionContainer">
+            <div className='div_description'>
+                <p className='Card_userProfessions'>{props.profession?.join(", ")}</p>
                 <div>
-                    <p className='Card_userProfessions'>{props.profession?.join(", ")}</p>
-                    <div>
-                        <div className='Card_userHabilities'>Habilidades: <br/>
-                    {
-                        props.skills.length > 3 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}...</span> 
-                        : <span>{props.skills?.join(", ")}</span>
-                    }
-                    </div>
+                    <div className='Card_userHabilities'>Habilidades: <br/>
+                {
+                    props.skills.length > 3 ? <span>{`${props.skills[0]}`}, {`${props.skills[1]}`}, {`${props.skills[2]}`}, {`${props.skills[3]}`}...</span> 
+                    : <span>{props.skills?.join(", ")}</span>
+                }
                     </div>
                 </div>
-                {/* <p className="description">Descripción</p> */}
+                <br/>
             </div>
         </div>
         {/* <div className='div_descriptionTop'>

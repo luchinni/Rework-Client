@@ -16,7 +16,7 @@ function Footer() {
             <div>
               <h2 className='Footer_titleLinks'>PROYECTO</h2>
               <div className='Footer_divLinks'>
-                <Link to="#" className='Footer_link'>Devs</Link>
+                <a href="https://re-work-ten.vercel.app/developers" target="_blank" className='Footer_link'>Devs</a>
                 <a href="https://github.com/The-final-pg" target="_blank" className='Footer_link'>Repositorio</a>
                 <a href="https://www.figma.com/file/pf1okewD3QyTBWvQhedJv6/Untitled" target="_blank" className='Footer_link'>Diseño</a>
               </div>
