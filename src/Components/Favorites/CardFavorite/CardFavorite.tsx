@@ -10,12 +10,10 @@ const CardFavorite = ({props, onClose}:any) => {
   return (
     <div className='CardFavorit'>  
     <div className='favorites_btn' >
-      {/* <button className='favorites_btn' onClick={() => navigate(`/detailOffer/${props.idOffer}`)}> */}
         <span onClick={() => navigate(`/detailOffer/${props.idOffer}`)} className='CardFavorite_span'>
           {props.title}
         </span>
-      {/* </button> */}
-      <button className='CardFavorite_btnClose' onClick={() => onClose(props)}>x</button>
+      <button className='CardFavorite_btnClose' onClick={() => onClose(props)}>X</button>
     </div>        
     </div>
   )

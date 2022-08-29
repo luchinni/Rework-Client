@@ -24,7 +24,22 @@
 }
 
 .CardFavorite_btnClose{
+    background-color: rgb(245, 104, 104);
     cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 20%;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.CardFavorite_btnClose:hover{
+    background-color: rgb(250, 32, 32);
 }
 
 
