@@ -38,8 +38,6 @@
     transition: all 0.3s ease;
 }
 
-
-
 .CardFavorite_btnClose:hover{
     background-color: rgb(250, 32, 32);
 }
