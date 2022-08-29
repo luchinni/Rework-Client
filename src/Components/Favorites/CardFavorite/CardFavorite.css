@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    cursor: pointer;
     width: 100%;
     color: #F4A261;
     font-size: 16px;
@@ -18,6 +17,14 @@
 
 .favorites_btn:hover{
     background-color: #264653;
+}
+
+.CardFavorite_span{
+    cursor: pointer;
+}
+
+.CardFavorite_btnClose{
+    cursor: pointer;
 }
 
 
@@ -33,3 +40,5 @@
         border-radius: 4px;
     }
 }
+
+
