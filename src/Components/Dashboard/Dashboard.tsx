@@ -31,7 +31,8 @@ function Dashboard() {
     pay: ""
   });
 
-  const currentUser = useSelector((state:any) => state.workService.currentUser);
+  const [inputSearch, setInputSearch] = useState("");
+
   useEffect(() => {
     dispatch(checkSession())
   }, [])
@@ -42,6 +43,7 @@ function Dashboard() {
     // setReports(false);
     setPagos(false);
     setOptions(false);
+    setInputSearch("");
   };
 
   function handleUser() {
@@ -50,6 +52,7 @@ function Dashboard() {
     //   setReports(false);
     setPagos(false);
     setOptions(false);
+    setInputSearch("");
   };
 
   /*  function handleReports() {
@@ -66,6 +69,7 @@ function Dashboard() {
     setOffCli(false);
     setUser(false);
     setOptions(false);
+    setInputSearch("");
   };
 
   function handleOptions() {
@@ -74,10 +78,12 @@ function Dashboard() {
     setOffCli(false);
     setUser(false);
     setPagos(false);
+    setInputSearch("");
   };
 
   function handleSearch(e: any) {
     const value: string = e.target.value;
+    setInputSearch(value);
     if (offCli) {
       setSearch({
         offer: value,
@@ -111,8 +117,6 @@ function Dashboard() {
       });
     };
   };
-
-  console.log("search.offer", search)
 
   return (
     <>
@@ -150,7 +154,7 @@ function Dashboard() {
               </div>
 
               <div className="Dashboard_divSearch">
-                <input className='Darshboard_search' type="text" placeholder='Buscar...' onChange={handleSearch}/>
+                <input id='searchInput' className='Darshboard_search' type="search" placeholder='Buscar...' onChange={handleSearch} value={inputSearch}/>
               </div>
             </div>
 
@@ -184,7 +188,6 @@ function Dashboard() {
               options && <OptionsDash props={search.option} />
             }
 
-                {options && <OptionsDash />}
               </div>
             </div>
           </div>

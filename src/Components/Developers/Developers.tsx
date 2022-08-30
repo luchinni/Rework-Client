@@ -26,7 +26,7 @@ const Developers = () => {
                             <img className="Dev_imageGabi" src={gabi} alt="" />
                             </span>
                             <div className="Dev_hoverText">
-                                <a className="Dev_linkLinkedin" href="#" target="_blank">
+                                <a className="Dev_linkLinkedin" href="https://www.linkedin.com/in/gabrielmachado-developer/" target="_blank">
                                 <BsLinkedin className="Dev_iconLinkedin"/>
                                 </a>
                                 <a className="Dev_linkGithub" href="https://github.com/Gabriel9022" target="_blank">
@@ -120,7 +120,7 @@ const Developers = () => {
                                 <img className="Dev_imageLuis" src={luis} alt="" />
                             </span>
                             <div className="Dev_hoverText">
-                                <a className="Dev_linkLinkedin" href="#" target="_blank">
+                                <a className="Dev_linkLinkedin" href="https://www.linkedin.com/in/luistourn/" target="_blank">
                                 <BsLinkedin className="Dev_iconLinkedin"/>
                                 </a>
                                 <a className="Dev_linkGithub" href="https://github.com/LuisTourn" target="_blank">
@@ -142,7 +142,7 @@ const Developers = () => {
                                 </a>
                                 <a className="Dev_linkPortfolio" href="https://francofraiese.vercel.app" target="_blank">
                                 <FaLaptopCode className="Dev_iconPortfolio"/></a>                                
-                                <a className="Dev_linkGithub" href="https://github.com/LuisTourn" target="_blank">
+                                <a className="Dev_linkGithub" href="https://github.com/francofraiese" target="_blank">
                                 <VscGithubInverted className="Dev_iconGithub" />
                                 </a>
                             </div>

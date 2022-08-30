@@ -213,7 +213,7 @@ function UserDash({props}: any) {
 											<button className='OfferDash_editButton' onClick={() => handleModalEdit(allUsers[i])}>Editar</button>
 
                     {currentUser.isSuper === true ? 
-											<button className='OfferDash_adminButton' onClick={() => handleModalAdmin(allUsers[i])}>Administrador</button>
+											<button className='OfferDash_adminButton' onClick={() => handleModalAdmin(allUsers[i])}>Admin</button>
                       : null
                     }
 										</td>
