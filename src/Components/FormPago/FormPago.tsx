@@ -13,7 +13,10 @@ import PasarelaPago from './PasarelaPago';
 const FormPago = () => {
 
     const token:any = localStorage.getItem("token")
-    const tokenDecode:any = decode(token)
+    let tokenDecode:any
+    if(token !== undefined && token?.length > 0){
+        tokenDecode = decode(token)
+      }
     const payment = useSelector((state:any) => state.workService.paymentInfo);
     const params:any = useParams();
     const [currentOffer, setCurrentOffer] = useState<any>();

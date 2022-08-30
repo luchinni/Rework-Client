@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 import Swal from 'sweetalert2';
 import { acceptProposal, checkSession, getAllOffersAdmin, getUserById, modifyOfferState } from '../../../Redux/Reducer/reducer';
-import decode from 'jwt-decode';
 import './PaysDash.css'
 
 function PaysDash({props}:any) {

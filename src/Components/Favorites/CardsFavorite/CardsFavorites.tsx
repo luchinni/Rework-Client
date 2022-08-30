@@ -12,7 +12,10 @@ const CardsFavorites = ({favoriteInfo}:any) => {
   const userLogged = useSelector((state:any) => state.workService.userLogged);
   const dispatch = useDispatch()
   const token:any = localStorage.getItem("token")
-  let tokenDecode:any = decode(token)
+  let tokenDecode:any
+  if(token !== undefined && token?.length > 0){
+    tokenDecode = decode(token)
+  }
 
   async function onClose (favoriteInfo:any){
     if(userLogged.favorites?.find((f:any) => f.idOffer === favoriteInfo.idOffer)){

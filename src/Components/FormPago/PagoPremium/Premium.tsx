@@ -21,7 +21,10 @@ import Loading from "../../Loading/Loading";
 
 const Premium = () => {
   const token: any = localStorage.getItem("token");
-  const tokenDecode: any = decode(token);
+  let tokenDecode:any
+    if(token !== undefined && token?.length > 0){
+        tokenDecode = decode(token)
+      }
   const paymentPremium = useSelector(
     (state: any) => state.workService.premiumInfo
   );
