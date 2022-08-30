@@ -37,8 +37,6 @@ function Dashboard() {
     dispatch(checkSession())
   }, [])
 
-  const searchInput: any = document.getElementById("searchInput") as HTMLElement | null;
-
   function handleoffCli() {
     setOffCli(true);
     setUser(false);
