@@ -120,7 +120,7 @@ const Developers = () => {
                                 <img className="Dev_imageLuis" src={luis} alt="" />
                             </span>
                             <div className="Dev_hoverText">
-                                <a className="Dev_linkLinkedin" href="#" target="_blank">
+                                <a className="Dev_linkLinkedin" href="https://www.linkedin.com/in/luistourn/" target="_blank">
                                 <BsLinkedin className="Dev_iconLinkedin"/>
                                 </a>
                                 <a className="Dev_linkGithub" href="https://github.com/LuisTourn" target="_blank">
