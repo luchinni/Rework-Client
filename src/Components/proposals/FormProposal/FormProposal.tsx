@@ -13,7 +13,10 @@ const FormProposal = (props: any) => {
   const dispatch = useDispatch();
   const params = useParams();
   const token: any = localStorage.getItem("token");
-  const tokenDecode: any = decode(token);
+  let tokenDecode:any
+  if(token !== undefined && token?.length > 0){
+    tokenDecode = decode(token)
+  }
   const userLogged = useSelector((state: any) => state.workService.userLogged);
 
   //console.log(userLogged)

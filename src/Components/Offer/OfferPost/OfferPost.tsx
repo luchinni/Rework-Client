@@ -21,7 +21,10 @@ import Swal from "sweetalert2";
 
 const OfferPost = () => {
   const token: any = localStorage.getItem("token");
-  const tokenDecode: any = decode(token);
+  let tokenDecode:any
+    if(token !== undefined && token?.length > 0){
+        tokenDecode = decode(token)
+      }
 	const navigate = useNavigate()
 
   const profession = useSelector((state: any) => state.workService.professions);

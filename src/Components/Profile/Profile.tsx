@@ -24,7 +24,10 @@ import Loading from "../Loading/Loading";
 function Profile() {
   const dispatch = useDispatch();
   const token: any = localStorage.getItem("token");
-  const tokenDecode: any = decode(token);
+  let tokenDecode:any
+  if(token !== undefined && token?.length > 0){
+      tokenDecode = decode(token)
+  }
   const isLoading = useSelector((state:any) => state.workService.isLoading);
 
 

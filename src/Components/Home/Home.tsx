@@ -42,9 +42,11 @@ const Home = () => {
   //const [storageParsed, setStorageParsed] = useState(JSON.parse(favoritesStorage));
   const navigate = useNavigate();
   let tokenDecode:any
-  if(token){tokenDecode = decode(token)}
+  if(token !== undefined && token?.length > 0){
+    tokenDecode = decode(token)
+  }
   let preapproval: any = query.get("preapproval_id");
-  if(preapproval){
+   if(preapproval){
     localStorage.removeItem("token")
     preapproval = null
     Swal.fire({
@@ -58,7 +60,7 @@ const Home = () => {
   })
   }
   const storageParsed = JSON.parse(favoritesStorage);
-  if(storageParsed?.length>0 && currentUser.id !== ''){
+  if(storageParsed && storageParsed?.length>0 && currentUser.id !== ''){
     dispatch(favoritesToDB(storageParsed, currentUser.id));
 
   }
@@ -77,7 +79,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getUserById(tokenDecode))
   }, [currentUser])
- 
+  
 
   useEffect(() => {
     if(search===""){
